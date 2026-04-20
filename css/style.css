@@ -260,8 +260,6 @@ p { margin-bottom: 1rem; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 6rem;
-  color: rgba(255,255,255,0.3);
   position: relative;
 }
 .hero-avatar::after {
