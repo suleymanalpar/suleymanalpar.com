@@ -183,14 +183,15 @@ p { margin-bottom: 1rem; }
 .hero-text { color: white; }
 .hero-text h1 {
   color: white;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
   margin-bottom: 0.5rem;
 }
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 0.5rem;
-  font-weight: 400;
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 .hero-tagline {
   font-size: 1.05rem;
@@ -225,9 +226,9 @@ p { margin-bottom: 1rem; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 28px;
+  padding: 16px 32px;
   border-radius: 10px;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
   border: none;
