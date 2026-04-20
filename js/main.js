@@ -38,11 +38,10 @@ const translations = {
     // About
     'about.label': 'HAKKIMDA',
     'about.title': 'Dr. Süleyman Alpar Kimdir?',
-    'about.p1': 'Acil tıp alanında uzmanlaşmış bir hekimim. Acil serviste edindiğim deneyimleri hem hastalarımla hem de öğrencilerimle paylaşıyorum.',
-    'about.p2': 'Hastalarıma en iyi sağlık bilgisini sunmayı ve öğrencilerime güçlü bir akademik temel oluşturmayı hedefliyorum.',
+    'about.p1': 'Acil tıp uzmanıyım. İstanbul Üniversitesi İstanbul Tıp Fakültesi mezunuyum. İstanbul Eğitim ve Araştırma Hastanesi\'nde acil tıp uzmanlığımı tamamladım.',
+    'about.p2': 'Şu anda İstanbul Beykent Üniversitesi Tıp Fakültesi Acil Tıp Anabilim Dalı\'nda öğretim üyesi ve anabilim dalı başkanı olarak görev yapıyorum. Aynı zamanda Bahçelievler Memorial Hastanesi\'nde acil tıp uzmanı olarak çalışıyorum.',
     'about.stat1': 'Yıl Deneyim',
-    'about.stat2': 'Yayınlanan Makale',
-    'about.stat3': 'Öğrenci',
+    'about.stat2': 'Yayınlarım',
 
     // Blog
     'blog.label': 'SON YAZILAR',
@@ -187,11 +186,10 @@ const translations = {
 
     'about.label': 'ABOUT',
     'about.title': 'Who is Dr. Süleyman Alpar?',
-    'about.p1': 'I am a physician specialized in emergency medicine. I share my experiences from the emergency department with both my patients and students.',
-    'about.p2': 'My goal is to provide the best health information to my patients and build a strong academic foundation for my students.',
+    'about.p1': 'I am an emergency medicine specialist. I graduated from Istanbul University Istanbul Faculty of Medicine and completed my residency at Istanbul Training and Research Hospital.',
+    'about.p2': 'I currently serve as a faculty member and head of the Department of Emergency Medicine at Istanbul Beykent University Faculty of Medicine. I also work as an emergency medicine specialist at Bahçelievler Memorial Hospital.',
     'about.stat1': 'Years Experience',
-    'about.stat2': 'Published Articles',
-    'about.stat3': 'Students',
+    'about.stat2': 'My Publications',
 
     'blog.label': 'LATEST POSTS',
     'blog.title': 'Blog & Articles',
