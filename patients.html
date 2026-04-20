@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dr. Süleyman Alpar - Hasta Bilgilendirme. Hasta hakları, sağlık bilgileri ve sık sorulan sorular.">
+  <title>Hasta Bilgilendirme | Dr. Süleyman Alpar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">SA</div>
+        <span>Dr. S. Alpar</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
+        <li><a href="index.html#about" data-i18n="nav.about">Hakkımda</a></li>
+        <li><a href="patients.html" class="active" data-i18n="nav.patients">Hastalar</a></li>
+        <li><a href="students.html" data-i18n="nav.students">Öğrenciler</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+        <li><a href="index.html#contact" data-i18n="nav.contact">İletişim</a></li>
+        <li>
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="tr">TR</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+        </li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 data-i18n="patient.header.title">Hasta Bilgilendirme</h1>
+      <p data-i18n="patient.header.desc">Sağlığınız hakkında güvenilir, anlaşılır ve güncel bilgiler</p>
+    </div>
+  </section>
+
+  <!-- Patient Rights -->
+  <section class="content-section">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label" data-i18n="patient.rights.label">HASTA HAKLARI</span>
+        <h2 data-i18n="patient.rights.title">Haklarınızı Bilin</h2>
+        <p data-i18n="patient.rights.desc">Her hastanın bilmesi gereken temel haklar ve yasal güvenceler</p>
+      </div>
+      <div class="info-cards">
+        <div class="info-card animate-in">
+          <div class="card-icon blue">&#128220;</div>
+          <h3 data-i18n="patient.right1.title">Bilgilendirilme Hakkı</h3>
+          <p data-i18n="patient.right1.desc">Tanı, tedavi yöntemleri, riskler ve alternatifler hakkında açık ve anlaşılır bir şekilde bilgilendirilme hakkınız vardır.</p>
+        </div>
+        <div class="info-card animate-in">
+          <div class="card-icon gold">&#9989;</div>
+          <h3 data-i18n="patient.right2.title">Onay Hakkı</h3>
+          <p data-i18n="patient.right2.desc">Herhangi bir tıbbi müdahale öncesinde bilgilendirilmiş onamınızın alınması yasal zorunluluktur.</p>
+        </div>
+        <div class="info-card animate-in">
+          <div class="card-icon green">&#128274;</div>
+          <h3 data-i18n="patient.right3.title">Mahremiyet Hakkı</h3>
+          <p data-i18n="patient.right3.desc">Tıbbi bilgileriniz gizlidir. Yasal zorunluluklar dışında üçüncü kişilerle paylaşılamaz.</p>
+        </div>
+        <div class="info-card animate-in">
+          <div class="card-icon purple">&#9995;</div>
+          <h3 data-i18n="patient.right4.title">Tedavi Reddi Hakkı</h3>
+          <p data-i18n="patient.right4.desc">Önerilen tedaviyi reddetme hakkınız bulunmaktadır. Reddiniz kayıt altına alınır.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Health Information -->
+  <section class="content-section" style="background: white;">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label" data-i18n="patient.health.label">SAĞLIK BİLGİLERİ</span>
+        <h2 data-i18n="patient.health.title">Sık Karşılaşılan Konular</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="card animate-in">
+          <div class="card-icon green">&#129657;</div>
+          <h3 data-i18n="patient.health1.title">Koruyucu Sağlık</h3>
+          <p data-i18n="patient.health1.desc">Düzenli check-up, aşılar ve erken tanı taramalarının önemi hakkında bilgiler.</p>
+        </div>
+        <div class="card animate-in">
+          <div class="card-icon blue">&#10084;&#65039;</div>
+          <h3 data-i18n="patient.health2.title">Kronik Hastalıklar</h3>
+          <p data-i18n="patient.health2.desc">Diyabet, hipertansiyon ve kalp hastalıkları yönetimi hakkında pratik bilgiler.</p>
+        </div>
+        <div class="card animate-in">
+          <div class="card-icon gold">&#128138;</div>
+          <h3 data-i18n="patient.health3.title">İlaç Kullanımı</h3>
+          <p data-i18n="patient.health3.desc">Doğru ilaç kullanımı, yan etkiler ve ilaç etkileşimleri hakkında rehber.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="content-section">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label" data-i18n="patient.faq.label">SIK SORULAN SORULAR</span>
+        <h2 data-i18n="patient.faq.title">Merak Edilenler</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item animate-in">
+          <button class="faq-question">
+            <span data-i18n="patient.faq1.q">Hasta haklarım ihlal edildiğinde ne yapmalıyım?</span>
+            <span class="faq-arrow">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner" data-i18n="patient.faq1.a">Öncelikle ilgili sağlık kuruluşunun hasta hakları birimine başvurabilirsiniz. Sonuç alamazsanız İl Sağlık Müdürlüğü Hasta Hakları Kurulu'na şikayette bulunabilirsiniz. Ayrıca hukuki danışmanlık almak da hakkınızdır.</div>
+          </div>
+        </div>
+        <div class="faq-item animate-in">
+          <button class="faq-question">
+            <span data-i18n="patient.faq2.q">Tıbbi kayıtlarıma nasıl erişebilirim?</span>
+            <span class="faq-arrow">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner" data-i18n="patient.faq2.a">Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında tıbbi kayıtlarınızın bir kopyasını talep etme hakkınız vardır. Sağlık kuruluşunun tıbbi kayıt birimine yazılı başvuru yapabilirsiniz.</div>
+          </div>
+        </div>
+        <div class="faq-item animate-in">
+          <button class="faq-question">
+            <span data-i18n="patient.faq3.q">İkinci görüş alma hakkım var mı?</span>
+            <span class="faq-arrow">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner" data-i18n="patient.faq3.a">Evet, her hastanın tanı ve tedavi konusunda başka bir hekimden görüş alma hakkı bulunmaktadır. Bu hakkınızı kullanmanız tedavinizi olumsuz etkilemez.</div>
+          </div>
+        </div>
+        <div class="faq-item animate-in">
+          <button class="faq-question">
+            <span data-i18n="patient.faq4.q">Acil durumda hasta onamı gerekli midir?</span>
+            <span class="faq-arrow">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner" data-i18n="patient.faq4.a">Acil ve hayati tehlike durumlarında, hastanın veya yasal temsilcisinin onam veremeyeceği hallerde, hekimler gerekli müdahaleyi onam almaksızın yapabilir.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="index.html" class="nav-logo" style="color: white;">
+            <div class="logo-icon">SA</div>
+            <span>Dr. S. Alpar</span>
+          </a>
+          <p data-i18n="footer.desc">Tıp, hukuk ve hikaye anlatıcılığının kesişiminde bilgi ve ilham sunan kişisel web sitesi.</p>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.links">Hızlı Bağlantılar</h4>
+          <ul>
+            <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
+            <li><a href="patients.html" data-i18n="nav.patients">Hastalar</a></li>
+            <li><a href="students.html" data-i18n="nav.students">Öğrenciler</a></li>
+            <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.resources">Kaynaklar</h4>
+          <ul>
+            <li><a href="patients.html" data-i18n="services.patient.title">Hasta Bilgilendirme</a></li>
+            <li><a href="students.html" data-i18n="services.student.title">Öğrenci Kaynakları</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.legal">Yasal</h4>
+          <ul>
+            <li><a href="#" data-i18n="footer.privacy">Gizlilik Politikası</a></li>
+            <li><a href="#" data-i18n="footer.terms">Kullanım Şartları</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">© 2026 Dr. Süleyman Alpar. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

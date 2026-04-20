@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dr. Süleyman Alpar - Tıp Doktoru, Sağlık Hukuku Uzmanı, Senarist. Hastalar ve öğrenciler için bilgilendirme platformu.">
+  <title>Dr. Süleyman Alpar | Tıp & Sağlık Hukuku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">SA</div>
+        <span>Dr. S. Alpar</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active" data-i18n="nav.home">Ana Sayfa</a></li>
+        <li><a href="#about" data-i18n="nav.about">Hakkımda</a></li>
+        <li><a href="patients.html" data-i18n="nav.patients">Hastalar</a></li>
+        <li><a href="students.html" data-i18n="nav.students">Öğrenciler</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">İletişim</a></li>
+        <li>
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="tr">TR</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+        </li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 data-i18n="hero.name">Dr. Süleyman Alpar</h1>
+          <p class="hero-subtitle" data-i18n="hero.subtitle">Tıp Doktoru | Sağlık Hukuku Uzmanı | Senarist</p>
+          <p class="hero-tagline" data-i18n="hero.tagline">"Bilim, hukuk ve hikayenin kesiştiği noktada"</p>
+          <div class="hero-badges">
+            <span class="badge">&#9879; <span data-i18n="hero.badge1">Tıp Doktoru</span></span>
+            <span class="badge">&#9878; <span data-i18n="hero.badge2">Sağlık Hukuku</span></span>
+            <span class="badge">&#9998; <span data-i18n="hero.badge3">Senarist</span></span>
+            <span class="badge">&#128218; <span data-i18n="hero.badge4">Bilimsel Yazar</span></span>
+          </div>
+          <div class="hero-cta">
+            <a href="patients.html" class="btn btn-primary" data-i18n="hero.cta1">Hastalar İçin</a>
+            <a href="students.html" class="btn btn-outline" data-i18n="hero.cta2">Öğrenciler İçin</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-avatar">&#9879;</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label" data-i18n="services.label">HİZMETLER</span>
+        <h2 data-i18n="services.title">Neler Sunuyorum?</h2>
+        <p data-i18n="services.desc">Tıp, hukuk ve yaratıcı yazarlık alanlarında uzmanlaşmış hizmetler</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card animate-in">
+          <div class="card-icon blue">&#128105;&#8205;&#9879;&#65039;</div>
+          <h3 data-i18n="services.patient.title">Hasta Bilgilendirme</h3>
+          <p data-i18n="services.patient.desc">Hastalıklar, tedavi yöntemleri ve hasta hakları konusunda güvenilir, anlaşılır bilgiler.</p>
+          <a href="patients.html" class="card-link" data-i18n="services.more">Devamını oku →</a>
+        </div>
+        <div class="card animate-in">
+          <div class="card-icon gold">&#127891;</div>
+          <h3 data-i18n="services.student.title">Öğrenci Kaynakları</h3>
+          <p data-i18n="services.student.desc">Tıp öğrencileri için ders notları, vaka çalışmaları ve akademik kaynaklar.</p>
+          <a href="students.html" class="card-link" data-i18n="services.more">Devamını oku →</a>
+        </div>
+        <div class="card animate-in">
+          <div class="card-icon green">&#128221;</div>
+          <h3 data-i18n="services.blog.title">Blog & Makaleler</h3>
+          <p data-i18n="services.blog.desc">Sağlık hukuku, tıbbi etik ve bilimsel konularda derinlemesine yazılar.</p>
+          <a href="blog.html" class="card-link" data-i18n="services.more">Devamını oku →</a>
+        </div>
+        <div class="card animate-in">
+          <div class="card-icon purple">&#127916;</div>
+          <h3 data-i18n="services.scenario.title">Senaryo & Hikaye</h3>
+          <p data-i18n="services.scenario.desc">Tıbbi dramalar, sağlık hikayeleri ve yaratıcı yazarlık projeleri.</p>
+          <a href="blog.html" class="card-link" data-i18n="services.more">Devamını oku →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about" style="background: white;">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image animate-in">&#9879;</div>
+        <div class="about-content animate-in">
+          <span class="section-label" data-i18n="about.label">HAKKIMDA</span>
+          <h2 data-i18n="about.title">Dr. Süleyman Alpar Kimdir?</h2>
+          <p data-i18n="about.p1">Tıp doktorluğu ve sağlık hukuku uzmanlığını bir araya getiren, aynı zamanda senaryo yazarlığı ve hikaye anlatıcılığı alanlarında aktif olan çok yönlü bir profesyonelim.</p>
+          <p data-i18n="about.p2">Hem hastalarıma en iyi sağlık bilgisini sunmayı, hem öğrencilerime güçlü bir akademik temel oluşturmayı, hem de hikayelerle insanlara dokunmayı hedefliyorum.</p>
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-number">10+</div>
+              <div class="stat-label" data-i18n="about.stat1">Yıl Deneyim</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">25+</div>
+              <div class="stat-label" data-i18n="about.stat2">Yayınlanan Makale</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">500+</div>
+              <div class="stat-label" data-i18n="about.stat3">Öğrenci</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Preview -->
+  <section class="section" id="blog">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label" data-i18n="blog.label">SON YAZILAR</span>
+        <h2 data-i18n="blog.title">Blog & Makaleler</h2>
+        <p data-i18n="blog.desc">Sağlık, hukuk ve hikaye dünyasından en güncel yazılar</p>
+      </div>
+      <div class="blog-grid">
+        <a href="blog.html" class="blog-card animate-in">
+          <div class="blog-thumb">
+            &#9878;
+            <span class="blog-category" data-i18n="blog.cat1">Sağlık Hukuku</span>
+          </div>
+          <div class="blog-body">
+            <h3 data-i18n="blog.title1">Hasta Hakları ve Güncel Mevzuat Değişiklikleri</h3>
+            <p data-i18n="blog.desc1">Son dönemde sağlık hukukunda yaşanan önemli değişiklikler ve hastaların bilmesi gerekenler.</p>
+            <div class="blog-meta">
+              <span>20 Nisan 2026</span>
+              <span>8 <span data-i18n="blog.readtime">dk okuma</span></span>
+            </div>
+          </div>
+        </a>
+        <a href="blog.html" class="blog-card animate-in">
+          <div class="blog-thumb">
+            &#129302;
+            <span class="blog-category" data-i18n="blog.cat2">Tıbbi Etik</span>
+          </div>
+          <div class="blog-body">
+            <h3 data-i18n="blog.title2">Tıpta Yapay Zeka: Etik Sınırlar Nerede?</h3>
+            <p data-i18n="blog.desc2">Yapay zekanın tıbbi kararlardaki rolü ve etik boyutları üzerine bir değerlendirme.</p>
+            <div class="blog-meta">
+              <span>15 Nisan 2026</span>
+              <span>12 <span data-i18n="blog.readtime">dk okuma</span></span>
+            </div>
+          </div>
+        </a>
+        <a href="blog.html" class="blog-card animate-in">
+          <div class="blog-thumb">
+            &#128300;
+            <span class="blog-category" data-i18n="blog.cat3">Bilimsel Araştırma</span>
+          </div>
+          <div class="blog-body">
+            <h3 data-i18n="blog.title3">Klinik Araştırmalarda Hasta Onayı</h3>
+            <p data-i18n="blog.desc3">Bilgilendirilmiş onam süreçleri ve hasta güvenliği perspektifinden klinik araştırmalar.</p>
+            <div class="blog-meta">
+              <span>10 Nisan 2026</span>
+              <span>10 <span data-i18n="blog.readtime">dk okuma</span></span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="blog.html" class="btn btn-primary" data-i18n="blog.readmore">Tümünü Gör →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 48px;">
+        <span class="section-label" data-i18n="contact.label">İLETİŞİM</span>
+        <h2 style="color: white;" data-i18n="contact.title">İletişime Geçin</h2>
+        <p style="color: rgba(255,255,255,0.7);" data-i18n="contact.desc">Sorularınız, işbirliği teklifleriniz veya danışmanlık talepleriniz için benimle iletişime geçebilirsiniz.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-item-icon">&#9993;</div>
+              <div class="contact-item-text">
+                <span data-i18n="contact.email.label">E-posta</span>
+                <p>suleymanalpar@gmail.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">&#128205;</div>
+              <div class="contact-item-text">
+                <span data-i18n="contact.location.label">Konum</span>
+                <p data-i18n="contact.location">Türkiye</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">&#127760;</div>
+              <div class="contact-item-text">
+                <span data-i18n="contact.social.label">Sosyal Medya</span>
+                <p>@suleymanalpar</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="return false;">
+          <div class="form-group">
+            <label data-i18n="contact.form.name">Adınız Soyadınız</label>
+            <input type="text" data-i18n-placeholder="contact.form.name" placeholder="Adınız Soyadınız" required>
+          </div>
+          <div class="form-group">
+            <label data-i18n="contact.form.email">E-posta Adresiniz</label>
+            <input type="email" data-i18n-placeholder="contact.form.email" placeholder="E-posta Adresiniz" required>
+          </div>
+          <div class="form-group">
+            <label data-i18n="contact.form.subject">Konu</label>
+            <select>
+              <option data-i18n="contact.form.subject.opt1">Genel Soru</option>
+              <option data-i18n="contact.form.subject.opt2">İşbirliği Teklifi</option>
+              <option data-i18n="contact.form.subject.opt3">Danışmanlık</option>
+              <option data-i18n="contact.form.subject.opt4">Diğer</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label data-i18n="contact.form.message">Mesajınız</label>
+            <textarea data-i18n-placeholder="contact.form.message" placeholder="Mesajınız" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit" data-i18n="contact.form.send">Mesaj Gönder</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="index.html" class="nav-logo" style="color: white;">
+            <div class="logo-icon">SA</div>
+            <span>Dr. S. Alpar</span>
+          </a>
+          <p data-i18n="footer.desc">Tıp, hukuk ve hikaye anlatıcılığının kesişiminde bilgi ve ilham sunan kişisel web sitesi.</p>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.links">Hızlı Bağlantılar</h4>
+          <ul>
+            <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
+            <li><a href="patients.html" data-i18n="nav.patients">Hastalar</a></li>
+            <li><a href="students.html" data-i18n="nav.students">Öğrenciler</a></li>
+            <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.resources">Kaynaklar</h4>
+          <ul>
+            <li><a href="patients.html" data-i18n="services.patient.title">Hasta Bilgilendirme</a></li>
+            <li><a href="students.html" data-i18n="services.student.title">Öğrenci Kaynakları</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.legal">Yasal</h4>
+          <ul>
+            <li><a href="#" data-i18n="footer.privacy">Gizlilik Politikası</a></li>
+            <li><a href="#" data-i18n="footer.terms">Kullanım Şartları</a></li>
+            <li><a href="#" data-i18n="footer.cookie">Çerez Politikası</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">© 2026 Dr. Süleyman Alpar. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

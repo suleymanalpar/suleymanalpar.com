@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dr. Süleyman Alpar - Blog & Makaleler. Sağlık hukuku, tıbbi etik, bilimsel araştırma ve hikaye anlatıcılığı.">
+  <title>Blog & Makaleler | Dr. Süleyman Alpar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .filter-tabs { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 48px; }
+    .filter-tab {
+      padding: 10px 22px; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--bg-card); color: var(--text); font-size: 0.9rem; font-weight: 500;
+      cursor: pointer; transition: all var(--transition);
+    }
+    .filter-tab:hover, .filter-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .blog-full-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; }
+    .article-card {
+      background: var(--bg-card); border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); border: 1px solid var(--border); transition: all var(--transition);
+    }
+    .article-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .article-thumb {
+      height: 200px; display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; position: relative; color: rgba(255,255,255,0.3);
+    }
+    .article-thumb.law { background: linear-gradient(135deg, #1a365d, #2c5282); }
+    .article-thumb.ethics { background: linear-gradient(135deg, #553c9a, #805ad5); }
+    .article-thumb.science { background: linear-gradient(135deg, #276749, #38a169); }
+    .article-thumb.story { background: linear-gradient(135deg, #9b2c2c, #e53e3e); }
+    .article-body { padding: 24px; }
+    .article-body h3 { font-size: 1.15rem; margin-bottom: 10px; line-height: 1.4; }
+    .article-body p { color: var(--text-light); font-size: 0.92rem; }
+    .article-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 0.82rem; color: var(--text-light);
+    }
+    .article-read-more { color: var(--accent); font-weight: 600; }
+    .article-read-more:hover { color: var(--primary); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">SA</div>
+        <span>Dr. S. Alpar</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
+        <li><a href="index.html#about" data-i18n="nav.about">Hakkımda</a></li>
+        <li><a href="patients.html" data-i18n="nav.patients">Hastalar</a></li>
+        <li><a href="students.html" data-i18n="nav.students">Öğrenciler</a></li>
+        <li><a href="blog.html" class="active" data-i18n="nav.blog">Blog</a></li>
+        <li><a href="index.html#contact" data-i18n="nav.contact">İletişim</a></li>
+        <li>
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="tr">TR</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+        </li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 data-i18n="blogpage.header.title">Blog & Makaleler</h1>
+      <p data-i18n="blogpage.header.desc">Sağlık hukuku, tıbbi etik, bilimsel araştırma ve hikaye anlatıcılığı</p>
+    </div>
+  </section>
+
+  <!-- Blog Content -->
+  <section class="content-section">
+    <div class="container">
+      <!-- Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" data-i18n="blogpage.filter.all">Tümü</button>
+        <button class="filter-tab" data-filter="law" data-i18n="blogpage.filter.law">Sağlık Hukuku</button>
+        <button class="filter-tab" data-filter="ethics" data-i18n="blogpage.filter.ethics">Tıbbi Etik</button>
+        <button class="filter-tab" data-filter="science" data-i18n="blogpage.filter.science">Bilimsel Araştırma</button>
+        <button class="filter-tab" data-filter="story" data-i18n="blogpage.filter.story">Hikaye & Senaryo</button>
+      </div>
+
+      <!-- Articles Grid -->
+      <div class="blog-full-grid" id="blogGrid">
+
+        <div class="article-card animate-in" data-category="law">
+          <div class="article-thumb law">&#9878;</div>
+          <div class="article-body">
+            <span class="blog-category" style="position:static; background:rgba(26,54,93,0.1); color:var(--primary); display:inline-block; margin-bottom:12px;" data-i18n="blogpage.filter.law">Sağlık Hukuku</span>
+            <h3 data-i18n="blog.title1">Hasta Hakları ve Güncel Mevzuat Değişiklikleri</h3>
+            <p data-i18n="blog.desc1">Son dönemde sağlık hukukunda yaşanan önemli değişiklikler ve hastaların bilmesi gerekenler.</p>
+            <div class="article-meta">
+              <span>20 Nisan 2026</span>
+              <a href="#" class="article-read-more" data-i18n="services.more">Devamını oku →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card animate-in" data-category="ethics">
+          <div class="article-thumb ethics">&#129302;</div>
+          <div class="article-body">
+            <span class="blog-category" style="position:static; background:rgba(128,90,213,0.1); color:#805ad5; display:inline-block; margin-bottom:12px;" data-i18n="blogpage.filter.ethics">Tıbbi Etik</span>
+            <h3 data-i18n="blog.title2">Tıpta Yapay Zeka: Etik Sınırlar Nerede?</h3>
+            <p data-i18n="blog.desc2">Yapay zekanın tıbbi kararlardaki rolü ve etik boyutları üzerine bir değerlendirme.</p>
+            <div class="article-meta">
+              <span>15 Nisan 2026</span>
+              <a href="#" class="article-read-more" data-i18n="services.more">Devamını oku →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card animate-in" data-category="science">
+          <div class="article-thumb science">&#128300;</div>
+          <div class="article-body">
+            <span class="blog-category" style="position:static; background:rgba(56,161,105,0.1); color:#38a169; display:inline-block; margin-bottom:12px;" data-i18n="blogpage.filter.science">Bilimsel Araştırma</span>
+            <h3 data-i18n="blog.title3">Klinik Araştırmalarda Hasta Onayı</h3>
+            <p data-i18n="blog.desc3">Bilgilendirilmiş onam süreçleri ve hasta güvenliği perspektifinden klinik araştırmalar.</p>
+            <div class="article-meta">
+              <span>10 Nisan 2026</span>
+              <a href="#" class="article-read-more" data-i18n="services.more">Devamını oku →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card animate-in" data-category="law">
+          <div class="article-thumb law">&#128220;</div>
+          <div class="article-body">
+            <span class="blog-category" style="position:static; background:rgba(26,54,93,0.1); color:var(--primary); display:inline-block; margin-bottom:12px;" data-i18n="blogpage.filter.law">Sağlık Hukuku</span>
+            <h3>Tıbbi Malpraktis: Hekim Sorumluluğunun Sınırları</h3>
+            <p>Tıbbi hata ve komplikasyon ayrımı, hekimlerin hukuki sorumluluğu ve güncel yargı kararları.</p>
+            <div class="article-meta">
+              <span>5 Nisan 2026</span>
+              <a href="#" class="article-read-more" data-i18n="services.more">Devamını oku →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card animate-in" data-category="story">
+          <div class="article-thumb story">&#127916;</div>
+          <div class="article-body">
+            <span class="blog-category" style="position:static; background:rgba(229,62,62,0.1); color:#e53e3e; display:inline-block; margin-bottom:12px;" data-i18n="blogpage.filter.story">Hikaye & Senaryo</span>
+            <h3>Beyaz Önlüğün Ardındaki Hikayeler</h3>
+            <p>Hastane koridorlarından ilham alan kısa hikayeler ve senaryo fragmanları.</p>
+            <div class="article-meta">
+              <span>1 Nisan 2026</span>
+              <a href="#" class="article-read-more" data-i18n="services.more">Devamını oku →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card animate-in" data-category="ethics">
+          <div class="article-thumb ethics">&#128161;</div>
+          <div class="article-body">
+            <span class="blog-category" style="position:static; background:rgba(128,90,213,0.1); color:#805ad5; display:inline-block; margin-bottom:12px;" data-i18n="blogpage.filter.ethics">Tıbbi Etik</span>
+            <h3>Ötanazi Tartışması: Farklı Perspektifler</h3>
+            <p>Dünya genelinde ötanazi uygulamaları, etik argümanlar ve Türkiye'deki hukuki durum.</p>
+            <div class="article-meta">
+              <span>28 Mart 2026</span>
+              <a href="#" class="article-read-more" data-i18n="services.more">Devamını oku →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="index.html" class="nav-logo" style="color: white;">
+            <div class="logo-icon">SA</div>
+            <span>Dr. S. Alpar</span>
+          </a>
+          <p data-i18n="footer.desc">Tıp, hukuk ve hikaye anlatıcılığının kesişiminde bilgi ve ilham sunan kişisel web sitesi.</p>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.links">Hızlı Bağlantılar</h4>
+          <ul>
+            <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
+            <li><a href="patients.html" data-i18n="nav.patients">Hastalar</a></li>
+            <li><a href="students.html" data-i18n="nav.students">Öğrenciler</a></li>
+            <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.resources">Kaynaklar</h4>
+          <ul>
+            <li><a href="patients.html" data-i18n="services.patient.title">Hasta Bilgilendirme</a></li>
+            <li><a href="students.html" data-i18n="services.student.title">Öğrenci Kaynakları</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.legal">Yasal</h4>
+          <ul>
+            <li><a href="#" data-i18n="footer.privacy">Gizlilik Politikası</a></li>
+            <li><a href="#" data-i18n="footer.terms">Kullanım Şartları</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">© 2026 Dr. Süleyman Alpar. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Blog category filter
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        document.querySelectorAll('.article-card').forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

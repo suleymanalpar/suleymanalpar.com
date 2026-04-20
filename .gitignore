@@ -1,0 +1,17 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Deploy archives
+*.zip
+
+# Temp files
+zidCZR58
+zixgLbyb
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
