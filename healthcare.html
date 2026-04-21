@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dr. Süleyman Alpar - Sağlık Çalışanları. Acil tıp protokolleri, öğrenci kaynakları, asistan rehberi ve akademik yazım.">
+  <title>Sağlık Çalışanları | Dr. Süleyman Alpar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .section-intro {
+      max-width: 800px;
+      margin: 0 auto 36px;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 1.02rem;
+    }
+
+    /* --- Protocol Cards --- */
+    .protocol-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--accent);
+      transition: all var(--transition);
+    }
+    .protocol-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+    .protocol-card h3 { font-size: 1.15rem; margin-bottom: 10px; color: var(--primary); }
+    .protocol-card .protocol-tag {
+      display: inline-block;
+      background: rgba(43,108,176,0.08);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    .protocol-card ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 12px;
+    }
+    .protocol-card ul li {
+      padding: 6px 0;
+      padding-left: 18px;
+      position: relative;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    .protocol-card ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .protocol-card.urgent { border-left-color: #e53e3e; }
+    .protocol-card.urgent .protocol-tag { background: rgba(229,62,62,0.08); color: #e53e3e; }
+    .protocol-card.urgent ul li::before { color: #e53e3e; }
+
+    /* --- Expandable (Accordion) --- */
+    .expandable { cursor: pointer; position: relative; }
+    .expandable .detail-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      user-select: none;
+    }
+    .expandable.urgent .detail-toggle { color: #e53e3e; }
+    .expandable .detail-chevron { display: inline-block; transition: transform 0.3s; }
+    .expandable.open .detail-chevron { transform: rotate(180deg); }
+    .expandable .detail-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .expandable.open .detail-panel { max-height: 1800px; }
+    .detail-panel-inner {
+      padding-top: 18px;
+      margin-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .detail-panel h4 {
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+    .detail-panel h4:first-child { margin-top: 0; }
+    .detail-panel p { font-size: 0.9rem; color: var(--text); margin-bottom: 10px; line-height: 1.65; }
+    .detail-panel ol, .detail-panel ul {
+      padding-left: 0;
+      margin: 0 0 10px 0;
+      list-style: none;
+    }
+    .detail-panel ul li, .detail-panel ol li {
+      padding: 4px 0;
+      padding-left: 18px;
+      position: relative;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .detail-panel ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .detail-panel ol { counter-reset: ord; }
+    .detail-panel ol li { counter-increment: ord; }
+    .detail-panel ol li::before {
+      content: counter(ord) ".";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .detail-source {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: rgba(66,153,225,0.06);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+
+    /* Resource item expandable adjustments */
+    .resource-item.expandable { flex-wrap: wrap; }
+    .resource-item.expandable .detail-panel { flex-basis: 100%; width: 100%; }
+    .resource-item.expandable .detail-toggle {
+      flex-basis: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">SA</div>
+        <span>Dr. S. Alpar</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="index.html#about">Hakkımda</a></li>
+        <li><a href="patients.html">Hastalar</a></li>
+        <li><a href="healthcare.html" class="active">Sağlık Çalışanları</a></li>
+        <li><a href="kurslar.html">Kurslar</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="index.html#contact">İletişim</a></li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Sağlık Çalışanları</h1>
+      <p>Tıp öğrencileri, asistan hekimler ve meslektaşlar için akademik kaynaklar ve acil tıp rehberleri</p>
+    </div>
+  </section>
+
+  <!-- SECTION 1: Acil Tıp Protokolleri -->
+  <section class="content-section">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label">ACİL TIP PROTOKOLLERİ</span>
+        <h2>Klinik Algoritmalar &amp; Yaklaşımlar</h2>
+        <p class="section-intro">Güncel kılavuzlara dayalı, acil serviste sık karşılaşılan durumlara sistematik yaklaşım. Eğitim amaçlıdır; kurumsal kılavuzların ve klinik muhakemenin yerine geçmez.</p>
+      </div>
+      <div class="cards-grid">
+
+        <div class="protocol-card expandable animate-in">
+          <span class="protocol-tag">TRİAJ</span>
+          <h3>ESI 5-Seviyeli Triaj Sistemi</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">Emergency Severity Index ile hasta önceliklendirmesi.</p>
+          <ul>
+            <li>Seviye 1: Resüsitasyon gerekli</li>
+            <li>Seviye 2: Yüksek riskli / zaman kritik</li>
+            <li>Seviye 3-5: Kaynak ihtiyacına göre</li>
+            <li>Vital bulgular eşik değerleri</li>
+          </ul>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Algoritma</h4>
+            <ol>
+              <li>Hasta ölüyor mu? Hemen havayolu / solunum / dolaşım desteği? → Seviye 1</li>
+              <li>Beklememesi gereken yüksek riskli durum mu? Vital bulgular tehlike eşiğinde mi? → Seviye 2</li>
+              <li>Kaç farklı kaynak (lab, görüntüleme, konsültasyon) gerekir? ≥2 → 3, 1 → 4, 0 → 5</li>
+            </ol>
+            <h4>Seviye 2 için kırmızı bayraklar</h4>
+            <ul>
+              <li>Göğüs ağrısı + kardiyak risk faktörü</li>
+              <li>Nörolojik defisit, konvülsiyon</li>
+              <li>Ciddi ağrı (≥7/10), aktif kanama</li>
+              <li>Pediatrik ateş &lt;3 ay, immünsüpresif hastada ateş</li>
+            </ul>
+            <h4>Yaygın Hatalar</h4>
+            <ul>
+              <li>Seviye-3 hastaların bekleme salonunda kötüleşmesi — tekrar triaj kritik</li>
+              <li>Ağrı skorunun objektif değerlendirmeye baskın çıkması</li>
+            </ul>
+            <div class="detail-source">Kaynak: ESI Implementation Handbook v4, AHRQ.</div>
+          </div></div>
+        </div>
+
+        <div class="protocol-card urgent expandable animate-in" style="opacity: 0.85;">
+          <span class="protocol-tag">KARDİYOLOJİK</span>
+          <h3>Göğüs Ağrısı &amp; AKS <span style="background: rgba(198,151,63,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">Akut koroner sendrom şüphesinde değerlendirme — güncel ESC kılavuzlarına uygun içerik hazırlanıyor.</p>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <p style="text-align: center; color: var(--text-light); padding: 20px 0;">
+              <span style="font-size: 2rem;">&#128736;</span><br>
+              Bu bölüm için güncel içerik hazırlanmaktadır.
+            </p>
+          </div></div>
+        </div>
+
+        <div class="protocol-card urgent expandable animate-in" style="opacity: 0.85;">
+          <span class="protocol-tag">ENFEKSİYON</span>
+          <h3>Sepsis &amp; Septik Şok <span style="background: rgba(198,151,63,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">Sepsis tanıma ve erken yönetim — Surviving Sepsis Campaign güncel kılavuzlarına uygun içerik hazırlanıyor.</p>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <p style="text-align: center; color: var(--text-light); padding: 20px 0;">
+              <span style="font-size: 2rem;">&#128736;</span><br>
+              Bu bölüm için güncel içerik hazırlanmaktadır.
+            </p>
+          </div></div>
+        </div>
+
+        <div class="protocol-card urgent expandable animate-in" style="opacity: 0.85;">
+          <span class="protocol-tag">NÖROLOJİK</span>
+          <h3>Akut İnme Yönetimi <span style="background: rgba(198,151,63,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">İskemik/hemorajik inme yönetimi — AHA/ASA güncel kılavuzlarına uygun içerik hazırlanıyor.</p>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <p style="text-align: center; color: var(--text-light); padding: 20px 0;">
+              <span style="font-size: 2rem;">&#128736;</span><br>
+              Bu bölüm için güncel içerik hazırlanmaktadır.
+            </p>
+          </div></div>
+        </div>
+
+        <div class="protocol-card urgent expandable animate-in" style="opacity: 0.85;">
+          <span class="protocol-tag">TRAVMA</span>
+          <h3>Travma Yaklaşımı <span style="background: rgba(198,151,63,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">Travmalı hastaya sistematik yaklaşım — güncel kılavuzlara uygun içerik Dr. Alpar tarafından hazırlanıyor.</p>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <p style="text-align: center; color: var(--text-light); padding: 20px 0;">
+              <span style="font-size: 2rem;">&#128736;</span><br>
+              Bu bölüm için güncel içerik hazırlanmaktadır.<br>
+              Detaylı travma yaklaşımı için <a href="kurslar.html" style="color: var(--accent); font-weight: 600;">Kurslar</a> sayfasını ziyaret edin.
+            </p>
+          </div></div>
+        </div>
+
+        <div class="protocol-card expandable animate-in">
+          <span class="protocol-tag">PEDİATRİ</span>
+          <h3>Pediatrik Acil Yaklaşım</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">Yaş/kilo bazlı dozaj ve pediatrik değerlendirme üçgeni.</p>
+          <ul>
+            <li>PAT: Görünüm, Solunum, Dolaşım</li>
+            <li>Ateş + toksik görünüm: sepsis protokolü</li>
+            <li>Broselow cetveli ile dozaj</li>
+            <li>Pediatrik Glasgow modifikasyonu</li>
+          </ul>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Pediatrik Değerlendirme Üçgeni (PAT)</h4>
+            <ul>
+              <li><strong>Görünüm:</strong> tonus, irritabilite, konuşma/ağlama, bakış, göz teması (TICLS)</li>
+              <li><strong>Solunum işi:</strong> anormal sesler, retraksiyon, burun kanadı solunumu, pozisyon</li>
+              <li><strong>Cilt dolaşımı:</strong> solukluk, benek, siyanoz</li>
+            </ul>
+            <h4>Yaşa Göre Normal Vital Bulgular</h4>
+            <ul>
+              <li>Yenidoğan: Nabız 100-160, solunum 30-60</li>
+              <li>1-3 yaş: Nabız 90-150, solunum 22-37</li>
+              <li>6-11 yaş: Nabız 70-110, solunum 18-30</li>
+            </ul>
+            <h4>Pratik Notlar</h4>
+            <ul>
+              <li>&lt;3 ay bebekte ateş → tam sepsis değerlendirmesi</li>
+              <li>Dehidratasyon değerlendirmesi: aktivite, kapiller dolum, idrar miktarı, gözyaşı</li>
+              <li>Broselow cetveli boya göre doz — ekipman/ilaç tek pakette</li>
+            </ul>
+            <div class="detail-source">Kaynak: APLS / PALS güncel kılavuzları.</div>
+          </div></div>
+        </div>
+
+        <div class="protocol-card expandable animate-in">
+          <span class="protocol-tag">TOKSİKOLOJİ</span>
+          <h3>Zehirlenme &amp; Antidotlar</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">Sık antidotlar ve dekontaminasyon prensipleri.</p>
+          <ul>
+            <li>Parasetamol → N-asetilsistein</li>
+            <li>Opioid → Nalokson</li>
+            <li>Benzodiazepin → Flumazenil</li>
+            <li>UZEM: 114 (Ulusal Zehir Danışma)</li>
+          </ul>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Yaygın Toksidromlar</h4>
+            <ul>
+              <li>Antikolinerjik: ateş, kuru cilt, midriyazis, taşikardi, deliryum</li>
+              <li>Kolinerjik: DUMBELS — salya, yaş, bronkore, bradikardi</li>
+              <li>Sempatomimetik: terleme, taşikardi, HT, ajitasyon</li>
+              <li>Opioid: miyozis, bradipne, bilinç baskısı</li>
+              <li>Sedatif-hipnotik: bilinç baskısı + normal pupil</li>
+            </ul>
+            <h4>Dekontaminasyon</h4>
+            <ul>
+              <li>Aktif kömür: ilk 1 saat (bazı ilaçlarda geç de etkili)</li>
+              <li>Gastrik lavaj: sınırlı endikasyon — son 1 saat + ciddi toksik doz</li>
+              <li>Kusturma: önerilmiyor</li>
+            </ul>
+            <h4>Antidot Örnekleri</h4>
+            <ul>
+              <li>Parasetamol → NAC (Rumack-Matthew nomogramı)</li>
+              <li>Beta bloker → Glukagon</li>
+              <li>Kalsiyum kanal blokeri → Kalsiyum, yüksek doz insülin</li>
+              <li>Siyanür → Hidroksikobalamin</li>
+              <li>Metanol / etilen glikol → Fomepizol</li>
+            </ul>
+            <div class="detail-source">Kaynak: UZEM 114, Goldfrank's Toxicologic Emergencies.</div>
+          </div></div>
+        </div>
+
+        <div class="protocol-card expandable animate-in" style="opacity: 0.85;">
+          <span class="protocol-tag">HAVAYOLU</span>
+          <h3>Havayolu Yönetimi &amp; RSI <span style="background: rgba(198,151,63,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">Zor havayolu değerlendirmesi ve RSI — DAS güncel algoritmalarına uygun içerik hazırlanıyor.</p>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <p style="text-align: center; color: var(--text-light); padding: 20px 0;">
+              <span style="font-size: 2rem;">&#128736;</span><br>
+              Bu bölüm için güncel içerik hazırlanmaktadır.
+            </p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Öğrenci Kaynakları -->
+  <section class="content-section" style="background: white;">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label">ÖĞRENCİ KAYNAKLARI</span>
+        <h2>Tıp Öğrencileri İçin</h2>
+        <p class="section-intro">Temel tıp eğitiminden klinik döneme kadar öğrencilere yönelik akademik kaynaklar, vaka çalışmaları ve kariyer rehberliği.</p>
+      </div>
+      <div class="resource-list">
+
+        <div class="resource-item expandable animate-in">
+          <div class="resource-icon" style="background: rgba(66,153,225,0.1); color: var(--accent);">&#129516;</div>
+          <div class="resource-info">
+            <h3>Anatomi Atlası ve Notları</h3>
+            <p>Sistematik ve topografik anatomi ders notları, şemalar ve pratik bilgiler.</p>
+          </div>
+          <span class="resource-tag">Temel Tıp</span>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>İçerik</h4>
+            <ul>
+              <li>Sistemik anatomi özetleri (iskelet, kas, damar, sinir)</li>
+              <li>Topografik bölge şemaları (baş-boyun, toraks, abdomen)</li>
+              <li>Radyolojik anatomi korelasyonu</li>
+              <li>Klinik vaka üzerinden anatomi uygulamaları</li>
+            </ul>
+            <h4>Önerilen Kaynaklar</h4>
+            <ul>
+              <li>Netter Atlas of Human Anatomy</li>
+              <li>Gray's Anatomy for Students</li>
+              <li>Acland's Video Atlas (hareket, 3D)</li>
+              <li>Kenhub, Complete Anatomy uygulamaları</li>
+            </ul>
+            <div class="detail-source">Not: İçerikler eğitim amaçlıdır; tıp fakültenizin kaynaklarıyla birlikte kullanın.</div>
+          </div></div>
+        </div>
+
+        <div class="resource-item expandable animate-in">
+          <div class="resource-icon" style="background: rgba(198,151,63,0.1); color: var(--gold);">&#128680;</div>
+          <div class="resource-info">
+            <h3>Acil Tıp Protokolleri (Öğrenci)</h3>
+            <p>Acil stajında bilmesi gereken temel algoritmalar ve vaka örnekleri.</p>
+          </div>
+          <span class="resource-tag">Acil Tıp</span>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Staj İçin Temel Bilgiler</h4>
+            <ul>
+              <li>Temel BLS / ACLS algoritmaları</li>
+              <li>Vital bulgular ve şok tanımları</li>
+              <li>EKG okuma adım adım rehber</li>
+              <li>Kan gazı yorumu (Stewart yaklaşımı)</li>
+              <li>Sık karşılaşılan şikayetlere yaklaşım</li>
+            </ul>
+            <h4>Staj İpuçları</h4>
+            <ul>
+              <li>Her hastada: şikayet, hikaye, vital, muayene, düşündüğün 3 tanı</li>
+              <li>SBAR ile hasta sunumu pratik yap</li>
+              <li>Etik ikilem farkındalığı: mahremiyet, onam, kaynak sınırlı ortam</li>
+            </ul>
+            <div class="detail-source">Kaynak: Rosen's Emergency Medicine; Türkiye Acil Tıp Derneği kılavuzları.</div>
+          </div></div>
+        </div>
+
+        <div class="resource-item expandable animate-in">
+          <div class="resource-icon" style="background: rgba(72,187,120,0.1); color: #38a169;">&#128300;</div>
+          <div class="resource-info">
+            <h3>Klinik Vaka Çalışmaları</h3>
+            <p>Gerçek vakalardan uyarlanmış interaktif vaka çalışmaları ve çözüm analizleri.</p>
+          </div>
+          <span class="resource-tag">Klinik</span>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Vaka Formatı</h4>
+            <ol>
+              <li>Başvuru şikayeti + öykü</li>
+              <li>Muayene bulguları + vital</li>
+              <li>İlk tahmin (öğrenci yanıtı)</li>
+              <li>Tetkik sonuçları</li>
+              <li>Tanı, tedavi, ders çıkarımı</li>
+            </ol>
+            <h4>Pedagojik Hedefler</h4>
+            <ul>
+              <li>Bilişsel önyargı farkındalığı (anchoring, availability, confirmation)</li>
+              <li>Ayırıcı tanıyı sistematik kurma alışkanlığı</li>
+              <li>Risk stratifikasyonu ile klinik karar</li>
+            </ul>
+            <div class="detail-source">Vakalar anonimleştirilmiş, eğitim amaçlıdır; kimlik bilgisi içermez.</div>
+          </div></div>
+        </div>
+
+        <div class="resource-item expandable animate-in">
+          <div class="resource-icon" style="background: rgba(237,100,100,0.1); color: #e53e3e;">&#9879;</div>
+          <div class="resource-info">
+            <h3>Tıbbi Etik ve Deontoloji</h3>
+            <p>Etik ikilemler, hasta-hekim ilişkisi ve mesleki değerler üzerine kapsamlı notlar.</p>
+          </div>
+          <span class="resource-tag">Etik</span>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Temel İlkeler (Beauchamp &amp; Childress)</h4>
+            <ul>
+              <li>Özerklik — bilgilendirilmiş onam, karar hakkı</li>
+              <li>Yararlılık — hastanın iyiliğini gözetmek</li>
+              <li>Zarar vermeme — primum non nocere</li>
+              <li>Adalet — eşit ve tutarlı davranış</li>
+            </ul>
+            <h4>Sık Karşılaşılan Etik İkilemler</h4>
+            <ul>
+              <li>Tedavi reddi ve karar verme kapasitesi</li>
+              <li>Mahremiyet vs. üçüncü kişi güvenliği (ör. bulaşıcı hastalık, aile içi şiddet)</li>
+              <li>Kaynak dağılımı: yoğun bakım yatağı, organ nakli</li>
+              <li>Gerçeği söyleme ve kötü haber iletme</li>
+              <li>Yaşam sonu bakım, palyatif sedasyon</li>
+            </ul>
+            <h4>Türkiye Mevzuatı</h4>
+            <ul>
+              <li>Hasta Hakları Yönetmeliği (1998)</li>
+              <li>Tıbbi Deontoloji Tüzüğü</li>
+              <li>KVKK — sağlık verilerinin korunması</li>
+            </ul>
+            <div class="detail-source">Kaynak: Principles of Biomedical Ethics; TTB Etik Bildirgeleri.</div>
+          </div></div>
+        </div>
+
+        <div class="resource-item expandable animate-in">
+          <div class="resource-icon" style="background: rgba(159,122,234,0.1); color: #805ad5;">&#127942;</div>
+          <div class="resource-info">
+            <h3>TUS Hazırlık Rehberi</h3>
+            <p>Tıpta Uzmanlık Sınavı hazırlığı için çalışma planı, kaynak önerileri ve strateji.</p>
+          </div>
+          <span class="resource-tag">TUS</span>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Çalışma Stratejisi</h4>
+            <ul>
+              <li>6-12 aylık plan: temel bilgi → konu tekrarı → soru çözümü → deneme</li>
+              <li>Günlük rutin: 4-6 saat etkin çalışma + 100-150 soru</li>
+              <li>Konu önceliği: dahili ve cerrahi bilimler ağırlık taşır</li>
+              <li>Çıkmış sorular üzerinden sistematik tarama</li>
+            </ul>
+            <h4>Pratik Öneriler</h4>
+            <ul>
+              <li>Zayıf olduğunuz konuyu bırakmayın, son aya saklamayın</li>
+              <li>Uyku, egzersiz ve beslenme → bilişsel performans</li>
+              <li>Denemelerde süreyi yönetmeyi öğrenin (yaklaşık 80 sn/soru)</li>
+              <li>Uzmanlık tercihi: hayat tarzı + ilgi + klinik deneyim birlikte değerlendirin</li>
+            </ul>
+            <div class="detail-source">Not: Bu rehber genel bilgidir; her adayın durumu farklı.</div>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: Asistan Hekim Rehberi -->
+  <section class="content-section">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label">ASİSTAN HEKİM REHBERİ</span>
+        <h2>Uzmanlık Yolculuğunda Pratik Rehber</h2>
+        <p class="section-intro">İlk nöbetten uzmanlık sınavına, asistan hekimlerin ihtiyaç duyacağı pratik bilgiler ve profesyonel gelişim kaynakları.</p>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card expandable animate-in">
+          <div class="card-icon blue">&#127747;</div>
+          <h3>İlk Nöbete Hazırlık</h3>
+          <p>Çantanda bulunması gerekenler, hasta listesi yönetimi, zor anlara psikolojik hazırlık.</p>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Çantanızda Bulunsun</h4>
+            <ul>
+              <li>Steteskop, kalem feneri, tansiyon manşonu (kişisel)</li>
+              <li>Cep referansı: ilaç dozları, acil protokoller (kartlar veya uygulama)</li>
+              <li>Kalem × 2, not defteri, çalışan hasta listesi formu</li>
+              <li>Yedek kalem, atıştırmalık, su, telefon şarjı</li>
+            </ul>
+            <h4>Hasta Listesi Yönetimi</h4>
+            <ul>
+              <li>"Aktif sorun / plan / sonraki adım" formatı</li>
+              <li>Vitali kötüleşen hastayı listede işaretle</li>
+              <li>Devir-teslimden önce listeyi güncelle</li>
+            </ul>
+            <h4>Psikolojik Hazırlık</h4>
+            <ul>
+              <li>Bilmiyorum demek öğrenmenin başlangıcıdır</li>
+              <li>Kıdemli asistan/uzmanı aramaktan çekinme</li>
+              <li>Kötü bir sonuç → vaka tartışması, öz değerlendirme → ikinci mağdur desteği</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="card expandable animate-in">
+          <div class="card-icon gold">&#128221;</div>
+          <h3>Acil Tıp Asistanlığı Müfredatı</h3>
+          <p>4 yıllık uzmanlık süreci: rotasyonlar, yetkinlikler, öz-değerlendirme kriterleri.</p>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Çekirdek Rotasyonlar (Türkiye)</h4>
+            <ul>
+              <li>Dahiliye, kardiyoloji, göğüs hastalıkları</li>
+              <li>Genel cerrahi, ortopedi, beyin cerrahi</li>
+              <li>Pediatri, pediatrik acil</li>
+              <li>Anestezi ve yoğun bakım</li>
+              <li>Radyoloji (US, BT temelleri)</li>
+              <li>Ambulans / 112 rotasyonu</li>
+            </ul>
+            <h4>Yıllara Göre Hedefler</h4>
+            <ul>
+              <li>1. yıl: temel yetkinlikler, sık durumlar, havayolu temelleri</li>
+              <li>2. yıl: kritik hasta yönetimi, USG</li>
+              <li>3. yıl: ekip liderliği, eğitim</li>
+              <li>4. yıl: karmaşık karar verme, uzmanlık tezi</li>
+            </ul>
+            <h4>Uzmanlık Tezi</h4>
+            <ul>
+              <li>Soru seçimi: klinik gözlemden doğan, cevaplanabilir, yayınlanabilir</li>
+              <li>Süre planlaması: 2-3. yılda başla</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="card expandable animate-in">
+          <div class="card-icon green">&#128172;</div>
+          <h3>SBAR ile Hasta Devir-Teslimi</h3>
+          <p>Situation-Background-Assessment-Recommendation: kritik hasta bilgisini doğru aktarma.</p>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>SBAR Bileşenleri</h4>
+            <ul>
+              <li><strong>S</strong>ituation — kim, nerede, şu anki durum</li>
+              <li><strong>B</strong>ackground — geçmiş, komorbidite, şimdiye kadarki seyir</li>
+              <li><strong>A</strong>ssessment — klinik değerlendirme, ayırıcı tanı, endişe</li>
+              <li><strong>R</strong>ecommendation — plan, ihtiyaç, zamanlama</li>
+            </ul>
+            <h4>Örnek (Yoğun bakıma devir)</h4>
+            <p><em>"45 yaş erkek, göğüs ağrısıyla 3 saat önce başvurdu. Bilinen HT, DM. Troponin pozitif, EKG'de anteriyor STEMI; kateter laboratuvarı hazırlıyoruz. Şu an aspirin, klopidogrel, heparin aldı; hemodinamisi stabil. Koroner girişim sonrası yoğun bakıma kabul için onay alıyorum."</em></p>
+            <h4>Pratik Notlar</h4>
+            <ul>
+              <li>Sözlü + yazılı devir-teslim birlikte</li>
+              <li>Aktif sorunlar ve bekleyen işler vurgulanmalı</li>
+              <li>Hasta yanında yapılan devir hem şeffaf hem hata önleyici</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="card expandable animate-in">
+          <div class="card-icon purple">&#129309;</div>
+          <h3>Zor Hasta İletişimi</h3>
+          <p>Agresif hasta, kötü haber verme, hasta yakını yönetimi — iletişim becerileri.</p>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Agresif Hasta Yaklaşımı</h4>
+            <ul>
+              <li>Güvenli mesafe, kaçış yolu kontrolü</li>
+              <li>Ses tonunu düşür, doğrudan göz teması kur</li>
+              <li>Somatik / psikiyatrik nedeni ekarte et (hipoksi, hipoglisemi, delirium)</li>
+              <li>Gerekirse fiziksel veya kimyasal kısıtlama — dokümante et</li>
+            </ul>
+            <h4>Kötü Haber Verme (SPIKES)</h4>
+            <ul>
+              <li><strong>S</strong>etting — uygun ortam</li>
+              <li><strong>P</strong>erception — hasta ne biliyor?</li>
+              <li><strong>I</strong>nvitation — ne kadar duymak istiyor?</li>
+              <li><strong>K</strong>nowledge — bilgiyi aktar</li>
+              <li><strong>E</strong>motion — duyguya empatiyle yanıt</li>
+              <li><strong>S</strong>trategy — plan, sonraki adım</li>
+            </ul>
+            <h4>Yakın Yönetimi</h4>
+            <ul>
+              <li>Sakin bir oda, oturmak, telefon susturmak</li>
+              <li>"Üzgünüm" demekten kaçınma (sorumluluk kabulü değil, empati)</li>
+              <li>Sorulara net ama şefkatli yanıt</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="card expandable animate-in">
+          <div class="card-icon blue">&#9878;&#65039;</div>
+          <h3>Kritik Karar Verme</h3>
+          <p>Bilişsel önyargılar, diagnostik hatalar, ayırıcı tanı disiplini ve metakognisyon.</p>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Sık Bilişsel Önyargılar</h4>
+            <ul>
+              <li><strong>Anchoring:</strong> ilk izlenime fazla güven</li>
+              <li><strong>Availability:</strong> son gördüğün hastaya benzetme</li>
+              <li><strong>Confirmation:</strong> hipotezini doğrulayan veriye odaklanma</li>
+              <li><strong>Premature closure:</strong> erken karar, alternatif tanı göz ardı</li>
+              <li><strong>Search satisficing:</strong> bir anomaliyi bulunca başkasını aramama</li>
+            </ul>
+            <h4>Korunma Stratejileri</h4>
+            <ul>
+              <li>"Başka ne olabilir?" sorusunu rutin hale getir</li>
+              <li>Taburculuk öncesi "kırmızı bayrak" kontrol listesi</li>
+              <li>Yorgun / aç / duygusal etki altındaysan bir durakla</li>
+              <li>Kıdemli tartışması, M&amp;M toplantıları</li>
+            </ul>
+            <div class="detail-source">Kaynak: Croskerry P, Academic Medicine 2003; Kahneman, Hızlı ve Yavaş Düşünme.</div>
+          </div></div>
+        </div>
+
+        <div class="card expandable animate-in">
+          <div class="card-icon gold">&#129656;</div>
+          <h3>Tükenmişlik &amp; Öz Bakım</h3>
+          <p>Nöbet sonrası toparlanma, uyku hijyeni, ikinci mağdur sendromu ve destek kaynakları.</p>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Uyarı İşaretleri</h4>
+            <ul>
+              <li>Uzun süreli duygusal tükenme, sinizm, başarı hissi kaybı</li>
+              <li>Uyku bozuklukları, iştah değişikliği</li>
+              <li>İş dışı hayatı ihmal, ilişki çatışmaları</li>
+              <li>Madde kullanımında artış</li>
+            </ul>
+            <h4>Günlük Stratejiler</h4>
+            <ul>
+              <li>Uyku hijyeni: nöbet sonrası karanlık oda, 7+ saat</li>
+              <li>Düzenli egzersiz (haftada 150 dk)</li>
+              <li>Mikro molalar: 5 dk, ekrandan uzak, dışarı bakmak</li>
+              <li>Meslek dışı bir ilgi alanı korumak</li>
+            </ul>
+            <h4>İkinci Mağdur Sendromu</h4>
+            <ul>
+              <li>Kötü bir klinik sonuç sonrası hekim acısı gerçek</li>
+              <li>Meslektaş desteği, vaka tartışması, profesyonel danışmanlık</li>
+              <li>Kurumsal Balint grupları — destekleyici</li>
+            </ul>
+            <div class="detail-source">Kaynak: Maslach Burnout Inventory; Wu AW, BMJ 2000 (second victim).</div>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: Akademik & Bilimsel Yazım -->
+  <section class="content-section" style="background: white;">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label">AKADEMİK &amp; BİLİMSEL YAZIM</span>
+        <h2>Araştırmadan Yayına</h2>
+        <p class="section-intro">Bilimsel araştırma tasarımından uluslararası dergide yayına kadar tüm sürecin pratik rehberi.</p>
+      </div>
+      <div class="resource-list">
+
+        <div class="resource-item expandable animate-in">
+          <div class="resource-icon" style="background: rgba(43,108,176,0.1); color: var(--accent);">&#128196;</div>
+          <div class="resource-info">
+            <h3>Araştırma Tasarımı</h3>
+            <p>Çalışma tipi seçimi (RCT, kohort, vaka-kontrol), örneklem büyüklüğü, bias kontrolü.</p>
+          </div>
+          <span class="resource-tag">Metodoloji</span>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Soruya Göre Tasarım Seçimi</h4>
+            <ul>
+              <li>Tedavi etkinliği → Randomize kontrollü çalışma</li>
+              <li>Nadir hastalık → Vaka-kontrol</li>
+              <li>Prognoz → Kohort (prospektif)</li>
+              <li>Sıklık / yaygınlık → Kesitsel</li>
+              <li>Tanı testi → Tanısal doğruluk (STARD)</li>
+            </ul>
+            <h4>Örneklem Büyüklüğü</h4>
+            <ul>
+              <li>Etki büyüklüğü + alfa (0.05) + güç (0.80) üzerinden hesap</li>
+              <li>G*Power, R pwr paketi ücretsiz araçlar</li>
+              <li>Küçük örneklem → Tip II hata riski</li>
+            </ul>
+            <h4>Bias Kaynakları</h4>
+            <ul>
+              <li>Seçim yanlılığı, kaybedilen takip, ölçüm yanlılığı, yayın yanlılığı</li>
+              <li>Karıştırıcı değişken kontrolü: stratifikasyon, regresyon, propensity skor</li>
+            </ul>
+            <div class="detail-source">Kaynak: CONSORT, STROBE, STARD raporlama kılavuzları; Cochrane Handbook.</div>
+          </div></div>
+        </div>
+
+        <div class="resource-item expandable animate-in">
+          <div class="resource-icon" style="background: rgba(198,151,63,0.1); color: var(--gold);">&#128200;</div>
+          <div class="resource-info">
+            <h3>İstatistik Temelleri</h3>
+            <p>p değeri, güven aralığı, etki büyüklüğü, parametrik/non-parametrik test seçimi.</p>
+          </div>
+          <span class="resource-tag">İstatistik</span>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>p Değeri &amp; Güven Aralığı</h4>
+            <ul>
+              <li>p &lt; 0.05 "istatistiksel anlamlı" ama klinik anlamı ayrıdır</li>
+              <li>%95 GA etki büyüklüğünün belirsizliğini gösterir — p'den daha bilgilendirici</li>
+              <li>Çoklu karşılaştırma → Bonferroni, FDR düzeltmesi</li>
+            </ul>
+            <h4>Test Seçim Rehberi</h4>
+            <ul>
+              <li>İki grup sürekli veri, normal → t-testi; normal değil → Mann-Whitney</li>
+              <li>Üç+ grup → ANOVA; normal değil → Kruskal-Wallis</li>
+              <li>Kategorik → Ki-kare; küçük hücre → Fisher exact</li>
+              <li>Sağkalım → Kaplan-Meier, log-rank, Cox regresyon</li>
+            </ul>
+            <h4>Yaygın Hatalar</h4>
+            <ul>
+              <li>Küçük örneklemle "fark yok" → güçsüzlük, fark yok değil</li>
+              <li>Sadece p bildirip etki büyüklüğünü atlamak</li>
+              <li>Normallik varsayımını test etmeden parametrik test</li>
+            </ul>
+            <div class="detail-source">Kaynak: Altman DG, Practical Statistics for Medical Research.</div>
+          </div></div>
+        </div>
+
+        <div class="resource-item expandable animate-in">
+          <div class="resource-icon" style="background: rgba(72,187,120,0.1); color: #38a169;">&#9878;&#65039;</div>
+          <div class="resource-info">
+            <h3>Etik Kurul Başvurusu</h3>
+            <p>Girişimsel / girişimsel olmayan ayrımı, bilgilendirilmiş onam formu hazırlama.</p>
+          </div>
+          <span class="resource-tag">Etik</span>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Türkiye'de Başvuru Türleri</h4>
+            <ul>
+              <li>Girişimsel klinik araştırma: TİTCK onayı + etik kurul</li>
+              <li>Girişimsel olmayan: yerel etik kurul yeterli</li>
+              <li>Retrospektif dosya taraması: kurum etik kurulu</li>
+            </ul>
+            <h4>Dosyada Olması Gerekenler</h4>
+            <ul>
+              <li>Başvuru formu, araştırma protokolü</li>
+              <li>Bilgilendirilmiş onam formu (BOF) — katılımcı dili</li>
+              <li>Araştırmacı özgeçmişi (iyi klinik uygulamalar sertifikası)</li>
+              <li>Veri toplama formu, bütçe</li>
+              <li>Sigorta (girişimsel için)</li>
+            </ul>
+            <h4>BOF Anahtar Unsurlar</h4>
+            <ul>
+              <li>Amaç, süre, yöntem</li>
+              <li>Risk ve yararlar</li>
+              <li>Gizlilik ve veri kullanımı</li>
+              <li>Katılımdan ayrılma hakkı</li>
+              <li>Sorumlu araştırmacı iletişim bilgisi</li>
+            </ul>
+            <div class="detail-source">Kaynak: TİTCK Klinik Araştırmalar Yönetmeliği; Helsinki Deklarasyonu.</div>
+          </div></div>
+        </div>
+
+        <div class="resource-item expandable animate-in">
+          <div class="resource-icon" style="background: rgba(159,122,234,0.1); color: #805ad5;">&#128221;</div>
+          <div class="resource-info">
+            <h3>IMRaD: Makale Yapısı</h3>
+            <p>Introduction, Methods, Results, Discussion — her bölüm için yazım stratejileri.</p>
+          </div>
+          <span class="resource-tag">Yazım</span>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Introduction</h4>
+            <ul>
+              <li>Huni yapısı: geniş alandan spesifik soruya</li>
+              <li>Son paragrafta amaç ve hipotez net</li>
+              <li>3-5 paragraf yeterli</li>
+            </ul>
+            <h4>Methods</h4>
+            <ul>
+              <li>Okuyucu tekrarlayabilmeli — ayrıntı eksikliği en sık hata</li>
+              <li>Tasarım, örneklem, veri toplama, analiz, etik onay</li>
+              <li>CONSORT akış şeması (RCT)</li>
+            </ul>
+            <h4>Results</h4>
+            <ul>
+              <li>Tarafsız — yorum Discussion'da</li>
+              <li>Tablo / şekil tekrar etmesin</li>
+              <li>Etki büyüklüğü + %95 GA</li>
+            </ul>
+            <h4>Discussion</h4>
+            <ul>
+              <li>Anahtar bulgu → literatürle karşılaştırma → kısıtlılıklar → klinik ima → sonuç</li>
+              <li>Aşırı iddiadan kaçın; "istatistiksel anlamlı" ≠ "klinik anlamlı"</li>
+            </ul>
+            <div class="detail-source">Kaynak: ICMJE Uniform Requirements; EQUATOR Network.</div>
+          </div></div>
+        </div>
+
+        <div class="resource-item expandable animate-in">
+          <div class="resource-icon" style="background: rgba(237,100,100,0.1); color: #e53e3e;">&#128269;</div>
+          <div class="resource-info">
+            <h3>Dergi Seçimi &amp; Impact Factor</h3>
+            <p>Kapsam uyumu, yağmacı dergiden kaçınma, açık erişim modelleri ve maliyetler.</p>
+          </div>
+          <span class="resource-tag">Yayın</span>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Karar Kriterleri</h4>
+            <ul>
+              <li>Kapsam uyumu — derginin Aims &amp; Scope'u</li>
+              <li>Hedef kitle — klinisyen mi, araştırmacı mı?</li>
+              <li>Impact factor vs. CiteScore vs. Scimago (SJR)</li>
+              <li>Kabul oranı, gözden geçirme süresi</li>
+            </ul>
+            <h4>Yağmacı Dergi (Predatory) Uyarıları</h4>
+            <ul>
+              <li>Spam e-posta ile davet</li>
+              <li>Hızlı kabul vaadi (72 saat gibi)</li>
+              <li>Belirsiz editörya kurulu, sahte impact faktör</li>
+              <li>DOAJ listesinde olmayan "açık erişim" dergi</li>
+            </ul>
+            <h4>Açık Erişim Modelleri</h4>
+            <ul>
+              <li>Gold OA — yazar APC öder, herkese açık</li>
+              <li>Green OA — yazar kendi arşivine koyar</li>
+              <li>Hybrid — abonelikli dergide tek makale açık</li>
+              <li>Diamond OA — ne yazar ne okuyucu öder</li>
+            </ul>
+            <div class="detail-source">Kontrol: DOAJ, COPE, Think Check Submit.</div>
+          </div></div>
+        </div>
+
+        <div class="resource-item expandable animate-in">
+          <div class="resource-icon" style="background: rgba(66,153,225,0.1); color: var(--accent);">&#127897;&#65039;</div>
+          <div class="resource-info">
+            <h3>Bilimsel Sunum &amp; Poster</h3>
+            <p>Kongre sunumu hazırlama, poster tasarımı, soru-cevap oturumu yönetimi.</p>
+          </div>
+          <span class="resource-tag">Sunum</span>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Sözlü Sunum (10 dk)</h4>
+            <ul>
+              <li>10 slayt kuralı — dakikada 1 slayt</li>
+              <li>Başlık + giriş + yöntem + sonuç + tartışma + kapanış</li>
+              <li>Metin yerine grafik / şema</li>
+              <li>Prova et — süreyi ve akışı test</li>
+            </ul>
+            <h4>Poster Tasarımı</h4>
+            <ul>
+              <li>Üç sütun düzeni, mantıklı akış</li>
+              <li>Başlık 2 metreden okunmalı (~72 pt)</li>
+              <li>Gövde 24-32 pt, %20-30 beyaz alan</li>
+              <li>QR kod → tam metin veya iletişim</li>
+            </ul>
+            <h4>Soru-Cevap</h4>
+            <ul>
+              <li>Soruyu tekrarla, teşekkür et</li>
+              <li>Bilmediğini söyle — güvenilirlik</li>
+              <li>Zor soruya "ilginç bir nokta, çalışmamızın bir kısıtlılığı da bu" diyerek açıklık</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="resource-item expandable animate-in">
+          <div class="resource-icon" style="background: rgba(198,151,63,0.1); color: var(--gold);">&#128218;</div>
+          <div class="resource-info">
+            <h3>Yayın Etiği</h3>
+            <p>Yazarlık kriterleri (ICMJE), intihal, veri manipülasyonu, çıkar çatışması beyanı.</p>
+          </div>
+          <span class="resource-tag">Etik</span>
+          <div class="detail-toggle">
+            <span>Detayları gör</span>
+            <span class="detail-chevron">▼</span>
+          </div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>ICMJE Yazarlık (4 Kriter)</h4>
+            <ol>
+              <li>Tasarım, veri toplama veya analizde önemli katkı</li>
+              <li>Taslak yazımı veya kritik revizyon</li>
+              <li>Yayın öncesi son onay</li>
+              <li>Sorumluluğu kabul (bütünlük, doğruluk)</li>
+            </ol>
+            <p>Hepsini karşılamayan → "acknowledgments" bölümünde teşekkür.</p>
+            <h4>Yanlış Davranışlar</h4>
+            <ul>
+              <li>İntihal — Turnitin/iThenticate taraması şart</li>
+              <li>Salami publication — bir çalışmayı parçalayıp çoklu yayın</li>
+              <li>Fabrikasyon / falsifikasyon — verinin uydurulması veya değiştirilmesi</li>
+              <li>Hayalet yazar / ödünç yazar</li>
+              <li>Çift yayın — aynı veriyi farklı dergilerde</li>
+            </ul>
+            <h4>Çıkar Çatışması</h4>
+            <ul>
+              <li>Finansal (ilaç şirketi, hisse)</li>
+              <li>Kişisel, kurumsal, akademik</li>
+              <li>Şüphede beyan et — şeffaflık koruyucudur</li>
+            </ul>
+            <div class="detail-source">Kaynak: ICMJE Recommendations, COPE (Committee on Publication Ethics).</div>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="index.html" class="nav-logo" style="color: white;">
+            <div class="logo-icon">SA</div>
+            <span>Dr. S. Alpar</span>
+          </a>
+          <p>Acil tıp alanında bilgi ve deneyim paylaşımı sunan kişisel web sitesi.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Hızlı Bağlantılar</h4>
+          <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="patients.html">Hastalar</a></li>
+            <li><a href="healthcare.html">Sağlık Çalışanları</a></li>
+            <li><a href="kurslar.html">Kurslar</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kaynaklar</h4>
+          <ul>
+            <li><a href="patients.html">Hasta Bilgilendirme</a></li>
+            <li><a href="healthcare.html">Sağlık Çalışanları</a></li>
+            <li><a href="kurslar.html">Kurslar</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Yasal</h4>
+          <ul>
+            <li><a href="#">Gizlilik Politikası</a></li>
+            <li><a href="#">Kullanım Şartları</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Dr. Süleyman Alpar. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Expandable card accordion
+    document.querySelectorAll('.expandable').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        card.classList.toggle('open');
+        const toggle = card.querySelector('.detail-toggle span:first-child');
+        if (toggle) {
+          toggle.textContent = card.classList.contains('open') ? 'Detayları gizle' : 'Detayları gör';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

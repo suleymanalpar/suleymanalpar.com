@@ -3,11 +3,307 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dr. Süleyman Alpar - Hasta Bilgilendirme. Hasta hakları, sağlık bilgileri ve sık sorulan sorular.">
+  <meta name="description" content="Dr. Süleyman Alpar - Hasta Bilgilendirme. Acil durumlar, ilkyardım, hasta hakları ve sağlık rehberi.">
   <title>Hasta Bilgilendirme | Dr. Süleyman Alpar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .section-intro {
+      max-width: 800px;
+      margin: 0 auto 36px;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 1.02rem;
+    }
+
+    /* --- 112 / Acil / Poliklinik Decision Matrix --- */
+    .decision-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 20px;
+    }
+    @media (max-width: 900px) { .decision-grid { grid-template-columns: 1fr; } }
+    .decision-col {
+      background: white;
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+      border-top: 6px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+    .decision-col .decision-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      align-self: flex-start;
+      margin-bottom: 12px;
+    }
+    .decision-col h3 { font-size: 1.4rem; margin-bottom: 6px; }
+    .decision-col .decision-sub { color: var(--text-light); font-size: 0.92rem; margin-bottom: 18px; }
+    .decision-col ul { list-style: none; padding: 0; margin: 0; }
+    .decision-col ul li {
+      padding: 10px 0;
+      padding-left: 28px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.93rem;
+    }
+    .decision-col ul li:last-child { border-bottom: none; }
+    .decision-col ul li::before {
+      position: absolute;
+      left: 0;
+      top: 10px;
+      font-weight: 700;
+    }
+    .decision-col.emergency-112 { border-top-color: #e53e3e; }
+    .decision-col.emergency-112 .decision-badge { background: rgba(229,62,62,0.1); color: #e53e3e; }
+    .decision-col.emergency-112 h3 { color: #c53030; }
+    .decision-col.emergency-112 ul li::before { content: "●"; color: #e53e3e; }
+
+    .decision-col.er-walkin { border-top-color: var(--gold); }
+    .decision-col.er-walkin .decision-badge { background: rgba(198,151,63,0.12); color: var(--gold); }
+    .decision-col.er-walkin h3 { color: var(--gold); }
+    .decision-col.er-walkin ul li::before { content: "●"; color: var(--gold); }
+
+    .decision-col.clinic { border-top-color: #38a169; }
+    .decision-col.clinic .decision-badge { background: rgba(56,161,105,0.1); color: #38a169; }
+    .decision-col.clinic h3 { color: #2f855a; }
+    .decision-col.clinic ul li::before { content: "●"; color: #38a169; }
+
+    /* --- Red Flag Symptom Cards --- */
+    .symptom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .symptom-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid #e53e3e;
+      transition: all var(--transition);
+    }
+    .symptom-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+    .symptom-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .symptom-card .symptom-icon { font-size: 1.5rem; }
+    .symptom-card .symptom-meta {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #e53e3e;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+    .symptom-card p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px; }
+    .symptom-card ul { list-style: none; padding: 0; }
+    .symptom-card ul li {
+      padding: 4px 0;
+      padding-left: 18px;
+      position: relative;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .symptom-card ul li::before {
+      content: "⚠";
+      position: absolute;
+      left: 0;
+      color: #e53e3e;
+      font-size: 0.85rem;
+    }
+
+    /* --- First Aid Cards --- */
+    .firstaid-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+      position: relative;
+    }
+    .firstaid-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+    .firstaid-card .firstaid-number {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-family: var(--font-heading);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: rgba(43,108,176,0.12);
+      line-height: 1;
+    }
+    .firstaid-card h3 { font-size: 1.15rem; margin-bottom: 10px; padding-right: 40px; }
+    .firstaid-card .firstaid-steps { margin-top: 14px; padding-left: 0; list-style: none; counter-reset: stepcount; }
+    .firstaid-card .firstaid-steps li {
+      padding: 6px 0;
+      padding-left: 26px;
+      position: relative;
+      font-size: 0.9rem;
+      color: var(--text);
+      counter-increment: stepcount;
+    }
+    .firstaid-card .firstaid-steps li::before {
+      content: counter(stepcount);
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      line-height: 20px;
+    }
+    .firstaid-warning {
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: rgba(229,62,62,0.08);
+      border-left: 3px solid #e53e3e;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: #c53030;
+    }
+
+    /* --- Chronic Condition Cards --- */
+    .chronic-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+    }
+    .chronic-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+    .chronic-card .chronic-label {
+      display: inline-block;
+      background: rgba(43,108,176,0.08);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .chronic-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .chronic-card .chronic-when {
+      background: #f7f8fc;
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin-top: 12px;
+      font-size: 0.86rem;
+    }
+    .chronic-card .chronic-when strong { color: #c53030; display: block; margin-bottom: 4px; font-size: 0.78rem; letter-spacing: 0.5px; }
+
+    /* --- Expandable (Accordion) --- */
+    .expandable { cursor: pointer; position: relative; }
+    .expandable .detail-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      user-select: none;
+    }
+    .expandable .detail-chevron { display: inline-block; transition: transform 0.3s; }
+    .expandable.open .detail-chevron { transform: rotate(180deg); }
+    .expandable .detail-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .expandable.open .detail-panel { max-height: 1800px; }
+    .detail-panel-inner {
+      padding-top: 16px;
+      margin-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .detail-panel h4 {
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-top: 14px;
+      margin-bottom: 8px;
+    }
+    .detail-panel h4:first-child { margin-top: 0; }
+    .detail-panel p { font-size: 0.9rem; color: var(--text); margin-bottom: 10px; line-height: 1.65; }
+    .detail-panel ol, .detail-panel ul {
+      padding-left: 0;
+      margin: 0 0 10px 0;
+      list-style: none;
+    }
+    .detail-panel ul li, .detail-panel ol li {
+      padding: 4px 0;
+      padding-left: 18px;
+      position: relative;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .detail-panel ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .detail-panel ol { counter-reset: ord; }
+    .detail-panel ol li { counter-increment: ord; }
+    .detail-panel ol li::before {
+      content: counter(ord) ".";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .symptom-card .detail-toggle,
+    .symptom-card.open .detail-toggle { color: #e53e3e; }
+    .symptom-card .detail-panel ul li::before,
+    .symptom-card .detail-panel ol li::before { color: #e53e3e; }
+    .detail-warn {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: rgba(229,62,62,0.08);
+      border-left: 3px solid #e53e3e;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #c53030;
+    }
+    .detail-tip {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: rgba(56,161,105,0.08);
+      border-left: 3px solid #38a169;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #2f855a;
+    }
+
+    /* Info-card clickable adjustments */
+    .info-card.expandable { cursor: pointer; }
+  </style>
 </head>
 <body>
 
@@ -19,18 +315,13 @@
         <span>Dr. S. Alpar</span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
-        <li><a href="index.html#about" data-i18n="nav.about">Hakkımda</a></li>
-        <li><a href="patients.html" class="active" data-i18n="nav.patients">Hastalar</a></li>
-        <li><a href="students.html" data-i18n="nav.students">Öğrenciler</a></li>
-        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
-        <li><a href="index.html#contact" data-i18n="nav.contact">İletişim</a></li>
-        <li>
-          <div class="lang-switch">
-            <button class="lang-btn active" data-lang="tr">TR</button>
-            <button class="lang-btn" data-lang="en">EN</button>
-          </div>
-        </li>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="index.html#about">Hakkımda</a></li>
+        <li><a href="patients.html" class="active">Hastalar</a></li>
+        <li><a href="healthcare.html">Sağlık Çalışanları</a></li>
+        <li><a href="kurslar.html">Kurslar</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="index.html#contact">İletişim</a></li>
       </ul>
       <button class="mobile-toggle" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -41,113 +332,912 @@
   <!-- Page Header -->
   <section class="page-header">
     <div class="container">
-      <h1 data-i18n="patient.header.title">Hasta Bilgilendirme</h1>
-      <p data-i18n="patient.header.desc">Sağlığınız hakkında güvenilir, anlaşılır ve güncel bilgiler</p>
+      <h1>Hasta Bilgilendirme</h1>
+      <p>Acil durumlar, ilkyardım, sağlık hakları — güvenilir ve anlaşılır bilgiler</p>
     </div>
   </section>
 
-  <!-- Patient Rights -->
+  <!-- SECTION: Ne zaman 112 / Acil / Poliklinik -->
   <section class="content-section">
     <div class="container">
       <div class="section-header animate-in">
-        <span class="section-label" data-i18n="patient.rights.label">HASTA HAKLARI</span>
-        <h2 data-i18n="patient.rights.title">Haklarınızı Bilin</h2>
-        <p data-i18n="patient.rights.desc">Her hastanın bilmesi gereken temel haklar ve yasal güvenceler</p>
+        <span class="section-label">BAŞVURU REHBERİ</span>
+        <h2>Ne Zaman Nereye Başvurmalı?</h2>
+        <p class="section-intro">Doğru sağlık hizmetine doğru zamanda ulaşmak hem sizin için hayat kurtarıcı, hem de acil servislerin yükünü azaltır.</p>
       </div>
-      <div class="info-cards">
-        <div class="info-card animate-in">
-          <div class="card-icon blue">&#128220;</div>
-          <h3 data-i18n="patient.right1.title">Bilgilendirilme Hakkı</h3>
-          <p data-i18n="patient.right1.desc">Tanı, tedavi yöntemleri, riskler ve alternatifler hakkında açık ve anlaşılır bir şekilde bilgilendirilme hakkınız vardır.</p>
+      <div class="decision-grid">
+        <div class="decision-col emergency-112 animate-in">
+          <span class="decision-badge">&#128680; 112'Yİ ARAYIN</span>
+          <h3>Hayati Tehlike</h3>
+          <p class="decision-sub">Hareket ettirmek tehlikeli olabilir — ambulans gerekli.</p>
+          <ul>
+            <li>Bilinç kaybı, yanıtsızlık</li>
+            <li>Nefes almama, ağır nefes darlığı</li>
+            <li>Ciddi göğüs ağrısı</li>
+            <li>Yüzde kayma, konuşma bozukluğu (inme)</li>
+            <li>Durdurulamayan ciddi kanama</li>
+            <li>Ciddi yanık, elektrik çarpması</li>
+            <li>Ciddi trafik kazası, yüksekten düşme</li>
+            <li>Boğulma, tıkanma</li>
+            <li>Nöbet geçirme (5 dk+ veya ilk kez)</li>
+          </ul>
         </div>
-        <div class="info-card animate-in">
-          <div class="card-icon gold">&#9989;</div>
-          <h3 data-i18n="patient.right2.title">Onay Hakkı</h3>
-          <p data-i18n="patient.right2.desc">Herhangi bir tıbbi müdahale öncesinde bilgilendirilmiş onamınızın alınması yasal zorunluluktur.</p>
+
+        <div class="decision-col er-walkin animate-in">
+          <span class="decision-badge">&#127973; ACİL SERVİS</span>
+          <h3>Hızlı Değerlendirme</h3>
+          <p class="decision-sub">Kendi aracınızla veya yakın hastaneye gidin.</p>
+          <ul>
+            <li>Yüksek ateş + ek belirti (kırıklık, döküntü)</li>
+            <li>Şiddetli, geçmeyen baş ağrısı</li>
+            <li>Kırık veya çıkık şüphesi</li>
+            <li>Derin kesik, dikiş gerektiren yara</li>
+            <li>Şiddetli karın ağrısı, kusma</li>
+            <li>Astım atağı (hafif-orta)</li>
+            <li>Alerjik reaksiyon (nefes sorunu yoksa)</li>
+            <li>Orta dereceli yanıklar</li>
+            <li>Çocukta yüksek ateş + halsizlik</li>
+          </ul>
         </div>
-        <div class="info-card animate-in">
-          <div class="card-icon green">&#128274;</div>
-          <h3 data-i18n="patient.right3.title">Mahremiyet Hakkı</h3>
-          <p data-i18n="patient.right3.desc">Tıbbi bilgileriniz gizlidir. Yasal zorunluluklar dışında üçüncü kişilerle paylaşılamaz.</p>
-        </div>
-        <div class="info-card animate-in">
-          <div class="card-icon purple">&#9995;</div>
-          <h3 data-i18n="patient.right4.title">Tedavi Reddi Hakkı</h3>
-          <p data-i18n="patient.right4.desc">Önerilen tedaviyi reddetme hakkınız bulunmaktadır. Reddiniz kayıt altına alınır.</p>
+
+        <div class="decision-col clinic animate-in">
+          <span class="decision-badge">&#127973; POLİKLİNİK</span>
+          <h3>Rutin Başvuru</h3>
+          <p class="decision-sub">MHRS ile randevu alın; aile hekimi veya uzman.</p>
+          <ul>
+            <li>Hafif-orta şiddette rahatsızlık</li>
+            <li>Kronik hastalık takibi</li>
+            <li>Reçete yenileme</li>
+            <li>Aşı, tarama, check-up</li>
+            <li>Hafif soğuk algınlığı, grip</li>
+            <li>Uzun süreli yorgunluk, uyku sorunu</li>
+            <li>Cilt lezyonu takibi</li>
+            <li>Ruh sağlığı başvurusu</li>
+            <li>Rutin kadın / çocuk sağlığı</li>
+          </ul>
         </div>
       </div>
+      <p style="text-align: center; margin-top: 32px; color: var(--text-light); font-size: 0.88rem; max-width: 780px; margin-left: auto; margin-right: auto;">
+        <strong>Not:</strong> Emin değilseniz 112'yi arayın — değerlendirme ücretsizdir, yönlendirme yapılır. Bu rehber genel bilgi amaçlıdır, kişisel tıbbi tavsiye yerine geçmez.
+      </p>
     </div>
   </section>
 
-  <!-- Health Information -->
+  <!-- SECTION: Acil durum belirtileri -->
   <section class="content-section" style="background: white;">
     <div class="container">
       <div class="section-header animate-in">
-        <span class="section-label" data-i18n="patient.health.label">SAĞLIK BİLGİLERİ</span>
-        <h2 data-i18n="patient.health.title">Sık Karşılaşılan Konular</h2>
+        <span class="section-label">KIRMIZI BAYRAKLAR</span>
+        <h2>Acil Durum Belirtileri</h2>
+        <p class="section-intro">Bu belirtiler geciktirilmemeli; fark ettiğinizde 112'yi arayın veya en yakın acil servise gidin. Kartlara tıklayarak detayları görüntüleyebilirsiniz.</p>
+      </div>
+      <div class="symptom-grid">
+
+        <div class="symptom-card expandable animate-in">
+          <div class="symptom-meta">&#9888; HAYATİ TEHLİKE</div>
+          <h3><span class="symptom-icon">&#10084;&#65039;</span> Göğüs Ağrısı</h3>
+          <p>Kalp krizi habercisi olabilir. Tipik bulgular:</p>
+          <ul>
+            <li>Göğüs merkezinde baskı, sıkışma, yanma</li>
+            <li>Sol kol, çene veya sırta yayılma</li>
+            <li>Terleme, bulantı, nefes darlığı eşliği</li>
+            <li>20 dakikadan uzun sürmesi</li>
+          </ul>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Atipik Belirtiler (Kadınlar, Yaşlılar, Diyabetliler)</h4>
+            <ul>
+              <li>Yorgunluk, halsizlik</li>
+              <li>Mide bulantısı, hazımsızlık hissi</li>
+              <li>Sırt veya çene ağrısı (göğüs ağrısı olmadan)</li>
+              <li>Anormal nefes darlığı</li>
+            </ul>
+            <h4>112'yi Beklerken</h4>
+            <ol>
+              <li>Oturun ya da yarı yatın; yürümeyin</li>
+              <li>Sıkı kıyafetleri gevşetin</li>
+              <li>Daha önce verildiyse, dil altı nitrat kullanın</li>
+              <li>Hekiminiz aksini söylemediyse 300 mg aspirin çiğneyebilirsiniz</li>
+              <li>Yalnızsanız kapıyı açık bırakın</li>
+            </ol>
+            <div class="detail-warn">&#9888; "Geçer" diye beklemeyin. İlk 1 saat (altın saat) hayat kurtarır. Kendi arabanızla gitmeye çalışmayın — bilinç kaybı riski var.</div>
+          </div></div>
+        </div>
+
+        <div class="symptom-card expandable animate-in">
+          <div class="symptom-meta">&#9888; FAST TESTİ</div>
+          <h3><span class="symptom-icon">&#129504;</span> İnme Belirtileri</h3>
+          <p>F.A.S.T. testi inme tespitinde anahtardır:</p>
+          <ul>
+            <li>F (Face): Yüzün bir tarafında kayma</li>
+            <li>A (Arm): Kolunu kaldırınca düşme</li>
+            <li>S (Speech): Konuşma bozukluğu</li>
+            <li>T (Time): Zaman çok önemli — 112!</li>
+          </ul>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Ek Belirtiler</h4>
+            <ul>
+              <li>Ani görme kaybı veya çift görme</li>
+              <li>Ani baş dönmesi, denge kaybı</li>
+              <li>Ani şiddetli baş ağrısı (hayatının en kötüsü)</li>
+              <li>Vücudun bir tarafında uyuşma veya güçsüzlük</li>
+            </ul>
+            <h4>Neden Zaman Çok Önemli?</h4>
+            <p>Pıhtıyı eriten ilaç (trombolitik) genellikle ilk 4.5 saatte etkilidir. Damar içi girişim 24 saate kadar mümkün olabilir. Her dakika ortalama 2 milyon beyin hücresi kaybedilir.</p>
+            <h4>112'yi Beklerken</h4>
+            <ol>
+              <li>Belirtilerin başladığı saati not edin (kritik bilgi)</li>
+              <li>Hastayı güvenli pozisyonda yatırın</li>
+              <li>Kusma varsa yan yatırın (aspirasyondan koruma)</li>
+              <li>Yemek, içecek, ilaç vermeyin</li>
+              <li>Bilinci açıksa sakinleştirin</li>
+            </ol>
+            <div class="detail-warn">&#9888; "Geçici" belirti bile olsa (GIA / mini inme) ciddiye alınmalı — büyük inme habercisi olabilir.</div>
+          </div></div>
+        </div>
+
+        <div class="symptom-card expandable animate-in">
+          <div class="symptom-meta">&#9888; SOLUNUM</div>
+          <h3><span class="symptom-icon">&#127991;&#65039;</span> Ciddi Nefes Darlığı</h3>
+          <p>Hızlı değerlendirme gerektirir:</p>
+          <ul>
+            <li>Konuşamayacak kadar nefes darlığı</li>
+            <li>Dudak, parmak uçlarında morarma</li>
+            <li>Göğüste hırıltı, ıslık sesi</li>
+            <li>Bilinç bulanıklığı eşliği</li>
+          </ul>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Olası Nedenler</h4>
+            <ul>
+              <li>Astım atağı</li>
+              <li>KOAH alevlenmesi</li>
+              <li>Akciğer enfeksiyonu (zatürre)</li>
+              <li>Kalp yetmezliği (akciğerde sıvı)</li>
+              <li>Akciğer embolisi (damar tıkanıklığı)</li>
+              <li>Ciddi alerjik reaksiyon (anafilaksi)</li>
+              <li>Pnömotoraks (akciğer sönmesi)</li>
+            </ul>
+            <h4>112'yi Beklerken</h4>
+            <ol>
+              <li>Oturur veya yarı oturur pozisyon alın (düz yatmayın)</li>
+              <li>Sıkı giysi, kemer, yakayı gevşetin</li>
+              <li>Pencere açın, mümkünse temiz hava</li>
+              <li>Varsa kurtarıcı inhalerinizi kullanın</li>
+              <li>Sakin, yavaş nefes almaya çalışın</li>
+            </ol>
+            <div class="detail-warn">&#9888; Ciltte morarma, bilinç bulanıklığı ya da konuşamama → hemen 112. Yüze yakın bir alerjen (arı sokması, gıda) sonrası nefes darlığı → anafilaksi, adrenalin otoenjektörü kullanın varsa.</div>
+          </div></div>
+        </div>
+
+        <div class="symptom-card expandable animate-in">
+          <div class="symptom-meta">&#9888; NÖROLOJİK</div>
+          <h3><span class="symptom-icon">&#129504;</span> Şiddetli Baş Ağrısı</h3>
+          <p>"Hayatımın en kötü baş ağrısı" diye tarif edilen ağrı ciddi olabilir:</p>
+          <ul>
+            <li>Aniden başlayan yoğun ağrı</li>
+            <li>Ateş, ense sertliği eşliği</li>
+            <li>Bilinç değişikliği, kusma</li>
+            <li>Görme kaybı, çift görme</li>
+          </ul>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Tehlikeli Nedenler</h4>
+            <ul>
+              <li>Subaraknoid kanama (damar yırtılması) — "yıldırım" tarzı ağrı</li>
+              <li>Menenjit / ensefalit — ateş, ense sertliği, bilinç</li>
+              <li>İnme / geçici iskemik atak</li>
+              <li>Kafa içi basınç artışı (kitle, hidrosefali)</li>
+              <li>Dev hücreli arterit (yaşlılarda, şakak ağrısı)</li>
+              <li>Ani yüksek tansiyon (hipertansif kriz)</li>
+            </ul>
+            <h4>Ne Zaman Endişelenmeli?</h4>
+            <ul>
+              <li>Saniyeler içinde patlak veren ağrı</li>
+              <li>Daha önce hiç yaşanmamış karakter</li>
+              <li>50 yaş üstü yeni başlayan baş ağrısı</li>
+              <li>Eforla, öksürükle artan</li>
+              <li>Uyandıran veya sabah daha kötü</li>
+              <li>Nörolojik belirti eşliği</li>
+            </ul>
+            <div class="detail-warn">&#9888; Ağrı kesiciye yanıt vermiyorsa, giderek şiddetleniyorsa veya yukarıdaki özelliklerden biri varsa acil servise gidin.</div>
+          </div></div>
+        </div>
+
+        <div class="symptom-card expandable animate-in">
+          <div class="symptom-meta">&#9888; CERRAHİ</div>
+          <h3><span class="symptom-icon">&#128371;</span> Şiddetli Karın Ağrısı</h3>
+          <p>Cerrahi bir durumun habercisi olabilir:</p>
+          <ul>
+            <li>Aniden başlayan, giderek artan ağrı</li>
+            <li>Karında sertlik, dokunulamaz hassasiyet</li>
+            <li>Durdurulamayan kusma</li>
+            <li>Kanlı kusma, siyah dışkı</li>
+          </ul>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Olası Aciliyet Gerektiren Nedenler</h4>
+            <ul>
+              <li>Apandisit (sağ alt karın)</li>
+              <li>Safra kesesi iltihabı, safra taşı krizi (sağ üst karın)</li>
+              <li>Pankreatit (sırta yayılan şiddetli ağrı)</li>
+              <li>Bağırsak tıkanıklığı / delinmesi</li>
+              <li>Aort anevrizma yırtılması (yaşlılarda sırt ağrısı)</li>
+              <li>Dış gebelik (doğurganlık çağındaki kadın)</li>
+              <li>Böbrek taşı (yana vuran ağrı)</li>
+            </ul>
+            <h4>Acile Gitmeden Önce</h4>
+            <ul>
+              <li>Yemek, içecek tüketmeyin (cerrahi gerekebilir)</li>
+              <li>Ağrı kesici almadan hekime gösterin (muayeneyi bozar)</li>
+              <li>Son idrar, dışkı, adet tarihini not edin</li>
+              <li>Kullandığınız ilaçların listesini yanınıza alın</li>
+            </ul>
+            <div class="detail-warn">&#9888; Karında sertlik, ateş, sürekli artan ağrı, kanlı kusma veya siyah dışkı → gecikmeyin.</div>
+          </div></div>
+        </div>
+
+        <div class="symptom-card expandable animate-in">
+          <div class="symptom-meta">&#9888; PEDİATRİ</div>
+          <h3><span class="symptom-icon">&#129344;</span> Çocukta Acil Belirtiler</h3>
+          <p>Küçük çocuklarda özel dikkat gerektiren durumlar:</p>
+          <ul>
+            <li>38.5°C üzeri ateş (3 aydan küçük bebek)</li>
+            <li>Uyandırılamayan uyku hali</li>
+            <li>Durdurulamayan ağlama veya sessizlik</li>
+            <li>Döküntü + ateş + bilinç değişikliği</li>
+            <li>Dehidratasyon (az idrar, ağız kuruluğu)</li>
+          </ul>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Yaşa Göre Acil Durumlar</h4>
+            <ul>
+              <li><strong>0-3 ay:</strong> Her ateş, beslenmeyi reddetme, morarma, solunum hızı artışı</li>
+              <li><strong>3-24 ay:</strong> 39°C üzeri ateş, havale (febril konvülsiyon), ileri halsizlik</li>
+              <li><strong>2+ yaş:</strong> Durmayan kusma, ciddi karın ağrısı, döküntü + ateş</li>
+            </ul>
+            <h4>Dehidratasyon Belirtileri</h4>
+            <ul>
+              <li>8 saatten uzun bez kuruluğu</li>
+              <li>Ağlarken gözyaşı olmaması</li>
+              <li>Ağız ve dudaklarda kuruluk</li>
+              <li>Bebeklerde çukur görünümlü bıngıldak</li>
+              <li>Ciltte elastikiyet kaybı</li>
+            </ul>
+            <h4>Yanıltıcı Olabilir</h4>
+            <p>Bebekler bazen hastalığı erişkinden farklı gösterir: aşırı uykulu olma, beslenmeyi reddetme, yaşlarına göre alışık olunmadık davranışlar — hepsi ciddi hastalık belirtisi olabilir.</p>
+            <div class="detail-warn">&#9888; Mor renkli, kaybolmayan döküntü + ateş → menenjit şüphesi, acil servise gidin.</div>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: Evde ilkyardım -->
+  <section class="content-section">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label">İLKYARDIM</span>
+        <h2>Evde İlkyardım Temelleri</h2>
+        <p class="section-intro">Doğru ilk müdahale hayat kurtarır. Aşağıdaki bilgiler temel rehberdir; mutlaka resmi ilkyardım kursu almanızı öneririm.</p>
       </div>
       <div class="cards-grid">
-        <div class="card animate-in">
-          <div class="card-icon green">&#129657;</div>
-          <h3 data-i18n="patient.health1.title">Koruyucu Sağlık</h3>
-          <p data-i18n="patient.health1.desc">Düzenli check-up, aşılar ve erken tanı taramalarının önemi hakkında bilgiler.</p>
+
+        <div class="firstaid-card expandable animate-in">
+          <span class="firstaid-number">01</span>
+          <h3>Kalp Masajı (CPR)</h3>
+          <ol class="firstaid-steps">
+            <li>Güvenliği sağla, bilinç kontrolü yap</li>
+            <li>112'yi ara (hoparlörde tut)</li>
+            <li>Göğüs ortasına dakikada 100-120 bası</li>
+            <li>5-6 cm derinlikte, kesintisiz</li>
+            <li>Otomatik defibrilatör (OED) varsa kullan</li>
+          </ol>
+          <div class="firstaid-warning">&#9888; Eğitim almadıysanız sadece göğüs basısına odaklanın — suni solunum zorunlu değildir.</div>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Bilinç ve Nefes Kontrolü</h4>
+            <ol>
+              <li>Omuzlarından hafifçe sarsın, yüksek sesle seslenin</li>
+              <li>Yanıt yoksa sırtüstü yatırın, havayolunu aç (çene yukarı)</li>
+              <li>10 saniye içinde normal nefes var mı bakın (göğüs yükselmesi, sesi, yanağa hissetme)</li>
+              <li>Normal nefes yoksa → CPR başlat</li>
+            </ol>
+            <h4>Doğru Teknik</h4>
+            <ul>
+              <li>Elin topuğu göğüs merkezine (meme uçları arası)</li>
+              <li>İkinci eli üzerine, parmakları ilkinin üstünde</li>
+              <li>Kollar düz, dirsek kilitli, omuzlar ellerin üstünde</li>
+              <li>Her baskıdan sonra göğsün tamamen geri kalkmasını bekle</li>
+              <li>Şarkı tempoları: "Stayin' Alive" (Bee Gees) 103 bpm — uygun</li>
+            </ul>
+            <h4>Çocuk ve Bebek Farkı</h4>
+            <ul>
+              <li>1-8 yaş: tek el, 5 cm derinlik</li>
+              <li>&lt;1 yaş bebek: iki parmak (meme çizgisi hizası), 4 cm derinlik</li>
+              <li>Çocuk ve bebekte 30:2 oranıyla suni solunum eğer eğitimliyse</li>
+            </ul>
+            <div class="detail-tip">&#9989; OED yanlış kullanılamaz — cihaz talimat verir. Çekinmeyin.</div>
+          </div></div>
         </div>
-        <div class="card animate-in">
-          <div class="card-icon blue">&#10084;&#65039;</div>
-          <h3 data-i18n="patient.health2.title">Kronik Hastalıklar</h3>
-          <p data-i18n="patient.health2.desc">Diyabet, hipertansiyon ve kalp hastalıkları yönetimi hakkında pratik bilgiler.</p>
+
+        <div class="firstaid-card expandable animate-in">
+          <span class="firstaid-number">02</span>
+          <h3>Heimlich Manevrası</h3>
+          <ol class="firstaid-steps">
+            <li>Konuşabiliyor mu? Öksürmesini destekle</li>
+            <li>Konuşamıyorsa arkasına geç</li>
+            <li>Göbek üstü, göğüs kafesi altına yumruk</li>
+            <li>Diğer elinle kavra, içe-yukarı bastır</li>
+            <li>Cisim çıkana veya yardım gelene kadar</li>
+          </ol>
+          <div class="firstaid-warning">&#9888; Bebeklerde farklı teknik kullanılır — yüzüstü sırtına vuruş + göğüs basısı.</div>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Tam Tıkanma Belirtileri</h4>
+            <ul>
+              <li>Ses çıkaramama, konuşamama</li>
+              <li>Ellerle boğazı tutma (evrensel işaret)</li>
+              <li>Yüzde kızarma, sonra morarma</li>
+              <li>Etkisiz öksürme</li>
+            </ul>
+            <h4>Bebek (0-1 yaş) Tekniği</h4>
+            <ol>
+              <li>Bebeği kolunuza yüzüstü, baş gövdeden aşağıda yerleştirin</li>
+              <li>Sırtına, kürekler arası 5 kuvvetli vuruş</li>
+              <li>Çevirin (yüz yukarı), meme çizgisine 5 göğüs basısı</li>
+              <li>Cisim çıkana kadar sırt vuruşu + göğüs basısı dönüşümlü</li>
+              <li>Bilinç kaybederse CPR başlatın, ağzı kontrol edin</li>
+            </ol>
+            <h4>Hamile veya Obez Kişide</h4>
+            <p>Göbek altından değil, göğüs ortasından bası uygulayın (STB).</p>
+            <div class="detail-tip">&#9989; Yalnızsanız: sandalyenin arkalığına karnınızı bastırarak Heimlich kendinize uygulayabilirsiniz.</div>
+          </div></div>
         </div>
-        <div class="card animate-in">
-          <div class="card-icon gold">&#128138;</div>
-          <h3 data-i18n="patient.health3.title">İlaç Kullanımı</h3>
-          <p data-i18n="patient.health3.desc">Doğru ilaç kullanımı, yan etkiler ve ilaç etkileşimleri hakkında rehber.</p>
+
+        <div class="firstaid-card expandable animate-in">
+          <span class="firstaid-number">03</span>
+          <h3>Kanama Kontrolü</h3>
+          <ol class="firstaid-steps">
+            <li>Temiz bez / gazlı bez ile direkt baskı uygula</li>
+            <li>Yarayı kalp seviyesinin üstüne kaldır</li>
+            <li>Kanama durmuyorsa üste ek bez koy</li>
+            <li>İlk bezi kaldırma, üzerine bastır</li>
+            <li>Ciddi kanamada 112'yi ara</li>
+          </ol>
+          <div class="firstaid-warning">&#9888; Turnike yalnızca uzvun kopması gibi ciddi durumlarda kullanılır.</div>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Kanama Tipleri</h4>
+            <ul>
+              <li>Arteriyel — parlak kırmızı, fışkırır, nabızla</li>
+              <li>Venöz — koyu kırmızı, sürekli akış</li>
+              <li>Kılcal — sızıntı tarzı</li>
+            </ul>
+            <h4>Burun Kanaması</h4>
+            <ol>
+              <li>Öne eğilin (arkaya değil — mideye akmamalı)</li>
+              <li>Burnun yumuşak kısmını (kemikli değil) 10 dk sıkıştırın</li>
+              <li>Ağızdan nefes alın, kanı yutmayın</li>
+              <li>10 dk sonra durmazsa tekrar 10 dk sıkıştırın</li>
+              <li>20 dk sonra hâlâ duruyorsa sağlık kuruluşuna</li>
+            </ol>
+            <h4>Turnike Uygulaması</h4>
+            <ul>
+              <li>Sadece kol veya bacak için, yaranın 5-8 cm yukarısı</li>
+              <li>Kanama durana kadar sık</li>
+              <li>Saati not edin — hastane kritik bilgi</li>
+              <li>Uygulamadan sonra gevşetilmemeli</li>
+            </ul>
+            <div class="detail-warn">&#9888; İçeride saplı cisim varsa çıkarmayın — çevresine destek yapın, kanamayı artırabilir.</div>
+          </div></div>
+        </div>
+
+        <div class="firstaid-card expandable animate-in">
+          <span class="firstaid-number">04</span>
+          <h3>Yanık</h3>
+          <ol class="firstaid-steps">
+            <li>Yakıcı kaynaktan uzaklaştır</li>
+            <li>Yanığı 15-20 dk serin (buz değil!) suyla yıka</li>
+            <li>Yapışan kıyafeti kesinlikle çekme</li>
+            <li>Temiz bezle gevşek örtü</li>
+            <li>Büyük yanık, yüz/el yanığı → acil servis</li>
+          </ol>
+          <div class="firstaid-warning">&#9888; Diş macunu, yoğurt, yağ kesinlikle sürmeyin — enfeksiyon riski artar.</div>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Yanık Dereceleri</h4>
+            <ul>
+              <li>1. derece: kızarıklık, ağrı (güneş yanığı tarzı)</li>
+              <li>2. derece: kabarcık, ıslak görünüm, şiddetli ağrı</li>
+              <li>3. derece: beyaz/siyah, ağrısız (sinir zedelenmiş)</li>
+              <li>4. derece: kas ve kemik hasarı</li>
+            </ul>
+            <h4>Hemen Acile Gitmeli</h4>
+            <ul>
+              <li>Avuç içi büyüklüğünden geniş yanık</li>
+              <li>Yüz, el, ayak, genital bölge, eklem</li>
+              <li>Kimyasal, elektrik, inhalasyon yanığı</li>
+              <li>2 yaş altı ve 60 yaş üstü</li>
+              <li>Diyabet, bağışıklık düşüklüğü varsa</li>
+            </ul>
+            <h4>Kabarcık (Bül) Ne Yapılmalı?</h4>
+            <p>Patlatmayın. Kendi kendine yırtılırsa temiz bir bezle hafifçe örtün. Enfeksiyon belirtisi (kızarıklık yayılması, ateş, kötü koku) → hekim.</p>
+            <div class="detail-warn">&#9888; Elektrik yanığında içerideki hasar dışarıdan çok daha büyük olabilir; mutlaka hastaneye.</div>
+          </div></div>
+        </div>
+
+        <div class="firstaid-card expandable animate-in">
+          <span class="firstaid-number">05</span>
+          <h3>Bayılma</h3>
+          <ol class="firstaid-steps">
+            <li>Kişiyi sırt üstü yatır</li>
+            <li>Bacaklarını 30° kaldır (kan beyne gitsin)</li>
+            <li>Sıkı kıyafeti gevşet, havalandır</li>
+            <li>1-2 dk içinde kendine gelmezse 112</li>
+            <li>Kusuyorsa yan yatır (aspirasyondan koru)</li>
+          </ol>
+          <div class="firstaid-warning">&#9888; Bayılma tekrarlıyorsa veya ilk kez ise mutlaka hekime başvurun.</div>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Sık Nedenler</h4>
+            <ul>
+              <li>Vazovagal (uzun süre ayakta durma, stres, ağrı)</li>
+              <li>Ortostatik (ani ayağa kalkma, dehidratasyon)</li>
+              <li>Kardiyak (ritim bozukluğu, kapak hastalığı) — en tehlikelisi</li>
+              <li>Kan şekeri düşüklüğü</li>
+              <li>Nörolojik (nöbet, TIA)</li>
+            </ul>
+            <h4>Ne Zaman Acile Gidilmeli?</h4>
+            <ul>
+              <li>Egzersiz sırasında veya hemen sonrasında bayılma</li>
+              <li>Çarpıntı, göğüs ağrısı ile birlikte</li>
+              <li>Yaralanma meydana geldiyse</li>
+              <li>Tekrarlayan bayılmalar</li>
+              <li>Yaşlı birey, bilinen kalp hastası</li>
+              <li>Öncesinde uyarıcı belirti olmayan ani bayılma</li>
+            </ul>
+            <h4>Bayılma vs. Nöbet</h4>
+            <p>Nöbette genellikle kasılma, ağız köpüğü, dil ısırma, idrar kaçırma olur. Uyanma sonrası konfüzyon uzun sürer. Bayılmada iyileşme hızlıdır.</p>
+            <div class="detail-tip">&#9989; Kendinizi bayılacak gibi hissediyorsanız: hemen oturun, başınızı dizlerinize doğru eğin veya sırtüstü yatın.</div>
+          </div></div>
+        </div>
+
+        <div class="firstaid-card expandable animate-in">
+          <span class="firstaid-number">06</span>
+          <h3>Zehirlenme</h3>
+          <ol class="firstaid-steps">
+            <li>UZEM: 114 - Ulusal Zehir Danışma</li>
+            <li>Ne, ne kadar, ne zaman alındı? bilgisi hazırla</li>
+            <li>Kusturmaya çalışma (aksi söylenmedikçe)</li>
+            <li>Cilde bulaştıysa bol suyla yıka</li>
+            <li>Bilinç kaybı varsa 112'yi ara</li>
+          </ol>
+          <div class="firstaid-warning">&#9888; Karbonmonoksit zehirlenmesinde önce ortamı havalandırın, kendinizi riske atmayın.</div>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>UZEM'e Hazırlanacak Bilgiler</h4>
+            <ul>
+              <li>Madde adı (varsa kutuyu / şişeyi yanınıza alın)</li>
+              <li>Miktar (tahmini bile olsa)</li>
+              <li>Ne zaman alındı? (kritik — tedavi pencereleri var)</li>
+              <li>Kişi yaş, kilo, kronik hastalık</li>
+              <li>Belirtiler: kusma, bilinç, nefes</li>
+            </ul>
+            <h4>Sık Ev İçi Zehirlenmeleri</h4>
+            <ul>
+              <li>Çocukta ilaç, temizlik ürünü (özellikle kireç çözücü, çamaşır suyu)</li>
+              <li>Karbonmonoksit (şofben, soba) — baş ağrısı, baş dönmesi, bulantı</li>
+              <li>Mantar zehirlenmesi</li>
+              <li>Tarım ilacı, rodentisit</li>
+              <li>Alkol — özellikle metanol (kör edici)</li>
+            </ul>
+            <h4>Çamaşır Suyu / Kireç Çözücü</h4>
+            <p>KUSTURMAYIN — yemek borusunu tekrar yakar. Ağız bol suyla çalkalansın. Süt verilebilir (su yerine). 114'ü arayın.</p>
+            <div class="detail-warn">&#9888; Karbonmonoksit zehirlenmesinde bilinç kaybolmadan önce kaçış kararı verilemeyebilir — şüphe varsa hemen dışarı çıkın, pencereleri açın, 112'yi arayın.</div>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: Kronik hastalıkta acil -->
+  <section class="content-section" style="background: white;">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label">KRONİK HASTALIKTA ACİL</span>
+        <h2>Ne Zaman Acile Başvurmalı?</h2>
+        <p class="section-intro">Kronik hastalık yönetiminde bazı durumlar acil müdahale gerektirir. Hastalığınızı tanıyın, belirtileri kaçırmayın.</p>
+      </div>
+      <div class="cards-grid">
+
+        <div class="chronic-card expandable animate-in">
+          <span class="chronic-label">DİYABET</span>
+          <h3>Kan Şekeri Aciliyeti</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">Hem düşük hem yüksek kan şekeri tehlikelidir.</p>
+          <div class="chronic-when">
+            <strong>112'Yİ ARAYIN</strong>
+            Bilinç bulanıklığı, titreme+terleme (hipoglisemi), aşırı susama+sık idrar+karın ağrısı (DKA), nefeste aseton kokusu.
+          </div>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Hipoglisemi (Kan şekeri &lt;70 mg/dL)</h4>
+            <ul>
+              <li>Titreme, terleme, çarpıntı</li>
+              <li>Açlık, baş dönmesi, sinirlilik</li>
+              <li>Bilinç bulanıklığı, konuşma bozukluğu</li>
+              <li>İlerlerse nöbet, koma</li>
+            </ul>
+            <p><strong>Evde tedavi (bilinci açık ise):</strong></p>
+            <ol>
+              <li>15 g hızlı şeker: yarım bardak meyve suyu, 3-4 küp şeker, 1 çorba kaşığı bal</li>
+              <li>15 dk bekle, tekrar ölç</li>
+              <li>Hâlâ düşükse tekrarla</li>
+              <li>Düzeldikten sonra uzun etkili karbonhidrat (peynir-ekmek)</li>
+            </ol>
+            <h4>Diyabetik Ketoasidoz (DKA)</h4>
+            <ul>
+              <li>Kan şekeri &gt;250 mg/dL, sürekli yüksek</li>
+              <li>Aşırı susuzluk, sık idrar</li>
+              <li>Bulantı, kusma, karın ağrısı</li>
+              <li>Derin hızlı nefes (Kussmaul)</li>
+              <li>Nefeste aseton (elma) kokusu</li>
+            </ul>
+            <div class="detail-warn">&#9888; Tip 1 DM'de DKA yaşamı tehdit eder — gecikmeyin. İdrarda keton çubuğu ile test yapılabilir.</div>
+          </div></div>
+        </div>
+
+        <div class="chronic-card expandable animate-in">
+          <span class="chronic-label">HİPERTANSİYON</span>
+          <h3>Hipertansif Kriz</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">180/120 mmHg üzeri değerler tehlikeli olabilir.</p>
+          <div class="chronic-when">
+            <strong>ACİLE GİDİN</strong>
+            Şiddetli baş ağrısı, görme bozukluğu, nefes darlığı, göğüs ağrısı veya bilinç değişikliği eşlik ediyorsa.
+          </div>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Hipertansif Aciliyet vs. Acil</h4>
+            <p><strong>Aciliyet:</strong> TA yüksek ama organ hasarı belirtisi yok → genelde poliklinik kontrolü ve oral ilaç yeterli.</p>
+            <p><strong>Acil:</strong> TA yüksek + organ hasarı belirtisi (kalp, beyin, böbrek) → acil servise başvuru.</p>
+            <h4>Organ Hasarı Belirtileri</h4>
+            <ul>
+              <li>Şiddetli baş ağrısı, bulanık görme</li>
+              <li>Göğüs ağrısı, nefes darlığı</li>
+              <li>Felç belirtileri (yüz kayması, kol zayıflığı)</li>
+              <li>Hamile ise: karın ağrısı, ödem, görme sorunu (preeklampsi)</li>
+              <li>Burun kanaması + baş ağrısı + TA yüksek</li>
+            </ul>
+            <h4>Evde Ne Yapılmalı?</h4>
+            <ol>
+              <li>Sakin bir yerde 5 dk dinlenin, tekrar ölçün</li>
+              <li>180/120 altı ve şikayet yoksa: ilaç saatinizi kontrol edin</li>
+              <li>Dilaltı kısa etkili ilaç (kaptopril) hekim önerisiyle kullanılabilir</li>
+              <li>Şikayet varsa bekleme yapmadan acile gidin</li>
+            </ol>
+            <div class="detail-warn">&#9888; Dilaltı nifedipin kullanımı artık önerilmiyor — ani TA düşüşü inme/kalp krizi tetikleyebilir.</div>
+          </div></div>
+        </div>
+
+        <div class="chronic-card expandable animate-in">
+          <span class="chronic-label">ASTIM</span>
+          <h3>Akut Astım Atağı</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">Reliever inhaler yetersiz kalıyorsa acil değerlendirme gerekir.</p>
+          <div class="chronic-when">
+            <strong>ACİLE GİDİN</strong>
+            Kurtarıcı inhaler 20 dk arayla 3 kez kullanılmasına rağmen rahatlama olmuyorsa, konuşmakta zorlanıyorsanız.
+          </div>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Atağı Tanıma</h4>
+            <ul>
+              <li>Nefes darlığı, göğüste sıkışma</li>
+              <li>Hırıltı, ıslıklı nefes</li>
+              <li>Uzamış nefes verme</li>
+              <li>Uyandıran öksürük</li>
+            </ul>
+            <h4>Ciddi Atak Belirtileri (Acile)</h4>
+            <ul>
+              <li>Tam cümle kuramama (sadece tek kelime)</li>
+              <li>Dudak, tırnakta morarma</li>
+              <li>Göğüste çekilmeler</li>
+              <li>Öne eğik oturma pozisyonu</li>
+              <li>Bilinç bulanıklığı</li>
+              <li>Kurtarıcı inhalere yanıt yok</li>
+            </ul>
+            <h4>Evde Atak Yönetimi</h4>
+            <ol>
+              <li>Oturun, yakalarınızı gevşetin</li>
+              <li>Kurtarıcı inhaler (mavi, salbutamol): 20 dk arayla, 4-10 puff</li>
+              <li>Spacer / aracı cihaz mutlaka kullanın</li>
+              <li>Oral kortikosteroid reçeteniz varsa alın</li>
+              <li>İyileşme yoksa acile</li>
+            </ol>
+            <div class="detail-tip">&#9989; Astım kontrolünüz düzenli değilse kontrolör (brown/purple) inhaler + kurtarıcı birlikte olmalı. GINA kılavuzları güncellenmiştir.</div>
+          </div></div>
+        </div>
+
+        <div class="chronic-card expandable animate-in">
+          <span class="chronic-label">KOAH</span>
+          <h3>KOAH Alevlenmesi</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">Balgam değişikliği ve artan nefes darlığı önemli.</p>
+          <div class="chronic-when">
+            <strong>ACİLE GİDİN</strong>
+            Balgam rengi sarı-yeşile döndüyse, miktarı arttıysa, dinlenirken nefes darlığı varsa, dudak morarması eşlik ediyorsa.
+          </div>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Alevlenme Belirtileri</h4>
+            <ul>
+              <li>Nefes darlığında belirgin artış</li>
+              <li>Balgam miktarında artış</li>
+              <li>Balgam renk değişikliği (berraktan renkli — sarı/yeşil)</li>
+              <li>Öksürükte artış, yüksek ateş</li>
+              <li>Günlük aktiviteleri yapmakta zorlanma</li>
+            </ul>
+            <h4>Tetikleyiciler</h4>
+            <ul>
+              <li>Viral / bakteriyel enfeksiyon (en sık)</li>
+              <li>Hava kirliliği, soğuk hava</li>
+              <li>Sigara içimine geri dönüş</li>
+              <li>Tedaviye uyumsuzluk</li>
+            </ul>
+            <h4>Evde Ne Yapmalı?</h4>
+            <ol>
+              <li>Oksijen tedavi kullanıyorsanız aksatmayın</li>
+              <li>Kurtarıcı bronkodilatör sıklığını arttırın (hekim önerisiyle)</li>
+              <li>Oral kortikosteroid reçeteniz varsa başlayın (plan dâhilinde)</li>
+              <li>24 saat içinde iyileşme yoksa acile</li>
+            </ol>
+            <div class="detail-warn">&#9888; Evde oksijen konsantratörünüz varsa: KOAH hastalarında çok yüksek O₂ akımı karbondioksit birikimine yol açabilir — hekiminizin önerdiği akımda tutun.</div>
+          </div></div>
+        </div>
+
+        <div class="chronic-card expandable animate-in">
+          <span class="chronic-label">KALP YETMEZLİĞİ</span>
+          <h3>Dekompansasyon</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">Sıvı birikimi belirtileri takip edilmelidir.</p>
+          <div class="chronic-when">
+            <strong>ACİLE GİDİN</strong>
+            3 günde 2 kg'dan fazla kilo artışı, bacaklarda ileri düzey şişlik, yatarken nefes darlığı, pembe köpüklü balgam.
+          </div>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Dekompansasyon Belirtileri</h4>
+            <ul>
+              <li>Yatarken nefes darlığı (ortopne) — yastık sayısı artıyorsa dikkat</li>
+              <li>Geceleri nefessiz uyanma (PND)</li>
+              <li>Ayak bileği, bacak şişliği ileri düzey</li>
+              <li>Boyun ven dolgunluğu</li>
+              <li>Açıklanamayan kilo artışı (günlük kilo takibi önemli)</li>
+              <li>Karında şişkinlik, iştahsızlık</li>
+              <li>Yorgunluk, düşük aktivite toleransı</li>
+            </ul>
+            <h4>Günlük Takip</h4>
+            <ul>
+              <li>Her sabah aynı tartıda, tuvaletten sonra, aç karnına ölçün</li>
+              <li>Günlük ≥1 kg veya 3 günde ≥2 kg artış → hekimle iletişim</li>
+              <li>Tuz kısıtlaması, sıvı kısıtlaması planına uyun</li>
+              <li>İlaç (diüretik, beta bloker, ACE inh.) aksatılmamalı</li>
+            </ul>
+            <h4>Hemen 112</h4>
+            <p>Pembe köpüklü balgam, oturarak dahi nefes alamama → akut akciğer ödemi.</p>
+            <div class="detail-tip">&#9989; Acile giderken: ilaç listesi, son EKO raporu, kilo kayıt defteri işe yarar.</div>
+          </div></div>
+        </div>
+
+        <div class="chronic-card expandable animate-in">
+          <span class="chronic-label">EPİLEPSİ</span>
+          <h3>Nöbet Yönetimi</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem;">Tek kısa nöbet genellikle acil değildir, ancak istisnalar vardır.</p>
+          <div class="chronic-when">
+            <strong>112'Yİ ARAYIN</strong>
+            5 dk'dan uzun süren nöbet, arka arkaya nöbetler, ilk kez geçirilen nöbet, su içinde veya travmayla birlikte nöbet.
+          </div>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Nöbet Anında Yapılacaklar</h4>
+            <ol>
+              <li>Saate bakın — süre kritik</li>
+              <li>Kişiyi tehlikeden uzaklaştırın (keskin cisim, merdiven)</li>
+              <li>Başını yumuşak bir şeyle destekleyin</li>
+              <li>Sıkı kıyafeti gevşetin</li>
+              <li>Kasılma durunca yan yatırın (kurtarma pozisyonu)</li>
+              <li>Nefes almıyorsa CPR</li>
+            </ol>
+            <h4>Yapılmaması Gerekenler</h4>
+            <ul>
+              <li>Ağzına bir şey koymayın (dil ısırmayı engellemez)</li>
+              <li>Kasılmayı tutmaya çalışmayın</li>
+              <li>Kişiyi hareket ettirmeyin (kaza yeri tehlikeli değilse)</li>
+              <li>Su veya ilaç vermeyin (henüz tam uyanmadan)</li>
+            </ul>
+            <h4>Nöbet Sonrası (Postiktal)</h4>
+            <ul>
+              <li>Uyku hali, konfüzyon normal — 10-30 dk sürebilir</li>
+              <li>Yanında kalın, rahatlatın</li>
+              <li>İdrar kaçırma yaşanmış olabilir — utandırmadan yardımcı olun</li>
+              <li>Uzun süre konfüze kalırsa sağlık kuruluşuna</li>
+            </ul>
+            <div class="detail-warn">&#9888; Status epileptikus (5 dk+ süren veya arka arkaya nöbetler) — acil tedavi gerektiren ciddi bir durum.</div>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Patient Rights (existing, kept) -->
+  <section class="content-section">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label">HASTA HAKLARI</span>
+        <h2>Haklarınızı Bilin</h2>
+        <p>Her hastanın bilmesi gereken temel haklar ve yasal güvenceler</p>
+      </div>
+      <div class="info-cards">
+        <div class="info-card expandable animate-in">
+          <div class="card-icon blue">&#128220;</div>
+          <h3>Bilgilendirilme Hakkı</h3>
+          <p>Tanı, tedavi yöntemleri, riskler ve alternatifler hakkında açık ve anlaşılır bir şekilde bilgilendirilme hakkınız vardır.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Yasal Dayanak</h4>
+            <p>Hasta Hakları Yönetmeliği Madde 15 — "Hasta, sağlık durumu, konulan tanı, önerilen tedavi yöntemleri, bunların riskleri ve alternatifleri hakkında bilgilendirilir."</p>
+            <h4>Kapsam</h4>
+            <ul>
+              <li>Hastalığınızın adı ve muhtemel seyri</li>
+              <li>Önerilen tedavi ve gerekçesi</li>
+              <li>Alternatif tedavi seçenekleri</li>
+              <li>Tedavinin muhtemel yan etki ve riskleri</li>
+              <li>Tedavi edilmemesi halinde muhtemel sonuçlar</li>
+              <li>Tahmini maliyet ve süre</li>
+            </ul>
+            <h4>Anlamadığınızda</h4>
+            <p>"Anlamadım, tekrar açıklar mısınız?" demek hakkınızdır. Teknik terimlerin günlük dille açıklanması talebiniz karşılanmalıdır. Gerekirse yakınınızla birlikte dinleyin, not alın.</p>
+          </div></div>
+        </div>
+
+        <div class="info-card expandable animate-in">
+          <div class="card-icon gold">&#9989;</div>
+          <h3>Onay Hakkı (Bilgilendirilmiş Onam)</h3>
+          <p>Herhangi bir tıbbi müdahale öncesinde bilgilendirilmiş onamınızın alınması yasal zorunluluktur.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Geçerli Onam Koşulları</h4>
+            <ul>
+              <li>Yeterli bilgilendirme yapılmış olmalı</li>
+              <li>Karar verme kapasitesi olmalı</li>
+              <li>Baskı ve zorlama olmamalı</li>
+              <li>Yazılı veya sözlü olabilir (cerrahi için yazılı zorunlu)</li>
+            </ul>
+            <h4>Onam Formunu İmzalarken</h4>
+            <ul>
+              <li>Tüm bölümleri okuyun</li>
+              <li>Anlamadığınız yeri sorun</li>
+              <li>Boş bırakılmış alana dikkat</li>
+              <li>Değişiklik talep edebilirsiniz</li>
+              <li>İmzaladıktan sonra da geri çekebilirsiniz</li>
+            </ul>
+            <h4>İstisnalar</h4>
+            <p>Hayati tehlike + hastanın/yasal temsilcisinin onam veremeyecek durumda olması hallerinde hekim onamsız müdahale edebilir — sonra ilk fırsatta durum açıklanmalıdır.</p>
+          </div></div>
+        </div>
+
+        <div class="info-card expandable animate-in">
+          <div class="card-icon green">&#128274;</div>
+          <h3>Mahremiyet Hakkı (KVKK)</h3>
+          <p>Tıbbi bilgileriniz gizlidir. Yasal zorunluluklar dışında üçüncü kişilerle paylaşılamaz.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Neleri Kapsar?</h4>
+            <ul>
+              <li>Kimlik bilgileriniz</li>
+              <li>Tanı, tedavi, reçete bilgileri</li>
+              <li>Tıbbi görüntüler (röntgen, MR vb.)</li>
+              <li>Laboratuvar sonuçları</li>
+              <li>Psikiyatrik / cinsel sağlık bilgileri (ekstra koruma)</li>
+              <li>Genetik bilgiler</li>
+            </ul>
+            <h4>Yasal İstisnalar</h4>
+            <ul>
+              <li>Bulaşıcı hastalık bildirimi</li>
+              <li>Adli vaka (yaralanma, şüpheli ölüm)</li>
+              <li>Mahkeme kararı</li>
+              <li>Halk sağlığı zorunlulukları</li>
+            </ul>
+            <h4>Haklarınız (KVKK)</h4>
+            <ul>
+              <li>Verilerinize erişim</li>
+              <li>Yanlış veriyi düzeltme</li>
+              <li>Silmesini talep etme (bazı koşullarda)</li>
+              <li>İşleme itiraz etme</li>
+              <li>Veri ihlali durumunda bilgilendirilme</li>
+            </ul>
+            <div class="detail-tip">&#9989; Aileniz bile olsa, siz izin vermediğiniz sürece bilgileriniz paylaşılamaz (reşit yaşta).</div>
+          </div></div>
+        </div>
+
+        <div class="info-card expandable animate-in">
+          <div class="card-icon purple">&#9995;</div>
+          <h3>Tedavi Reddi Hakkı</h3>
+          <p>Önerilen tedaviyi reddetme hakkınız bulunmaktadır. Reddiniz kayıt altına alınır.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Reddin Kapsamı</h4>
+            <ul>
+              <li>Önerilen tanı testini reddetme</li>
+              <li>Tedaviyi kısmen veya tamamen reddetme</li>
+              <li>Daha önce kabul ettiğiniz tedaviyi durdurma</li>
+              <li>Alternatif tedavi talep etme</li>
+              <li>İkinci bir görüş alma</li>
+            </ul>
+            <h4>Hekimin Sorumluluğu</h4>
+            <ul>
+              <li>Reddin sonuçlarını size açıkça anlatmak</li>
+              <li>Alternatif varsa sunmak</li>
+              <li>Durumu yazılı olarak belgelemek</li>
+              <li>Acil durumda hayat kurtarıcı müdahalede farklı kurallar geçerli</li>
+            </ul>
+            <h4>Sınırlamalar</h4>
+            <ul>
+              <li>Karar verme kapasitesine sahip olmalısınız</li>
+              <li>Halk sağlığı tehdidi olan durumlarda (ör. aktif verem) tedavi zorunlu olabilir</li>
+              <li>Adli vakalarda farklı düzenlemeler</li>
+              <li>Çocuğunuzun hayatını tehdit eden tedavi reddi durumunda çocuk koruma kurulları devreye girebilir</li>
+            </ul>
+            <div class="detail-tip">&#9989; Red kararınız üzerine hekiminiz nezaket dışı davranamaz — güvenli bir hasta-hekim ilişkisi haktır.</div>
+          </div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="content-section">
+  <!-- FAQ (existing, kept) -->
+  <section class="content-section" style="background: white;">
     <div class="container">
       <div class="section-header animate-in">
-        <span class="section-label" data-i18n="patient.faq.label">SIK SORULAN SORULAR</span>
-        <h2 data-i18n="patient.faq.title">Merak Edilenler</h2>
+        <span class="section-label">SIK SORULAN SORULAR</span>
+        <h2>Merak Edilenler</h2>
       </div>
       <div class="faq-list">
         <div class="faq-item animate-in">
           <button class="faq-question">
-            <span data-i18n="patient.faq1.q">Hasta haklarım ihlal edildiğinde ne yapmalıyım?</span>
+            <span>Hasta haklarım ihlal edildiğinde ne yapmalıyım?</span>
             <span class="faq-arrow">&#9660;</span>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner" data-i18n="patient.faq1.a">Öncelikle ilgili sağlık kuruluşunun hasta hakları birimine başvurabilirsiniz. Sonuç alamazsanız İl Sağlık Müdürlüğü Hasta Hakları Kurulu'na şikayette bulunabilirsiniz. Ayrıca hukuki danışmanlık almak da hakkınızdır.</div>
+            <div class="faq-answer-inner">Öncelikle ilgili sağlık kuruluşunun hasta hakları birimine başvurabilirsiniz. Sonuç alamazsanız İl Sağlık Müdürlüğü Hasta Hakları Kurulu'na şikayette bulunabilirsiniz. Ayrıca hukuki danışmanlık almak da hakkınızdır.</div>
           </div>
         </div>
         <div class="faq-item animate-in">
           <button class="faq-question">
-            <span data-i18n="patient.faq2.q">Tıbbi kayıtlarıma nasıl erişebilirim?</span>
+            <span>Tıbbi kayıtlarıma nasıl erişebilirim?</span>
             <span class="faq-arrow">&#9660;</span>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner" data-i18n="patient.faq2.a">Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında tıbbi kayıtlarınızın bir kopyasını talep etme hakkınız vardır. Sağlık kuruluşunun tıbbi kayıt birimine yazılı başvuru yapabilirsiniz.</div>
+            <div class="faq-answer-inner">Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında tıbbi kayıtlarınızın bir kopyasını talep etme hakkınız vardır. Sağlık kuruluşunun tıbbi kayıt birimine yazılı başvuru yapabilirsiniz.</div>
           </div>
         </div>
         <div class="faq-item animate-in">
           <button class="faq-question">
-            <span data-i18n="patient.faq3.q">İkinci görüş alma hakkım var mı?</span>
+            <span>İkinci görüş alma hakkım var mı?</span>
             <span class="faq-arrow">&#9660;</span>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner" data-i18n="patient.faq3.a">Evet, her hastanın tanı ve tedavi konusunda başka bir hekimden görüş alma hakkı bulunmaktadır. Bu hakkınızı kullanmanız tedavinizi olumsuz etkilemez.</div>
+            <div class="faq-answer-inner">Evet, her hastanın tanı ve tedavi konusunda başka bir hekimden görüş alma hakkı bulunmaktadır. Bu hakkınızı kullanmanız tedavinizi olumsuz etkilemez.</div>
           </div>
         </div>
         <div class="faq-item animate-in">
           <button class="faq-question">
-            <span data-i18n="patient.faq4.q">Acil durumda hasta onamı gerekli midir?</span>
+            <span>Acil durumda hasta onamı gerekli midir?</span>
             <span class="faq-arrow">&#9660;</span>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner" data-i18n="patient.faq4.a">Acil ve hayati tehlike durumlarında, hastanın veya yasal temsilcisinin onam veremeyeceği hallerde, hekimler gerekli müdahaleyi onam almaksızın yapabilir.</div>
+            <div class="faq-answer-inner">Acil ve hayati tehlike durumlarında, hastanın veya yasal temsilcisinin onam veremeyeceği hallerde, hekimler gerekli müdahaleyi onam almaksızın yapabilir.</div>
           </div>
         </div>
       </div>
@@ -163,38 +1253,53 @@
             <div class="logo-icon">SA</div>
             <span>Dr. S. Alpar</span>
           </a>
-          <p data-i18n="footer.desc">Acil tıp alanında bilgi ve deneyim paylaşımı sunan kişisel web sitesi.</p>
+          <p>Acil tıp alanında bilgi ve deneyim paylaşımı sunan kişisel web sitesi.</p>
         </div>
         <div class="footer-col">
-          <h4 data-i18n="footer.links">Hızlı Bağlantılar</h4>
+          <h4>Hızlı Bağlantılar</h4>
           <ul>
-            <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
-            <li><a href="patients.html" data-i18n="nav.patients">Hastalar</a></li>
-            <li><a href="students.html" data-i18n="nav.students">Öğrenciler</a></li>
-            <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="patients.html">Hastalar</a></li>
+            <li><a href="healthcare.html">Sağlık Çalışanları</a></li>
+            <li><a href="kurslar.html">Kurslar</a></li>
+            <li><a href="blog.html">Blog</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4 data-i18n="footer.resources">Kaynaklar</h4>
+          <h4>Kaynaklar</h4>
           <ul>
-            <li><a href="patients.html" data-i18n="services.patient.title">Hasta Bilgilendirme</a></li>
-            <li><a href="students.html" data-i18n="services.student.title">Öğrenci Kaynakları</a></li>
+            <li><a href="patients.html">Hasta Bilgilendirme</a></li>
+            <li><a href="healthcare.html">Sağlık Çalışanları</a></li>
+            <li><a href="kurslar.html">Kurslar</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4 data-i18n="footer.legal">Yasal</h4>
+          <h4>Yasal</h4>
           <ul>
-            <li><a href="#" data-i18n="footer.privacy">Gizlilik Politikası</a></li>
-            <li><a href="#" data-i18n="footer.terms">Kullanım Şartları</a></li>
+            <li><a href="#">Gizlilik Politikası</a></li>
+            <li><a href="#">Kullanım Şartları</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p data-i18n="footer.copyright">© 2026 Dr. Süleyman Alpar. Tüm hakları saklıdır.</p>
+        <p>© 2026 Dr. Süleyman Alpar. Tüm hakları saklıdır.</p>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    // Expandable card accordion
+    document.querySelectorAll('.expandable').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        card.classList.toggle('open');
+        const toggle = card.querySelector('.detail-toggle span:first-child');
+        if (toggle) {
+          toggle.textContent = card.classList.contains('open') ? 'Detayları gizle' : 'Detayları gör';
+        }
+      });
+    });
+  </script>
 </body>
 </html>

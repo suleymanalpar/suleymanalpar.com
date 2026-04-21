@@ -1,0 +1,4 @@
+# Netlify redirects
+# Öğrenciler sayfası Sağlık Çalışanları olarak yeniden adlandırıldı (Nisan 2026)
+/students.html  /healthcare.html  301
+/students       /healthcare       301

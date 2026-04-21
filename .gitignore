@@ -15,3 +15,6 @@ zixgLbyb
 *~
 .vscode/
 .idea/
+
+# Telifli tıbbi kaynaklar (yerel referans — repoya dahil edilmemeli)
+kaynaklar/

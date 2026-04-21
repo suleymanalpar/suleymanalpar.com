@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dr. Süleyman Alpar - Kurslar. Acil tıp, travma, resüsitasyon, ilkyardım ve USG kursları hakkında rehber.">
+  <title>Kurslar | Dr. Süleyman Alpar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .section-intro {
+      max-width: 800px;
+      margin: 0 auto 36px;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 1.02rem;
+    }
+
+    /* --- Course Category Hero Strip --- */
+    .course-category-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 30px auto 50px;
+      max-width: 860px;
+    }
+    .course-chip {
+      padding: 8px 16px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+    .course-chip:hover { background: var(--accent); color: white; border-color: var(--accent); transform: translateY(-2px); }
+
+    /* --- Course Card --- */
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .course-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+      border-top: 4px solid var(--accent);
+      cursor: pointer;
+      position: relative;
+    }
+    .course-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+    .course-card .course-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .course-card h3 { font-size: 1.2rem; margin-bottom: 4px; }
+    .course-card .course-code {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1.2px;
+      margin-bottom: 6px;
+    }
+    .course-card .course-provider {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-style: italic;
+    }
+    .course-card .course-badge {
+      background: rgba(43,108,176,0.1);
+      color: var(--accent);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 12px;
+      letter-spacing: 0.6px;
+      flex-shrink: 0;
+    }
+    .course-card .course-badge.own {
+      background: rgba(198,151,63,0.15);
+      color: var(--gold);
+    }
+    .course-card .course-meta-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 14px 0;
+      padding: 12px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .course-card .course-meta-item {
+      text-align: center;
+    }
+    .course-card .course-meta-item strong {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .course-card .course-meta-item span {
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+    .course-card p { font-size: 0.9rem; color: var(--text-light); margin-top: 10px; line-height: 1.6; }
+
+    /* Accordion inside course card */
+    .course-card .detail-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      user-select: none;
+    }
+    .course-card .detail-chevron { display: inline-block; transition: transform 0.3s; }
+    .course-card.open .detail-chevron { transform: rotate(180deg); }
+    .course-card .detail-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .course-card.open .detail-panel { max-height: 1200px; }
+    .course-card .detail-panel-inner {
+      padding-top: 14px;
+      margin-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .course-card .detail-panel h4 {
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+    .course-card .detail-panel h4:first-child { margin-top: 0; }
+    .course-card .detail-panel p { font-size: 0.88rem; color: var(--text); margin-bottom: 8px; line-height: 1.65; }
+    .course-card .detail-panel ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px 0;
+    }
+    .course-card .detail-panel ul li {
+      padding: 3px 0;
+      padding-left: 18px;
+      position: relative;
+      font-size: 0.87rem;
+      color: var(--text);
+    }
+    .course-card .detail-panel ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .course-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .course-link:hover { color: var(--primary); }
+
+    /* Category colors */
+    .course-card.travma { border-top-color: #e53e3e; }
+    .course-card.travma .course-code,
+    .course-card.travma .detail-toggle,
+    .course-card.travma .detail-panel ul li::before { color: #e53e3e; }
+
+    .course-card.resus { border-top-color: #c6973f; }
+    .course-card.resus .course-code,
+    .course-card.resus .detail-toggle,
+    .course-card.resus .detail-panel ul li::before { color: var(--gold); }
+
+    .course-card.ilkyardim { border-top-color: #38a169; }
+    .course-card.ilkyardim .course-code,
+    .course-card.ilkyardim .detail-toggle,
+    .course-card.ilkyardim .detail-panel ul li::before { color: #38a169; }
+
+    .course-card.usg { border-top-color: #805ad5; }
+    .course-card.usg .course-code,
+    .course-card.usg .detail-toggle,
+    .course-card.usg .detail-panel ul li::before { color: #805ad5; }
+
+    .course-card.akademik { border-top-color: #2b6cb0; }
+
+    .course-note {
+      max-width: 860px;
+      margin: 40px auto 0;
+      padding: 18px 22px;
+      background: rgba(43,108,176,0.05);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .course-note strong { color: var(--primary); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">SA</div>
+        <span>Dr. S. Alpar</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="index.html#about">Hakkımda</a></li>
+        <li><a href="patients.html">Hastalar</a></li>
+        <li><a href="healthcare.html">Sağlık Çalışanları</a></li>
+        <li><a href="kurslar.html" class="active">Kurslar</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="index.html#contact">İletişim</a></li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Kurslar</h1>
+      <p>Acil tıpta mesleki yetkinliği güçlendiren kurs ve sertifikasyon programları</p>
+    </div>
+  </section>
+
+  <!-- Categories Strip -->
+  <section class="content-section" style="padding-top: 40px; padding-bottom: 0;">
+    <div class="container">
+      <div class="course-category-strip">
+        <a href="#travma" class="course-chip">Travma</a>
+        <a href="#resus" class="course-chip">Resüsitasyon</a>
+        <a href="#ilkyardim" class="course-chip">İlkyardım</a>
+        <a href="#usg" class="course-chip">Acil USG / POCUS</a>
+        <a href="#akademik" class="course-chip">Akademik</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAVMA -->
+  <section class="content-section" id="travma">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label" style="color: #e53e3e;">TRAVMA KURSLARI</span>
+        <h2>Travma Yaşam Desteği</h2>
+        <p class="section-intro">Travma hastasına sistematik yaklaşım öğreten, uluslararası tanınan sertifikasyon programları. Hekim, asistan ve ileri seviye sağlık çalışanlarına yönelik.</p>
+      </div>
+      <div class="course-grid">
+
+        <div class="course-card travma">
+          <div class="course-header">
+            <div>
+              <div class="course-code">ATLS</div>
+              <h3>Advanced Trauma Life Support</h3>
+              <div class="course-provider">American College of Surgeons (ACS)</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>2-2.5 gün</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Hekim</span></div>
+            <div class="course-meta-item"><strong>Geçerlilik</strong><span>4 yıl</span></div>
+          </div>
+          <p>Travmalı hastanın ilk değerlendirme ve resüsitasyonunda standardize yaklaşım kazandıran altın standart kurs.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Kapsam</h4>
+            <ul>
+              <li>Primer ve sekonder bakı yaklaşımı</li>
+              <li>Havayolu, solunum, dolaşım yönetimi</li>
+              <li>Şok yönetimi ve sıvı resüsitasyonu</li>
+              <li>Kafa, spinal, torasik, abdominal travma</li>
+              <li>Kas-iskelet ve ekstremite travması</li>
+              <li>Pediatrik, geriatrik ve gebelikte travma</li>
+              <li>Beceri istasyonları ve vaka simülasyonları</li>
+            </ul>
+            <h4>Katılım Koşulu</h4>
+            <ul>
+              <li>Tıp fakültesi mezunu hekimler</li>
+              <li>Acil tıp, cerrahi, anestezi, yoğun bakım asistan ve uzmanları</li>
+            </ul>
+            <h4>Türkiye'de</h4>
+            <p>Türkiye Acil Tıp Derneği (TATD), Türk Travma ve Acil Cerrahi Derneği ve ACS yetkili merkezleri üzerinden düzenlenir.</p>
+            <a href="https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/" target="_blank" rel="noopener" class="course-link">ACS resmi sayfası →</a>
+          </div></div>
+        </div>
+
+        <div class="course-card travma">
+          <div class="course-header">
+            <div>
+              <div class="course-code">PHTLS</div>
+              <h3>Prehospital Trauma Life Support</h3>
+              <div class="course-provider">NAEMT &amp; ACS-COT</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>2 gün</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>112 / Hekim</span></div>
+            <div class="course-meta-item"><strong>Geçerlilik</strong><span>4 yıl</span></div>
+          </div>
+          <p>Hastane öncesi travma bakımı odaklı; 112 çalışanları, paramedikler ve hekimler için ATLS felsefesinin saha uygulaması.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Kapsam</h4>
+            <ul>
+              <li>Sahne güvenliği ve hızlı değerlendirme</li>
+              <li>Havayolu ve ventilasyon (saha koşullarında)</li>
+              <li>Kanama kontrolü, şok yönetimi</li>
+              <li>Ekstrikasyon ve immobilizasyon</li>
+              <li>Taktik saha tıbbı (TCCC ilkeleri)</li>
+            </ul>
+            <h4>Katılımcı Profili</h4>
+            <ul>
+              <li>Acil Tıp Teknisyenleri (ATT), paramedikler</li>
+              <li>112 hekimleri, acil tıp hekimleri</li>
+              <li>Askeri ve afet tıbbı pratisyenleri</li>
+            </ul>
+            <a href="https://naemt.org/education/phtls" target="_blank" rel="noopener" class="course-link">NAEMT resmi sayfası →</a>
+          </div></div>
+        </div>
+
+        <div class="course-card travma">
+          <div class="course-header">
+            <div>
+              <div class="course-code">ETC</div>
+              <h3>European Trauma Course</h3>
+              <div class="course-provider">ESTES / ERC</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>2.5 gün</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Ekip</span></div>
+            <div class="course-meta-item"><strong>Geçerlilik</strong><span>5 yıl</span></div>
+          </div>
+          <p>Ekip bazlı travma yaklaşımı; non-lineer, senaryo temelli eğitim. Avrupa Travma Derneği ve ERC ortaklığında.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Farkı</h4>
+            <ul>
+              <li>Eş zamanlı (simultaneous) değerlendirme-müdahale</li>
+              <li>Takım lideri ve ekip üyeleri rolleri</li>
+              <li>Non-teknik beceriler vurgusu (iletişim, karar verme)</li>
+              <li>Acil tıp, cerrahi, anestezi birlikte</li>
+            </ul>
+            <a href="https://europeantraumacourse.com/" target="_blank" rel="noopener" class="course-link">ETC resmi sayfası →</a>
+          </div></div>
+        </div>
+
+        <div class="course-card travma">
+          <div class="course-header">
+            <div>
+              <div class="course-code">İTEAK</div>
+              <h3>İleri Travma ve Acil Cerrahi</h3>
+              <div class="course-provider">TTACD (Türkiye)</div>
+            </div>
+            <span class="course-badge own">Yerel</span>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>2 gün</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Hekim</span></div>
+            <div class="course-meta-item"><strong>Dil</strong><span>Türkçe</span></div>
+          </div>
+          <p>Türkiye'de geliştirilmiş, yerel vaka örnekleri ve sağlık sistemi entegrasyonu içeren travma kursu.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Kapsam</h4>
+            <ul>
+              <li>Türk sağlık sistemine uyarlanmış triaj</li>
+              <li>KBRN (kimyasal, biyolojik, radyolojik, nükleer) olay yönetimi</li>
+              <li>Çoklu yaralı / afet senaryoları</li>
+              <li>Yerel sevk zinciri ve hastane öncesi koordinasyon</li>
+            </ul>
+            <a href="https://www.ttacd.org/" target="_blank" rel="noopener" class="course-link">TTACD resmi sayfası →</a>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RESÜSİTASYON -->
+  <section class="content-section" id="resus" style="background: white;">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label" style="color: var(--gold);">RESÜSİTASYON KURSLARI</span>
+        <h2>Kardiyopulmoner Resüsitasyon</h2>
+        <p class="section-intro">Kardiyak arrest ve acil kardiyovasküler bakım eğitimi — temel seviyeden pediatriye ve neonatale kadar AHA ve ERC sertifikalı kurslar.</p>
+      </div>
+      <div class="course-grid">
+
+        <div class="course-card resus">
+          <div class="course-header">
+            <div>
+              <div class="course-code">BLS</div>
+              <h3>Temel Yaşam Desteği</h3>
+              <div class="course-provider">AHA / ERC</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>4-6 saat</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Sağlık çalışanı</span></div>
+            <div class="course-meta-item"><strong>Geçerlilik</strong><span>2 yıl</span></div>
+          </div>
+          <p>Tüm sağlık çalışanları için temel: kalp masajı, OED kullanımı, havayolu tıkanıklığı (yetişkin, çocuk, bebek).</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Kapsam</h4>
+            <ul>
+              <li>Kardiyak arrest tanıma</li>
+              <li>Yüksek kaliteli göğüs basısı</li>
+              <li>Balonlu maske ventilasyon</li>
+              <li>OED (otomatik eksternal defibrilatör) kullanımı</li>
+              <li>Bebek, çocuk ve yetişkin farklılıkları</li>
+              <li>Havayolu tıkanıklığı (Heimlich)</li>
+            </ul>
+            <a href="https://cpr.heart.org/en/cpr-courses-and-kits/healthcare-professional/basic-life-support-bls-training" target="_blank" rel="noopener" class="course-link">AHA BLS →</a>
+          </div></div>
+        </div>
+
+        <div class="course-card resus">
+          <div class="course-header">
+            <div>
+              <div class="course-code">ACLS</div>
+              <h3>İleri Kardiyak Yaşam Desteği</h3>
+              <div class="course-provider">AHA</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>2 gün</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Hekim / Asistan</span></div>
+            <div class="course-meta-item"><strong>Geçerlilik</strong><span>2 yıl</span></div>
+          </div>
+          <p>Kardiyak arrest sonrası ileri bakı: ilaç tedavisi, ritim yorumlaması, ekip dinamikleri ve post-arrest yönetim.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Kapsam</h4>
+            <ul>
+              <li>Kardiyak arrest algoritmaları (şoklanabilir / şoklanamayan)</li>
+              <li>Akut koroner sendrom ve inme algoritmaları</li>
+              <li>Bradikardi, taşikardi yönetimi</li>
+              <li>İleri havayolu yönetimi</li>
+              <li>Megakod senaryoları, ekip lideri rolü</li>
+            </ul>
+            <h4>Ön Şart</h4>
+            <p>Geçerli BLS sertifikası önerilir. EKG okuma bilgisi avantajdır.</p>
+            <a href="https://cpr.heart.org/en/cpr-courses-and-kits/healthcare-professional/acls" target="_blank" rel="noopener" class="course-link">AHA ACLS →</a>
+          </div></div>
+        </div>
+
+        <div class="course-card resus">
+          <div class="course-header">
+            <div>
+              <div class="course-code">PALS</div>
+              <h3>Pediatrik İleri Yaşam Desteği</h3>
+              <div class="course-provider">AHA</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>2 gün</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Pediatri ekibi</span></div>
+            <div class="course-meta-item"><strong>Geçerlilik</strong><span>2 yıl</span></div>
+          </div>
+          <p>Bebek ve çocuklarda acil durum: şok, solunum yetmezliği, kardiyak arrest ve post-resüsitatif bakı.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Kapsam</h4>
+            <ul>
+              <li>Pediatrik değerlendirme üçgeni (PAT)</li>
+              <li>Solunum yetmezliği ve şok ayırımı</li>
+              <li>Pediatrik kardiyak arrest algoritması</li>
+              <li>Yaş / kilo bazlı ilaç dozlamaları (Broselow)</li>
+              <li>Post-kardiyak arrest hedefli ısı yönetimi</li>
+            </ul>
+            <a href="https://cpr.heart.org/en/cpr-courses-and-kits/healthcare-professional/pals" target="_blank" rel="noopener" class="course-link">AHA PALS →</a>
+          </div></div>
+        </div>
+
+        <div class="course-card resus">
+          <div class="course-header">
+            <div>
+              <div class="course-code">NRP</div>
+              <h3>Yenidoğan Resüsitasyonu</h3>
+              <div class="course-provider">AAP / ERC</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>1-2 gün</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Doğumhane ekibi</span></div>
+            <div class="course-meta-item"><strong>Geçerlilik</strong><span>2 yıl</span></div>
+          </div>
+          <p>Doğum sonrası ilk altın dakikanın yönetimi: pozisyon, havayolu, ventilasyon ve gerekliyse göğüs basısı.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Kapsam</h4>
+            <ul>
+              <li>Doğum öncesi hazırlık, risk değerlendirmesi</li>
+              <li>APGAR ve ilk 60 saniye değerlendirmesi</li>
+              <li>Pozitif basınçlı ventilasyon (PBV)</li>
+              <li>Göğüs basısı, ilaç uygulaması</li>
+              <li>Preterm bebeklere özel yaklaşım</li>
+            </ul>
+            <a href="https://www.aap.org/en/learning/neonatal-resuscitation-program/" target="_blank" rel="noopener" class="course-link">AAP NRP →</a>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- İLKYARDIM -->
+  <section class="content-section" id="ilkyardim">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label" style="color: #38a169;">İLKYARDIM EĞİTİMLERİ</span>
+        <h2>Halk Sağlığı İlkyardımı</h2>
+        <p class="section-intro">Sağlık Bakanlığı onaylı ilkyardım kursları — halk için temel eğitimden eğitimci yetiştirmeye kadar kademeli program.</p>
+      </div>
+      <div class="course-grid">
+
+        <div class="course-card ilkyardim">
+          <div class="course-header">
+            <div>
+              <div class="course-code">TEMEL</div>
+              <h3>Temel İlkyardım</h3>
+              <div class="course-provider">Sağlık Bakanlığı onaylı</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>16 saat</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Herkes</span></div>
+            <div class="course-meta-item"><strong>Geçerlilik</strong><span>3 yıl</span></div>
+          </div>
+          <p>İşyerlerinde yasal olarak zorunlu; halkın acil duruma ilk müdahale yetkinliği kazanması için temel kurs.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Kapsam</h4>
+            <ul>
+              <li>Olay yeri değerlendirmesi, güvenlik</li>
+              <li>Temel yaşam desteği (yetişkin, çocuk, bebek)</li>
+              <li>Havayolu tıkanıklığı</li>
+              <li>Kanama kontrolü, şok</li>
+              <li>Yaralanmalar, kırık-çıkık-burkulma</li>
+              <li>Yanıklar, zehirlenmeler</li>
+              <li>Hasta taşıma yöntemleri</li>
+            </ul>
+            <h4>Yasal Durum</h4>
+            <p>İş Sağlığı ve Güvenliği Kanunu gereği her 20 çalışanda 1 ilkyardımcı bulundurulması zorunludur; tehlikeli işlerde her 10 çalışanda 1.</p>
+            <a href="https://shgm.saglik.gov.tr/" target="_blank" rel="noopener" class="course-link">SB Sağlık Hizmetleri Genel Müdürlüğü →</a>
+          </div></div>
+        </div>
+
+        <div class="course-card ilkyardim">
+          <div class="course-header">
+            <div>
+              <div class="course-code">GÜNCEL.</div>
+              <h3>İlkyardım Güncelleme</h3>
+              <div class="course-provider">Sağlık Bakanlığı onaylı</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>8 saat</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Sertifikalı</span></div>
+            <div class="course-meta-item"><strong>Geçerlilik</strong><span>3 yıl</span></div>
+          </div>
+          <p>Sertifikası dolan ilkyardımcılar için yenileme kursu; güncel algoritmalar ve tazeleme pratiği.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <p>Temel İlkyardım sertifikasının süresi dolmadan (3 yıl içinde) güncelleme eğitimi alınmalıdır. Süresi dolmuş sertifika için tekrar 16 saatlik temel eğitim gerekir.</p>
+          </div></div>
+        </div>
+
+        <div class="course-card ilkyardim">
+          <div class="course-header">
+            <div>
+              <div class="course-code">EĞİTİMCİ</div>
+              <h3>İlkyardım Eğitmenliği</h3>
+              <div class="course-provider">Sağlık Bakanlığı onaylı</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>40 saat</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Hekim / Hemşire</span></div>
+            <div class="course-meta-item"><strong>Geçerlilik</strong><span>5 yıl</span></div>
+          </div>
+          <p>Sağlık çalışanlarının ilkyardım eğitmeni olarak yetkilendirilmesi; özellikle iş sağlığı ve eğitim merkezleri için.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Katılım Koşulları</h4>
+            <ul>
+              <li>Hekim, hemşire, sağlık memuru, ATT, acil tıp teknikeri</li>
+              <li>En az 1 yıl mesleki deneyim</li>
+              <li>Yetişkin eğitimi ve pedagoji modülleri</li>
+            </ul>
+            <p>Eğitmen sertifikası alan kişiler Sağlık Müdürlüğü onaylı özel eğitim merkezlerinde ilkyardım kursu verebilir.</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ACİL USG / POCUS -->
+  <section class="content-section" id="usg" style="background: white;">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label" style="color: #805ad5;">ACİL USG / POCUS</span>
+        <h2>Yatakbaşı Ultrasonografi</h2>
+        <p class="section-intro">Point-of-Care Ultrasound (POCUS) — acil serviste hızlı tanı için yatakbaşı US becerileri. Türkiye ve uluslararası düzeyde çeşitli programlar mevcut.</p>
+      </div>
+      <div class="course-grid">
+
+        <div class="course-card usg">
+          <div class="course-header">
+            <div>
+              <div class="course-code">eFAST</div>
+              <h3>Travmada Yatakbaşı USG</h3>
+              <div class="course-provider">Çeşitli sağlayıcılar</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>1-2 gün</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Acil tıp</span></div>
+            <div class="course-meta-item"><strong>Format</strong><span>Teorik + hands-on</span></div>
+          </div>
+          <p>Extended FAST — travma hastasında serbest sıvı, pnömotoraks ve perikard tamponadı taraması.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Pencereler</h4>
+            <ul>
+              <li>Perihepatik (Morrison poşu)</li>
+              <li>Perisplenik</li>
+              <li>Pelvik (Douglas)</li>
+              <li>Subksifoid (perikard)</li>
+              <li>Akciğer (pnömotoraks için seashore/stratosphere işareti)</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="course-card usg">
+          <div class="course-header">
+            <div>
+              <div class="course-code">KARDİYAK</div>
+              <h3>Kardiyak POCUS</h3>
+              <div class="course-provider">Çeşitli sağlayıcılar</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>2-3 gün</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Hekim</span></div>
+            <div class="course-meta-item"><strong>Format</strong><span>Modüler</span></div>
+          </div>
+          <p>Sol ventrikül fonksiyonu, perikard efüzyonu, sağ kalp gerilimi ve IVC değerlendirmesi. Şok ayırıcı tanısında güçlü araç.</p>
+        </div>
+
+        <div class="course-card usg">
+          <div class="course-header">
+            <div>
+              <div class="course-code">AKCİĞER</div>
+              <h3>Akciğer Ultrasonografisi</h3>
+              <div class="course-provider">Çeşitli sağlayıcılar</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>1 gün</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Acil / YB</span></div>
+            <div class="course-meta-item"><strong>Format</strong><span>BLUE protokolü</span></div>
+          </div>
+          <p>BLUE ve FALLS protokolleri ile akut nefes darlığı ayırıcı tanısı (pnömoni, ödem, PTX, PE, KOAH).</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- AKADEMİK -->
+  <section class="content-section" id="akademik">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-label">AKADEMİK KURSLAR</span>
+        <h2>Araştırma ve Eğitim Becerileri</h2>
+        <p class="section-intro">Araştırmadan yayına, akademik becerilerinizi güçlendirecek sertifikasyon programları.</p>
+      </div>
+      <div class="course-grid">
+
+        <div class="course-card akademik">
+          <div class="course-header">
+            <div>
+              <div class="course-code">GCP</div>
+              <h3>İyi Klinik Uygulamalar (GCP)</h3>
+              <div class="course-provider">TİTCK onaylı</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>16 saat</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Araştırmacı</span></div>
+            <div class="course-meta-item"><strong>Geçerlilik</strong><span>3 yıl</span></div>
+          </div>
+          <p>Klinik araştırma yürütmek için zorunlu sertifika — etik ilkeler, katılımcı koruması, veri bütünlüğü.</p>
+          <div class="detail-toggle"><span>Detayları gör</span><span class="detail-chevron">▼</span></div>
+          <div class="detail-panel"><div class="detail-panel-inner">
+            <h4>Kapsam</h4>
+            <ul>
+              <li>Helsinki Deklarasyonu ve ICH-GCP</li>
+              <li>Bilgilendirilmiş onam süreci</li>
+              <li>Araştırma protokolü ve prosedürleri</li>
+              <li>Yan etki raporlaması</li>
+              <li>Veri toplama ve kalite kontrol</li>
+              <li>Etik kurul ile iletişim</li>
+            </ul>
+            <p>TİTCK yetkili eğitim kurumları listesini web sitesinden kontrol edebilirsiniz.</p>
+            <a href="https://www.titck.gov.tr/" target="_blank" rel="noopener" class="course-link">TİTCK →</a>
+          </div></div>
+        </div>
+
+        <div class="course-card akademik">
+          <div class="course-header">
+            <div>
+              <div class="course-code">YAZIM</div>
+              <h3>Bilimsel Makale Yazım Kursu</h3>
+              <div class="course-provider">Çeşitli akademik birimler</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>2-5 gün</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Araştırmacı</span></div>
+            <div class="course-meta-item"><strong>Format</strong><span>Atölye</span></div>
+          </div>
+          <p>IMRaD yapısı, bilimsel dilde ifade, EQUATOR kılavuzları ve dergi hakemliği süreçlerine giriş.</p>
+        </div>
+
+        <div class="course-card akademik">
+          <div class="course-header">
+            <div>
+              <div class="course-code">EĞİTİMCİ</div>
+              <h3>Sağlık Eğiticiliği Kursu</h3>
+              <div class="course-provider">Üniversiteler / TATD</div>
+            </div>
+          </div>
+          <div class="course-meta-row">
+            <div class="course-meta-item"><strong>Süre</strong><span>3-5 gün</span></div>
+            <div class="course-meta-item"><strong>Hedef</strong><span>Öğretim üyesi</span></div>
+            <div class="course-meta-item"><strong>Format</strong><span>Atölye</span></div>
+          </div>
+          <p>Yetişkin öğrenmesi, simülasyon temelli eğitim, değerlendirme yöntemleri ve müfredat geliştirme.</p>
+        </div>
+
+      </div>
+
+      <div class="course-note">
+        <strong>Not:</strong> Bu sayfada listelenen bilgiler genel rehber amaçlıdır. Kurs tarihleri, ücretleri ve kesin sertifikasyon kuralları ilgili düzenleyici kuruluşların resmi web sitelerinden teyit edilmelidir. Türkiye'de resüsitasyon kursları için Türkiye Acil Tıp Derneği (TATD) ve Türk Kardiyoloji Derneği (TKD); travma kursları için ACS yetkilendirmeli merkezler; ilkyardım için Sağlık Bakanlığı onaylı özel eğitim merkezleri birincil kaynaklardır.
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="index.html" class="nav-logo" style="color: white;">
+            <div class="logo-icon">SA</div>
+            <span>Dr. S. Alpar</span>
+          </a>
+          <p>Acil tıp alanında bilgi ve deneyim paylaşımı sunan kişisel web sitesi.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Hızlı Bağlantılar</h4>
+          <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="patients.html">Hastalar</a></li>
+            <li><a href="healthcare.html">Sağlık Çalışanları</a></li>
+            <li><a href="kurslar.html">Kurslar</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kaynaklar</h4>
+          <ul>
+            <li><a href="patients.html">Hasta Bilgilendirme</a></li>
+            <li><a href="healthcare.html">Sağlık Çalışanları</a></li>
+            <li><a href="kurslar.html">Kurslar</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Yasal</h4>
+          <ul>
+            <li><a href="#">Gizlilik Politikası</a></li>
+            <li><a href="#">Kullanım Şartları</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Dr. Süleyman Alpar. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Course card accordion
+    document.querySelectorAll('.course-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        const toggle = card.querySelector('.detail-toggle');
+        if (!toggle) return; // no detail, nothing to toggle
+        card.classList.toggle('open');
+        const toggleText = toggle.querySelector('span:first-child');
+        if (toggleText) {
+          toggleText.textContent = card.classList.contains('open') ? 'Detayları gizle' : 'Detayları gör';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
