@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Klinik Skorlar — HEART, Wells, qSOFA, NEWS2, CHA2DS2-VASc ve daha fazlası. Sağlık çalışanları için interaktif hesaplayıcılar.">
+  <title>Klinik Skorlar | Dr. Süleyman Alpar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hcp-banner {
+      background: linear-gradient(135deg, rgba(229,62,62,0.08), rgba(43,108,176,0.05));
+      border-left: 4px solid #e53e3e;
+      padding: 14px 22px;
+      max-width: 980px;
+      margin: 30px auto 0;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .hcp-banner strong { color: #c53030; display: block; margin-bottom: 4px; font-size: 0.78rem; letter-spacing: 1px; }
+
+    /* Kategori sekmeleri */
+    .kategori-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin: 36px auto 24px;
+      max-width: 1100px;
+      padding: 0 20px;
+    }
+    .kategori-chip {
+      padding: 8px 16px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: all var(--transition);
+      user-select: none;
+    }
+    .kategori-chip:hover { background: var(--accent); color: white; border-color: var(--accent); }
+    .kategori-chip.active { background: var(--primary); color: white; border-color: var(--primary); font-weight: 600; }
+    .kategori-chip .sayac { opacity: 0.7; margin-left: 4px; font-size: 0.78rem; }
+
+    /* Skor kartları grid */
+    .skor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 22px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .skor-kart {
+      background: white;
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+      border-top: 3px solid var(--accent);
+      display: flex;
+      flex-direction: column;
+    }
+    .skor-kart.gizli { display: none; }
+    .skor-kart .skor-baslik {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .skor-kart h3 { font-size: 1.15rem; line-height: 1.3; margin: 0; }
+    .skor-kart .kat-rozet {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .skor-kart .skor-aciklama { color: var(--text-light); font-size: 0.88rem; margin: 8px 0 12px; line-height: 1.6; }
+    .skor-kart .skor-aksiyon {
+      margin-top: auto;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .skor-kart .skor-buton {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .skor-kart .skor-buton:hover { background: var(--primary); }
+    .skor-kart .ref-link {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      text-decoration: none;
+    }
+    .skor-kart .ref-link:hover { color: var(--accent); }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 36, 64, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 30px 16px;
+      overflow-y: auto;
+    }
+    .modal-overlay.acik { display: flex; }
+    .modal-icerik {
+      background: white;
+      max-width: 720px;
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+      overflow: hidden;
+      animation: modalFade 0.25s ease;
+    }
+    @keyframes modalFade {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-baslik {
+      padding: 24px 28px 16px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .modal-baslik h2 { font-size: 1.4rem; margin: 0 0 4px; }
+    .modal-baslik .modal-meta { font-size: 0.78rem; color: var(--text-light); }
+    .modal-kapat {
+      background: rgba(0,0,0,0.06);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text-light);
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .modal-kapat:hover { background: rgba(0,0,0,0.12); color: var(--text); }
+    .modal-govde {
+      padding: 24px 28px;
+      max-height: calc(90vh - 80px);
+      overflow-y: auto;
+    }
+
+    /* Form */
+    .form-alan {
+      margin-bottom: 16px;
+    }
+    .form-alan > label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .form-alan .alan-aciklama {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-top: 4px;
+      font-style: italic;
+    }
+    .form-alan input[type=number], .form-alan select {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-family: inherit;
+      background: white;
+    }
+    .form-alan input[type=number]:focus, .form-alan select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(43,108,176,0.12);
+    }
+    .form-alan-bool {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      background: #f7f8fc;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .form-alan-bool:hover { background: rgba(43,108,176,0.06); }
+    .form-alan-bool input[type=checkbox] {
+      margin-right: 10px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+    }
+    .form-alan-bool .alan-label-bool {
+      font-size: 0.92rem;
+      color: var(--text);
+      flex: 1;
+    }
+    .multiselect-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 6px;
+    }
+    .multiselect-grid label {
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      background: #f7f8fc;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+    .multiselect-grid label:hover { background: rgba(43,108,176,0.06); }
+    .multiselect-grid input { margin-right: 8px; accent-color: var(--accent); }
+
+    /* Sonuç */
+    .sonuc-kutu {
+      margin-top: 24px;
+      padding: 22px 24px;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      background: white;
+      transition: all 0.3s;
+    }
+    .sonuc-kutu.yesil { border-color: #38a169; background: linear-gradient(135deg, rgba(56,161,105,0.06), rgba(56,161,105,0.02)); }
+    .sonuc-kutu.sari { border-color: #d4a94e; background: linear-gradient(135deg, rgba(212,169,78,0.08), rgba(212,169,78,0.02)); }
+    .sonuc-kutu.turuncu { border-color: #ed8936; background: linear-gradient(135deg, rgba(237,137,54,0.08), rgba(237,137,54,0.02)); }
+    .sonuc-kutu.kirmizi { border-color: #e53e3e; background: linear-gradient(135deg, rgba(229,62,62,0.08), rgba(229,62,62,0.02)); }
+    .sonuc-baslik {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .sonuc-puan {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .sonuc-puan .puan-max { font-size: 1rem; color: var(--text-light); font-weight: 400; }
+    .sonuc-risk {
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.05);
+      text-align: right;
+    }
+    .sonuc-kutu.yesil .sonuc-risk { color: #2f855a; background: rgba(56,161,105,0.12); }
+    .sonuc-kutu.sari .sonuc-risk { color: #b7791f; background: rgba(212,169,78,0.16); }
+    .sonuc-kutu.turuncu .sonuc-risk { color: #c05621; background: rgba(237,137,54,0.16); }
+    .sonuc-kutu.kirmizi .sonuc-risk { color: #c53030; background: rgba(229,62,62,0.14); }
+    .sonuc-ek-satirlar {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+      margin-top: 12px;
+    }
+    .sonuc-satir {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 12px;
+      align-items: baseline;
+      font-size: 0.88rem;
+    }
+    .sonuc-satir > span:first-child {
+      color: var(--text-light);
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    .sonuc-satir > span:last-child {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .perc-ihlaller, .cam-kriterler {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0;
+    }
+    .perc-ihlaller li, .cam-kriterler li {
+      padding: 6px 0 6px 22px;
+      position: relative;
+      font-size: 0.9rem;
+    }
+    .perc-ihlaller li::before, .cam-kriterler li::before {
+      content: "✗";
+      position: absolute;
+      left: 0;
+      color: #e53e3e;
+      font-weight: 700;
+    }
+    .perc-ihlaller li.tamam::before, .cam-kriterler li.tamam::before { content: "✓"; color: #38a169; }
+
+    .ref-blok {
+      margin-top: 18px;
+      padding: 12px 14px;
+      background: rgba(43,108,176,0.05);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    .ref-blok strong { color: var(--primary); display: block; margin-bottom: 2px; font-size: 0.72rem; letter-spacing: 0.8px; }
+    .ref-blok a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .ref-blok a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">SA</div>
+        <span>Dr. S. Alpar</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
+        <li><a href="index.html#about" data-i18n="nav.about">Hakkımda</a></li>
+        <li><a href="patients.html" data-i18n="nav.patients">Hastalar</a></li>
+        <li><a href="healthcare.html" data-i18n="nav.healthcare">Sağlık Çalışanları</a></li>
+        <li><a href="kurslar.html" data-i18n="nav.courses">Kurslar</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+        <li><a href="index.html#contact" data-i18n="nav.contact">İletişim</a></li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Klinik Skorlar</h1>
+      <p>Acil tıpta sık kullanılan skorlama sistemleri — interaktif hesaplayıcılar</p>
+    </div>
+  </section>
+
+  <div class="hcp-banner">
+    <strong>⚠ SAĞLIK ÇALIŞANLARI İÇİNDİR</strong>
+    Bu sayfa yalnızca eğitim amaçlıdır ve sağlık profesyonelleri için tasarlanmıştır. Skorlar klinik kararı desteklemek içindir; tıbbi muayene, hekim değerlendirmesi ve güncel kılavuzların yerine geçmez. Hesaplama hatasından, yanlış kullanımdan veya yorumdan kaynaklanan klinik sonuçların sorumluluğu kullanıcıya aittir. Veri sunucuya gönderilmez — tüm hesaplama tarayıcınızda yapılır.
+  </div>
+
+  <!-- Kategori bar (JS doldurur) -->
+  <div class="kategori-bar" id="kategoriBar"></div>
+
+  <!-- Skor grid -->
+  <section style="padding: 20px 0 80px;">
+    <div class="skor-grid" id="skorGrid"></div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-icerik">
+      <div class="modal-baslik">
+        <div>
+          <h2 id="modalAd"></h2>
+          <div class="modal-meta" id="modalKategori"></div>
+        </div>
+        <button class="modal-kapat" onclick="modalKapat()" aria-label="Kapat">×</button>
+      </div>
+      <div class="modal-govde">
+        <p id="modalAciklama" style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 18px; line-height: 1.6;"></p>
+        <form id="skorForm" onsubmit="return false;"></form>
+        <div id="sonucKutu"></div>
+        <div class="ref-blok" id="refBlok"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="index.html" class="nav-logo" style="color: white;">
+            <div class="logo-icon">SA</div>
+            <span>Dr. S. Alpar</span>
+          </a>
+          <p>Acil tıp alanında bilgi ve deneyim paylaşımı sunan kişisel web sitesi.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Hızlı Bağlantılar</h4>
+          <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="patients.html">Hastalar</a></li>
+            <li><a href="healthcare.html">Sağlık Çalışanları</a></li>
+            <li><a href="kurslar.html">Kurslar</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kaynaklar</h4>
+          <ul>
+            <li><a href="patients.html">Hasta Bilgilendirme</a></li>
+            <li><a href="healthcare.html">Sağlık Çalışanları</a></li>
+            <li><a href="kurslar.html">Kurslar</a></li>
+            <li><a href="skorlar.html">Klinik Skorlar</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Yasal</h4>
+          <ul>
+            <li><a href="#">Gizlilik Politikası</a></li>
+            <li><a href="#">Kullanım Şartları</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Dr. Süleyman Alpar. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/skorlar.js"></script>
+  <script>
+    // ─── State ───
+    let aktifKategori = "Hepsi";
+    let aktifSkor = null;
+    let formData = {};
+
+    // ─── Kategori bar ───
+    function kategoriBarRender() {
+      const bar = document.getElementById("kategoriBar");
+      const kats = window.skorKategoriler();
+      const items = [{ ad: "Hepsi", sayi: window.SKOR_KATALOG.length }]
+        .concat(kats.map(k => ({ ad: k, sayi: window.SKOR_KATALOG.filter(s => s.kategori === k).length })));
+      bar.innerHTML = items.map(it => `
+        <div class="kategori-chip ${it.ad === aktifKategori ? 'active' : ''}" data-kat="${it.ad}">
+          ${it.ad}<span class="sayac">${it.sayi}</span>
+        </div>
+      `).join("");
+      bar.querySelectorAll(".kategori-chip").forEach(c => {
+        c.addEventListener("click", () => {
+          aktifKategori = c.dataset.kat;
+          kategoriBarRender();
+          gridRender();
+        });
+      });
+    }
+
+    // ─── Grid ───
+    function gridRender() {
+      const grid = document.getElementById("skorGrid");
+      grid.innerHTML = window.SKOR_KATALOG.map(s => `
+        <div class="skor-kart ${aktifKategori !== 'Hepsi' && s.kategori !== aktifKategori ? 'gizli' : ''}">
+          <div>
+            <div class="kat-rozet">${s.kategori}</div>
+            <h3>${s.ad}</h3>
+          </div>
+          <p class="skor-aciklama">${s.aciklama}</p>
+          <div class="skor-aksiyon">
+            <button class="skor-buton" data-id="${s.id}">Hesapla →</button>
+            <a class="ref-link" href="${s.url}" target="_blank" rel="noopener">MDCalc ↗</a>
+          </div>
+        </div>
+      `).join("");
+      grid.querySelectorAll(".skor-buton").forEach(b => {
+        b.addEventListener("click", () => modalAc(b.dataset.id));
+      });
+    }
+
+    // ─── Modal ───
+    function modalAc(skorId) {
+      aktifSkor = window.skorBul(skorId);
+      if (!aktifSkor) return;
+      formData = window.skorVarsayilanData(aktifSkor);
+      document.getElementById("modalAd").textContent = aktifSkor.ad;
+      document.getElementById("modalKategori").textContent = aktifSkor.kategori;
+      document.getElementById("modalAciklama").textContent = aktifSkor.aciklama;
+      formRender();
+      sonucRender();
+      const ref = document.getElementById("refBlok");
+      ref.innerHTML = `
+        <strong>KAYNAK</strong>
+        ${aktifSkor.referans}
+        ${aktifSkor.url ? ` · <a href="${aktifSkor.url}" target="_blank" rel="noopener">MDCalc detay sayfası ↗</a>` : ""}
+      `;
+      document.getElementById("modalOverlay").classList.add("acik");
+      document.body.style.overflow = "hidden";
+    }
+
+    function modalKapat() {
+      document.getElementById("modalOverlay").classList.remove("acik");
+      document.body.style.overflow = "";
+      aktifSkor = null;
+    }
+    document.getElementById("modalOverlay").addEventListener("click", (e) => {
+      if (e.target.id === "modalOverlay") modalKapat();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") modalKapat();
+    });
+
+    // ─── Form alanları render ───
+    function formRender() {
+      const form = document.getElementById("skorForm");
+      form.innerHTML = aktifSkor.alanlar.map(a => formAlanHTML(a)).join("");
+      form.querySelectorAll("[data-key]").forEach(el => {
+        el.addEventListener("input", onFormChange);
+        el.addEventListener("change", onFormChange);
+      });
+    }
+
+    function formAlanHTML(a) {
+      const v = formData[a.key];
+      const TIP = window.SKOR_TIP;
+      const desc = a.aciklama ? `<div class="alan-aciklama">${a.aciklama}</div>` : "";
+      if (a.tip === TIP.INT || a.tip === TIP.FLOAT) {
+        const step = a.step ?? (a.tip === TIP.FLOAT ? 0.1 : 1);
+        return `
+          <div class="form-alan">
+            <label>${a.label}</label>
+            <input type="number" data-key="${a.key}" value="${v ?? ""}"
+              ${a.min !== undefined ? `min="${a.min}"` : ""}
+              ${a.max !== undefined ? `max="${a.max}"` : ""}
+              step="${step}">
+            ${desc}
+          </div>`;
+      }
+      if (a.tip === TIP.BOOL) {
+        return `
+          <div class="form-alan">
+            <label class="form-alan-bool">
+              <input type="checkbox" data-key="${a.key}" ${v ? "checked" : ""}>
+              <span class="alan-label-bool">${a.label}</span>
+            </label>
+            ${desc}
+          </div>`;
+      }
+      if (a.tip === TIP.SELECT) {
+        const ops = a.opsiyonlar.map(o => {
+          const [val, lbl] = Array.isArray(o) ? o : [o, o];
+          return `<option value="${val}" ${val == v ? "selected" : ""}>${lbl}</option>`;
+        }).join("");
+        return `
+          <div class="form-alan">
+            <label>${a.label}</label>
+            <select data-key="${a.key}">${ops}</select>
+            ${desc}
+          </div>`;
+      }
+      if (a.tip === TIP.MULTISELECT) {
+        const cur = v || [];
+        const ops = a.opsiyonlar.map(o => `
+          <label>
+            <input type="checkbox" data-key="${a.key}" data-val="${o}" ${cur.includes(o) ? "checked" : ""}>
+            ${o}
+          </label>
+        `).join("");
+        return `
+          <div class="form-alan">
+            <label>${a.label}</label>
+            <div class="multiselect-grid">${ops}</div>
+            ${desc}
+          </div>`;
+      }
+      return "";
+    }
+
+    function onFormChange(e) {
+      const el = e.target;
+      const key = el.dataset.key;
+      const alan = aktifSkor.alanlar.find(a => a.key === key);
+      const TIP = window.SKOR_TIP;
+      if (alan.tip === TIP.BOOL) {
+        formData[key] = el.checked;
+      } else if (alan.tip === TIP.MULTISELECT) {
+        const all = document.querySelectorAll(`[data-key="${key}"]`);
+        formData[key] = Array.from(all).filter(x => x.checked).map(x => x.dataset.val);
+      } else if (alan.tip === TIP.INT) {
+        formData[key] = el.value === "" ? "" : parseInt(el.value, 10);
+      } else if (alan.tip === TIP.FLOAT) {
+        formData[key] = el.value === "" ? "" : parseFloat(el.value);
+      } else if (alan.tip === TIP.SELECT) {
+        // value as-is; numbers if needed
+        const opt = alan.opsiyonlar.find(o => Array.isArray(o) ? o[0] == el.value : o == el.value);
+        formData[key] = Array.isArray(opt) ? opt[0] : opt;
+      }
+      sonucRender();
+    }
+
+    // ─── Sonuç render ───
+    function sonucRender() {
+      const kutu = document.getElementById("sonucKutu");
+      let sonuc;
+      try {
+        sonuc = aktifSkor.compute(formData);
+      } catch (err) {
+        kutu.innerHTML = `<div class="sonuc-kutu" style="border-color: #e53e3e; color: #c53030;">Hesaplama hatası: ${err.message}</div>`;
+        return;
+      }
+      const sablon = aktifSkor.sonuc_sablon || {};
+      const renk = sonuc.renk || "yesil";
+
+      // Özel render: PERC
+      if (sablon.ozel === "perc") {
+        const ekarte = sonuc.ekarte_edilebilir;
+        const ihlaller = sonuc.ihlaller || [];
+        kutu.innerHTML = `
+          <div class="sonuc-kutu ${renk}">
+            <div class="sonuc-baslik">
+              <div class="sonuc-puan">${ekarte ? "0" : ihlaller.length}<span class="puan-max"> ihlal</span></div>
+              <div class="sonuc-risk">${sonuc.risk_sinifi}</div>
+            </div>
+            <ul class="perc-ihlaller">
+              ${aktifSkor.alanlar.map(a => {
+                const v = formData[a.key];
+                return `<li class="${v ? '' : 'tamam'}">${a.label}: <strong>${v ? "Evet (ihlal)" : "Hayır (uygun)"}</strong></li>`;
+              }).join("")}
+            </ul>
+          </div>`;
+        return;
+      }
+
+      // Özel render: CAM
+      if (sablon.ozel === "cam") {
+        const kr = sonuc.kriterler_pozitif;
+        kutu.innerHTML = `
+          <div class="sonuc-kutu ${renk}">
+            <div class="sonuc-baslik">
+              <div class="sonuc-puan" style="font-size: 1.4rem;">${kr ? "POZİTİF" : "NEGATİF"}</div>
+              <div class="sonuc-risk">${sonuc.risk_sinifi}</div>
+            </div>
+            <div class="sonuc-ek-satirlar">
+              <div class="sonuc-satir"><span>Kriter mantığı</span><span>${sonuc.kriter_aciklama}</span></div>
+            </div>
+          </div>`;
+        return;
+      }
+
+      // Standart render
+      const toplamKey = sablon.toplam_key || "toplam";
+      const toplam = sonuc[toplamKey];
+      let maxStr = "";
+      if (sablon.max_sabit !== null && sablon.max_sabit !== undefined) maxStr = ` <span class="puan-max">/ ${sablon.max_sabit}</span>`;
+      else if (sablon.max_key && sonuc[sablon.max_key] != null) maxStr = ` <span class="puan-max">/ ${sonuc[sablon.max_key]}</span>`;
+      const ekSat = (sablon.ek_satirlar || []).map(([k, lbl]) => {
+        if (sonuc[k] == null) return "";
+        return `<div class="sonuc-satir"><span>${lbl}</span><span>${sonuc[k]}</span></div>`;
+      }).join("");
+      kutu.innerHTML = `
+        <div class="sonuc-kutu ${renk}">
+          <div class="sonuc-baslik">
+            <div class="sonuc-puan">${toplam}${maxStr}</div>
+            <div class="sonuc-risk">${sonuc.risk_sinifi || "—"}</div>
+          </div>
+          ${ekSat ? `<div class="sonuc-ek-satirlar">${ekSat}</div>` : ""}
+        </div>`;
+    }
+
+    // ─── Init ───
+    kategoriBarRender();
+    gridRender();
+  </script>
+</body>
+</html>
