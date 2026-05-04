@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Epikriz Yardımcısı — 20 senaryo şablonu, sistem bazlı muayene. Sağlık çalışanları için.">
+  <title>Epikriz Yardımcısı | Dr. Süleyman Alpar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hcp-banner {
+      background: linear-gradient(135deg, rgba(229,62,62,0.08), rgba(43,108,176,0.05));
+      border-left: 4px solid #e53e3e;
+      padding: 14px 22px;
+      max-width: 980px;
+      margin: 30px auto 0;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+    .hcp-banner strong { color: #c53030; display: block; margin-bottom: 4px; font-size: 0.78rem; letter-spacing: 1px; }
+
+    /* Sihirbaz */
+    .wizard-wrap {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 22px;
+    }
+    .wizard-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 24px;
+      padding: 8px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+    }
+    .wizard-step-tab {
+      flex: 1 1 auto;
+      min-width: 110px;
+      padding: 10px 10px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-light);
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .wizard-step-tab .step-num {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(43,108,176,0.1);
+      color: var(--accent);
+      font-weight: 700;
+      line-height: 22px;
+      margin-right: 6px;
+    }
+    .wizard-step-tab.aktif {
+      background: var(--accent);
+      color: white;
+    }
+    .wizard-step-tab.aktif .step-num { background: rgba(255,255,255,0.25); color: white; }
+    .wizard-step-tab.tamam .step-num { background: #38a169; color: white; }
+    .wizard-step-tab:hover { background: rgba(43,108,176,0.06); }
+
+    .wizard-panel {
+      background: white;
+      padding: 32px 36px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      min-height: 400px;
+    }
+    .wizard-panel h2 {
+      font-size: 1.5rem;
+      margin: 0 0 6px;
+    }
+    .wizard-panel .panel-aciklama {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    /* Senaryo grid */
+    .senaryo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .senaryo-kart {
+      padding: 16px 18px;
+      background: #f7f8fc;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--primary);
+      text-align: left;
+    }
+    .senaryo-kart:hover { background: rgba(43,108,176,0.08); border-color: rgba(43,108,176,0.3); }
+    .senaryo-kart.secili {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .senaryo-kart .kart-baslik { font-size: 0.95rem; }
+    .senaryo-kart .kart-aciklama {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      font-weight: 400;
+      margin-top: 4px;
+    }
+    .senaryo-kart.secili .kart-aciklama { color: rgba(255,255,255,0.75); }
+
+    /* Form */
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .form-alan { margin-bottom: 16px; }
+    .form-alan label {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .form-alan label .yardim {
+      font-weight: 400;
+      color: var(--text-light);
+      font-size: 0.78rem;
+      margin-left: 4px;
+    }
+    .form-alan input, .form-alan select, .form-alan textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      background: white;
+    }
+    .form-alan textarea {
+      resize: vertical;
+      line-height: 1.55;
+    }
+    .form-alan input:focus, .form-alan select:focus, .form-alan textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(43,108,176,0.12);
+    }
+
+    /* Muayene checkbox grid */
+    .muayene-bolum { margin-bottom: 24px; }
+    .muayene-bolum h3 {
+      font-size: 1.05rem;
+      margin: 0 0 8px;
+      color: var(--primary);
+    }
+    .muayene-bolum .bolum-norm {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .muayene-bolum .bulgular {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 6px;
+    }
+    .muayene-bolum .bulgular label {
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      background: #f7f8fc;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .muayene-bolum .bulgular label:hover { background: rgba(229,62,62,0.06); }
+    .muayene-bolum .bulgular input[type=checkbox] {
+      margin-right: 8px;
+      accent-color: #e53e3e;
+    }
+
+    /* Eşlik eden semptom grid */
+    .semptom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .semptom-grid label {
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      background: #f7f8fc;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      cursor: pointer;
+    }
+    .semptom-grid input[type=checkbox] { margin-right: 8px; accent-color: var(--accent); }
+
+    /* Çıktı */
+    .cikti-wrap {
+      background: #fafbfd;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 22px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .cikti-pre {
+      font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--text);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* Buton bar */
+    .button-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+    .button-bar .grup { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .btn-onceki { background: white; color: var(--primary); border: 1px solid var(--border); }
+    .btn-sonraki { background: var(--accent); color: white; }
+    .btn-sonraki:hover { background: var(--primary); }
+    .btn-aksiyon { background: #38a169; color: white; }
+    .btn-aksiyon:hover { background: #2f855a; }
+    .btn-aksiyon.kopyalandi { background: var(--gold); }
+    .btn-baska { background: white; color: var(--text-light); border: 1px solid var(--border); }
+
+    .kvkk-modal {
+      position: fixed; inset: 0;
+      background: rgba(15,36,64,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .kvkk-icerik {
+      background: white;
+      max-width: 640px;
+      border-radius: 14px;
+      padding: 32px 36px;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+    .kvkk-icerik h2 { font-size: 1.4rem; margin: 0 0 12px; color: #c53030; }
+    .kvkk-icerik p { font-size: 0.92rem; line-height: 1.65; margin-bottom: 12px; }
+    .kvkk-icerik ul { padding-left: 20px; margin-bottom: 14px; }
+    .kvkk-icerik ul li { margin-bottom: 8px; font-size: 0.9rem; line-height: 1.55; }
+    .kvkk-onay-row {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .kvkk-onay-row label {
+      font-size: 0.92rem;
+      cursor: pointer;
+      flex: 1;
+    }
+    .kvkk-onay-row input { margin-right: 10px; accent-color: var(--accent); width: 18px; height: 18px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">SA</div>
+        <span>Dr. S. Alpar</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
+        <li><a href="index.html#about" data-i18n="nav.about">Hakkımda</a></li>
+        <li><a href="patients.html" data-i18n="nav.patients">Hastalar</a></li>
+        <li><a href="healthcare.html" data-i18n="nav.healthcare">Sağlık Çalışanları</a></li>
+        <li><a href="kurslar.html" data-i18n="nav.courses">Kurslar</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+        <li><a href="index.html#contact" data-i18n="nav.contact">İletişim</a></li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Epikriz Yardımcısı</h1>
+      <p>Acil servis için 20 senaryolu yapılandırılmış klinik not şablonu</p>
+    </div>
+  </section>
+
+  <div class="hcp-banner">
+    <strong>⚠ SAĞLIK ÇALIŞANLARI İÇİNDİR — KVKK</strong>
+    Bu araç yalnızca eğitim ve klinik dokümantasyon desteği amaçlıdır. Hekim kontrolü, muayene ve klinik yargı yerine geçmez. Form alanlarına <strong>tanıyıcı bilgi (ad, soyad, T.C., protokol no, telefon, adres)</strong> girmeyiniz. Tüm hesaplama ve metin oluşturma tarayıcınızda yapılır; hiçbir veri sunucuya gönderilmez.
+  </div>
+
+  <!-- Sihirbaz -->
+  <div class="wizard-wrap">
+    <div class="wizard-bar" id="wizardBar"></div>
+    <div class="wizard-panel" id="wizardPanel"></div>
+  </div>
+
+  <!-- KVKK ilk-açılış modal -->
+  <div class="kvkk-modal" id="kvkkModal" style="display: none;">
+    <div class="kvkk-icerik">
+      <h2>KVKK ve Kullanım Onayı</h2>
+      <p>Bu araç hekim ve sağlık çalışanlarına yönelik <strong>klinik not şablonu yardımcısıdır</strong>. Devam etmeden önce aşağıdaki ilkeleri okuyup kabul ediniz:</p>
+      <ul>
+        <li><strong>Tanıyıcı veri girmeyin.</strong> Hasta adı, T.C., protokol no, telefon, adres, sigorta no gibi verileri hiçbir alana girmeyiniz.</li>
+        <li><strong>Sadece klinik gerekli veriyi girin.</strong> Yaş, cinsiyet, vital, başvuru şikayeti, klinik bulgular yeterlidir.</li>
+        <li><strong>Bu araç yapay zeka kullanmaz.</strong> Tüm metin tarayıcınızda kural tabanlı şablona göre oluşturulur; hiçbir veri sunucuya gitmez.</li>
+        <li><strong>Klinik yargı yerine geçmez.</strong> Çıktı bir başlangıç metnidir; sorumluluk hekime aittir.</li>
+        <li><strong>Veri saklamaz.</strong> Sayfayı kapattığınızda girdiğiniz tüm bilgi kaybolur.</li>
+      </ul>
+      <div class="kvkk-onay-row">
+        <label>
+          <input type="checkbox" id="kvkkOnayCb">
+          Yukarıdaki ilkeleri okudum ve kabul ediyorum.
+        </label>
+        <button class="btn btn-sonraki" id="kvkkOnayBtn" disabled onclick="kvkkOnayla()">Devam Et</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="index.html" class="nav-logo" style="color: white;">
+            <div class="logo-icon">SA</div>
+            <span>Dr. S. Alpar</span>
+          </a>
+          <p>Acil tıp alanında bilgi ve deneyim paylaşımı sunan kişisel web sitesi.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Hızlı Bağlantılar</h4>
+          <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="patients.html">Hastalar</a></li>
+            <li><a href="healthcare.html">Sağlık Çalışanları</a></li>
+            <li><a href="kurslar.html">Kurslar</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kaynaklar</h4>
+          <ul>
+            <li><a href="patients.html">Hasta Bilgilendirme</a></li>
+            <li><a href="healthcare.html">Sağlık Çalışanları</a></li>
+            <li><a href="kurslar.html">Kurslar</a></li>
+            <li><a href="skorlar.html">Klinik Skorlar</a></li>
+            <li><a href="epikriz.html">Epikriz Yardımcısı</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Yasal</h4>
+          <ul>
+            <li><a href="#">Gizlilik Politikası</a></li>
+            <li><a href="#">Kullanım Şartları</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Dr. Süleyman Alpar. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/epikriz.js"></script>
+  <script>
+    // ─── KVKK ilk açılış ───
+    const KVKK_KEY = "epikriz_kvkk_onay_v1";
+    if (!sessionStorage.getItem(KVKK_KEY)) {
+      document.getElementById("kvkkModal").style.display = "flex";
+      document.getElementById("kvkkOnayCb").addEventListener("change", (e) => {
+        document.getElementById("kvkkOnayBtn").disabled = !e.target.checked;
+      });
+    }
+    function kvkkOnayla() {
+      sessionStorage.setItem(KVKK_KEY, "1");
+      document.getElementById("kvkkModal").style.display = "none";
+    }
+
+    // ─── State ───
+    const ADIMLAR = [
+      { ad: "Senaryo", aciklama: "Klinik tabloya en uygun senaryoyu seçin." },
+      { ad: "Demografi", aciklama: "Yaş, cinsiyet ve başvuru özeti." },
+      { ad: "Genel Durum", aciklama: "Genel durum, bilinç, GKS." },
+      { ad: "Şikayet & Hikaye", aciklama: "Hasta şikayetlerinin metni ve eşlik eden semptomlar." },
+      { ad: "Vital", aciklama: "Vital bulgular." },
+      { ad: "Muayene", aciklama: "Sistem bazlı pozitif bulgular (sadece bulguyu işaretleyin; işaretlenmeyenler 'normal' olarak yazılır)." },
+      { ad: "Senaryo Özel", aciklama: "Senaryoya özel ek bilgi şablonu — hekim ___ alanlarını doldurur." },
+      { ad: "Çıktı", aciklama: "Oluşturulan epikriz metni." },
+    ];
+
+    let aktifAdim = 0;
+    const data = {
+      senaryo: null,
+      yas: "", cinsiyet: "Erkek",
+      bas_yakinma: "", hikaye_detay: "",
+      genel_durum: "İyi", bilinc: "Açık, koopere, oryante",
+      gks_e: 4, gks_m: 6, gks_v: 5,
+      vital: { skb: "", dkb: "", nabiz: "", solunum: "", spo2: "", ates: "" },
+      eslik_eden: [], risk_faktorleri: "",
+      muayene: { solunum: [], kvs: [], bas_boyun: [], gi: [], gu: [], ekstremite: [], norolojik: [], cilt_genel: [] },
+      senaryo_ozel: "",
+    };
+
+    function barRender() {
+      const bar = document.getElementById("wizardBar");
+      bar.innerHTML = ADIMLAR.map((a, i) => `
+        <div class="wizard-step-tab ${i === aktifAdim ? 'aktif' : ''} ${i < aktifAdim ? 'tamam' : ''}" data-idx="${i}">
+          <span class="step-num">${i < aktifAdim ? '✓' : (i+1)}</span>${a.ad}
+        </div>
+      `).join("");
+      bar.querySelectorAll(".wizard-step-tab").forEach(t => {
+        t.addEventListener("click", () => { aktifAdim = +t.dataset.idx; render(); });
+      });
+    }
+
+    function nav(prev, next, extra = "") {
+      return `
+        <div class="button-bar">
+          <button class="btn btn-onceki" ${prev ? '' : 'disabled style="visibility:hidden;"'} onclick="adimDeg(-1)">← Geri</button>
+          <div class="grup">${extra}</div>
+          <button class="btn btn-sonraki" onclick="adimDeg(1)">${next ? next : 'İleri →'}</button>
+        </div>
+      `;
+    }
+
+    function adimDeg(d) {
+      aktifAdim = Math.max(0, Math.min(ADIMLAR.length - 1, aktifAdim + d));
+      render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function render() {
+      barRender();
+      const adim = ADIMLAR[aktifAdim];
+      const panel = document.getElementById("wizardPanel");
+      let html = `<h2>${adim.ad}</h2><p class="panel-aciklama">${adim.aciklama}</p>`;
+
+      switch (aktifAdim) {
+        case 0: html += step0(); break;
+        case 1: html += step1(); break;
+        case 2: html += step2(); break;
+        case 3: html += step3(); break;
+        case 4: html += step4(); break;
+        case 5: html += step5(); break;
+        case 6: html += step6(); break;
+        case 7: html += step7(); break;
+      }
+      html += nav(aktifAdim > 0, aktifAdim === ADIMLAR.length - 1 ? null : "İleri →");
+      panel.innerHTML = html;
+
+      attachListeners();
+    }
+
+    // ─── Step renderers ───
+    function step0() {
+      const opts = Object.keys(window.SENARYOLAR).map(s => `
+        <div class="senaryo-kart ${data.senaryo === s ? 'secili' : ''}" data-senaryo="${s}">
+          <div class="kart-baslik">${s}</div>
+        </div>
+      `).join("");
+      return `<div class="senaryo-grid">${opts}</div>`;
+    }
+
+    function step1() {
+      return `
+        <div class="form-row">
+          <div class="form-alan"><label>Yaş <span class="yardim">(yıl)</span></label>
+            <input type="number" id="yas" value="${data.yas}" min="0" max="120"></div>
+          <div class="form-alan"><label>Cinsiyet</label>
+            <select id="cinsiyet">
+              <option ${data.cinsiyet === "Erkek" ? "selected" : ""}>Erkek</option>
+              <option ${data.cinsiyet === "Kadın" ? "selected" : ""}>Kadın</option>
+            </select></div>
+        </div>
+        <div class="form-alan"><label>Başvuru özeti — başvuru şikayeti
+          <span class="yardim">(örn. "Göğüs ağrısı", "Karın ağrısı + bulantı")</span></label>
+          <input type="text" id="bas_yakinma" value="${data.bas_yakinma}" placeholder="Hasta neyle başvurdu?">
+        </div>
+      `;
+    }
+
+    function step2() {
+      return `
+        <div class="form-row">
+          <div class="form-alan"><label>Genel Durum</label>
+            <select id="genel_durum">
+              <option ${data.genel_durum === "İyi" ? "selected" : ""}>İyi</option>
+              <option ${data.genel_durum === "Orta" ? "selected" : ""}>Orta</option>
+              <option ${data.genel_durum === "Kötü" ? "selected" : ""}>Kötü</option>
+            </select></div>
+          <div class="form-alan"><label>Bilinç durumu</label>
+            <select id="bilinc">
+              <option ${data.bilinc === "Açık, koopere, oryante" ? "selected" : ""}>Açık, koopere, oryante</option>
+              <option ${data.bilinc === "Letarjik" ? "selected" : ""}>Letarjik</option>
+              <option ${data.bilinc === "Konfüze" ? "selected" : ""}>Konfüze</option>
+              <option ${data.bilinc === "Stupor" ? "selected" : ""}>Stupor</option>
+              <option ${data.bilinc === "Koma" ? "selected" : ""}>Koma</option>
+            </select></div>
+        </div>
+        <p style="font-size: 0.86rem; color: var(--text-light); margin-bottom: 8px;">
+          GKS bileşenleri (toplam otomatik):
+        </p>
+        <div class="form-row">
+          <div class="form-alan"><label>Göz açma (E)</label>
+            <select id="gks_e">${[1,2,3,4].map(v => `<option value="${v}" ${data.gks_e == v ? 'selected' : ''}>${v}</option>`).join("")}</select></div>
+          <div class="form-alan"><label>Sözel (V)</label>
+            <select id="gks_v">${[1,2,3,4,5].map(v => `<option value="${v}" ${data.gks_v == v ? 'selected' : ''}>${v}</option>`).join("")}</select></div>
+          <div class="form-alan"><label>Motor (M)</label>
+            <select id="gks_m">${[1,2,3,4,5,6].map(v => `<option value="${v}" ${data.gks_m == v ? 'selected' : ''}>${v}</option>`).join("")}</select></div>
+        </div>
+        <p style="font-size: 0.95rem; color: var(--primary); font-weight: 600; margin-top: 8px;">
+          Toplam GKS: <span id="gks_toplam">${(+data.gks_e) + (+data.gks_m) + (+data.gks_v)}</span> /15
+        </p>
+      `;
+    }
+
+    function step3() {
+      const semptomlar = window.ESLIK_EDEN_SEMPTOMLAR.map(s => `
+        <label><input type="checkbox" data-semptom="${s}" ${data.eslik_eden.includes(s) ? 'checked' : ''}> ${s}</label>
+      `).join("");
+      return `
+        <div class="form-alan"><label>Şikayet & hikaye detay
+          <span class="yardim">(serbest metin — hasta neyle başvurdu, ne kadar süredir, nasıl seyrediyor)</span></label>
+          <textarea id="hikaye_detay" rows="5" placeholder="Örn. 'Bugün öğleden sonra başlayan, basıcı tarzda göğüs ortası ağrısı. Sol kola yayılım var. Eforla artıyor, nitratla kısmen geriliyor. 2 saattir sürüyor.'">${data.hikaye_detay}</textarea>
+        </div>
+        <h3 style="font-size: 1rem; margin-top: 14px; margin-bottom: 10px; color: var(--primary);">Eşlik eden semptomlar</h3>
+        <div class="semptom-grid" id="semptomGrid">${semptomlar}</div>
+        <div class="form-alan"><label>Risk faktörleri / komorbidite
+          <span class="yardim">(örn. "HT, DM, Sigara, Aile öyküsü KAH")</span></label>
+          <input type="text" id="risk_faktorleri" value="${data.risk_faktorleri}" placeholder="Virgülle ayırarak yazınız">
+        </div>
+      `;
+    }
+
+    function step4() {
+      const v = data.vital;
+      return `
+        <div class="form-row">
+          <div class="form-alan"><label>SKB (mmHg)</label><input type="number" id="vskb" value="${v.skb}" placeholder="120"></div>
+          <div class="form-alan"><label>DKB (mmHg)</label><input type="number" id="vdkb" value="${v.dkb}" placeholder="80"></div>
+          <div class="form-alan"><label>Nabız (/dk)</label><input type="number" id="vnabiz" value="${v.nabiz}" placeholder="80"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-alan"><label>Solunum (/dk)</label><input type="number" id="vsolunum" value="${v.solunum}" placeholder="16"></div>
+          <div class="form-alan"><label>SpO₂ (%)</label><input type="number" id="vspo2" value="${v.spo2}" placeholder="98"></div>
+          <div class="form-alan"><label>Ateş (°C)</label><input type="number" id="vates" step="0.1" value="${v.ates}" placeholder="36.8"></div>
+        </div>
+      `;
+    }
+
+    function step5() {
+      let html = "";
+      for (const [k, sec] of Object.entries(window.MUAYENE_BOLUMLERI)) {
+        const cur = data.muayene[k] || [];
+        html += `<div class="muayene-bolum">
+          <h3>${sec.baslik}</h3>
+          <div class="bolum-norm">Normal (varsayılan): ${sec.norm}</div>
+          <div class="bulgular">
+            ${sec.bulgular.map(b => `
+              <label><input type="checkbox" data-mb="${k}" data-bulgu="${b}" ${cur.includes(b) ? 'checked' : ''}> ${b}</label>
+            `).join("")}
+          </div>
+        </div>`;
+      }
+      return html;
+    }
+
+    function step6() {
+      if (!data.senaryo) {
+        return `<p style="color: var(--text-light); font-style: italic;">Önce 1. adımdan bir senaryo seçiniz.</p>`;
+      }
+      const s = window.SENARYOLAR[data.senaryo];
+      // Pre-fill with template if user hasn't edited
+      const sablon = (s.ek_bilgiler && s.ek_bilgiler.length)
+        ? s.ek_bilgiler.join("\n")
+        : "(Bu senaryo için ek özel bilgi şablonu yok — geçebilirsiniz.)";
+      const value = data.senaryo_ozel || sablon;
+      return `
+        <p style="font-size: 0.86rem; color: var(--text-light); margin-bottom: 10px;">
+          Aşağıdaki şablon "${data.senaryo}" senaryosuna özel klinik puan, kılavuz ve dokümantasyon noktalarını içerir.
+          ___ ile gösterilen alanları kendi vakanıza göre doldurun.
+        </p>
+        <div class="form-alan">
+          <textarea id="senaryo_ozel" rows="22" style="font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace; font-size: 0.84rem;">${value}</textarea>
+        </div>
+      `;
+    }
+
+    function step7() {
+      const metin = window.generateEpikriz(data);
+      return `
+        <div class="cikti-wrap">
+          <pre class="cikti-pre" id="ciktiPre">${metin.replace(/</g, "&lt;")}</pre>
+        </div>
+        <div class="button-bar">
+          <button class="btn btn-onceki" onclick="adimDeg(-1)">← Geri</button>
+          <div class="grup">
+            <button class="btn btn-aksiyon" id="kopyalaBtn" onclick="kopyala()">Panoya Kopyala</button>
+            <button class="btn btn-aksiyon" onclick="indir()">Metin Olarak İndir</button>
+            <button class="btn btn-baska" onclick="yenile()">Yeni Vaka</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // ─── Listeners ───
+    function attachListeners() {
+      // Step 0 — senaryo
+      document.querySelectorAll(".senaryo-kart").forEach(k => k.addEventListener("click", () => {
+        data.senaryo = k.dataset.senaryo;
+        // Şablon önyükle
+        const s = window.SENARYOLAR[data.senaryo];
+        if (s && s.ek_bilgiler && !data.senaryo_ozel) {
+          data.senaryo_ozel = s.ek_bilgiler.join("\n");
+        }
+        render();
+      }));
+
+      // Step 1
+      bind("yas", v => data.yas = v);
+      bind("cinsiyet", v => data.cinsiyet = v);
+      bind("bas_yakinma", v => data.bas_yakinma = v);
+
+      // Step 2
+      bind("genel_durum", v => data.genel_durum = v);
+      bind("bilinc", v => data.bilinc = v);
+      bind("gks_e", v => { data.gks_e = +v; updateGks(); });
+      bind("gks_v", v => { data.gks_v = +v; updateGks(); });
+      bind("gks_m", v => { data.gks_m = +v; updateGks(); });
+
+      // Step 3
+      bind("hikaye_detay", v => data.hikaye_detay = v);
+      bind("risk_faktorleri", v => data.risk_faktorleri = v);
+      document.querySelectorAll("[data-semptom]").forEach(cb => {
+        cb.addEventListener("change", () => {
+          const all = document.querySelectorAll("[data-semptom]");
+          data.eslik_eden = Array.from(all).filter(x => x.checked).map(x => x.dataset.semptom);
+        });
+      });
+
+      // Step 4
+      ["skb","dkb","nabiz","solunum","spo2","ates"].forEach(k => bind("v"+k, v => data.vital[k] = v));
+
+      // Step 5
+      document.querySelectorAll("[data-mb]").forEach(cb => {
+        cb.addEventListener("change", () => {
+          const k = cb.dataset.mb;
+          const all = document.querySelectorAll(`[data-mb="${k}"]`);
+          data.muayene[k] = Array.from(all).filter(x => x.checked).map(x => x.dataset.bulgu);
+        });
+      });
+
+      // Step 6
+      bind("senaryo_ozel", v => data.senaryo_ozel = v);
+    }
+
+    function bind(id, fn) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener("input", () => fn(el.value));
+      el.addEventListener("change", () => fn(el.value));
+    }
+
+    function updateGks() {
+      const t = document.getElementById("gks_toplam");
+      if (t) t.textContent = (+data.gks_e) + (+data.gks_m) + (+data.gks_v);
+    }
+
+    // ─── Aksiyon ───
+    function kopyala() {
+      const metin = document.getElementById("ciktiPre").textContent;
+      navigator.clipboard.writeText(metin).then(() => {
+        const btn = document.getElementById("kopyalaBtn");
+        btn.textContent = "✓ Kopyalandı";
+        btn.classList.add("kopyalandi");
+        setTimeout(() => { btn.textContent = "Panoya Kopyala"; btn.classList.remove("kopyalandi"); }, 2500);
+      });
+    }
+
+    function indir() {
+      const metin = document.getElementById("ciktiPre").textContent;
+      const blob = new Blob([metin], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const ts = new Date().toISOString().replace(/[:T]/g,"-").slice(0,16);
+      a.href = url;
+      a.download = `Epikriz_${(data.senaryo||"vaka").replace(/[ /]/g,"_")}_${ts}.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function yenile() {
+      if (confirm("Tüm form temizlenecek ve baştan başlanacak. Emin misiniz?")) {
+        location.reload();
+      }
+    }
+
+    // ─── Init ───
+    render();
+  </script>
+</body>
+</html>
