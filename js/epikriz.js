@@ -512,12 +512,6 @@ function generateEpikriz(d) {
   const lines = [];
   const sb = (s) => lines.push(s);
 
-  // Başlık
-  sb("=".repeat(64));
-  sb("EPİKRİZ — " + senaryo.baslik);
-  sb("=".repeat(64));
-  sb("");
-
   // Genel durum & bilinç
   let gd = `Genel Durumu: ${d.genel_durum || "İyi"}. Bilinci: ${d.bilinc || "Açık, koopere, oryante"}.`;
   if (d.gks_e || d.gks_m || d.gks_v) {

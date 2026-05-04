@@ -710,61 +710,66 @@
       `;
     }
 
-    // ─── Listeners ───
+    // ─── Listeners (event delegation — sayfa tek seferde dinler) ───
+    // Wizard panel root'una input/change/click delegasyonu
+    const ID_MAP = {
+      // Step 1
+      yas: v => data.yas = v,
+      cinsiyet: v => data.cinsiyet = v,
+      bas_yakinma: v => data.bas_yakinma = v,
+      // Step 2
+      genel_durum: v => data.genel_durum = v,
+      bilinc: v => data.bilinc = v,
+      gks_e: v => { data.gks_e = +v; updateGks(); },
+      gks_v: v => { data.gks_v = +v; updateGks(); },
+      gks_m: v => { data.gks_m = +v; updateGks(); },
+      // Step 3
+      hikaye_detay: v => data.hikaye_detay = v,
+      risk_faktorleri: v => data.risk_faktorleri = v,
+      // Step 4 — vital
+      vskb: v => data.vital.skb = v,
+      vdkb: v => data.vital.dkb = v,
+      vnabiz: v => data.vital.nabiz = v,
+      vsolunum: v => data.vital.solunum = v,
+      vspo2: v => data.vital.spo2 = v,
+      vates: v => data.vital.ates = v,
+      // Step 6
+      senaryo_ozel: v => data.senaryo_ozel = v,
+    };
+
+    // Sayfa yüklenince TEK SEFER global delegate listener'ları kur
+    const wizardEl = document.getElementById("wizardPanel");
+    wizardEl.addEventListener("input", (e) => {
+      const t = e.target;
+      if (!t.id) return;
+      const fn = ID_MAP[t.id];
+      if (fn) fn(t.value);
+      // checkbox grupları
+      if (t.dataset.semptom !== undefined) {
+        const all = wizardEl.querySelectorAll("[data-semptom]");
+        data.eslik_eden = Array.from(all).filter(x => x.checked).map(x => x.dataset.semptom);
+      }
+      if (t.dataset.mb !== undefined) {
+        const k = t.dataset.mb;
+        const all = wizardEl.querySelectorAll(`[data-mb="${k}"]`);
+        data.muayene[k] = Array.from(all).filter(x => x.checked).map(x => x.dataset.bulgu);
+      }
+    });
+    wizardEl.addEventListener("change", (e) => {
+      const t = e.target;
+      if (!t.id) return;
+      const fn = ID_MAP[t.id];
+      if (fn) fn(t.value);
+    });
+
     function attachListeners() {
-      // Step 0 — senaryo
+      // Sadece senaryo seçim kartları (DOM her render'da yenilendiği için
+      // delegate yerine doğrudan ekliyoruz).
       document.querySelectorAll(".senaryo-kart").forEach(k => k.addEventListener("click", () => {
-        // Senaryo değişti — şablonu sıfırla; step6'da autofill ile yeniden yüklenecek
-        if (data.senaryo !== k.dataset.senaryo) {
-          data.senaryo_ozel = "";
-        }
+        if (data.senaryo !== k.dataset.senaryo) data.senaryo_ozel = "";
         data.senaryo = k.dataset.senaryo;
         render();
       }));
-
-      // Step 1
-      bind("yas", v => data.yas = v);
-      bind("cinsiyet", v => data.cinsiyet = v);
-      bind("bas_yakinma", v => data.bas_yakinma = v);
-
-      // Step 2
-      bind("genel_durum", v => data.genel_durum = v);
-      bind("bilinc", v => data.bilinc = v);
-      bind("gks_e", v => { data.gks_e = +v; updateGks(); });
-      bind("gks_v", v => { data.gks_v = +v; updateGks(); });
-      bind("gks_m", v => { data.gks_m = +v; updateGks(); });
-
-      // Step 3
-      bind("hikaye_detay", v => data.hikaye_detay = v);
-      bind("risk_faktorleri", v => data.risk_faktorleri = v);
-      document.querySelectorAll("[data-semptom]").forEach(cb => {
-        cb.addEventListener("change", () => {
-          const all = document.querySelectorAll("[data-semptom]");
-          data.eslik_eden = Array.from(all).filter(x => x.checked).map(x => x.dataset.semptom);
-        });
-      });
-
-      // Step 4
-      ["skb","dkb","nabiz","solunum","spo2","ates"].forEach(k => bind("v"+k, v => data.vital[k] = v));
-
-      // Step 5
-      document.querySelectorAll("[data-mb]").forEach(cb => {
-        cb.addEventListener("change", () => {
-          const k = cb.dataset.mb;
-          const all = document.querySelectorAll(`[data-mb="${k}"]`);
-          data.muayene[k] = Array.from(all).filter(x => x.checked).map(x => x.dataset.bulgu);
-        });
-      });
-
-      // Step 6
-      bind("senaryo_ozel", v => data.senaryo_ozel = v);
-    }
-
-    function bind(id, fn) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.addEventListener("input", () => fn(el.value));
-      el.addEventListener("change", () => fn(el.value));
     }
 
     function updateGks() {
