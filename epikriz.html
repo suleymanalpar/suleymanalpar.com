@@ -620,20 +620,65 @@
         return `<p style="color: var(--text-light); font-style: italic;">Önce 1. adımdan bir senaryo seçiniz.</p>`;
       }
       const s = window.SENARYOLAR[data.senaryo];
-      // Pre-fill with template if user hasn't edited
+      // İlk yüklemede ya da boş ise şablonu doldurarak yerleştir; autofill her durumda re-uygulanır
       const sablon = (s.ek_bilgiler && s.ek_bilgiler.length)
         ? s.ek_bilgiler.join("\n")
         : "(Bu senaryo için ek özel bilgi şablonu yok — geçebilirsiniz.)";
-      const value = data.senaryo_ozel || sablon;
+      // ÖNEMLİ: data.senaryo_ozel'i da güncelle ki çıktıda da görünsün
+      data.senaryo_ozel = window.autofillSenaryoOzel(data.senaryo_ozel || sablon, data);
+      const baseValue = data.senaryo_ozel;
+      // Vital özet (referans)
+      const v = data.vital || {};
+      const gks = (+data.gks_e || 0) + (+data.gks_v || 0) + (+data.gks_m || 0);
+      const ozet = [
+        v.skb || v.dkb ? `TA: ${v.skb || "—"}/${v.dkb || "—"} mmHg` : null,
+        v.nabiz ? `Nabız: ${v.nabiz}/dk` : null,
+        v.solunum ? `SS: ${v.solunum}/dk` : null,
+        v.spo2 ? `SpO₂: %${v.spo2}` : null,
+        v.ates ? `Ateş: ${v.ates}°C` : null,
+        gks > 0 ? `GKS: ${gks} (E${data.gks_e}V${data.gks_v}M${data.gks_m})` : null,
+        data.yas ? `Yaş: ${data.yas}` : null,
+      ].filter(Boolean).join("  ·  ");
       return `
         <p style="font-size: 0.86rem; color: var(--text-light); margin-bottom: 10px;">
           Aşağıdaki şablon "${data.senaryo}" senaryosuna özel klinik puan, kılavuz ve dokümantasyon noktalarını içerir.
           ___ ile gösterilen alanları kendi vakanıza göre doldurun.
         </p>
+        ${ozet ? `
+          <div style="background: rgba(43,108,176,0.06); border-left: 4px solid var(--accent); padding: 12px 16px; border-radius: 6px; margin-bottom: 12px; font-size: 0.85rem; line-height: 1.6;">
+            <div style="font-size: 0.74rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 4px;">VİTAL DEĞERLERİNİZ</div>
+            ${ozet}
+            <div style="margin-top: 6px; font-size: 0.78rem; color: var(--text-light);">Eşleşen yer tutucular (SKB, DKB, Nabız, SS, SpO₂, Ateş, GKS, Yaş) otomatik olarak yerleştirildi. Eksik kalanları aşağıda elle doldurabilirsiniz.</div>
+          </div>` : `
+          <div style="background: rgba(212,169,78,0.10); border-left: 4px solid var(--gold); padding: 10px 14px; border-radius: 6px; margin-bottom: 12px; font-size: 0.85rem;">
+            ⚠ Vital değer girmediniz. Geri dönerseniz (4. adım) otomatik dolgu çalışır.
+          </div>`}
+        <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+          <button type="button" class="btn btn-baska" style="padding: 6px 12px; font-size: 0.82rem;" onclick="otoDoldur()">↻ Vital değerlerini yeniden uygula</button>
+          <button type="button" class="btn btn-baska" style="padding: 6px 12px; font-size: 0.82rem;" onclick="sablonSifirla()">↺ Şablonu sıfırla</button>
+        </div>
         <div class="form-alan">
-          <textarea id="senaryo_ozel" rows="22" style="font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace; font-size: 0.84rem;">${value}</textarea>
+          <textarea id="senaryo_ozel" rows="22" style="font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace; font-size: 0.84rem;">${baseValue}</textarea>
         </div>
       `;
+    }
+
+    // Otomatik doldurma butonu
+    function otoDoldur() {
+      const ta = document.getElementById("senaryo_ozel");
+      if (!ta) return;
+      data.senaryo_ozel = window.autofillSenaryoOzel(ta.value, data);
+      ta.value = data.senaryo_ozel;
+    }
+
+    // Şablonu sıfırla
+    function sablonSifirla() {
+      if (!confirm("Senaryo özel metni varsayılan şablona sıfırlanacak. Emin misiniz?")) return;
+      const s = window.SENARYOLAR[data.senaryo];
+      const sablon = (s && s.ek_bilgiler && s.ek_bilgiler.length) ? s.ek_bilgiler.join("\n") : "";
+      data.senaryo_ozel = window.autofillSenaryoOzel(sablon, data);
+      const ta = document.getElementById("senaryo_ozel");
+      if (ta) ta.value = data.senaryo_ozel;
     }
 
     function step7() {
@@ -657,12 +702,11 @@
     function attachListeners() {
       // Step 0 — senaryo
       document.querySelectorAll(".senaryo-kart").forEach(k => k.addEventListener("click", () => {
-        data.senaryo = k.dataset.senaryo;
-        // Şablon önyükle
-        const s = window.SENARYOLAR[data.senaryo];
-        if (s && s.ek_bilgiler && !data.senaryo_ozel) {
-          data.senaryo_ozel = s.ek_bilgiler.join("\n");
+        // Senaryo değişti — şablonu sıfırla; step6'da autofill ile yeniden yüklenecek
+        if (data.senaryo !== k.dataset.senaryo) {
+          data.senaryo_ozel = "";
         }
+        data.senaryo = k.dataset.senaryo;
         render();
       }));
 

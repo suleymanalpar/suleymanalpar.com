@@ -445,6 +445,67 @@ const ESLIK_EDEN_SEMPTOMLAR = [
   "Halsizlik", "Anoreksi", "Kilo kaybı", "Geceleri terleme"
 ];
 
+// ─────────── ŞABLON OTOMATİK DOLDURMA ───────────
+// Senaryo özel şablonundaki vital placeholder'ları
+// (___) form değerleriyle değiştirir.
+function autofillSenaryoOzel(template, data) {
+  if (!template) return template;
+  let s = template;
+  const v = data.vital || {};
+  const gks = (+data.gks_e || 0) + (+data.gks_v || 0) + (+data.gks_m || 0);
+
+  // Yardımcı: "ETİKET[: ]___" pattern'inde ___ → değer
+  // (Sadece "___" başka sayı/sembol takip etmiyorsa)
+  const replaceLabel = (label, value) => {
+    if (value === undefined || value === null || value === "") return;
+    // "SKB ___" ya da "SKB: ___" ya da "SKB :___"
+    const re = new RegExp(`(${label})([\\s:=]+)___(?![\\d/])`, "gu");
+    s = s.replace(re, (_, lbl, sep) => `${lbl}${sep}${value}`);
+  };
+
+  // Vital değerler
+  replaceLabel("Sistolik KB", v.skb);
+  replaceLabel("SKB", v.skb);
+  replaceLabel("Diastolik KB", v.dkb);
+  replaceLabel("DKB", v.dkb);
+  replaceLabel("Nabız", v.nabiz);
+  replaceLabel("Nb", v.nabiz);
+  replaceLabel("HR", v.nabiz);
+  replaceLabel("Solunum", v.solunum);
+  replaceLabel("Solunum sayısı", v.solunum);
+  replaceLabel("SS", v.solunum);
+  replaceLabel("RR", v.solunum);
+  replaceLabel("SpO₂", v.spo2);
+  replaceLabel("SpO2", v.spo2);
+  replaceLabel("Ateş", v.ates);
+  replaceLabel("Temp", v.ates);
+  replaceLabel("Vücut ısısı", v.ates);
+
+  // GKS / GCS toplam
+  if (gks > 0) {
+    replaceLabel("GKS", gks);
+    replaceLabel("GCS", gks);
+  }
+
+  // Yaş, cinsiyet
+  if (data.yas) replaceLabel("Yaş", data.yas);
+  if (data.cinsiyet) replaceLabel("Cinsiyet", data.cinsiyet);
+
+  // SKB/DKB birleşik: "SKB/DKB ___/___" → "85/50"
+  if (v.skb && v.dkb) {
+    s = s.replace(/SKB\/DKB([\s:=]+)___\/___/gu, (_, sep) => `SKB/DKB${sep}${v.skb}/${v.dkb}`);
+    s = s.replace(/SKB\/DKB:\s*___\s*\/\s*___/gu, `SKB/DKB: ${v.skb}/${v.dkb}`);
+    s = s.replace(/TA([\s:=]+)___\/___/gu, (_, sep) => `TA${sep}${v.skb}/${v.dkb}`);
+  }
+
+  // E___ V___ M___ (GKS bileşenleri)
+  if (data.gks_e) s = s.replace(/E___/g, `E${data.gks_e}`);
+  if (data.gks_v) s = s.replace(/V___/g, `V${data.gks_v}`);
+  if (data.gks_m) s = s.replace(/M___/g, `M${data.gks_m}`);
+
+  return s;
+}
+
 // ─────────── EPİKRİZ OLUŞTURUCU ───────────
 function generateEpikriz(d) {
   const senaryo = SENARYOLAR[d.senaryo] || SENARYOLAR["Göğüs Ağrısı"];
@@ -536,3 +597,4 @@ window.SENARYOLAR = SENARYOLAR;
 window.MUAYENE_BOLUMLERI = MUAYENE_BOLUMLERI;
 window.ESLIK_EDEN_SEMPTOMLAR = ESLIK_EDEN_SEMPTOMLAR;
 window.generateEpikriz = generateEpikriz;
+window.autofillSenaryoOzel = autofillSenaryoOzel;
