@@ -718,4 +718,197 @@ const TANI_KATALOG = {
   },
 };
 
+// ─────────── SERBEST METİN PARSER ───────────
+// Hekim açıklamasını yapılandırılmış bilgiye çevirir
+function parseHastaTanim(text) {
+  if (!text) return { yas: null, cinsiyet: null, sikayet: null, rf: [], ham: "" };
+  const t = (" " + text + " ").toLowerCase();
+
+  // Yaş
+  const yasMatch = t.match(/(\d{1,3})\s*ya[sş]/);
+  const yas = yasMatch ? +yasMatch[1] : null;
+
+  // Cinsiyet
+  let cinsiyet = null;
+  if (/\berkek\b|\bbey\b/.test(t)) cinsiyet = "Erkek";
+  else if (/\bkad[ıi]n\b|\bhan[ıi]m\b/.test(t)) cinsiyet = "Kadın";
+
+  // Risk faktörleri & komorbidite
+  const rf = [];
+  const negatif = /(yok|olmayan|olmadan|içmiyor|kullanmıyor|negatif)/;
+  const inekRiskFactor = (key, regex) => {
+    if (regex.test(t) && !negatif.test(t.slice(Math.max(0, t.search(regex) - 25), t.search(regex) + 25))) {
+      rf.push(key);
+    }
+  };
+  inekRiskFactor("Sigara", /sigara|t[üu]t[üu]n|içici/);
+  inekRiskFactor("HT", /hipertansiyon|tansiyon hastal|y[üu]ksek tansiyon|ht\b/);
+  inekRiskFactor("DM", /diyabet|[şs]eker hastal|\bdm\b|insülin/);
+  inekRiskFactor("Hiperlipidemi", /kolesterol|hiperlipidemi|dislipid/);
+  inekRiskFactor("Aile öyküsü KAH", /aile [öo]yk[üu]|ailede.*(kalp|kah)/);
+  inekRiskFactor("Bilinen KAH", /bilinen koroner|stent|bypass|kah \(\+\)|\bkah\b/);
+  inekRiskFactor("KOAH", /koah|kronik obstr/);
+  inekRiskFactor("Astım", /ast[ıi]m\b/);
+  inekRiskFactor("KKY", /kalp yetmez|\bky\b|kky|ef d[üu][şs][üu]k/);
+  inekRiskFactor("AF", /atriyal fibril|\baf\b|atriyel fibril/);
+  inekRiskFactor("Antikoagülan", /antikoag[üu]l|kumadin|warfarin|eliquis|xarelto|apiksaban|rivaroks|edoks|dabigatran/);
+  inekRiskFactor("Malignite", /kanser|malignite|onkoloji|metastaz|kemoterapi|ca [öo]yk/);
+  inekRiskFactor("Gebelik", /gebe(lik)?|hamile|trimester/);
+  inekRiskFactor("Postpartum", /postpartum|do[ğg]um sonras|loh[uü]sa/);
+  inekRiskFactor("İmmobilizasyon", /imm[öo]bilizasyon|yat[ıi]r|son cerrahi|son ameliyat|uzun u[çc]u[şs]/);
+  inekRiskFactor("DVT/PE öyküsü", /\bdvt\b|tromboz|p[ıi]ht[ıi].*[öo]yk|pe [öo]yk/);
+  inekRiskFactor("İlaç (NSAID)", /nsa[iıİ][iıİ]|ibuprof|asetilsalis|aspirin|naproksen/);
+  inekRiskFactor("Alkol", /alkol|i[çc]ki/);
+  inekRiskFactor("İmmünsüpresyon", /imm[üu]ns[üu]presyon|kortikosteroid|hiv|kemoterapi/);
+
+  // Şikayet — anahtar kelimelerle eşleştir
+  const matches = {
+    "Göğüs Ağrısı": /g[öo][ğg][üu]s a[ğg]r[ıi]|retrosternal|anjina|kalp a[ğg]r[ıi]/,
+    "Dispne": /nefes darl[ıi][ğg][ıi]|dispne|hava a[çc]l[ıi][ğg][ıi]|nefes alamama|soluk[ s]+a/,
+    "Karın Ağrısı": /kar[ıi]n a[ğg]r[ıi]|abdominal a[ğg]r|bat[ıi]n a[ğg]r/,
+    "Senkop": /senkop|bay[ıi]lma|baygınl[ıi]k|ge[çc]ici bilin[çc]|kollaps/,
+    "İnme/SVO": /\binme\b|fel[çc]|svo|fokal defisit|fast pozitif|y[üu]z kayma|konu[şs]ma bozukluğu/,
+    "Baş Ağrısı": /ba[şs] a[ğg]r[ıi]|migren|cephalalgia|y[ıi]ld[ıi]r[ıi]m ba[şs]/,
+    "Konvülsiyon": /konv[üu]lsiyon|n[öo]bet ge[çc]ir|havale|epileptik|status epilept/,
+    "Bilinç Değişikliği": /bilin[çc] de[ğg]i[şs]|konf[üu]zyon|letarji|stupor|koma|ams|deliryum/,
+    "Multitravma": /travma|kaza|d[üu][şs]me|trafik kazas|yaralanma|y[üu]ksekten/,
+    "Renal Kolik": /renal kolik|b[öo]brek ta[şs]|yan a[ğg]r[ıi]|hidronefroz|[üu]reter ta[şs]/,
+    "Anafilaksi": /anafilaksi|allerjik [şs]ok|[üu]rtiker.*[şs]ok|anjio[öo]dem.*[şs]ok/,
+    "Sepsis": /sepsis|septik [şs]ok|sirs|ate[şs] \+ enfeksi/,
+    "Aritmi": /[çc]arp[ıi]nt[ıi]|aritmi|atriyal fibril|svt|vt(ent[üu]b)?|bradik/,
+    "Pediatrik Ateş": /pediatrik ate[şs]|[çc]ocuk.*ate[şs]|bebek.*ate[şs]|infant ate[şs]/,
+    "Yenidoğan": /yenido[ğg]an|neonat/,
+    "Gebelik Komplikasyonları": /gebe.*kanama|preeklampsi|eklampsi|hellp|ektopik gebelik/,
+    "Postpartum Kanama": /postpartum kanama|do[ğg]um sonras[ıi] kanama|pph/,
+    "Zehirlenme": /zehirlenme|intoks|ila[çc] al[ıi]m[ıi]|toksik|asetaminofen al/,
+    "Bel Ağrısı": /bel a[ğg]r[ıi]|lomber a[ğg]r[ıi]|s[ıi]rtbel/,
+    "GİS Kanama": /g[ıi][şs] kanama|hematemez|melena|hematokezya|kanl[ıi] kusma|kanl[ıi] d[ıi][şs]k/,
+  };
+  let sikayet = null;
+  for (const [k, re] of Object.entries(matches)) {
+    if (re.test(t)) { sikayet = k; break; }
+  }
+
+  return { yas, cinsiyet, sikayet, rf, ham: text };
+}
+
+// ─────────── ÖN TANI SIRALAMA ───────────
+// Tanılara metin/yaş/RF eşleşmesine göre relevans skoru verir
+function rankTanilar(tanilar, parsed) {
+  const rfSet = new Set(parsed.rf || []);
+  const yas = parsed.yas || 0;
+  const cinsiyet = parsed.cinsiyet;
+
+  // RF ↔ destekleyen metni içinde aranacak regex eşlemesi
+  const rfRe = {
+    "HT": /(\bht\b|tansiyon|hipertansiyon)/i,
+    "DM": /(\bdm\b|diyabet|[şs]eker)/i,
+    "Sigara": /sigara/i,
+    "Hiperlipidemi": /(kolesterol|lipid|hiperlipid)/i,
+    "Aile öyküsü KAH": /(aile [öo]yk[üu]|ailede)/i,
+    "Bilinen KAH": /(\bkah\b|koroner|stent|bypass)/i,
+    "KOAH": /\bkoah\b/i,
+    "Astım": /ast[ıi]m/i,
+    "KKY": /(\bkky\b|kalp yetmez|\bky\b)/i,
+    "AF": /(\baf\b|atriyal fibril|atriyel fibril)/i,
+    "Antikoagülan": /antikoag/i,
+    "Malignite": /(malign|kanser|metast)/i,
+    "Gebelik": /(gebe|hamile|trimester)/i,
+    "Postpartum": /postpartum/i,
+    "İmmobilizasyon": /(imm[öo]b|cerrahi|ameliyat|uzun u[çc]u[şs])/i,
+    "DVT/PE öyküsü": /(\bdvt\b|önceki dvt|önceki pe)/i,
+    "İlaç (NSAID)": /(nsa[iıİ]|ibuprof|aspirin|naproksen)/i,
+    "Alkol": /alkol/i,
+    "İmmünsüpresyon": /(imm[üu]ns[üu]presyon|kortikosteroid|hiv|nötropeni)/i,
+  };
+
+  return tanilar.map(t => {
+    let score = 0;
+    const matched = [];
+    const dText = ((t.destekleyen || []).join(" ") + " " + (t.bayraklar || []).join(" ") + " " + (t.alt || ""))
+      .toLowerCase();
+
+    // RF eşleşmeleri
+    for (const r of rfSet) {
+      const re = rfRe[r];
+      if (re && re.test(dText)) {
+        score += 2;
+        matched.push(r);
+      }
+    }
+
+    // Yaş profili
+    if (yas >= 50 && /(yaşl[ıi]|≥50|≥45|≥60|aks|akut koroner|aort|aaa|malign|kanser|ca [öo]yk)/i.test(dText)) score += 1;
+    if (yas >= 65 && /(divertik[üu]l|geriatri|polifarmasi)/i.test(dText)) score += 1;
+    if (yas < 40 && /(gen[çc]|pnömotoraks|anksiyete|migren|primer)/i.test(dText)) score += 1;
+
+    // Cinsiyet (özellikle gebelik)
+    if (cinsiyet === "Kadın" && yas >= 15 && yas <= 50 && /(gebe|ektopik|pelvik)/i.test(dText)) score += 1;
+
+    // Aciliyet bonus — kritik öne çıksın
+    const ab = { kirmizi: 0.6, turuncu: 0.4, sari: 0.2, yesil: 0 };
+    score += ab[t.aciliyet] || 0;
+
+    return { ...t, _score: score, _matched: matched };
+  }).sort((a, b) => b._score - a._score);
+}
+
+// ─────────── SKOR ÖNERİSİ ───────────
+// Tanılarda referans verilen klinik skorları, skorlar.html ID'leriyle eşleştir
+const SKOR_ID_MAP = {
+  "HEART": "heart",
+  "TIMI": "timi_uanstemi",
+  "GRACE": "grace",
+  "Wells PE": "wells_pe",
+  "Wells": "wells_pe",
+  "PERC": "perc",
+  "Geneva": "geneva_modified",
+  "Modified Geneva": "geneva_modified",
+  "CHA₂DS₂-VASc": "cha2ds2_vasc",
+  "CHA2DS2-VASc": "cha2ds2_vasc",
+  "HAS-BLED": "hasbled",
+  "qSOFA": "qsofa",
+  "NEWS2": "news2",
+  "SOFA": "sofa",
+  "CURB-65": "curb65",
+  "GBS": "glasgow_blatchford",
+  "Glasgow-Blatchford": "glasgow_blatchford",
+  "AIMS65": "aims65",
+  "Rockall": "rockall_pre",
+  "Alvarado": "alvarado",
+  "RIPASA": "ripasa",
+  "ABCD²": "abcd2",
+  "ABCD2": "abcd2",
+  "ICH": "ich",
+  "Canadian Syncope": "canadian_syncope",
+  "SF Syncope": "san_francisco_syncope",
+  "RTS": "revised_trauma",
+  "Revised Trauma": "revised_trauma",
+  "Şok İndeksi": "shock_index",
+  "Sok Indeksi": "shock_index",
+  "CAM": "cam",
+  "FOUR": "four_score",
+};
+
+function onerilenSkorlar(tanilar) {
+  const set = new Map();
+  for (const t of tanilar) {
+    if (!t.skor) continue;
+    const adlar = t.skor.split(/[,;/]/).map(s => s.trim()).filter(Boolean);
+    for (const ad of adlar) {
+      // En yakın eşleşmeyi bul
+      for (const [key, id] of Object.entries(SKOR_ID_MAP)) {
+        if (ad.toLowerCase() === key.toLowerCase()) {
+          if (!set.has(id)) set.set(id, { id, ad: key, ilk_tani: t.tani });
+          break;
+        }
+      }
+    }
+  }
+  return Array.from(set.values());
+}
+
 window.TANI_KATALOG = TANI_KATALOG;
+window.parseHastaTanim = parseHastaTanim;
+window.rankTanilar = rankTanilar;
+window.onerilenSkorlar = onerilenSkorlar;

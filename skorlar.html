@@ -692,6 +692,16 @@
     // ─── Init ───
     kategoriBarRender();
     gridRender();
+
+    // URL hash ile direkt skor aç (örn. skorlar.html#heart)
+    function hashAc() {
+      const h = (location.hash || "").replace(/^#/, "");
+      if (h && window.SKOR_KATALOG.find(s => s.id === h)) {
+        modalAc(h);
+      }
+    }
+    hashAc();
+    window.addEventListener("hashchange", hashAc);
   </script>
 </body>
 </html>
