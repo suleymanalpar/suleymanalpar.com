@@ -5,22 +5,23 @@
 
 /* --- CSS Variables --- */
 :root {
-  --primary: #1a365d;
-  --primary-light: #2c5282;
-  --primary-dark: #0f2440;
-  --accent: #2b6cb0;
+  /* Tema: charcoal/siyah ana renkler, mavi vurgu korunuyor */
+  --primary: #1f2937;          /* charcoal — başlık, navbar, dark band */
+  --primary-light: #374151;     /* slate (gradient için) */
+  --primary-dark: #0a0a0a;      /* derin siyah — footer, dark bg */
+  --accent: #2b6cb0;            /* mavi vurgu (link, buton) korunuyor */
   --accent-light: #4299e1;
   --gold: #c6973f;
   --gold-light: #d4a94e;
   --bg: #f7f8fc;
   --bg-card: #ffffff;
-  --bg-dark: #0f2440;
+  --bg-dark: #0a0a0a;            /* dark band, contact bg — siyah */
   --text: #2d3748;
   --text-light: #718096;
   --text-on-dark: #e2e8f0;
   --border: #e2e8f0;
-  --shadow: 0 4px 24px rgba(26, 54, 93, 0.08);
-  --shadow-hover: 0 8px 32px rgba(26, 54, 93, 0.14);
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.16);
   --radius: 12px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --max-width: 1200px;
@@ -160,7 +161,7 @@ p { margin-bottom: 1rem; }
   min-height: 92vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(160deg, var(--bg-dark) 0%, var(--primary) 50%, var(--accent) 100%);
+  background: linear-gradient(160deg, #000 0%, var(--primary) 60%, #2d2d2d 100%);
   position: relative;
   overflow: hidden;
   padding-top: 72px;
