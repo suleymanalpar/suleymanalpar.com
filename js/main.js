@@ -17,8 +17,11 @@ const translations = {
     'nav.contact': 'İletişim',
 
     // Hero
-    'hero.name': 'Dr. Süleyman Alpar',
-    'hero.subtitle': 'Acil Tıp Uzmanı',
+    'a11y.skip': 'İçeriğe geç',
+    'hero.kicker': 'Acil Tıp Uzmanı',
+    'hero.name': 'Doç. Dr. Süleyman Alpar',
+    'hero.subtitle': 'Öğretim Üyesi & Anabilim Dalı Başkanı',
+    'hero.affiliation': 'İstanbul Beykent Üniversitesi Tıp Fakültesi · Memorial Bahçelievler Hastanesi',
     'hero.tagline': '',
     'hero.badge1': 'Acil Tıp Uzmanı',
     'hero.cta1': 'Hastalar İçin',
@@ -172,8 +175,11 @@ const translations = {
     'nav.blog': 'Blog',
     'nav.contact': 'Contact',
 
-    'hero.name': 'Dr. Süleyman Alpar',
-    'hero.subtitle': 'Emergency Medicine Specialist',
+    'a11y.skip': 'Skip to content',
+    'hero.kicker': 'Emergency Medicine Specialist',
+    'hero.name': 'Süleyman Alpar, MD',
+    'hero.subtitle': 'Associate Professor & Department Chair',
+    'hero.affiliation': 'Istanbul Beykent University Faculty of Medicine · Memorial Bahçelievler Hospital',
     'hero.tagline': '',
     'hero.badge1': 'Emergency Medicine Specialist',
     'hero.cta1': 'For Patients',
