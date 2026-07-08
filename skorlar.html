@@ -7,10 +7,11 @@
   <title>Klinik Skorlar | Dr. Süleyman Alpar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d2733'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='27' font-weight='700' fill='%23c8a558' text-anchor='middle'%3ESA%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="css/style.css">
   <style>
     .hcp-banner {
-      background: linear-gradient(135deg, rgba(229,62,62,0.08), rgba(43,108,176,0.05));
+      background: linear-gradient(135deg, rgba(229,62,62,0.08), rgba(42,98,143,0.05));
       border-left: 4px solid #e53e3e;
       padding: 14px 22px;
       max-width: 980px;
@@ -199,7 +200,7 @@
     .form-alan input[type=number]:focus, .form-alan select:focus {
       outline: none;
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(43,108,176,0.12);
+      box-shadow: 0 0 0 3px rgba(42,98,143,0.12);
     }
     .form-alan-bool {
       display: flex;
@@ -210,7 +211,7 @@
       cursor: pointer;
       transition: background 0.2s;
     }
-    .form-alan-bool:hover { background: rgba(43,108,176,0.06); }
+    .form-alan-bool:hover { background: rgba(42,98,143,0.06); }
     .form-alan-bool input[type=checkbox] {
       margin-right: 10px;
       width: 18px;
@@ -237,7 +238,7 @@
       font-size: 0.85rem;
       transition: background 0.2s;
     }
-    .multiselect-grid label:hover { background: rgba(43,108,176,0.06); }
+    .multiselect-grid label:hover { background: rgba(42,98,143,0.06); }
     .multiselect-grid input { margin-right: 8px; accent-color: var(--accent); }
 
     /* Sonuç */
@@ -249,7 +250,7 @@
       background: white;
       transition: all 0.3s;
     }
-    .sonuc-kutu.yesil { border-color: #38a169; background: linear-gradient(135deg, rgba(56,161,105,0.06), rgba(56,161,105,0.02)); }
+    .sonuc-kutu.yesil { border-color: #388e60; background: linear-gradient(135deg, rgba(56,142,96,0.06), rgba(56,142,96,0.02)); }
     .sonuc-kutu.sari { border-color: #d4a94e; background: linear-gradient(135deg, rgba(212,169,78,0.08), rgba(212,169,78,0.02)); }
     .sonuc-kutu.turuncu { border-color: #ed8936; background: linear-gradient(135deg, rgba(237,137,54,0.08), rgba(237,137,54,0.02)); }
     .sonuc-kutu.kirmizi { border-color: #e53e3e; background: linear-gradient(135deg, rgba(229,62,62,0.08), rgba(229,62,62,0.02)); }
@@ -276,7 +277,7 @@
       background: rgba(0,0,0,0.05);
       text-align: right;
     }
-    .sonuc-kutu.yesil .sonuc-risk { color: #2f855a; background: rgba(56,161,105,0.12); }
+    .sonuc-kutu.yesil .sonuc-risk { color: #2e7350; background: rgba(56,142,96,0.12); }
     .sonuc-kutu.sari .sonuc-risk { color: #b7791f; background: rgba(212,169,78,0.16); }
     .sonuc-kutu.turuncu .sonuc-risk { color: #c05621; background: rgba(237,137,54,0.16); }
     .sonuc-kutu.kirmizi .sonuc-risk { color: #c53030; background: rgba(229,62,62,0.14); }
@@ -321,12 +322,12 @@
       color: #e53e3e;
       font-weight: 700;
     }
-    .perc-ihlaller li.tamam::before, .cam-kriterler li.tamam::before { content: "✓"; color: #38a169; }
+    .perc-ihlaller li.tamam::before, .cam-kriterler li.tamam::before { content: "✓"; color: #388e60; }
 
     .ref-blok {
       margin-top: 18px;
       padding: 12px 14px;
-      background: rgba(43,108,176,0.05);
+      background: rgba(42,98,143,0.05);
       border-left: 3px solid var(--accent);
       border-radius: 6px;
       font-size: 0.82rem;
@@ -359,6 +360,12 @@
         <li><a href="kurslar.html" data-i18n="nav.courses">Kurslar</a></li>
         <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
         <li><a href="index.html#contact" data-i18n="nav.contact">İletişim</a></li>
+        <li>
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="tr">TR</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+        </li>
       </ul>
       <button class="mobile-toggle" aria-label="Menu">
         <span></span><span></span><span></span>

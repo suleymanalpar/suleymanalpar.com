@@ -7,6 +7,7 @@
   <title>Kurslar | Dr. Süleyman Alpar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d2733'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='27' font-weight='700' fill='%23c8a558' text-anchor='middle'%3ESA%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="css/style.css">
   <style>
     .section-intro {
@@ -77,7 +78,7 @@
       font-style: italic;
     }
     .course-card .course-badge {
-      background: rgba(43,108,176,0.1);
+      background: rgba(42,98,143,0.1);
       color: var(--accent);
       font-size: 0.68rem;
       font-weight: 700;
@@ -87,7 +88,7 @@
       flex-shrink: 0;
     }
     .course-card .course-badge.own {
-      background: rgba(198,151,63,0.15);
+      background: rgba(169,134,52,0.15);
       color: var(--gold);
     }
     .course-card .course-meta-row {
@@ -193,28 +194,28 @@
     .course-card.travma .detail-toggle,
     .course-card.travma .detail-panel ul li::before { color: #e53e3e; }
 
-    .course-card.resus { border-top-color: #c6973f; }
+    .course-card.resus { border-top-color: #c8a558; }
     .course-card.resus .course-code,
     .course-card.resus .detail-toggle,
     .course-card.resus .detail-panel ul li::before { color: var(--gold); }
 
-    .course-card.ilkyardim { border-top-color: #38a169; }
+    .course-card.ilkyardim { border-top-color: #388e60; }
     .course-card.ilkyardim .course-code,
     .course-card.ilkyardim .detail-toggle,
-    .course-card.ilkyardim .detail-panel ul li::before { color: #38a169; }
+    .course-card.ilkyardim .detail-panel ul li::before { color: #388e60; }
 
-    .course-card.usg { border-top-color: #805ad5; }
+    .course-card.usg { border-top-color: #7a60b0; }
     .course-card.usg .course-code,
     .course-card.usg .detail-toggle,
-    .course-card.usg .detail-panel ul li::before { color: #805ad5; }
+    .course-card.usg .detail-panel ul li::before { color: #7a60b0; }
 
-    .course-card.akademik { border-top-color: #2b6cb0; }
+    .course-card.akademik { border-top-color: #2a628f; }
 
     .course-note {
       max-width: 860px;
       margin: 40px auto 0;
       padding: 18px 22px;
-      background: rgba(43,108,176,0.05);
+      background: rgba(42,98,143,0.05);
       border-left: 4px solid var(--accent);
       border-radius: 6px;
       font-size: 0.88rem;
@@ -234,13 +235,19 @@
         <span>Dr. S. Alpar</span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html">Ana Sayfa</a></li>
-        <li><a href="index.html#about">Hakkımda</a></li>
-        <li><a href="patients.html">Hastalar</a></li>
-        <li><a href="healthcare.html">Sağlık Çalışanları</a></li>
-        <li><a href="kurslar.html" class="active">Kurslar</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="index.html#contact">İletişim</a></li>
+        <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
+        <li><a href="index.html#about" data-i18n="nav.about">Hakkımda</a></li>
+        <li><a href="patients.html" data-i18n="nav.patients">Hastalar</a></li>
+        <li><a href="healthcare.html" data-i18n="nav.healthcare">Sağlık Çalışanları</a></li>
+        <li><a href="kurslar.html" data-i18n="nav.courses">Kurslar</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+        <li><a href="index.html#contact" data-i18n="nav.contact">İletişim</a></li>
+        <li>
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="tr">TR</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+        </li>
       </ul>
       <button class="mobile-toggle" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -542,7 +549,7 @@
   <section class="content-section" id="ilkyardim">
     <div class="container">
       <div class="section-header animate-in">
-        <span class="section-label" style="color: #38a169;">İLKYARDIM EĞİTİMLERİ</span>
+        <span class="section-label" style="color: #388e60;">İLKYARDIM EĞİTİMLERİ</span>
         <h2>Halk Sağlığı İlkyardımı</h2>
         <p class="section-intro">Sağlık Bakanlığı onaylı ilkyardım kursları — halk için temel eğitimden eğitimci yetiştirmeye kadar kademeli program.</p>
       </div>
@@ -634,7 +641,7 @@
   <section class="content-section" id="usg" style="background: white;">
     <div class="container">
       <div class="section-header animate-in">
-        <span class="section-label" style="color: #805ad5;">ACİL USG / POCUS</span>
+        <span class="section-label" style="color: #7a60b0;">ACİL USG / POCUS</span>
         <h2>Yatakbaşı Ultrasonografi</h2>
         <p class="section-intro">Point-of-Care Ultrasound (POCUS) — acil serviste hızlı tanı için yatakbaşı US becerileri. Türkiye ve uluslararası düzeyde çeşitli programlar mevcut.</p>
       </div>

@@ -7,6 +7,7 @@
   <title>Sağlık Çalışanları | Dr. Süleyman Alpar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d2733'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='27' font-weight='700' fill='%23c8a558' text-anchor='middle'%3ESA%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="css/style.css">
   <style>
     .section-intro {
@@ -30,7 +31,7 @@
     .protocol-card h3 { font-size: 1.15rem; margin-bottom: 10px; color: var(--primary); }
     .protocol-card .protocol-tag {
       display: inline-block;
-      background: rgba(43,108,176,0.08);
+      background: rgba(42,98,143,0.08);
       color: var(--accent);
       font-size: 0.75rem;
       font-weight: 600;
@@ -133,7 +134,7 @@
     .detail-source {
       margin-top: 12px;
       padding: 10px 12px;
-      background: rgba(66,153,225,0.06);
+      background: rgba(42,98,143,0.06);
       border-left: 3px solid var(--accent);
       border-radius: 6px;
       font-size: 0.82rem;
@@ -159,13 +160,19 @@
         <span>Dr. S. Alpar</span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html">Ana Sayfa</a></li>
-        <li><a href="index.html#about">Hakkımda</a></li>
-        <li><a href="patients.html">Hastalar</a></li>
-        <li><a href="healthcare.html" class="active">Sağlık Çalışanları</a></li>
-        <li><a href="kurslar.html">Kurslar</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="index.html#contact">İletişim</a></li>
+        <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
+        <li><a href="index.html#about" data-i18n="nav.about">Hakkımda</a></li>
+        <li><a href="patients.html" data-i18n="nav.patients">Hastalar</a></li>
+        <li><a href="healthcare.html" data-i18n="nav.healthcare">Sağlık Çalışanları</a></li>
+        <li><a href="kurslar.html" data-i18n="nav.courses">Kurslar</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+        <li><a href="index.html#contact" data-i18n="nav.contact">İletişim</a></li>
+        <li>
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="tr">TR</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+        </li>
       </ul>
       <button class="mobile-toggle" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -187,7 +194,7 @@
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto;">
 
         <a href="skorlar.html" style="text-decoration: none; color: inherit;">
-          <div style="background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border-radius: 14px; padding: 28px 32px; box-shadow: 0 12px 32px rgba(26,54,93,0.18); height: 100%; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(26,54,93,0.25)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 12px 32px rgba(26,54,93,0.18)';">
+          <div style="background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border-radius: 10px; padding: 28px 32px; box-shadow: 0 12px 32px rgba(29,39,51,0.18); height: 100%; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(29,39,51,0.25)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 12px 32px rgba(29,39,51,0.18)';">
             <div style="font-size: 0.74rem; font-weight: 700; letter-spacing: 1.5px; opacity: 0.85; margin-bottom: 6px;">İNTERAKTİF ARAÇ</div>
             <h2 style="color: white; font-size: 1.5rem; margin: 0 0 8px;">Klinik Skor Hesaplayıcılar</h2>
             <p style="color: rgba(255,255,255,0.9); font-size: 0.92rem; line-height: 1.55; margin: 0 0 14px;">HEART, Wells, qSOFA, NEWS2, CHA₂DS₂-VASc, GBS, Alvarado ve diğerleri — 26 skor, 11 kategori. Anlık hesap.</p>
@@ -199,7 +206,7 @@
         </a>
 
         <a href="epikriz.html" style="text-decoration: none; color: inherit;">
-          <div style="background: linear-gradient(135deg, #2f855a, #38a169); color: white; border-radius: 14px; padding: 28px 32px; box-shadow: 0 12px 32px rgba(47,133,90,0.20); height: 100%; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(47,133,90,0.30)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 12px 32px rgba(47,133,90,0.20)';">
+          <div style="background: linear-gradient(135deg, #2e7350, #388e60); color: white; border-radius: 10px; padding: 28px 32px; box-shadow: 0 12px 32px rgba(47,133,90,0.20); height: 100%; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(47,133,90,0.30)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 12px 32px rgba(47,133,90,0.20)';">
             <div style="font-size: 0.74rem; font-weight: 700; letter-spacing: 1.5px; opacity: 0.85; margin-bottom: 6px;">İNTERAKTİF ARAÇ</div>
             <h2 style="color: white; font-size: 1.5rem; margin: 0 0 8px;">Epikriz Yardımcısı</h2>
             <p style="color: rgba(255,255,255,0.9); font-size: 0.92rem; line-height: 1.55; margin: 0 0 14px;">20 senaryo şablonu — sihirbaz adımlarıyla yapılandırılmış klinik not. Hekim için zamandan tasarruf, doküman bütünlüğü.</p>
@@ -211,7 +218,7 @@
         </a>
 
         <a href="tani.html" style="text-decoration: none; color: inherit;">
-          <div style="background: linear-gradient(135deg, #c53030, #e53e3e); color: white; border-radius: 14px; padding: 28px 32px; box-shadow: 0 12px 32px rgba(197,48,48,0.20); height: 100%; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(197,48,48,0.30)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 12px 32px rgba(197,48,48,0.20)';">
+          <div style="background: linear-gradient(135deg, #c53030, #e53e3e); color: white; border-radius: 10px; padding: 28px 32px; box-shadow: 0 12px 32px rgba(197,48,48,0.20); height: 100%; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(197,48,48,0.30)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 12px 32px rgba(197,48,48,0.20)';">
             <div style="font-size: 0.74rem; font-weight: 700; letter-spacing: 1.5px; opacity: 0.85; margin-bottom: 6px;">YENİ &mdash; KARAR DESTEK</div>
             <h2 style="color: white; font-size: 1.5rem; margin: 0 0 8px;">Tanı Yardımcısı</h2>
             <p style="color: rgba(255,255,255,0.9); font-size: 0.92rem; line-height: 1.55; margin: 0 0 14px;">Şikayete göre ayırıcı tanı listesi — destekleyen bulgular, kırmızı bayraklar, önerilen tetkikler. 20 yakınma kategorisi.</p>
@@ -223,7 +230,7 @@
         </a>
 
         <a href="#literatur" style="text-decoration: none; color: inherit;">
-          <div style="background: linear-gradient(135deg, #9c6a15, #c6973f); color: white; border-radius: 14px; padding: 28px 32px; box-shadow: 0 12px 32px rgba(156,106,21,0.20); height: 100%; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(156,106,21,0.30)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 12px 32px rgba(156,106,21,0.20)';">
+          <div style="background: linear-gradient(135deg, #8a6c2a, #c8a558); color: white; border-radius: 10px; padding: 28px 32px; box-shadow: 0 12px 32px rgba(156,106,21,0.20); height: 100%; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(156,106,21,0.30)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 12px 32px rgba(156,106,21,0.20)';">
             <div style="font-size: 0.74rem; font-weight: 700; letter-spacing: 1.5px; opacity: 0.85; margin-bottom: 6px;">YENİ &mdash; OTOMATİK</div>
             <h2 style="color: white; font-size: 1.5rem; margin: 0 0 8px;">Güncel Acil Tıp Literatürü</h2>
             <p style="color: rgba(255,255,255,0.9); font-size: 0.92rem; line-height: 1.55; margin: 0 0 14px;">Önde gelen dergilerden her sabah otomatik taranan güncel makaleler — Türkçe kısa özet ve kaynağa doğrudan bağlantı ile.</p>
@@ -250,9 +257,9 @@
     #literatur .lit-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; display: flex; flex-direction: column; gap: 11px; box-shadow: var(--shadow); transition: transform var(--transition), box-shadow var(--transition); }
     #literatur .lit-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
     #literatur .lit-top { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
-    #literatur .lit-journal { font-size: 0.72rem; font-weight: 700; color: var(--accent); background: rgba(43,108,176,0.10); padding: 3px 10px; border-radius: 6px; letter-spacing: 0.02em; }
+    #literatur .lit-journal { font-size: 0.72rem; font-weight: 700; color: var(--accent); background: rgba(42,98,143,0.10); padding: 3px 10px; border-radius: 6px; letter-spacing: 0.02em; }
     #literatur .lit-date { font-size: 0.75rem; color: var(--text-light); }
-    #literatur .lit-cat { margin-left: auto; font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #8a6a1f; background: rgba(198,151,63,0.15); padding: 3px 9px; border-radius: 6px; }
+    #literatur .lit-cat { margin-left: auto; font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #8a6a1f; background: rgba(169,134,52,0.15); padding: 3px 9px; border-radius: 6px; }
     #literatur .lit-card h3 { font-size: 1.08rem; line-height: 1.34; color: var(--primary); margin: 0; }
     #literatur .lit-en { font-size: 0.76rem; color: var(--text-light); font-style: italic; line-height: 1.4; margin: 0; }
     #literatur .lit-ozet { font-size: 0.87rem; line-height: 1.6; color: var(--text); margin: 0; }
@@ -329,7 +336,7 @@
 
         <div class="protocol-card urgent expandable animate-in" style="opacity: 0.85;">
           <span class="protocol-tag">KARDİYOLOJİK</span>
-          <h3>Göğüs Ağrısı &amp; AKS <span style="background: rgba(198,151,63,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
+          <h3>Göğüs Ağrısı &amp; AKS <span style="background: rgba(169,134,52,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
           <p style="color: var(--text-light); font-size: 0.9rem;">Akut koroner sendrom şüphesinde değerlendirme — güncel ESC kılavuzlarına uygun içerik hazırlanıyor.</p>
           <div class="detail-toggle">
             <span>Detayları gör</span>
@@ -337,7 +344,7 @@
           </div>
           <div class="detail-panel"><div class="detail-panel-inner">
             <p style="text-align: center; color: var(--text-light); padding: 20px 0;">
-              <span style="font-size: 2rem;">&#128736;</span><br>
+              <span style="font-size: 2rem;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><br>
               Bu bölüm için güncel içerik hazırlanmaktadır.
             </p>
           </div></div>
@@ -345,7 +352,7 @@
 
         <div class="protocol-card urgent expandable animate-in" style="opacity: 0.85;">
           <span class="protocol-tag">ENFEKSİYON</span>
-          <h3>Sepsis &amp; Septik Şok <span style="background: rgba(198,151,63,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
+          <h3>Sepsis &amp; Septik Şok <span style="background: rgba(169,134,52,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
           <p style="color: var(--text-light); font-size: 0.9rem;">Sepsis tanıma ve erken yönetim — Surviving Sepsis Campaign güncel kılavuzlarına uygun içerik hazırlanıyor.</p>
           <div class="detail-toggle">
             <span>Detayları gör</span>
@@ -353,7 +360,7 @@
           </div>
           <div class="detail-panel"><div class="detail-panel-inner">
             <p style="text-align: center; color: var(--text-light); padding: 20px 0;">
-              <span style="font-size: 2rem;">&#128736;</span><br>
+              <span style="font-size: 2rem;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><br>
               Bu bölüm için güncel içerik hazırlanmaktadır.
             </p>
           </div></div>
@@ -361,7 +368,7 @@
 
         <div class="protocol-card urgent expandable animate-in" style="opacity: 0.85;">
           <span class="protocol-tag">NÖROLOJİK</span>
-          <h3>Akut İnme Yönetimi <span style="background: rgba(198,151,63,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
+          <h3>Akut İnme Yönetimi <span style="background: rgba(169,134,52,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
           <p style="color: var(--text-light); font-size: 0.9rem;">İskemik/hemorajik inme yönetimi — AHA/ASA güncel kılavuzlarına uygun içerik hazırlanıyor.</p>
           <div class="detail-toggle">
             <span>Detayları gör</span>
@@ -369,7 +376,7 @@
           </div>
           <div class="detail-panel"><div class="detail-panel-inner">
             <p style="text-align: center; color: var(--text-light); padding: 20px 0;">
-              <span style="font-size: 2rem;">&#128736;</span><br>
+              <span style="font-size: 2rem;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><br>
               Bu bölüm için güncel içerik hazırlanmaktadır.
             </p>
           </div></div>
@@ -377,7 +384,7 @@
 
         <div class="protocol-card urgent expandable animate-in" style="opacity: 0.85;">
           <span class="protocol-tag">TRAVMA</span>
-          <h3>Travma Yaklaşımı <span style="background: rgba(198,151,63,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
+          <h3>Travma Yaklaşımı <span style="background: rgba(169,134,52,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
           <p style="color: var(--text-light); font-size: 0.9rem;">Travmalı hastaya sistematik yaklaşım — güncel kılavuzlara uygun içerik Dr. Alpar tarafından hazırlanıyor.</p>
           <div class="detail-toggle">
             <span>Detayları gör</span>
@@ -385,7 +392,7 @@
           </div>
           <div class="detail-panel"><div class="detail-panel-inner">
             <p style="text-align: center; color: var(--text-light); padding: 20px 0;">
-              <span style="font-size: 2rem;">&#128736;</span><br>
+              <span style="font-size: 2rem;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><br>
               Bu bölüm için güncel içerik hazırlanmaktadır.<br>
               Detaylı travma yaklaşımı için <a href="kurslar.html" style="color: var(--accent); font-weight: 600;">Kurslar</a> sayfasını ziyaret edin.
             </p>
@@ -472,7 +479,7 @@
 
         <div class="protocol-card expandable animate-in" style="opacity: 0.85;">
           <span class="protocol-tag">HAVAYOLU</span>
-          <h3>Havayolu Yönetimi &amp; RSI <span style="background: rgba(198,151,63,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
+          <h3>Havayolu Yönetimi &amp; RSI <span style="background: rgba(169,134,52,0.15); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 6px; vertical-align: middle;">HAZIRLANIYOR</span></h3>
           <p style="color: var(--text-light); font-size: 0.9rem;">Zor havayolu değerlendirmesi ve RSI — DAS güncel algoritmalarına uygun içerik hazırlanıyor.</p>
           <div class="detail-toggle">
             <span>Detayları gör</span>
@@ -480,7 +487,7 @@
           </div>
           <div class="detail-panel"><div class="detail-panel-inner">
             <p style="text-align: center; color: var(--text-light); padding: 20px 0;">
-              <span style="font-size: 2rem;">&#128736;</span><br>
+              <span style="font-size: 2rem;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><br>
               Bu bölüm için güncel içerik hazırlanmaktadır.
             </p>
           </div></div>
@@ -501,7 +508,7 @@
       <div class="resource-list">
 
         <div class="resource-item expandable animate-in">
-          <div class="resource-icon" style="background: rgba(66,153,225,0.1); color: var(--accent);">&#129516;</div>
+          <div class="resource-icon" style="background: rgba(42,98,143,0.1); color: var(--accent);"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 16 1.5 1.5"/><path d="m14 8-1.5-1.5"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/><path d="m16.5 10.5 1 1"/><path d="m17 6-2.891-2.891"/><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="m20 9 .891.891"/><path d="M3.109 14.109 4 15"/><path d="m6.5 12.5 1 1"/><path d="m7 18 2.891 2.891"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/></svg></div>
           <div class="resource-info">
             <h3>Anatomi Atlası ve Notları</h3>
             <p>Sistematik ve topografik anatomi ders notları, şemalar ve pratik bilgiler.</p>
@@ -531,7 +538,7 @@
         </div>
 
         <div class="resource-item expandable animate-in">
-          <div class="resource-icon" style="background: rgba(198,151,63,0.1); color: var(--gold);">&#128680;</div>
+          <div class="resource-icon" style="background: rgba(169,134,52,0.1); color: var(--gold);"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18v-6a5 5 0 1 1 10 0v6"/><path d="M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z"/><path d="M21 12h1"/><path d="M18.5 4.5 18 5"/><path d="M2 12h1"/><path d="M12 2v1"/><path d="m4.929 4.929.707.707"/><path d="M12 12v6"/></svg></div>
           <div class="resource-info">
             <h3>Acil Tıp Protokolleri (Öğrenci)</h3>
             <p>Acil stajında bilmesi gereken temel algoritmalar ve vaka örnekleri.</p>
@@ -561,7 +568,7 @@
         </div>
 
         <div class="resource-item expandable animate-in">
-          <div class="resource-icon" style="background: rgba(72,187,120,0.1); color: #38a169;">&#128300;</div>
+          <div class="resource-icon" style="background: rgba(56,142,96,0.1); color: #388e60;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg></div>
           <div class="resource-info">
             <h3>Klinik Vaka Çalışmaları</h3>
             <p>Gerçek vakalardan uyarlanmış interaktif vaka çalışmaları ve çözüm analizleri.</p>
@@ -591,7 +598,7 @@
         </div>
 
         <div class="resource-item expandable animate-in">
-          <div class="resource-icon" style="background: rgba(237,100,100,0.1); color: #e53e3e;">&#9879;</div>
+          <div class="resource-icon" style="background: rgba(229,62,62,0.1); color: #e53e3e;">&#9879;</div>
           <div class="resource-info">
             <h3>Tıbbi Etik ve Deontoloji</h3>
             <p>Etik ikilemler, hasta-hekim ilişkisi ve mesleki değerler üzerine kapsamlı notlar.</p>
@@ -628,7 +635,7 @@
         </div>
 
         <div class="resource-item expandable animate-in">
-          <div class="resource-icon" style="background: rgba(159,122,234,0.1); color: #805ad5;">&#127942;</div>
+          <div class="resource-icon" style="background: rgba(122,96,176,0.1); color: #7a60b0;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
           <div class="resource-info">
             <h3>TUS Hazırlık Rehberi</h3>
             <p>Tıpta Uzmanlık Sınavı hazırlığı için çalışma planı, kaynak önerileri ve strateji.</p>
@@ -672,7 +679,7 @@
       <div class="cards-grid">
 
         <div class="card expandable animate-in">
-          <div class="card-icon blue">&#127747;</div>
+          <div class="card-icon blue"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></div>
           <h3>İlk Nöbete Hazırlık</h3>
           <p>Çantanda bulunması gerekenler, hasta listesi yönetimi, zor anlara psikolojik hazırlık.</p>
           <div class="detail-toggle">
@@ -703,7 +710,7 @@
         </div>
 
         <div class="card expandable animate-in">
-          <div class="card-icon gold">&#128221;</div>
+          <div class="card-icon gold"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg></div>
           <h3>Acil Tıp Asistanlığı Müfredatı</h3>
           <p>4 yıllık uzmanlık süreci: rotasyonlar, yetkinlikler, öz-değerlendirme kriterleri.</p>
           <div class="detail-toggle">
@@ -736,7 +743,7 @@
         </div>
 
         <div class="card expandable animate-in">
-          <div class="card-icon green">&#128172;</div>
+          <div class="card-icon green"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div>
           <h3>SBAR ile Hasta Devir-Teslimi</h3>
           <p>Situation-Background-Assessment-Recommendation: kritik hasta bilgisini doğru aktarma.</p>
           <div class="detail-toggle">
@@ -763,7 +770,7 @@
         </div>
 
         <div class="card expandable animate-in">
-          <div class="card-icon purple">&#129309;</div>
+          <div class="card-icon purple"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <h3>Zor Hasta İletişimi</h3>
           <p>Agresif hasta, kötü haber verme, hasta yakını yönetimi — iletişim becerileri.</p>
           <div class="detail-toggle">
@@ -797,7 +804,7 @@
         </div>
 
         <div class="card expandable animate-in">
-          <div class="card-icon blue">&#9878;&#65039;</div>
+          <div class="card-icon blue"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></div>
           <h3>Kritik Karar Verme</h3>
           <p>Bilişsel önyargılar, diagnostik hatalar, ayırıcı tanı disiplini ve metakognisyon.</p>
           <div class="detail-toggle">
@@ -825,7 +832,7 @@
         </div>
 
         <div class="card expandable animate-in">
-          <div class="card-icon gold">&#129656;</div>
+          <div class="card-icon gold"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="10" x="2" y="7" rx="2" ry="2"/><line x1="22" x2="22" y1="11" y2="13"/><line x1="6" x2="6" y1="11" y2="13"/></svg></div>
           <h3>Tükenmişlik &amp; Öz Bakım</h3>
           <p>Nöbet sonrası toparlanma, uyku hijyeni, ikinci mağdur sendromu ve destek kaynakları.</p>
           <div class="detail-toggle">
@@ -872,7 +879,7 @@
       <div class="resource-list">
 
         <div class="resource-item expandable animate-in">
-          <div class="resource-icon" style="background: rgba(43,108,176,0.1); color: var(--accent);">&#128196;</div>
+          <div class="resource-icon" style="background: rgba(42,98,143,0.1); color: var(--accent);"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></div>
           <div class="resource-info">
             <h3>Araştırma Tasarımı</h3>
             <p>Çalışma tipi seçimi (RCT, kohort, vaka-kontrol), örneklem büyüklüğü, bias kontrolü.</p>
@@ -907,7 +914,7 @@
         </div>
 
         <div class="resource-item expandable animate-in">
-          <div class="resource-icon" style="background: rgba(198,151,63,0.1); color: var(--gold);">&#128200;</div>
+          <div class="resource-icon" style="background: rgba(169,134,52,0.1); color: var(--gold);"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
           <div class="resource-info">
             <h3>İstatistik Temelleri</h3>
             <p>p değeri, güven aralığı, etki büyüklüğü, parametrik/non-parametrik test seçimi.</p>
@@ -942,7 +949,7 @@
         </div>
 
         <div class="resource-item expandable animate-in">
-          <div class="resource-icon" style="background: rgba(72,187,120,0.1); color: #38a169;">&#9878;&#65039;</div>
+          <div class="resource-icon" style="background: rgba(56,142,96,0.1); color: #388e60;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></div>
           <div class="resource-info">
             <h3>Etik Kurul Başvurusu</h3>
             <p>Girişimsel / girişimsel olmayan ayrımı, bilgilendirilmiş onam formu hazırlama.</p>
@@ -980,7 +987,7 @@
         </div>
 
         <div class="resource-item expandable animate-in">
-          <div class="resource-icon" style="background: rgba(159,122,234,0.1); color: #805ad5;">&#128221;</div>
+          <div class="resource-icon" style="background: rgba(122,96,176,0.1); color: #7a60b0;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg></div>
           <div class="resource-info">
             <h3>IMRaD: Makale Yapısı</h3>
             <p>Introduction, Methods, Results, Discussion — her bölüm için yazım stratejileri.</p>
@@ -1019,7 +1026,7 @@
         </div>
 
         <div class="resource-item expandable animate-in">
-          <div class="resource-icon" style="background: rgba(237,100,100,0.1); color: #e53e3e;">&#128269;</div>
+          <div class="resource-icon" style="background: rgba(229,62,62,0.1); color: #e53e3e;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
           <div class="resource-info">
             <h3>Dergi Seçimi &amp; Impact Factor</h3>
             <p>Kapsam uyumu, yağmacı dergiden kaçınma, açık erişim modelleri ve maliyetler.</p>
@@ -1056,7 +1063,7 @@
         </div>
 
         <div class="resource-item expandable animate-in">
-          <div class="resource-icon" style="background: rgba(66,153,225,0.1); color: var(--accent);">&#127897;&#65039;</div>
+          <div class="resource-icon" style="background: rgba(42,98,143,0.1); color: var(--accent);"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></div>
           <div class="resource-info">
             <h3>Bilimsel Sunum &amp; Poster</h3>
             <p>Kongre sunumu hazırlama, poster tasarımı, soru-cevap oturumu yönetimi.</p>
@@ -1091,7 +1098,7 @@
         </div>
 
         <div class="resource-item expandable animate-in">
-          <div class="resource-icon" style="background: rgba(198,151,63,0.1); color: var(--gold);">&#128218;</div>
+          <div class="resource-icon" style="background: rgba(169,134,52,0.1); color: var(--gold);"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
           <div class="resource-info">
             <h3>Yayın Etiği</h3>
             <p>Yazarlık kriterleri (ICMJE), intihal, veri manipülasyonu, çıkar çatışması beyanı.</p>
