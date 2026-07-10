@@ -19,183 +19,54 @@
   <link rel="apple-touch-icon" href="img/icon-192.png">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .hcp-banner {
-      background: linear-gradient(135deg, rgba(229,62,62,0.08), rgba(42,98,143,0.05));
-      border-left: 4px solid #e53e3e;
-      padding: 14px 22px;
-      max-width: 980px;
-      margin: 30px auto 0;
-      border-radius: 8px;
-      font-size: 0.92rem;
-      line-height: 1.6;
+    /* tani.html — handoff dili. Aciliyet skalası (kırmızı→yeşil) klinik, korunur/modernize. */
+    :root {
+      --acil-kirmizi: #dc2626; --acil-kirmizi-koyu: #b91c1c;
+      --acil-turuncu: #ea580c; --acil-turuncu-koyu: #c2410c;
+      --acil-sari: #d97706; --acil-sari-koyu: #b45309;
+      --acil-yesil: #059669; --acil-yesil-koyu: #047857;
     }
-    .hcp-banner strong { color: #c53030; display: block; margin-bottom: 4px; font-size: 0.78rem; letter-spacing: 1px; }
+    .content-section { background: #fff; }
+    .hcp-banner { background: #eef6f8; border: 1px solid #cfe6ec; border-left: 3px solid var(--acil-kirmizi); padding: 15px 22px; max-width: 980px; margin: 30px auto 0; border-radius: var(--radius-sm); font-size: 0.92rem; line-height: 1.6; color: var(--text); }
+    .hcp-banner strong { color: var(--acil-kirmizi-koyu); display: block; margin-bottom: 4px; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; }
 
-    .tani-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      max-width: 1200px;
-      margin: 30px auto 24px;
-      padding: 0 20px;
-      justify-content: center;
-    }
-    .sikayet-chip {
-      padding: 9px 16px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      font-size: 0.86rem;
-      color: var(--text-light);
-      cursor: pointer;
-      transition: all 0.2s;
-      user-select: none;
-    }
-    .sikayet-chip:hover { background: rgba(42,98,143,0.06); color: var(--accent); border-color: var(--accent); }
-    .sikayet-chip.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-      font-weight: 600;
-    }
+    .tani-bar { display: flex; flex-wrap: wrap; gap: 8px; max-width: 1200px; margin: 30px auto 24px; padding: 0 20px; justify-content: center; }
+    .sikayet-chip { padding: 9px 16px; background: transparent; border: 1px solid var(--border-strong); border-radius: var(--radius-pill); font-size: 0.86rem; font-weight: 500; color: #424245; cursor: pointer; transition: all 0.2s; user-select: none; }
+    .sikayet-chip:hover { border-color: var(--text); }
+    .sikayet-chip.active { background: var(--text); color: #fff; border-color: var(--text); font-weight: 600; }
 
-    .tani-wrap {
-      max-width: 1200px;
-      margin: 0 auto 60px;
-      padding: 0 24px;
-    }
-    .tani-baslik-blok {
-      background: white;
-      border-radius: 10px;
-      padding: 22px 28px;
-      box-shadow: var(--shadow);
-      margin-bottom: 24px;
-    }
-    .tani-baslik-blok h2 {
-      font-size: 1.5rem;
-      margin: 0 0 6px;
-    }
-    .tani-baslik-blok p {
-      color: var(--text-light);
-      font-size: 0.92rem;
-      line-height: 1.6;
-      margin: 0;
-    }
+    .tani-wrap { max-width: 1200px; margin: 0 auto 60px; padding: 0 24px; }
+    .tani-baslik-blok { background: var(--bg-soft); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 24px; }
+    .tani-baslik-blok h2 { font-size: 1.5rem; margin: 0 0 6px; letter-spacing: -0.02em; }
+    .tani-baslik-blok p { color: var(--text-light); font-size: 0.92rem; line-height: 1.6; margin: 0; }
 
-    .tani-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 20px;
-    }
-    .tani-kart {
-      background: white;
-      border-radius: 12px;
-      padding: 22px 24px;
-      box-shadow: var(--shadow);
-      border-left: 4px solid var(--border);
-      transition: all 0.25s;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-    }
+    .tani-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 18px; }
+    .tani-kart { background: var(--bg-soft); border-radius: var(--radius); padding: 24px; border-left: 3px solid var(--border-strong); transition: transform .5s var(--ease), box-shadow .5s var(--ease); cursor: pointer; display: flex; flex-direction: column; }
     .tani-kart:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
-    .tani-kart.kirmizi { border-left-color: #e53e3e; }
-    .tani-kart.turuncu { border-left-color: #ed8936; }
-    .tani-kart.sari { border-left-color: var(--gold); }
-    .tani-kart.yesil { border-left-color: #388e60; }
+    .tani-kart.kirmizi { border-left-color: var(--acil-kirmizi); }
+    .tani-kart.turuncu { border-left-color: var(--acil-turuncu); }
+    .tani-kart.sari { border-left-color: var(--acil-sari); }
+    .tani-kart.yesil { border-left-color: var(--acil-yesil); }
 
-    .tani-kart .baslik-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-    .tani-kart h3 {
-      font-size: 1.1rem;
-      line-height: 1.3;
-      margin: 0;
-    }
-    .tani-kart .alt-baslik {
-      font-size: 0.82rem;
-      color: var(--text-light);
-      font-style: italic;
-      margin-top: 2px;
-    }
-    .aciliyet-rozet {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-      padding: 4px 10px;
-      border-radius: 12px;
-      flex-shrink: 0;
-      text-transform: uppercase;
-    }
-    .aciliyet-rozet.kirmizi { background: rgba(229,62,62,0.12); color: #c53030; }
-    .aciliyet-rozet.turuncu { background: rgba(237,137,54,0.14); color: #c05621; }
-    .aciliyet-rozet.sari { background: rgba(212,169,78,0.16); color: #b7791f; }
-    .aciliyet-rozet.yesil { background: rgba(56,142,96,0.12); color: #2e7350; }
+    .tani-kart .baslik-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+    .tani-kart h3 { font-size: 1.1rem; line-height: 1.3; margin: 0; letter-spacing: -0.01em; }
+    .tani-kart .alt-baslik { font-size: 0.82rem; color: var(--text-light); font-style: italic; margin-top: 2px; }
+    .aciliyet-rozet { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em; padding: 4px 11px; border-radius: var(--radius-pill); flex-shrink: 0; text-transform: uppercase; }
+    .aciliyet-rozet.kirmizi { background: rgba(220,38,38,0.12); color: var(--acil-kirmizi-koyu); }
+    .aciliyet-rozet.turuncu { background: rgba(234,88,12,0.14); color: var(--acil-turuncu-koyu); }
+    .aciliyet-rozet.sari { background: rgba(217,119,6,0.14); color: var(--acil-sari-koyu); }
+    .aciliyet-rozet.yesil { background: rgba(5,150,105,0.12); color: var(--acil-yesil-koyu); }
 
-    .tani-kart .skor-badge {
-      margin-top: 10px;
-      font-size: 0.74rem;
-      color: var(--accent);
-      background: rgba(42,98,143,0.08);
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 10px;
-      letter-spacing: 0.5px;
-      font-weight: 600;
-    }
+    .tani-kart .skor-badge { margin-top: 10px; font-size: 0.72rem; color: var(--vurgu); background: #e7f1f4; display: inline-block; padding: 4px 11px; border-radius: var(--radius-pill); letter-spacing: 0.03em; font-weight: 600; }
 
-    .detay-bolum {
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-    }
-    .detay-bolum h4 {
-      font-family: var(--font-body);
-      font-size: 0.74rem;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: var(--text-light);
-      margin: 12px 0 6px;
-    }
+    .detay-bolum { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+    .detay-bolum h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 12px 0 6px; }
     .detay-bolum h4:first-child { margin-top: 0; }
-    .detay-bolum ul {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 10px 0;
-    }
-    .detay-bolum ul li {
-      padding: 4px 0 4px 18px;
-      position: relative;
-      font-size: 0.86rem;
-      color: var(--text);
-      line-height: 1.5;
-    }
-    .detay-bolum ul.destekleyen li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #388e60;
-      font-weight: 700;
-    }
-    .detay-bolum ul.bayraklar li::before {
-      content: "⚠";
-      position: absolute;
-      left: 0;
-      color: #e53e3e;
-      font-weight: 700;
-    }
-    .detay-bolum ul.tetkikler li::before {
-      content: "›";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: 700;
-    }
+    .detay-bolum ul { list-style: none; padding: 0; margin: 0 0 10px 0; }
+    .detay-bolum ul li { padding: 4px 0 4px 20px; position: relative; font-size: 0.86rem; color: var(--text); line-height: 1.5; }
+    .detay-bolum ul.destekleyen li::before { content: "\2713"; position: absolute; left: 0; color: var(--acil-yesil); font-weight: 700; }
+    .detay-bolum ul.bayraklar li::before { content: "\26A0"; position: absolute; left: 0; color: var(--acil-kirmizi); font-weight: 700; }
+    .detay-bolum ul.tetkikler li::before { content: "\203A"; position: absolute; left: 0; color: var(--vurgu); font-weight: 700; }
   </style>
 </head>
 <body>
@@ -236,7 +107,7 @@
 
   <div class="hcp-banner">
     <strong>⚠ SAĞLIK ÇALIŞANLARI İÇİNDİR</strong>
-    Bu sayfa eğitim ve klinik karar destek amaçlıdır; tıbbi muayene ve hekim klinik yargısı yerine geçmez. Tanı listesi öncelikli olası tanıları sıralar — vakaya özel klinik bağlam değerlendirmesi şarttır. Aciliyet renk kodu: <span style="color:#c53030;font-weight:600;">kırmızı (kritik)</span>, <span style="color:#c05621;font-weight:600;">turuncu (acil)</span>, <span style="color:#b7791f;font-weight:600;">sarı (orta)</span>, <span style="color:#2e7350;font-weight:600;">yeşil (rutin)</span>. Tanıyıcı veri girmeyiniz.
+    Bu sayfa eğitim ve klinik karar destek amaçlıdır; tıbbi muayene ve hekim klinik yargısı yerine geçmez. Tanı listesi öncelikli olası tanıları sıralar — vakaya özel klinik bağlam değerlendirmesi şarttır. Aciliyet renk kodu: <span style="color:#b91c1c;font-weight:600;">kırmızı (kritik)</span>, <span style="color:#c2410c;font-weight:600;">turuncu (acil)</span>, <span style="color:#b45309;font-weight:600;">sarı (orta)</span>, <span style="color:#047857;font-weight:600;">yeşil (rutin)</span>. Tanıyıcı veri girmeyiniz.
   </div>
 
   <!-- Akıllı analiz girdi alanı -->
@@ -255,7 +126,7 @@
         <span style="font-size: 0.78rem; color: var(--text-light);">Veya aşağıdaki şikayet sekmelerinden manuel seçim yapabilirsiniz.</span>
       </div>
       <!-- Algılanan bilgiler paneli -->
-      <div id="algilanan" style="display: none; margin-top: 18px; padding: 14px 16px; background: rgba(42,98,143,0.05); border-radius: 8px; border-left: 4px solid var(--accent);">
+      <div id="algilanan" style="display: none; margin-top: 18px; padding: 14px 16px; background: #eef6f8; border: 1px solid #cfe6ec; border-radius: 12px; border-left: 4px solid var(--accent);">
         <div style="font-size: 0.74rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 8px;">ALGILANAN BİLGİLER</div>
         <div id="algilananIcerik" style="font-size: 0.9rem; line-height: 1.7;"></div>
       </div>
@@ -264,7 +135,7 @@
 
   <!-- Önerilen skorlar (akıllı modda görünür) -->
   <div id="onerilenSkorlarBlok" style="display: none; max-width: 980px; margin: 18px auto 0; padding: 0 20px;">
-    <div style="background: linear-gradient(135deg, rgba(42,98,143,0.05), rgba(169,134,52,0.04)); border-radius: 12px; padding: 18px 22px; border: 1px solid var(--border);">
+    <div style="background: #eef6f8; border-radius: 12px; padding: 18px 22px; border: 1px solid var(--border);">
       <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
         <div style="font-size: 1.2rem;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg></div>
         <h3 style="font-size: 1rem; margin: 0; color: var(--primary);">Bu vakada faydalı olabilecek klinik skorlar</h3>
@@ -336,10 +207,10 @@
       for (const t of tanilar) {
         const matchedRf = (smart && t._matched && t._matched.length)
           ? `<div style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px;">
-              ${t._matched.map(m => `<span style="font-size: 0.7rem; padding: 2px 8px; background: rgba(56,142,96,0.15); color: #2e7350; border-radius: 10px; font-weight: 600;">+ ${m}</span>`).join("")}
+              ${t._matched.map(m => `<span style="font-size: 0.7rem; padding: 2px 8px; background: rgba(5,150,105,0.14); color: #047857; border-radius: 10px; font-weight: 600;">+ ${m}</span>`).join("")}
             </div>` : "";
         const eslesmeRozeti = (smart && t._matched && t._matched.length >= 2)
-          ? `<span style="font-size: 0.65rem; padding: 3px 9px; background: var(--gold); color: white; border-radius: 10px; font-weight: 700; letter-spacing: 0.5px; margin-right: 6px;">⭐ EŞLEŞEN</span>`
+          ? `<span style="font-size: 0.65rem; padding: 3px 9px; background: var(--vurgu); color: white; border-radius: 10px; font-weight: 700; letter-spacing: 0.5px; margin-right: 6px;">⭐ EŞLEŞEN</span>`
           : "";
         html += `
           <div class="tani-kart ${t.aciliyet}">
@@ -387,7 +258,7 @@
         <span style="color: ${val ? 'var(--text)' : 'var(--text-light)'}; font-weight: ${val ? '600' : '400'};">${val || missing}</span></span>
       `;
       let rfHtml = (parsed.rf || []).map(r =>
-        `<span style="display: inline-block; padding: 3px 10px; background: rgba(42,98,143,0.1); color: var(--accent); border-radius: 12px; font-size: 0.78rem; font-weight: 600; margin-right: 4px; margin-bottom: 4px;">${r}</span>`
+        `<span style="display: inline-block; padding: 3px 10px; background: #e7f1f4; color: var(--vurgu); border-radius: 99px; font-size: 0.78rem; font-weight: 600; margin-right: 4px; margin-bottom: 4px;">${r}</span>`
       ).join("");
       if (!rfHtml) rfHtml = "<span style='color: var(--text-light); font-size: 0.85rem;'>Belirgin RF algılanmadı</span>";
       ic.innerHTML = `
