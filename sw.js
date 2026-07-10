@@ -3,7 +3,7 @@
    Klinik araçların çevrimdışı çalışması + hız
    ============================================ */
 
-const SURUM = 'sa-v1';
+const SURUM = 'sa-v2';
 const CEKIRDEK = [
   '/',
   '/index.html',

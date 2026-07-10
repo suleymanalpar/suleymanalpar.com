@@ -18,14 +18,13 @@ const translations = {
 
     // Hero
     'a11y.skip': 'İçeriğe geç',
-    'hero.kicker': 'Acil Tıp Uzmanı',
-    'hero.name': 'Doç. Dr. Süleyman Alpar',
-    'hero.subtitle': 'Öğretim Üyesi & Anabilim Dalı Başkanı',
-    'hero.affiliation': 'İstanbul Beykent Üniversitesi Tıp Fakültesi · Memorial Bahçelievler Hastanesi',
-    'hero.tagline': '',
-    'hero.badge1': 'Acil Tıp Uzmanı',
-    'hero.cta1': 'Hastalar İçin',
-    'hero.cta2': 'Sağlık Çalışanları İçin',
+    'hero.kicker': 'Acil Tıp Uzmanı · Öğretim Üyesi',
+    'hero.name': 'Doç. Dr. Süleyman ALPAR',
+    'hero.subtitle': 'Acil tıpta doğru bilgi hayat kurtarır. Hastalar için anlaşılır rehberler, sağlık çalışanları için güncel protokoller, ekipler için uygulamalı eğitimler.',
+    'hero.cta1': 'Hastalar için',
+    'hero.cta2': 'Sağlık çalışanları için',
+    'nav.publications': 'Yayınlar',
+    'nav.press': 'Basında',
 
     // Sections
     'services.label': 'HİZMETLER',
@@ -167,6 +166,52 @@ const translations = {
     'blogpage.filter.law': 'Acil Tıp',
     'blogpage.filter.ethics': 'Tıbbi Etik',
     'blogpage.filter.science': 'Bilimsel Araştırma',
+
+    // v3 Ana Sayfa
+    'stats.pub': 'Bilimsel yayın',
+    'stats.exp': 'Yıl klinik deneyim',
+    'stats.book': 'Kitap bölümü',
+    'stats.course': '& ilk yardım eğitimleri',
+    'aud.patients.label': 'Hastalar için',
+    'aud.patients.title': 'Anlaşılır, güvenilir sağlık bilgisi.',
+    'aud.patients.desc': 'Acilde ne olur, ne zaman acile gidilir? Triyajdan taburculuğa süreç, sık görülen aciller ve hasta hakları — tıbbi jargonsuz, net anlatım.',
+    'aud.patients.link': 'Rehberleri keşfedin →',
+    'aud.hcp.label': 'Sağlık çalışanları için',
+    'aud.hcp.title': 'Protokoller ve akademik kaynaklar.',
+    'aud.hcp.desc': 'Tıp öğrencileri, intern ve asistan hekimler için acil tıp protokolleri, ders notları, kılavuz özetleri ve beceri rehberleri.',
+    'aud.hcp.link': 'Kaynaklara gidin →',
+    'courses.label': 'Kurslar & Eğitimler',
+    'courses.title': 'Temel yaşam desteğinden travmaya, uygulamalı eğitimler.',
+    'courses.chip.als': 'İleri Yaşam Desteği',
+    'courses.chip.firstaid': 'İlk Yardım',
+    'courses.chip.trauma': 'Travma',
+    'courses.chip.triage': 'Triyaj',
+    'courses.cta': 'Eğitim planlayın',
+    'pub.title': 'Seçilmiş yayınlar',
+    'press.label': 'Basında',
+    'press.quote': '"Acil servis, tıbbın vitrinidir; orada kazanılan dakikalar bir ömre bedeldir."',
+    'press.source': '— Hürriyet röportajından',
+    'press.tag1': 'H3N2 gribi özel röportajı',
+    'press.tag2': 'Canlı yayın konuğu',
+    'blog.post1': 'Acil serviste triyaj: doğru önceliklendirme hayat kurtarır',
+    'blog.post2': 'Tıpta yapay zekâ: etik sınırlar nerede?',
+    'blog.post3': 'Klinik araştırmalarda hasta onayı',
+    'cta.title': 'Ekibiniz acil durumlara hazır mı?',
+    'cta.desc': 'Kurumunuza özel, güncel kılavuzlara dayalı CPR ve ilk yardım eğitimi planlayalım.',
+    'cta.plan': 'Eğitim planlayın',
+    'cta.contact': 'İletişime geçin',
+    'contact.acad.label': 'Akademik',
+    'contact.scholar.label': 'Scholar',
+    'contact.scholar.value': 'Yayınları görün →',
+    'contact.form.title': 'Mesaj bırakın',
+    'contact.form.name.ph': 'Adınız',
+    'contact.form.message.ph': 'Mesajınızı yazın…',
+    'contact.subj.general': 'Genel soru',
+    'contact.subj.training': 'Eğitim talebi',
+    'contact.subj.academic': 'Akademik iş birliği',
+    'contact.subj.press': 'Basın',
+    'footer.kvkk': 'KVKK',
+    'footer.copyright': '© 2026 Doç. Dr. Süleyman ALPAR · suleymanalpar@gmail.com · @suleymanalpar',
   },
   en: {
     'nav.home': 'Home',
@@ -179,14 +224,13 @@ const translations = {
     'nav.contact': 'Contact',
 
     'a11y.skip': 'Skip to content',
-    'hero.kicker': 'Emergency Medicine Specialist',
-    'hero.name': 'Süleyman Alpar, MD',
-    'hero.subtitle': 'Associate Professor & Department Chair',
-    'hero.affiliation': 'Istanbul Beykent University Faculty of Medicine · Memorial Bahçelievler Hospital',
-    'hero.tagline': '',
-    'hero.badge1': 'Emergency Medicine Specialist',
-    'hero.cta1': 'For Patients',
-    'hero.cta2': 'For Healthcare Professionals',
+    'hero.kicker': 'Emergency Medicine Specialist · Faculty',
+    'hero.name': 'Assoc. Prof. Süleyman ALPAR, MD',
+    'hero.subtitle': 'In emergency medicine, the right information saves lives. Clear guides for patients, up-to-date protocols for clinicians, hands-on training for teams.',
+    'hero.cta1': 'For patients',
+    'hero.cta2': 'For healthcare professionals',
+    'nav.publications': 'Publications',
+    'nav.press': 'In the Press',
 
     'services.label': 'SERVICES',
     'services.title': 'What I Offer',
@@ -319,6 +363,52 @@ const translations = {
     'blogpage.filter.law': 'Emergency Medicine',
     'blogpage.filter.ethics': 'Medical Ethics',
     'blogpage.filter.science': 'Scientific Research',
+
+    // v3 Home
+    'stats.pub': 'Scientific publications',
+    'stats.exp': 'Years of clinical experience',
+    'stats.book': 'Book chapters',
+    'stats.course': '& first-aid trainings',
+    'aud.patients.label': 'For patients',
+    'aud.patients.title': 'Clear, reliable health information.',
+    'aud.patients.desc': 'What happens in the ER, when should you go? From triage to discharge, common emergencies and patient rights — explained clearly, without jargon.',
+    'aud.patients.link': 'Explore the guides →',
+    'aud.hcp.label': 'For healthcare professionals',
+    'aud.hcp.title': 'Protocols and academic resources.',
+    'aud.hcp.desc': 'Emergency medicine protocols, lecture notes, guideline summaries and skill guides for medical students, interns and residents.',
+    'aud.hcp.link': 'Go to resources →',
+    'courses.label': 'Courses & Training',
+    'courses.title': 'Hands-on training, from basic life support to trauma.',
+    'courses.chip.als': 'Advanced Life Support',
+    'courses.chip.firstaid': 'First Aid',
+    'courses.chip.trauma': 'Trauma',
+    'courses.chip.triage': 'Triage',
+    'courses.cta': 'Plan a training',
+    'pub.title': 'Selected publications',
+    'press.label': 'In the Press',
+    'press.quote': '"The emergency department is the showcase of medicine; the minutes won there can be worth a lifetime."',
+    'press.source': '— From a Hürriyet interview',
+    'press.tag1': 'H3N2 flu feature interview',
+    'press.tag2': 'Live broadcast guest',
+    'blog.post1': 'Triage in the emergency department: correct prioritization saves lives',
+    'blog.post2': 'AI in medicine: where are the ethical limits?',
+    'blog.post3': 'Patient consent in clinical research',
+    'cta.title': 'Is your team ready for emergencies?',
+    'cta.desc': "Let's plan CPR and first-aid training tailored to your organization, based on current guidelines.",
+    'cta.plan': 'Plan a training',
+    'cta.contact': 'Get in touch',
+    'contact.acad.label': 'Academic',
+    'contact.scholar.label': 'Scholar',
+    'contact.scholar.value': 'View publications →',
+    'contact.form.title': 'Leave a message',
+    'contact.form.name.ph': 'Your name',
+    'contact.form.message.ph': 'Write your message…',
+    'contact.subj.general': 'General question',
+    'contact.subj.training': 'Training request',
+    'contact.subj.academic': 'Academic collaboration',
+    'contact.subj.press': 'Press',
+    'footer.kvkk': 'KVKK',
+    'footer.copyright': '© 2026 Assoc. Prof. Süleyman ALPAR · suleymanalpar@gmail.com · @suleymanalpar',
   }
 };
 
@@ -418,17 +508,76 @@ function initFAQ() {
   });
 }
 
-// --- Scroll Animations ---
+// --- Scroll Animations (Apple-tarzi: hero stagger + reveal) ---
 function initAnimations() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+  const legacy = document.querySelectorAll('.animate-in');
+  if (legacy.length) {
+    if (reduce) {
+      legacy.forEach(el => el.classList.add('visible'));
+    } else {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      legacy.forEach(el => obs.observe(el));
+    }
+  }
+
+  if (reduce) {
+    document.querySelectorAll('[data-reveal],[data-hero-reveal]').forEach(el => {
+      el.style.opacity = '1'; el.style.transform = 'none';
+    });
+    return;
+  }
+
+  const ease = 'cubic-bezier(.16,1,.3,1)';
+
+  const heroEls = Array.from(document.querySelectorAll('[data-hero-reveal]'));
+  heroEls.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; });
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    heroEls.forEach(el => {
+      const i = parseInt(el.getAttribute('data-hero-reveal') || '0', 10);
+      el.style.transition = `opacity .9s ${ease} ${i*110}ms, transform .9s ${ease} ${i*110}ms`;
+      el.style.opacity = '1'; el.style.transform = 'translateY(0)';
+    });
+  }));
+
+  const els = Array.from(document.querySelectorAll('[data-reveal]'));
+  const pending = [];
+  els.forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top > window.innerHeight * 0.92) {
+      el.style.opacity = '0'; el.style.transform = 'translateY(28px)';
+      pending.push(el);
+    }
+  });
+  if (!pending.length) return;
+  const reveal = (el, io) => {
+    const d = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
+    el.style.transition = `opacity .9s ${ease} ${d}ms, transform .9s ${ease} ${d}ms`;
+    el.style.opacity = '1'; el.style.transform = 'translateY(0)';
+    io.unobserve(el);
+  };
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting || entry.boundingClientRect.top < 0) reveal(entry.target, obs);
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -4% 0px' });
+  pending.forEach(el => io.observe(el));
+}
+
+// --- Konu chip secimi (iletisim formu) ---
+function initSubjectChips() {
+  const chips = document.querySelectorAll('.subject-chip');
+  const input = document.getElementById('konu-input');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      if (input) input.value = chip.dataset.value;
+    });
+  });
 }
 
 // --- Contact Form (Netlify Forms, AJAX) ---
@@ -480,6 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQ();
   initAnimations();
   initContactForm();
+  initSubjectChips();
   initServiceWorker();
   setLanguage(currentLang);
 });
