@@ -19,219 +19,62 @@
   <link rel="apple-touch-icon" href="img/icon-192.png">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .section-intro {
-      max-width: 800px;
-      margin: 0 auto 36px;
-      text-align: center;
-      color: var(--text-light);
-      font-size: 1.02rem;
-    }
+    /* kurslar.html — handoff dili (Apple/petrol). Kategori renkleri sol şeritte ayrım için. */
+    :root { --kat-travma: #dc2626; --kat-resus: #d97706; --kat-ilk: #059669; --kat-usg: #6366f1; }
+    .content-section { background: #fff; }
+    .content-section.soft { background: var(--bg-soft); }
+    .section-intro { max-width: 800px; margin: 0 auto 36px; text-align: center; color: var(--text-light); font-size: 1.05rem; line-height: 1.5; }
 
-    /* --- Course Category Hero Strip --- */
-    .course-category-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin: 30px auto 50px;
-      max-width: 860px;
-    }
-    .course-chip {
-      padding: 8px 16px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      font-size: 0.85rem;
-      color: var(--text-light);
-      transition: all var(--transition);
-      cursor: pointer;
-    }
-    .course-chip:hover { background: var(--accent); color: white; border-color: var(--accent); transform: translateY(-2px); }
+    /* --- Kategori chip şeridi --- */
+    .course-category-strip { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 30px auto 50px; max-width: 860px; }
+    .course-chip { padding: 8px 16px; background: transparent; border: 1px solid var(--border-strong); border-radius: var(--radius-pill); font-size: 0.86rem; font-weight: 500; color: #424245; transition: all var(--transition); cursor: pointer; }
+    .course-chip:hover { background: var(--text); color: #fff; border-color: var(--text); transform: translateY(-2px); }
 
-    /* --- Course Card --- */
-    .course-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-    }
-    .course-card {
-      background: white;
-      border-radius: var(--radius);
-      padding: 28px;
-      box-shadow: var(--shadow);
-      transition: all var(--transition);
-      border-top: 4px solid var(--accent);
-      cursor: pointer;
-      position: relative;
-    }
+    /* --- Kurs Kartı --- */
+    .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    .course-card { background: var(--bg-soft); border-radius: var(--radius); padding: 30px; transition: transform .5s var(--ease), box-shadow .5s var(--ease); border-left: 3px solid var(--vurgu); cursor: pointer; position: relative; }
     .course-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
-    .course-card .course-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .course-card h3 { font-size: 1.2rem; margin-bottom: 4px; }
-    .course-card .course-code {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 1.2px;
-      margin-bottom: 6px;
-    }
-    .course-card .course-provider {
-      font-size: 0.85rem;
-      color: var(--text-light);
-      font-style: italic;
-    }
-    .course-card .course-badge {
-      background: rgba(42,98,143,0.1);
-      color: var(--accent);
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 12px;
-      letter-spacing: 0.6px;
-      flex-shrink: 0;
-    }
-    .course-card .course-badge.own {
-      background: rgba(169,134,52,0.15);
-      color: var(--gold);
-    }
-    .course-card .course-meta-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin: 14px 0;
-      padding: 12px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .course-card .course-meta-item {
-      text-align: center;
-    }
-    .course-card .course-meta-item strong {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      color: var(--text-light);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 2px;
-    }
-    .course-card .course-meta-item span {
-      font-size: 0.88rem;
-      color: var(--text);
-      font-weight: 600;
-    }
+    .course-card .course-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .course-card h3 { font-size: 1.2rem; margin-bottom: 4px; letter-spacing: -0.01em; }
+    .course-card .course-code { font-size: 0.7rem; font-weight: 700; color: var(--vurgu); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+    .course-card .course-provider { font-size: 0.85rem; color: var(--text-light); font-style: italic; }
+    .course-card .course-badge { background: #e7f1f4; color: var(--vurgu); font-size: 0.66rem; font-weight: 700; padding: 4px 11px; border-radius: var(--radius-pill); letter-spacing: 0.05em; text-transform: uppercase; flex-shrink: 0; }
+    .course-card .course-badge.own { background: var(--vurgu); color: #fff; }
+    .course-card .course-meta-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0; padding: 12px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .course-card .course-meta-item { text-align: center; }
+    .course-card .course-meta-item strong { display: block; font-size: 0.66rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2px; }
+    .course-card .course-meta-item span { font-size: 0.88rem; color: var(--text); font-weight: 600; }
     .course-card p { font-size: 0.9rem; color: var(--text-light); margin-top: 10px; line-height: 1.6; }
 
-    /* Accordion inside course card */
-    .course-card .detail-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px dashed var(--border);
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--accent);
-      user-select: none;
-    }
-    .course-card .detail-chevron { display: inline-block; transition: transform 0.3s; }
+    /* Accordion */
+    .course-card .detail-toggle { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 0.82rem; font-weight: 600; color: var(--vurgu); user-select: none; }
+    .course-card .detail-chevron { display: inline-block; transition: transform 0.3s var(--ease); }
     .course-card.open .detail-chevron { transform: rotate(180deg); }
-    .course-card .detail-panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-    }
+    .course-card .detail-panel { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
     .course-card.open .detail-panel { max-height: 1200px; }
-    .course-card .detail-panel-inner {
-      padding-top: 14px;
-      margin-top: 12px;
-      border-top: 1px solid var(--border);
-    }
-    .course-card .detail-panel h4 {
-      font-family: var(--font-body);
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: var(--text-light);
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      margin-top: 14px;
-      margin-bottom: 6px;
-    }
+    .course-card .detail-panel-inner { padding-top: 14px; margin-top: 12px; border-top: 1px solid var(--border); }
+    .course-card .detail-panel h4 { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 14px; margin-bottom: 6px; }
     .course-card .detail-panel h4:first-child { margin-top: 0; }
     .course-card .detail-panel p { font-size: 0.88rem; color: var(--text); margin-bottom: 8px; line-height: 1.65; }
-    .course-card .detail-panel ul {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 8px 0;
-    }
-    .course-card .detail-panel ul li {
-      padding: 3px 0;
-      padding-left: 18px;
-      position: relative;
-      font-size: 0.87rem;
-      color: var(--text);
-    }
-    .course-card .detail-panel ul li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: 700;
-    }
-    .course-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      margin-top: 6px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .course-link:hover { color: var(--primary); }
+    .course-card .detail-panel ul { list-style: none; padding: 0; margin: 0 0 8px 0; }
+    .course-card .detail-panel ul li { padding: 3px 0; padding-left: 18px; position: relative; font-size: 0.87rem; color: var(--text); }
+    .course-card .detail-panel ul li::before { content: "\2022"; position: absolute; left: 0; color: var(--vurgu); font-weight: 700; }
+    .course-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; font-size: 0.85rem; font-weight: 600; color: var(--vurgu); text-decoration: none; }
+    .course-link:hover { opacity: .8; }
 
-    /* Category colors */
-    .course-card.travma { border-top-color: #e53e3e; }
-    .course-card.travma .course-code,
-    .course-card.travma .detail-toggle,
-    .course-card.travma .detail-panel ul li::before { color: #e53e3e; }
+    /* Kategori renkleri (sol şerit + aksan) */
+    .course-card.travma { border-left-color: var(--kat-travma); }
+    .course-card.travma .course-code, .course-card.travma .detail-toggle, .course-card.travma .detail-panel ul li::before { color: var(--kat-travma); }
+    .course-card.resus { border-left-color: var(--kat-resus); }
+    .course-card.resus .course-code, .course-card.resus .detail-toggle, .course-card.resus .detail-panel ul li::before { color: var(--kat-resus); }
+    .course-card.ilkyardim { border-left-color: var(--kat-ilk); }
+    .course-card.ilkyardim .course-code, .course-card.ilkyardim .detail-toggle, .course-card.ilkyardim .detail-panel ul li::before { color: var(--kat-ilk); }
+    .course-card.usg { border-left-color: var(--kat-usg); }
+    .course-card.usg .course-code, .course-card.usg .detail-toggle, .course-card.usg .detail-panel ul li::before { color: var(--kat-usg); }
+    .course-card.akademik { border-left-color: var(--vurgu); }
 
-    .course-card.resus { border-top-color: #c8a558; }
-    .course-card.resus .course-code,
-    .course-card.resus .detail-toggle,
-    .course-card.resus .detail-panel ul li::before { color: var(--gold); }
-
-    .course-card.ilkyardim { border-top-color: #388e60; }
-    .course-card.ilkyardim .course-code,
-    .course-card.ilkyardim .detail-toggle,
-    .course-card.ilkyardim .detail-panel ul li::before { color: #388e60; }
-
-    .course-card.usg { border-top-color: #7a60b0; }
-    .course-card.usg .course-code,
-    .course-card.usg .detail-toggle,
-    .course-card.usg .detail-panel ul li::before { color: #7a60b0; }
-
-    .course-card.akademik { border-top-color: #2a628f; }
-
-    .course-note {
-      max-width: 860px;
-      margin: 40px auto 0;
-      padding: 18px 22px;
-      background: rgba(42,98,143,0.05);
-      border-left: 4px solid var(--accent);
-      border-radius: 6px;
-      font-size: 0.88rem;
-      color: var(--text);
-      line-height: 1.7;
-    }
-    .course-note strong { color: var(--primary); }
+    .course-note { max-width: 860px; margin: 40px auto 0; padding: 18px 22px; background: #eef6f8; border: 1px solid #cfe6ec; border-left: 3px solid var(--vurgu); border-radius: var(--radius-sm); font-size: 0.88rem; color: var(--text); line-height: 1.7; }
+    .course-note strong { color: var(--text); }
   </style>
 </head>
 <body>
@@ -428,7 +271,7 @@
   <section class="content-section" id="resus" style="background: white;">
     <div class="container">
       <div class="section-header animate-in">
-        <span class="section-label" style="color: var(--gold);">RESÜSİTASYON KURSLARI</span>
+        <span class="section-label" style="color: #d97706;">RESÜSİTASYON KURSLARI</span>
         <h2>Kardiyopulmoner Resüsitasyon</h2>
         <p class="section-intro">Kardiyak arrest ve acil kardiyovasküler bakım eğitimi — temel seviyeden pediatriye ve neonatale kadar AHA ve ERC sertifikalı kurslar.</p>
       </div>

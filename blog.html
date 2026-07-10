@@ -19,39 +19,26 @@
   <link rel="apple-touch-icon" href="img/icon-192.png">
   <link rel="stylesheet" href="css/style.css">
   <style>
+    .content-section { background: #fff; }
     .filter-tabs { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 48px; }
-    .filter-tab {
-      padding: 10px 22px; border-radius: 8px; border: 1px solid var(--border);
-      background: var(--bg-card); color: var(--text); font-size: 0.9rem; font-weight: 500;
-      cursor: pointer; transition: all var(--transition);
-    }
-    .filter-tab:hover, .filter-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
-    .blog-full-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; }
-    .article-card {
-      background: var(--bg-card); border-radius: var(--radius); overflow: hidden;
-      box-shadow: var(--shadow); border: 1px solid var(--border); transition: all var(--transition);
-    }
+    .filter-tab { padding: 9px 20px; border-radius: var(--radius-pill); border: 1px solid var(--border-strong); background: transparent; color: #424245; font-size: 0.88rem; font-weight: 500; cursor: pointer; transition: all var(--transition); font-family: inherit; }
+    .filter-tab:hover { border-color: var(--text); }
+    .filter-tab.active { background: var(--text); color: #fff; border-color: var(--text); }
+    .blog-full-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 18px; }
+    .article-card { background: var(--bg-soft); border-radius: var(--radius); overflow: hidden; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
     .article-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-    .article-thumb {
-      height: 200px; display: flex; align-items: center; justify-content: center;
-      font-size: 3rem; position: relative;
-      border-bottom: 1px solid var(--border);
-    }
-    .article-thumb svg { opacity: 0.85; }
-    .article-thumb.law     { background: linear-gradient(150deg, #e9f2f5, #d8e8ec); color: var(--vurgu); }
-    .article-thumb.ethics  { background: linear-gradient(150deg, #eef4f6, #dde9ed); color: #2a7d92; }
-    .article-thumb.science { background: linear-gradient(150deg, #eaf3f4, #d6e8ea); color: #0d7a80; }
-    .article-thumb.story   { background: linear-gradient(150deg, #f3f0ea, #e8e2d5); color: #8a6c2a; }
-    .article-body { padding: 24px; }
-    .article-body h3 { font-size: 1.15rem; margin-bottom: 10px; line-height: 1.4; }
+    .article-thumb { height: 190px; display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; border-bottom: 1px solid var(--border); }
+    .article-thumb svg { opacity: 0.9; }
+    .article-thumb.law     { background: #e7f1f4; color: var(--vurgu); }
+    .article-thumb.ethics  { background: #eef4f6; color: #2a7d92; }
+    .article-thumb.science { background: #e8f3f4; color: #0d7a80; }
+    .article-thumb.story   { background: #eef2f6; color: #475569; }
+    .article-body { padding: 26px; }
+    .article-body h3 { font-size: 1.15rem; margin-bottom: 10px; line-height: 1.35; letter-spacing: -0.01em; }
     .article-body p { color: var(--text-light); font-size: 0.92rem; }
-    .article-meta {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);
-      font-size: 0.82rem; color: var(--text-light);
-    }
-    .article-read-more { color: var(--accent); font-weight: 600; }
-    .article-read-more:hover { color: var(--primary); }
+    .article-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.82rem; color: var(--text-muted); }
+    .article-read-more { color: var(--vurgu); font-weight: 600; }
+    .article-read-more:hover { opacity: .8; }
   </style>
 </head>
 <body>
@@ -108,7 +95,7 @@
         <div class="article-card animate-in" data-category="law">
           <div class="article-thumb law"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18v-6a5 5 0 1 1 10 0v6"/><path d="M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z"/><path d="M21 12h1"/><path d="M18.5 4.5 18 5"/><path d="M2 12h1"/><path d="M12 2v1"/><path d="m4.929 4.929.707.707"/><path d="M12 12v6"/></svg></div>
           <div class="article-body">
-            <span class="blog-category" style="position:static; background:#e7f1f4; color:var(--vurgu); display:inline-block; margin-bottom:12px;" data-i18n="blogpage.filter.law">Acil Tıp</span>
+            <span class="blog-category" style="position:static; background:#e7f1f4; color:var(--vurgu); display:inline-block; margin-bottom:12px; padding:5px 12px; border-radius:99px; font-size:0.72rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;" data-i18n="blogpage.filter.law">Acil Tıp</span>
             <h3 data-i18n="blog.title1">Acil Serviste Triaj: Doğru Önceliklendirme Hayat Kurtarır</h3>
             <p data-i18n="blog.desc1">Acil servislerde triaj sisteminin önemi ve hastaların bilmesi gerekenler.</p>
             <div class="article-meta">
@@ -121,7 +108,7 @@
         <div class="article-card animate-in" data-category="ethics">
           <div class="article-thumb ethics"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg></div>
           <div class="article-body">
-            <span class="blog-category" style="position:static; background:#e7f1f4; color:var(--vurgu); display:inline-block; margin-bottom:12px;" data-i18n="blogpage.filter.ethics">Tıbbi Etik</span>
+            <span class="blog-category" style="position:static; background:#e7f1f4; color:var(--vurgu); display:inline-block; margin-bottom:12px; padding:5px 12px; border-radius:99px; font-size:0.72rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;" data-i18n="blogpage.filter.ethics">Tıbbi Etik</span>
             <h3 data-i18n="blog.title2">Tıpta Yapay Zeka: Etik Sınırlar Nerede?</h3>
             <p data-i18n="blog.desc2">Yapay zekanın tıbbi kararlardaki rolü ve etik boyutları üzerine bir değerlendirme.</p>
             <div class="article-meta">
@@ -134,7 +121,7 @@
         <div class="article-card animate-in" data-category="science">
           <div class="article-thumb science"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg></div>
           <div class="article-body">
-            <span class="blog-category" style="position:static; background:#e7f1f4; color:var(--vurgu); display:inline-block; margin-bottom:12px;" data-i18n="blogpage.filter.science">Bilimsel Araştırma</span>
+            <span class="blog-category" style="position:static; background:#e7f1f4; color:var(--vurgu); display:inline-block; margin-bottom:12px; padding:5px 12px; border-radius:99px; font-size:0.72rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;" data-i18n="blogpage.filter.science">Bilimsel Araştırma</span>
             <h3 data-i18n="blog.title3">Klinik Araştırmalarda Hasta Onayı</h3>
             <p data-i18n="blog.desc3">Bilgilendirilmiş onam süreçleri ve hasta güvenliği perspektifinden klinik araştırmalar.</p>
             <div class="article-meta">
@@ -147,7 +134,7 @@
         <div class="article-card animate-in" data-category="law">
           <div class="article-thumb law"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18v-6a5 5 0 1 1 10 0v6"/><path d="M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z"/><path d="M21 12h1"/><path d="M18.5 4.5 18 5"/><path d="M2 12h1"/><path d="M12 2v1"/><path d="m4.929 4.929.707.707"/><path d="M12 12v6"/></svg></div>
           <div class="article-body">
-            <span class="blog-category" style="position:static; background:#e7f1f4; color:var(--vurgu); display:inline-block; margin-bottom:12px;" data-i18n="blogpage.filter.law">Acil Tıp</span>
+            <span class="blog-category" style="position:static; background:#e7f1f4; color:var(--vurgu); display:inline-block; margin-bottom:12px; padding:5px 12px; border-radius:99px; font-size:0.72rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;" data-i18n="blogpage.filter.law">Acil Tıp</span>
             <h3>Acil Serviste Hızlı Karar Verme: Kritik Anlar ve Doğru Yaklaşımlar</h3>
             <p>Acil serviste zaman baskısı altında doğru kararlar verme stratejileri ve klinik deneyimler.</p>
             <div class="article-meta">
@@ -160,7 +147,7 @@
         <div class="article-card animate-in" data-category="ethics">
           <div class="article-thumb ethics"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></div>
           <div class="article-body">
-            <span class="blog-category" style="position:static; background:#e7f1f4; color:var(--vurgu); display:inline-block; margin-bottom:12px;" data-i18n="blogpage.filter.ethics">Tıbbi Etik</span>
+            <span class="blog-category" style="position:static; background:#e7f1f4; color:var(--vurgu); display:inline-block; margin-bottom:12px; padding:5px 12px; border-radius:99px; font-size:0.72rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;" data-i18n="blogpage.filter.ethics">Tıbbi Etik</span>
             <h3>Ötanazi Tartışması: Farklı Perspektifler</h3>
             <p>Dünya genelinde ötanazi uygulamaları, etik argümanlar ve Türkiye'deki hukuki durum.</p>
             <div class="article-meta">
