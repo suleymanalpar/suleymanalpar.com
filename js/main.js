@@ -64,6 +64,7 @@ const translations = {
     'blog.title3': 'Klinik Araştırmalarda Hasta Onayı',
     'blog.desc3': 'Bilgilendirilmiş onam süreçleri ve hasta güvenliği perspektifinden klinik araştırmalar.',
     'blog.readmore': 'Tümünü Gör →',
+    'blog.soon': 'Yakında',
     'blog.readtime': 'dk okuma',
 
     // Contact
@@ -82,6 +83,8 @@ const translations = {
     'contact.form.subject.opt3': 'Danışmanlık',
     'contact.form.subject.opt4': 'Diğer',
     'contact.form.message': 'Mesajınız',
+    'contact.form.consent': 'Kişisel verilerimin, mesajıma yanıt verilmesi amacıyla işlenmesini kabul ediyorum.',
+    'contact.form.consentlink': 'Aydınlatma Metni',
     'contact.form.send': 'Mesaj Gönder',
 
     // Footer
@@ -218,6 +221,7 @@ const translations = {
     'blog.title3': 'Patient Consent in Clinical Research',
     'blog.desc3': 'Clinical research from the perspective of informed consent processes and patient safety.',
     'blog.readmore': 'View All →',
+    'blog.soon': 'Coming soon',
     'blog.readtime': 'min read',
 
     'contact.label': 'CONTACT',
@@ -235,6 +239,8 @@ const translations = {
     'contact.form.subject.opt3': 'Consultation',
     'contact.form.subject.opt4': 'Other',
     'contact.form.message': 'Your Message',
+    'contact.form.consent': 'I consent to the processing of my personal data for the purpose of responding to my message.',
+    'contact.form.consentlink': 'Privacy Notice',
     'contact.form.send': 'Send Message',
 
     'footer.desc': 'A personal website sharing knowledge and experience in emergency medicine.',
@@ -425,21 +431,46 @@ function initAnimations() {
   document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
 }
 
-// --- Contact Form ---
+// --- Contact Form (Netlify Forms, AJAX) ---
 function initContactForm() {
   const form = document.querySelector('.contact-form');
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = form.querySelector('.btn-submit');
     const originalText = btn.textContent;
-    btn.textContent = currentLang === 'tr' ? 'Gönderildi!' : 'Sent!';
-    btn.style.background = '#38a169';
-    setTimeout(() => {
-      btn.textContent = originalText;
-      btn.style.background = '';
+    btn.disabled = true;
+    btn.textContent = currentLang === 'tr' ? 'Gönderiliyor…' : 'Sending…';
+    try {
+      const body = new URLSearchParams(new FormData(form)).toString();
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      btn.textContent = currentLang === 'tr' ? 'Gönderildi. Teşekkürler!' : 'Sent. Thank you!';
+      btn.style.background = '#388e60';
       form.reset();
-    }, 2000);
+    } catch (err) {
+      btn.textContent = currentLang === 'tr'
+        ? 'Gönderilemedi — lütfen e-posta ile ulaşın'
+        : 'Failed — please use email instead';
+      btn.style.background = '#c53030';
+    } finally {
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
+    }
   });
+}
+
+// --- Service Worker (PWA) ---
+function initServiceWorker() {
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }
 }
 
 // --- Initialize ---
@@ -449,5 +480,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQ();
   initAnimations();
   initContactForm();
+  initServiceWorker();
   setLanguage(currentLang);
 });

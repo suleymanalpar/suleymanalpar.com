@@ -908,6 +908,146 @@ p { margin-bottom: 1rem; }
   flex-shrink: 0;
 }
 
+/* --- Form onay kutusu (KVKK) --- */
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.55;
+  cursor: pointer;
+}
+.form-consent input[type="checkbox"] {
+  width: auto;
+  margin-top: 3px;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+.form-consent a { color: var(--gold-light); text-decoration: underline; }
+.form-consent a:hover { color: #fff; }
+
+/* --- Yasal sayfalar --- */
+.legal-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 48px 52px;
+}
+.legal-content h2 {
+  font-size: 1.35rem;
+  margin: 2rem 0 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+.legal-content h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.legal-content p, .legal-content li { color: var(--text-light); font-size: 0.95rem; }
+.legal-content ul { padding-left: 22px; margin-bottom: 1rem; }
+.legal-content li { margin-bottom: 6px; }
+.legal-content strong { color: var(--text); }
+.legal-meta { font-size: 0.82rem; color: var(--text-light); margin-bottom: 2rem; }
+@media (max-width: 640px) { .legal-content { padding: 32px 24px; } }
+
+/* --- Makale sayfası --- */
+.article-page {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.article-header { text-align: center; margin-bottom: 40px; }
+.article-header .blog-category { position: static; display: inline-block; margin-bottom: 18px; }
+.article-header h1 { font-size: clamp(1.9rem, 4vw, 2.7rem); margin-bottom: 14px; }
+.article-header .article-meta-line {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 0.86rem;
+  color: var(--text-light);
+}
+.article-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 52px 56px;
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+.article-content h2 {
+  font-size: 1.4rem;
+  margin: 2.2rem 0 0.8rem;
+}
+.article-content h2:first-child { margin-top: 0; }
+.article-content h3 { font-size: 1.12rem; margin: 1.6rem 0 0.6rem; }
+.article-content p { color: var(--text); }
+.article-content ul, .article-content ol { padding-left: 24px; margin-bottom: 1.2rem; }
+.article-content li { margin-bottom: 8px; color: var(--text); }
+.article-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.article-content a:hover { color: var(--gold); }
+.article-content blockquote {
+  border-left: 3px solid var(--gold);
+  padding: 4px 0 4px 20px;
+  margin: 1.5rem 0;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--text-light);
+}
+.article-uyari {
+  margin-top: 2.5rem;
+  padding: 18px 22px;
+  background: rgba(169, 134, 52, 0.07);
+  border: 1px solid rgba(169, 134, 52, 0.3);
+  border-radius: 6px;
+  font-size: 0.88rem;
+  color: var(--text-light);
+}
+.article-yazar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 32px;
+  padding: 24px 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.article-yazar img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 25%;
+  flex-shrink: 0;
+}
+.article-yazar .yazar-ad { font-weight: 600; color: var(--primary); font-family: var(--font-heading); font-size: 1.05rem; }
+.article-yazar .yazar-unvan { font-size: 0.85rem; color: var(--text-light); }
+.article-geri {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.article-geri:hover { color: var(--gold); }
+@media (max-width: 640px) { .article-content { padding: 32px 24px; } }
+
+/* --- "Yakında" durumu --- */
+.yakinda-etiket {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--bg);
+  border: 1px dashed var(--border);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text-light);
+}
+
 /* --- Responsive --- */
 @media (max-width: 968px) {
   .hero-content { grid-template-columns: 1fr; text-align: center; }

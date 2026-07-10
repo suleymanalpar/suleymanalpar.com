@@ -20,7 +20,45 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://suleymanalpar.com/">
+  <meta name="theme-color" content="#1d2733">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
   <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://suleymanalpar.com/#person",
+        "name": "Süleyman Alpar",
+        "honorificPrefix": "Doç. Dr.",
+        "jobTitle": "Acil Tıp Uzmanı ve Öğretim Üyesi",
+        "image": "https://suleymanalpar.com/img/portre.jpg",
+        "url": "https://suleymanalpar.com/",
+        "sameAs": [
+          "https://scholar.google.com.tr/citations?user=50n6yekAAAAJ&hl=tr"
+        ],
+        "worksFor": [
+          { "@type": "CollegeOrUniversity", "name": "İstanbul Beykent Üniversitesi Tıp Fakültesi" },
+          { "@type": "Hospital", "name": "Memorial Bahçelievler Hastanesi" }
+        ],
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "İstanbul Üniversitesi İstanbul Tıp Fakültesi" },
+        "knowsLanguage": ["tr", "en"],
+        "knowsAbout": ["Acil Tıp", "Klinik Araştırma", "Tıp Eğitimi", "Tıbbi Etik", "Sağlıkta Yapay Zeka"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://suleymanalpar.com/#website",
+        "url": "https://suleymanalpar.com/",
+        "name": "Dr. Süleyman Alpar",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://suleymanalpar.com/#person" }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -153,7 +191,7 @@
         <p data-i18n="blog.desc">Acil tıp ve sağlık dünyasından en güncel yazılar</p>
       </div>
       <div class="blog-grid">
-        <a href="blog.html" class="blog-card animate-in">
+        <a href="yazilar/acil-serviste-triaj.html" class="blog-card animate-in">
           <div class="blog-thumb">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18v-6a5 5 0 1 1 10 0v6"/><path d="M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z"/><path d="M21 12h1"/><path d="M18.5 4.5 18 5"/><path d="M2 12h1"/><path d="M12 2v1"/><path d="m4.929 4.929.707.707"/><path d="M12 12v6"/></svg>
             <span class="blog-category" data-i18n="blog.cat1">Acil Tıp</span>
@@ -162,7 +200,7 @@
             <h3 data-i18n="blog.title1">Acil Serviste Triaj: Doğru Önceliklendirme Hayat Kurtarır</h3>
             <p data-i18n="blog.desc1">Acil servislerde triaj sisteminin önemi ve hastaların bilmesi gerekenler.</p>
             <div class="blog-meta">
-              <span>20 Nisan 2026</span>
+              <span>8 Temmuz 2026</span>
               <span>8 <span data-i18n="blog.readtime">dk okuma</span></span>
             </div>
           </div>
@@ -242,18 +280,22 @@
             </div>
           </div>
         </div>
-        <form class="contact-form" onsubmit="return false;">
+        <form class="contact-form" name="iletisim" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="iletisim">
+          <p style="display:none" aria-hidden="true">
+            <label>Bu alanı boş bırakın: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
           <div class="form-group">
-            <label data-i18n="contact.form.name">Adınız Soyadınız</label>
-            <input type="text" data-i18n-placeholder="contact.form.name" placeholder="Adınız Soyadınız" required>
+            <label for="cf-ad" data-i18n="contact.form.name">Adınız Soyadınız</label>
+            <input id="cf-ad" type="text" name="ad-soyad" data-i18n-placeholder="contact.form.name" placeholder="Adınız Soyadınız" autocomplete="name" required>
           </div>
           <div class="form-group">
-            <label data-i18n="contact.form.email">E-posta Adresiniz</label>
-            <input type="email" data-i18n-placeholder="contact.form.email" placeholder="E-posta Adresiniz" required>
+            <label for="cf-eposta" data-i18n="contact.form.email">E-posta Adresiniz</label>
+            <input id="cf-eposta" type="email" name="eposta" data-i18n-placeholder="contact.form.email" placeholder="E-posta Adresiniz" autocomplete="email" required>
           </div>
           <div class="form-group">
-            <label data-i18n="contact.form.subject">Konu</label>
-            <select>
+            <label for="cf-konu" data-i18n="contact.form.subject">Konu</label>
+            <select id="cf-konu" name="konu">
               <option data-i18n="contact.form.subject.opt1">Genel Soru</option>
               <option data-i18n="contact.form.subject.opt2">İşbirliği Teklifi</option>
               <option data-i18n="contact.form.subject.opt3">Danışmanlık</option>
@@ -261,8 +303,14 @@
             </select>
           </div>
           <div class="form-group">
-            <label data-i18n="contact.form.message">Mesajınız</label>
-            <textarea data-i18n-placeholder="contact.form.message" placeholder="Mesajınız" required></textarea>
+            <label for="cf-mesaj" data-i18n="contact.form.message">Mesajınız</label>
+            <textarea id="cf-mesaj" name="mesaj" data-i18n-placeholder="contact.form.message" placeholder="Mesajınız" required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-consent">
+              <input type="checkbox" name="kvkk-onay" value="onaylandi" required>
+              <span><span data-i18n="contact.form.consent">Kişisel verilerimin, mesajıma yanıt verilmesi amacıyla işlenmesini kabul ediyorum.</span> <a href="gizlilik.html" target="_blank" rel="noopener" data-i18n="contact.form.consentlink">Aydınlatma Metni</a></span>
+            </label>
           </div>
           <button type="submit" class="btn-submit" data-i18n="contact.form.send">Mesaj Gönder</button>
         </form>
@@ -302,9 +350,9 @@
         <div class="footer-col">
           <h4 data-i18n="footer.legal">Yasal</h4>
           <ul>
-            <li><a href="#" data-i18n="footer.privacy">Gizlilik Politikası</a></li>
-            <li><a href="#" data-i18n="footer.terms">Kullanım Şartları</a></li>
-            <li><a href="#" data-i18n="footer.cookie">Çerez Politikası</a></li>
+            <li><a href="gizlilik.html" data-i18n="footer.privacy">Gizlilik Politikası</a></li>
+            <li><a href="kullanim-sartlari.html" data-i18n="footer.terms">Kullanım Şartları</a></li>
+            <li><a href="cerez.html" data-i18n="footer.cookie">Çerez Politikası</a></li>
           </ul>
         </div>
       </div>
