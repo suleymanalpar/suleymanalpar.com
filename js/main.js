@@ -15,6 +15,7 @@ const translations = {
     'nav.courses': 'Kurslar',
     'nav.blog': 'Blog',
     'nav.cv': 'Özgeçmiş',
+    'pub.cvlink': 'Tüm yayınlar & özgeçmiş →',
     'nav.contact': 'İletişim',
 
     // Hero
@@ -217,6 +218,7 @@ const translations = {
     'nav.courses': 'Courses',
     'nav.blog': 'Blog',
     'nav.cv': 'CV',
+    'pub.cvlink': 'All publications & CV →',
     'nav.contact': 'Contact',
 
     'a11y.skip': 'Skip to content',

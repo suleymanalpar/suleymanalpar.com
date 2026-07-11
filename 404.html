@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Sayfa bulunamadı — Doç. Dr. Süleyman Alpar">
+  <title>404 — Sayfa Bulunamadı | Doç. Dr. Süleyman Alpar</title>
+  <link rel="icon" type="image/png" sizes="48x48" href="img/marka/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/marka/favicon-32.png">
+  <meta name="theme-color" content="#0E7490">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="img/marka/apple-touch-icon.png">
+  <link rel="dns-prefetch" href="//gc.zgo.at">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .err-wrap { max-width: 620px; margin: 0 auto; padding: 90px 24px 100px; text-align: center; }
+    .err-code { font-size: clamp(5rem, 18vw, 9rem); font-weight: 800; line-height: 1; letter-spacing: -0.04em; color: var(--vurgu); margin: 0; }
+    .err-wrap h1 { font-size: 1.6rem; margin: 14px 0 10px; letter-spacing: -0.02em; }
+    .err-wrap p { color: var(--text-light); font-size: 1rem; line-height: 1.6; margin: 0 auto 28px; max-width: 460px; }
+    .err-cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 26px; background: var(--vurgu); color: #fff; border-radius: var(--radius-pill); font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: transform var(--transition); }
+    .err-cta:hover { transform: translateY(-2px); }
+    .err-links { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px 20px; justify-content: center; }
+    .err-links a { font-size: 0.9rem; color: var(--text-light); text-decoration: none; }
+    .err-links a:hover { color: var(--vurgu); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">SA</div>
+        <span>Doç. Dr. Süleyman ALPAR</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="patients.html" data-i18n="nav.patients">Hastalar</a></li>
+        <li><a href="healthcare.html" data-i18n="nav.healthcare">Sağlık Çalışanları</a></li>
+        <li><a href="kurslar.html" data-i18n="nav.courses">Kurslar</a></li>
+        <li><a href="cv.html" data-i18n="nav.cv">Özgeçmiş</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+        <li>
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="tr">TR</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+        </li>
+        <li><a href="index.html#iletisim" class="nav-cta" data-i18n="nav.contact">İletişim</a></li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="err-wrap">
+    <p class="err-code">404</p>
+    <h1 data-i18n="e404.title">Sayfa bulunamadı</h1>
+    <p data-i18n="e404.msg">Aradığınız sayfa taşınmış veya kaldırılmış olabilir. Aşağıdaki bağlantılardan devam edebilirsiniz.</p>
+    <a class="err-cta" href="index.html" data-i18n="e404.home">Ana sayfaya dön</a>
+    <div class="err-links">
+      <a href="patients.html" data-i18n="nav.patients">Hastalar</a>
+      <a href="healthcare.html" data-i18n="nav.healthcare">Sağlık Çalışanları</a>
+      <a href="skorlar.html" data-i18n="e404.scores">Klinik Skorlar</a>
+      <a href="cv.html" data-i18n="nav.cv">Özgeçmiş</a>
+      <a href="blog.html" data-i18n="nav.blog">Blog</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div data-i18n="footer.copyright">© 2026 Doç. Dr. Süleyman ALPAR · suleymanalpar@gmail.com · @suleymanalpar</div>
+      <div class="footer-links">
+        <a href="gizlilik.html" data-i18n="footer.privacy">Gizlilik</a>
+        <a href="gizlilik.html" data-i18n="footer.kvkk">KVKK</a>
+        <a href="cerez.html" data-i18n="footer.cookie">Çerezler</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    window.pageI18n = {
+      "tr": {
+        "meta.title": "404 — Sayfa Bulunamadı | Doç. Dr. Süleyman Alpar",
+        "e404.title": "Sayfa bulunamadı",
+        "e404.msg": "Aradığınız sayfa taşınmış veya kaldırılmış olabilir. Aşağıdaki bağlantılardan devam edebilirsiniz.",
+        "e404.home": "Ana sayfaya dön",
+        "e404.scores": "Klinik Skorlar"
+      },
+      "en": {
+        "meta.title": "404 — Page Not Found | Assoc. Prof. Süleyman Alpar, MD",
+        "e404.title": "Page not found",
+        "e404.msg": "The page you are looking for may have been moved or removed. You can continue from the links below.",
+        "e404.home": "Back to home",
+        "e404.scores": "Clinical Scores"
+      }
+    };
+  </script>
+  <script data-goatcounter="https://suleymanalpar.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
