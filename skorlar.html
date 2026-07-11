@@ -109,6 +109,22 @@
     .ref-blok strong { color: var(--text); display: block; margin-bottom: 2px; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; }
     .ref-blok a { color: var(--vurgu); text-decoration: none; font-weight: 600; }
     .ref-blok a:hover { text-decoration: underline; }
+
+    /* Çıktı çubuğu (Kopyala / Yazdır) */
+    .cikti-cubugu { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+    .cikti-btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; border: 1px solid var(--border-strong); background: #fff; color: var(--text); border-radius: var(--radius-pill); font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all var(--transition); }
+    .cikti-btn:hover { border-color: var(--vurgu); color: var(--vurgu); }
+    .cikti-btn svg { flex-shrink: 0; }
+
+    /* Yazdırma: yalnızca skor başlığı + sonuç + kaynak (klinik belge görünümü) */
+    @media print {
+      body * { visibility: hidden !important; }
+      #modalOverlay, #modalOverlay * { visibility: visible !important; }
+      #modalOverlay { position: absolute !important; inset: 0 !important; background: #fff !important; backdrop-filter: none !important; display: block !important; padding: 0 !important; overflow: visible !important; }
+      .modal-icerik { box-shadow: none !important; max-width: 100% !important; width: 100% !important; }
+      .modal-baslik { position: static !important; border-bottom: 1px solid #ccc !important; }
+      .modal-kapat, .cikti-cubugu, #skorForm, #modalAciklama { display: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -251,6 +267,7 @@
       document.getElementById("modalAciklama").textContent = aktifSkor.aciklama;
       formRender();
       sonucRender();
+      ciktiCubuguEkle();
       const ref = document.getElementById("refBlok");
       ref.innerHTML = `
         <strong>KAYNAK</strong>
@@ -359,6 +376,7 @@
         formData[key] = Array.isArray(opt) ? opt[0] : opt;
       }
       sonucRender();
+      ciktiCubuguEkle();
     }
 
     // ─── Sonuç render ───
@@ -428,6 +446,56 @@
           </div>
           ${ekSat ? `<div class="sonuc-ek-satirlar">${ekSat}</div>` : ""}
         </div>`;
+    }
+
+    // ─── Çıktı: Kopyala / Yazdır (PDF) ───
+    function ciktiMetni() {
+      const sk = document.querySelector("#sonucKutu .sonuc-kutu");
+      if (!sk || !aktifSkor) return "";
+      const puan = (sk.querySelector(".sonuc-puan")?.textContent || "").replace(/\s+/g, " ").trim();
+      const risk = (sk.querySelector(".sonuc-risk")?.textContent || "").trim();
+      const satirlar = Array.from(sk.querySelectorAll(".sonuc-satir")).map(s => {
+        const sp = s.querySelectorAll("span");
+        return sp.length >= 2 ? `  • ${sp[0].textContent.trim()}: ${sp[1].textContent.trim()}` : "";
+      }).filter(Boolean).join("\n");
+      const d = new Date();
+      const tarih = d.toLocaleDateString("tr-TR") + " " + d.toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" });
+      let t = `${aktifSkor.ad} — ${aktifSkor.kategori}\n`;
+      t += `Sonuç: ${puan}${risk ? " · " + risk : ""}\n`;
+      if (satirlar) t += `\n${satirlar}\n`;
+      t += `\nTarih: ${tarih}\n`;
+      t += `Kaynak: https://suleymanalpar.com/skorlar.html#${aktifSkor.id}\n`;
+      t += `\nEğitim/karar-destek amaçlıdır; hekim değerlendirmesi ve güncel kılavuzların yerine geçmez.`;
+      return t;
+    }
+
+    function fallbackKopya(t, ok) {
+      const ta = document.createElement("textarea");
+      ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      try { document.execCommand("copy"); ok(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
+    function ciktiCubuguEkle() {
+      const kutu = document.getElementById("sonucKutu");
+      const sk = kutu ? kutu.querySelector(".sonuc-kutu") : null;
+      if (!sk || !aktifSkor) return;
+      if (kutu.querySelector(".cikti-cubugu")) return;
+      const bar = document.createElement("div");
+      bar.className = "cikti-cubugu";
+      bar.innerHTML =
+        '<button type="button" class="cikti-btn" data-act="kopyala"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Kopyala</span></button>' +
+        '<button type="button" class="cikti-btn" data-act="yazdir"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span>Yazdır / PDF</span></button>';
+      kutu.appendChild(bar);
+      bar.querySelector('[data-act="kopyala"]').addEventListener("click", function () {
+        const t = ciktiMetni(); const btn = this; const orj = btn.innerHTML;
+        const ok = () => { btn.querySelector("span").textContent = "Kopyalandı ✓"; setTimeout(() => { btn.innerHTML = orj; }, 1800); };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(t).then(ok).catch(() => fallbackKopya(t, ok));
+        } else { fallbackKopya(t, ok); }
+      });
+      bar.querySelector('[data-act="yazdir"]').addEventListener("click", function () { window.print(); });
     }
 
     // ─── Init ───
