@@ -227,6 +227,7 @@
 
   <script src="js/main.js"></script>
   <script src="js/skorlar.js"></script>
+  <script src="js/skor-i18n.js"></script>
   <script>
     window.pageI18n = {
       tr: {
@@ -343,7 +344,7 @@
       const items = [{ ad: "Hepsi", sayi: window.SKOR_KATALOG.length }]
         .concat(kats.map(k => ({ ad: k, sayi: window.SKOR_KATALOG.filter(s => s.kategori === k).length })));
       bar.innerHTML = items.map(it => {
-        const etiket = it.ad === "Hepsi" ? ceviriBul(currentLang, "sk.cat.all") : it.ad;
+        const etiket = it.ad === "Hepsi" ? ceviriBul(currentLang, "sk.cat.all") : skorCevir(it.ad);
         return `
         <div class="kategori-chip ${it.ad === aktifKategori ? 'active' : ''}" data-kat="${it.ad}">
           ${etiket}<span class="sayac">${it.sayi}</span>
@@ -364,7 +365,7 @@
       const katOk = aktifKategori === "Hepsi" || s.kategori === aktifKategori;
       if (!aramaMetni) return katOk;
       const q = norm(aramaMetni);
-      const havuz = norm(s.ad + " " + s.kategori + " " + (s.aciklama || "") + " " + s.id);
+      const havuz = norm(s.ad + " " + skorCevir(s.ad) + " " + s.kategori + " " + skorCevir(s.kategori) + " " + (s.aciklama || "") + " " + skorCevir(s.aciklama || "") + " " + s.id);
       return katOk && havuz.indexOf(q) !== -1;
     }
     function gridRender() {
@@ -377,10 +378,10 @@
       grid.innerHTML = gorunur.map(s => `
         <div class="skor-kart">
           <div>
-            <div class="kat-rozet">${s.kategori}</div>
-            <h3>${s.ad}</h3>
+            <div class="kat-rozet">${skorCevir(s.kategori)}</div>
+            <h3>${skorCevir(s.ad)}</h3>
           </div>
-          <p class="skor-aciklama">${s.aciklama}</p>
+          <p class="skor-aciklama">${skorCevir(s.aciklama)}</p>
           <div class="skor-aksiyon">
             <button class="skor-buton" data-id="${s.id}">${ceviriBul(currentLang, "sk.card.calc")}</button>
             <a class="ref-link" href="${s.url}" target="_blank" rel="noopener">MDCalc ↗</a>
@@ -407,9 +408,9 @@
       aktifSkor = window.skorBul(skorId);
       if (!aktifSkor) return;
       formData = window.skorVarsayilanData(aktifSkor);
-      document.getElementById("modalAd").textContent = aktifSkor.ad;
-      document.getElementById("modalKategori").textContent = aktifSkor.kategori;
-      document.getElementById("modalAciklama").textContent = aktifSkor.aciklama;
+      document.getElementById("modalAd").textContent = skorCevir(aktifSkor.ad);
+      document.getElementById("modalKategori").textContent = skorCevir(aktifSkor.kategori);
+      document.getElementById("modalAciklama").textContent = skorCevir(aktifSkor.aciklama);
       formRender();
       sonucRender();
       ciktiCubuguEkle();
@@ -470,12 +471,12 @@
     function formAlanHTML(a) {
       const v = formData[a.key];
       const TIP = window.SKOR_TIP;
-      const desc = a.aciklama ? `<div class="alan-aciklama">${a.aciklama}</div>` : "";
+      const desc = a.aciklama ? `<div class="alan-aciklama">${skorCevir(a.aciklama)}</div>` : "";
       if (a.tip === TIP.INT || a.tip === TIP.FLOAT) {
         const step = a.step ?? (a.tip === TIP.FLOAT ? 0.1 : 1);
         return `
           <div class="form-alan">
-            <label>${a.label}</label>
+            <label>${skorCevir(a.label)}</label>
             <input type="number" data-key="${a.key}" value="${v ?? ""}"
               ${a.min !== undefined ? `min="${a.min}"` : ""}
               ${a.max !== undefined ? `max="${a.max}"` : ""}
@@ -488,7 +489,7 @@
           <div class="form-alan">
             <label class="form-alan-bool">
               <input type="checkbox" data-key="${a.key}" ${v ? "checked" : ""}>
-              <span class="alan-label-bool">${a.label}</span>
+              <span class="alan-label-bool">${skorCevir(a.label)}</span>
             </label>
             ${desc}
           </div>`;
@@ -496,11 +497,11 @@
       if (a.tip === TIP.SELECT) {
         const ops = a.opsiyonlar.map(o => {
           const [val, lbl] = Array.isArray(o) ? o : [o, o];
-          return `<option value="${val}" ${val == v ? "selected" : ""}>${lbl}</option>`;
+          return `<option value="${val}" ${val == v ? "selected" : ""}>${skorCevir(lbl)}</option>`;
         }).join("");
         return `
           <div class="form-alan">
-            <label>${a.label}</label>
+            <label>${skorCevir(a.label)}</label>
             <select data-key="${a.key}">${ops}</select>
             ${desc}
           </div>`;
@@ -510,12 +511,12 @@
         const ops = a.opsiyonlar.map(o => `
           <label>
             <input type="checkbox" data-key="${a.key}" data-val="${o}" ${cur.includes(o) ? "checked" : ""}>
-            ${o}
+            ${skorCevir(o)}
           </label>
         `).join("");
         return `
           <div class="form-alan">
-            <label>${a.label}</label>
+            <label>${skorCevir(a.label)}</label>
             <div class="multiselect-grid">${ops}</div>
             ${desc}
           </div>`;
@@ -567,12 +568,12 @@
           <div class="sonuc-kutu ${renk}">
             <div class="sonuc-baslik">
               <div class="sonuc-puan">${ekarte ? "0" : ihlaller.length}<span class="puan-max">${ceviriBul(currentLang, "sk.perc.violations")}</span></div>
-              <div class="sonuc-risk">${sonuc.risk_sinifi}</div>
+              <div class="sonuc-risk">${skorCevir(sonuc.risk_sinifi)}</div>
             </div>
             <ul class="perc-ihlaller">
               ${aktifSkor.alanlar.map(a => {
                 const v = formData[a.key];
-                return `<li class="${v ? '' : 'tamam'}">${a.label}: <strong>${v ? ceviriBul(currentLang, "sk.perc.yes") : ceviriBul(currentLang, "sk.perc.no")}</strong></li>`;
+                return `<li class="${v ? '' : 'tamam'}">${skorCevir(a.label)}: <strong>${v ? ceviriBul(currentLang, "sk.perc.yes") : ceviriBul(currentLang, "sk.perc.no")}</strong></li>`;
               }).join("")}
             </ul>
           </div>`;
@@ -586,10 +587,10 @@
           <div class="sonuc-kutu ${renk}">
             <div class="sonuc-baslik">
               <div class="sonuc-puan" style="font-size: 1.4rem;">${kr ? ceviriBul(currentLang, "sk.cam.positive") : ceviriBul(currentLang, "sk.cam.negative")}</div>
-              <div class="sonuc-risk">${sonuc.risk_sinifi}</div>
+              <div class="sonuc-risk">${skorCevir(sonuc.risk_sinifi)}</div>
             </div>
             <div class="sonuc-ek-satirlar">
-              <div class="sonuc-satir"><span>${ceviriBul(currentLang, "sk.cam.criteria")}</span><span>${sonuc.kriter_aciklama}</span></div>
+              <div class="sonuc-satir"><span>${ceviriBul(currentLang, "sk.cam.criteria")}</span><span>${skorCevir(sonuc.kriter_aciklama)}</span></div>
             </div>
           </div>`;
         return;
@@ -603,13 +604,13 @@
       else if (sablon.max_key && sonuc[sablon.max_key] != null) maxStr = ` <span class="puan-max">/ ${sonuc[sablon.max_key]}</span>`;
       const ekSat = (sablon.ek_satirlar || []).map(([k, lbl]) => {
         if (sonuc[k] == null) return "";
-        return `<div class="sonuc-satir"><span>${lbl}</span><span>${sonuc[k]}</span></div>`;
+        return `<div class="sonuc-satir"><span>${skorCevir(lbl)}</span><span>${sonuc[k]}</span></div>`;
       }).join("");
       kutu.innerHTML = `
         <div class="sonuc-kutu ${renk}">
           <div class="sonuc-baslik">
             <div class="sonuc-puan">${toplam}${maxStr}</div>
-            <div class="sonuc-risk">${sonuc.risk_sinifi || "—"}</div>
+            <div class="sonuc-risk">${skorCevir(sonuc.risk_sinifi) || "—"}</div>
           </div>
           ${ekSat ? `<div class="sonuc-ek-satirlar">${ekSat}</div>` : ""}
         </div>`;
@@ -628,7 +629,7 @@
       const d = new Date();
       const yerelKod = currentLang === "en" ? "en-US" : "tr-TR";
       const tarih = d.toLocaleDateString(yerelKod) + " " + d.toLocaleTimeString(yerelKod, { hour: "2-digit", minute: "2-digit" });
-      let t = `${aktifSkor.ad} — ${aktifSkor.kategori}\n`;
+      let t = `${skorCevir(aktifSkor.ad)} — ${skorCevir(aktifSkor.kategori)}\n`;
       t += `${ceviriBul(currentLang, "sk.out.result")} ${puan}${risk ? " · " + risk : ""}\n`;
       if (satirlar) t += `\n${satirlar}\n`;
       t += `\n${ceviriBul(currentLang, "sk.out.date")} ${tarih}\n`;
