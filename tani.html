@@ -167,6 +167,7 @@
 
   <script src="js/main.js"></script>
   <script src="js/tani.js"></script>
+  <script src="js/tani-i18n.js"></script>
   <script>
     window.pageI18n = {
   "tr": {
@@ -241,7 +242,7 @@
     function sikayetBarRender() {
       const bar = document.getElementById("sikayetBar");
       bar.innerHTML = Object.keys(window.TANI_KATALOG).map(s => `
-        <div class="sikayet-chip ${s === aktifSikayet ? 'active' : ''}" data-sikayet="${s}">${s}</div>
+        <div class="sikayet-chip ${s === aktifSikayet ? 'active' : ''}" data-sikayet="${s}">${taniCevir(s)}</div>
       `).join("");
       bar.querySelectorAll(".sikayet-chip").forEach(c => {
         c.addEventListener("click", () => {
@@ -274,8 +275,8 @@
 
       let html = `
         <div class="tani-baslik-blok">
-          <h2>${aktifSikayet}</h2>
-          <p>${k.aciklama}</p>
+          <h2>${taniCevir(aktifSikayet)}</h2>
+          <p>${taniCevir(k.aciklama)}</p>
           ${smart ? `<div style="margin-top: 10px; font-size: 0.85rem; color: var(--accent); font-weight: 600;">
             ✨ ${ceviriBul(currentLang, "tn.smart.ranked")}
           </div>` : ""}
@@ -294,8 +295,8 @@
           <div class="tani-kart ${t.aciliyet}">
             <div class="baslik-row">
               <div>
-                ${eslesmeRozeti}<h3 style="display: inline;">${t.tani}</h3>
-                ${t.alt ? `<div class="alt-baslik">${t.alt}</div>` : ""}
+                ${eslesmeRozeti}<h3 style="display: inline;">${taniCevir(t.tani)}</h3>
+                ${t.alt ? `<div class="alt-baslik">${taniCevir(t.alt)}</div>` : ""}
                 ${matchedRf}
               </div>
               <span class="aciliyet-rozet ${t.aciliyet}">${aciliyetMap[t.aciliyet] || t.aciliyet}</span>
@@ -304,15 +305,15 @@
             <div class="detay-bolum">
               ${t.destekleyen?.length ? `
                 <h4>${ceviriBul(currentLang, "tn.section.supporting")}</h4>
-                <ul class="destekleyen">${t.destekleyen.map(x => `<li>${x}</li>`).join("")}</ul>
+                <ul class="destekleyen">${t.destekleyen.map(x => `<li>${taniCevir(x)}</li>`).join("")}</ul>
               ` : ""}
               ${t.bayraklar?.length ? `
                 <h4>${ceviriBul(currentLang, "tn.section.flags")}</h4>
-                <ul class="bayraklar">${t.bayraklar.map(x => `<li>${x}</li>`).join("")}</ul>
+                <ul class="bayraklar">${t.bayraklar.map(x => `<li>${taniCevir(x)}</li>`).join("")}</ul>
               ` : ""}
               ${t.tetkikler?.length ? `
                 <h4>${ceviriBul(currentLang, "tn.section.workup")}</h4>
-                <ul class="tetkikler">${t.tetkikler.map(x => `<li>${x}</li>`).join("")}</ul>
+                <ul class="tetkikler">${t.tetkikler.map(x => `<li>${taniCevir(x)}</li>`).join("")}</ul>
               ` : ""}
             </div>
           </div>
@@ -400,6 +401,15 @@
 
     sikayetBarRender();
     taniRender();
+
+    // Dil değişince tanı kartlarını ve şikayet çubuğunu yeniden çiz (taniCevir + ceviriBul yeni dile göre)
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".lang-btn").forEach(function (b) {
+        b.addEventListener("click", function () {
+          setTimeout(function () { sikayetBarRender(); taniRender(); }, 0);
+        });
+      });
+    });
   </script>
   <script data-goatcounter="https://suleymanalpar.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
