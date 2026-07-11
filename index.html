@@ -180,7 +180,8 @@
           <a href="https://scholar.google.com.tr/citations?user=50n6yekAAAAJ&hl=tr" target="_blank" rel="noopener" class="head-link">Google Scholar →</a>
         </div>
       </div>
-      <div class="pub-grid">
+      <!-- Yayınlar PubMed'den otomatik güncellenir (js/yayinlar.js); aşağıdakiler fallback -->
+      <div class="pub-grid" id="pubGrid">
         <a class="pub-card" href="https://doi.org/10.1016/j.ajem.2025.08.003" target="_blank" rel="noopener" data-reveal>
           <span class="pub-journal" lang="en">The American Journal of Emergency Medicine · 2025</span>
           <span class="pub-title" lang="en">U-shaped relationship between sodium levels and short-term mortality in sepsis</span>
@@ -327,6 +328,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/yayinlar.js" defer></script>
   <script data-goatcounter="https://suleymanalpar.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 </body>
