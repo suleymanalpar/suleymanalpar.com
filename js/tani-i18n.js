@@ -99,7 +99,6 @@ window.TANI_I18N = {
   "Amonyak": "Ammonia",
   "Amonyak, laktat, kan gazı": "Ammonia, lactate, blood gas",
   "Anafilaksi": "Anaphylaxis",
-  "Anafilaksi (Sertifika Tanısı)": "Anaphylaxis (Certificate Diagnosis)",
   "Anafilaksinin bir bileşeni de olabilir": "May also be a component of anaphylaxis",
   "Anafilaksiye benzeyebilir": "May resemble anaphylaxis",
   "Anal tonus azalmış": "Decreased anal tone",
@@ -277,7 +276,6 @@ window.TANI_I18N = {
   "Cilt/GİS yok": "No skin/GI findings",
   "Cluster: tek taraflı ağrı + otonomik bulgular": "Cluster: unilateral pain + autonomic findings",
   "Cullen / Grey-Turner bulgusu (hemorajik)": "Cullen / Grey-Turner sign (hemorrhagic)",
-  "Cushing triad — hertz": "Cushing triad — hertz",
   "D-dimer (negatif ekarte etmez)": "D-dimer (negative does not rule out)",
   "D-dimer (yaş düzeltmeli) düşük orta riskte": "D-dimer (age-adjusted) in low-moderate risk",
   "DIC": "DIC",
@@ -336,7 +334,6 @@ window.TANI_I18N = {
   "EKG'de yaygın ST elevasyonu, PR depresyonu": "Diffuse ST elevation, PR depression on ECG",
   "EKO": "Echo",
   "EKO (efüzyon + kollaps)": "Echo (effusion + collapse)",
-  "EKO (kompike/şüphe)": "Echo (complicated/suspected)",
   "EKO (sağ kalp gerilimi)": "Echo (right heart strain)",
   "EKO acil": "Urgent Echo",
   "ESH > 50, CRP yüksek": "ESR > 50, CRP high",
@@ -781,7 +778,6 @@ window.TANI_I18N = {
   "Retansiyon, akreta": "Retention, accreta",
   "Risk faktörleri": "Risk factors",
   "Romatizmal ateş, glomerülonefrit (post-strep)": "Rheumatic fever, glomerulonephritis (post-strep)",
-  "S3 galo, hipotansiyon (kompike)": "S3 gallop, hypotension (complicated)",
   "S3, JVD, pretibial ödem": "S3, JVD, pretibial edema",
   "SAH": "SAH",
   "SGA, LGA, DM anne, perinatal stres": "SGA, LGA, DM mother, perinatal stress",
@@ -822,7 +818,6 @@ window.TANI_I18N = {
   "Servikal LAP": "Cervical LAP",
   "Servikal hassasiyet": "Cervical tenderness",
   "Servikal stabilizasyon": "Cervical stabilization",
-  "Servisikojenik / Gerginlik Tipi": "Cervicogenic / Tension-type",
   "Sessiz akciğer": "Silent chest",
   "Sinkop (Konvülsif)": "Syncope (Convulsive)",
   "Sirozda": "In cirrhosis",
@@ -1076,7 +1071,6 @@ window.TANI_I18N = {
   "Üst solunum öyküsü": "Upper respiratory history",
   "Üst ÜSE": "Upper UTI",
   "Üst ÜSE / obstrüktif": "Upper UTI / obstructive",
-  "İVD glikoz tedavi tanı koyar": "IV dextrose/glucose treatment is diagnostic",
   "İdiyopatik İntrakraniyal Hipertansiyon": "Idiopathic Intracranial Hypertension",
   "İdrar Yolu Enfeksiyonu": "Urinary Tract Infection",
   "İdrar kültürü": "Urine culture",
@@ -1129,7 +1123,13 @@ window.TANI_I18N = {
   "≥5 dk veya arka arkaya bilinç dönmeden": "≥5 min or back-to-back without regaining consciousness in between",
   "≥5 gün ateş + 4/5 kriter (konjonktivit, dudak/dil değ., el-ayak değ., LAP, döküntü)": "≥5 days fever + 4/5 criteria (conjunctivitis, lip/tongue changes, hand-foot changes, LAP, rash)",
   "≥50 yaş": "≥50 years",
-  "≥50 yaş, kanser öyküsü, kilo kaybı": "≥50 years, history of cancer, weight loss"
+  "≥50 yaş, kanser öyküsü, kilo kaybı": "≥50 years, history of cancer, weight loss",
+  "EKO (komplike/şüphe)": "Echo (complicated/suspected)",
+  "S3 galo, hipotansiyon (komplike)": "S3 gallop, hypotension (complicated)",
+  "Servikojenik / Gerginlik Tipi": "Cervicogenic / Tension-type",
+  "Anafilaksi (Klinik Tanı)": "Anaphylaxis (Clinical Diagnosis)",
+  "İV dekstroz tedavisi tanı koydurur": "IV dextrose treatment is diagnostic",
+  "Cushing triadı": "Cushing triad"
 };
 window.taniCevir = function (tr) {
   return (typeof currentLang !== "undefined" && currentLang === "en" && window.TANI_I18N[tr]) ? window.TANI_I18N[tr] : tr;

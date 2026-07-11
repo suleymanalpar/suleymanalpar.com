@@ -14,9 +14,9 @@ const TANI_KATALOG = {
     aciklama: "Acil servise göğüs ağrısı yakınmasıyla başvurunun ayırıcı tanısı. Hayati nedenler (5 'killer chest pain') önce dışlanır.",
     tanilar: [
       { tani: "Akut Koroner Sendrom (AKS)", alt: "STEMI / NSTEMI / USAP", aciliyet: "kirmizi",
-        destekleyen: ["Egzersizle artan, dinlenme/nitratla geçen baskı/sıkışma", "Sol kol/çene/sırta yayılım", "Diyaforez, bulantı", "DM/HT/sigara/aile öyküsü", "S3 galo, hipotansiyon (kompike)"],
+        destekleyen: ["Egzersizle artan, dinlenme/nitratla geçen baskı/sıkışma", "Sol kol/çene/sırta yayılım", "Diyaforez, bulantı", "DM/HT/sigara/aile öyküsü", "S3 galo, hipotansiyon (komplike)"],
         bayraklar: ["Yeni ST elevasyonu / depresyonu", "Troponin pozitif", "Hemodinamik instabilite"],
-        tetkikler: ["EKG ilk 10 dk", "Yüksek-duyarlık troponin (0/1 saat protokol)", "EKO (kompike/şüphe)", "Acil koroner anjiyografi (STEMI)"],
+        tetkikler: ["EKG ilk 10 dk", "Yüksek-duyarlık troponin (0/1 saat protokol)", "EKO (komplike/şüphe)", "Acil koroner anjiyografi (STEMI)"],
         skor: "HEART, TIMI, GRACE" },
       { tani: "Pulmoner Emboli (PE)", alt: "Submasif / masif", aciliyet: "kirmizi",
         destekleyen: ["Akut başlangıç dispne + plöritik göğüs ağrısı", "Taşikardi, taşipne", "DVT belirtisi", "İmmobilizasyon, malignite, OKS, gebelik", "Hemoptizi"],
@@ -167,7 +167,7 @@ const TANI_KATALOG = {
       { tani: "Hipoglisemi", alt: "İnsülin/oral antidiyabetik", aciliyet: "turuncu",
         destekleyen: ["DM + senkop", "Tremor, terleme, açlık (yoksa hızlı koma)"],
         bayraklar: ["Bilinç tamamen geri dönmez (sürekli verme gerekebilir)"],
-        tetkikler: ["Parmak ucu glikoz", "İVD glikoz tedavi tanı koyar"] },
+        tetkikler: ["Parmak ucu glikoz", "İV dekstroz tedavisi tanı koydurur"] },
     ]
   },
 
@@ -232,7 +232,7 @@ const TANI_KATALOG = {
         destekleyen: ["Tekrarlayıcı atak öyküsü", "Migren: tek taraflı zonklayıcı + foto/fonofobi + bulantı", "Cluster: tek taraflı ağrı + otonomik bulgular"],
         bayraklar: ["Yeni karakter / kötüleşme = SNOOP düşün"],
         tetkikler: ["Klinik tanı (kırmızı bayrak yoksa)"] },
-      { tani: "Servisikojenik / Gerginlik Tipi", alt: "Muskuloskeletal", aciliyet: "yesil",
+      { tani: "Servikojenik / Gerginlik Tipi", alt: "Muskuloskeletal", aciliyet: "yesil",
         destekleyen: ["Bilateral, baskı tarzı, hafif-orta şiddet", "Stres / pozisyon tetikleyici", "Servikal hassasiyet"],
         bayraklar: ["Atipik özellikler → diğer tanıları dışla"],
         tetkikler: ["Klinik"] },
@@ -283,7 +283,7 @@ const TANI_KATALOG = {
       { tani: "Hipoglisemi", alt: "Kolayca dışlanan, hızlı düzelir", aciliyet: "kirmizi",
         destekleyen: ["DM + ilaç", "Adrenerjik bulgular yoksa hızlı koma"],
         bayraklar: ["Beyin hasarı önlemek için hızlı tedavi"],
-        tetkikler: ["Kapiller glikoz", "İVD glikoz tedavi tanı koyar"] },
+        tetkikler: ["Kapiller glikoz", "İV dekstroz tedavisi tanı koydurur"] },
       { tani: "Sepsis Ensefalopatisi", alt: "Enfeksiyon kaynaklı", aciliyet: "kirmizi",
         destekleyen: ["Yaşlı + enfeksiyon odağı", "Ateş veya hipotermi", "qSOFA ≥2"],
         bayraklar: ["MAP düşüklüğü", "Laktat yüksek"],
@@ -344,7 +344,7 @@ const TANI_KATALOG = {
         tetkikler: ["Pelvik bağ", "BT angio", "Damar girişimsel rad."] },
       { tani: "Travmatik Beyin Hasarı", alt: "Hafif / orta / ciddi", aciliyet: "kirmizi",
         destekleyen: ["GKS düşüklüğü", "Lokalize defisit", "Pupiller anormallik", "Battle / raccoon eyes"],
-        bayraklar: ["Cushing triad — hertz", "Anizokori", "GKS düşüşü"],
+        bayraklar: ["Cushing triadı", "Anizokori", "GKS düşüşü"],
         tetkikler: ["Kafa BT", "ICP yönetimi", "Nöroşir konsültasyon"] },
       { tani: "Spinal Kord Yaralanması", alt: "Komplet / inkomplet", aciliyet: "kirmizi",
         destekleyen: ["Bilateral motor/duyu defisiti", "Nörojenik şok (hipotansiyon + bradikardi)"],
@@ -387,7 +387,7 @@ const TANI_KATALOG = {
   "Anafilaksi": {
     aciklama: "Sistemik allerjik reaksiyon. Adrenalin geciktirme.",
     tanilar: [
-      { tani: "Anafilaksi (Sertifika Tanısı)", alt: "NIAID/FAAN kriterleri", aciliyet: "kirmizi",
+      { tani: "Anafilaksi (Klinik Tanı)", alt: "NIAID/FAAN kriterleri", aciliyet: "kirmizi",
         destekleyen: ["Akut başlangıç + cilt belirtileri + (solunum / KB / GİS)", "Bilinen allerjen + 2 sistem", "Bilinen allerjen + hipotansiyon"],
         bayraklar: ["Stridor / wheezing", "Hipotansiyon", "Bilinç değişikliği"],
         tetkikler: ["Klinik tanı — adrenalin IM (vastus lateralis)", "Triptaz (15 dk-3 saat)"],
