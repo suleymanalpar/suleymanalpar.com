@@ -54,8 +54,8 @@
   <!-- Page Header -->
   <section class="page-header">
     <div class="container">
-      <h1>Çerez Politikası</h1>
-      <p>Çerez ve yerel depolama bilgilendirmesi</p>
+      <h1 data-i18n="cookie.header.title">Çerez Politikası</h1>
+      <p data-i18n="cookie.header.desc">Çerez ve yerel depolama bilgilendirmesi</p>
     </div>
   </section>
 
@@ -63,23 +63,23 @@
   <section class="content-section">
     <div class="container">
       <div class="legal-content">
-        <p class="legal-meta">Son güncelleme: 8 Temmuz 2026</p>
+        <p class="legal-meta" data-i18n="cookie.meta">Son güncelleme: 8 Temmuz 2026</p>
 
-        <h2>1. Çerez Kullanımı</h2>
-        <p>Bu site <strong>çerez (cookie) kullanmamaktadır.</strong> Ziyaretçi takibi, reklam veya analitik amaçlı hiçbir çerez yerleştirilmez.</p>
+        <h2 data-i18n="cookie.s1.title">1. Çerez Kullanımı</h2>
+        <p data-i18n-html="cookie.s1.p">Bu site <strong>çerez (cookie) kullanmamaktadır.</strong> Ziyaretçi takibi, reklam veya analitik amaçlı hiçbir çerez yerleştirilmez.</p>
 
-        <h2>2. Yerel Depolama (localStorage)</h2>
-        <p>Sitede yalnızca dil tercihinizin (Türkçe/İngilizce) hatırlanması amacıyla tarayıcınızın yerel depolama alanında <strong>"lang"</strong> adlı tek bir kayıt tutulur. Bu bilgi cihazınızda kalır, sunucuya gönderilmez ve kimliğinizle ilişkilendirilmez. Tarayıcınızın site verilerini temizleme özelliğiyle dilediğiniz an silebilirsiniz.</p>
+        <h2 data-i18n="cookie.s2.title">2. Yerel Depolama (localStorage)</h2>
+        <p data-i18n-html="cookie.s2.p">Sitede yalnızca dil tercihinizin (Türkçe/İngilizce) hatırlanması amacıyla tarayıcınızın yerel depolama alanında <strong>"lang"</strong> adlı tek bir kayıt tutulur. Bu bilgi cihazınızda kalır, sunucuya gönderilmez ve kimliğinizle ilişkilendirilmez. Tarayıcınızın site verilerini temizleme özelliğiyle dilediğiniz an silebilirsiniz.</p>
 
-        <h2>3. Çerezsiz Ziyaret İstatistikleri</h2>
-        <p>Site, ziyaret istatistikleri için <strong>GoatCounter</strong> adlı gizlilik dostu bir analitik aracı kullanır. Bu araç <strong>çerez yerleştirmez</strong>, kişisel veri toplamaz ve ziyaretçileri bireysel olarak izlemez; yalnızca hangi sayfaların ne sıklıkta görüntülendiğine dair anonim, toplulaştırılmış sayımlar üretir.</p>
+        <h2 data-i18n="cookie.s3.title">3. Çerezsiz Ziyaret İstatistikleri</h2>
+        <p data-i18n-html="cookie.s3.p">Site, ziyaret istatistikleri için <strong>GoatCounter</strong> adlı gizlilik dostu bir analitik aracı kullanır. Bu araç <strong>çerez yerleştirmez</strong>, kişisel veri toplamaz ve ziyaretçileri bireysel olarak izlemez; yalnızca hangi sayfaların ne sıklıkta görüntülendiğine dair anonim, toplulaştırılmış sayımlar üretir.</p>
 
-        <h2>4. Üçüncü Taraf Kaynaklar</h2>
+        <h2 data-i18n="cookie.s4.title">4. Üçüncü Taraf Kaynaklar</h2>
         <ul>
-          <li><strong>Barındırma (Netlify):</strong> Site altyapısı gereği standart erişim günlükleri güvenlik amacıyla tutulabilir.</li>
-          <li><strong>GoatCounter:</strong> Çerezsiz analitik hizmeti (yukarıda açıklanmıştır).</li>
+          <li data-i18n-html="cookie.s4.li1"><strong>Barındırma (Netlify):</strong> Site altyapısı gereği standart erişim günlükleri güvenlik amacıyla tutulabilir.</li>
+          <li data-i18n-html="cookie.s4.li2"><strong>GoatCounter:</strong> Çerezsiz analitik hizmeti (yukarıda açıklanmıştır).</li>
         </ul>
-        <p>Ayrıntılar için <a href="gizlilik.html">Gizlilik Politikası</a> sayfasına bakınız.</p>
+        <p data-i18n-html="cookie.s4.p">Ayrıntılar için <a href="gizlilik.html">Gizlilik Politikası</a> sayfasına bakınız.</p>
       </div>
     </div>
   </section>
@@ -97,6 +97,44 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    window.pageI18n = {
+      tr: {
+        'meta.title': 'Çerez Politikası | Dr. Süleyman Alpar',
+        'meta.desc': 'Çerez ve yerel depolama kullanımına ilişkin bilgilendirme.',
+        'cookie.header.title': 'Çerez Politikası',
+        'cookie.header.desc': 'Çerez ve yerel depolama bilgilendirmesi',
+        'cookie.meta': 'Son güncelleme: 8 Temmuz 2026',
+        'cookie.s1.title': '1. Çerez Kullanımı',
+        'cookie.s1.p': 'Bu site <strong>çerez (cookie) kullanmamaktadır.</strong> Ziyaretçi takibi, reklam veya analitik amaçlı hiçbir çerez yerleştirilmez.',
+        'cookie.s2.title': '2. Yerel Depolama (localStorage)',
+        'cookie.s2.p': 'Sitede yalnızca dil tercihinizin (Türkçe/İngilizce) hatırlanması amacıyla tarayıcınızın yerel depolama alanında <strong>"lang"</strong> adlı tek bir kayıt tutulur. Bu bilgi cihazınızda kalır, sunucuya gönderilmez ve kimliğinizle ilişkilendirilmez. Tarayıcınızın site verilerini temizleme özelliğiyle dilediğiniz an silebilirsiniz.',
+        'cookie.s3.title': '3. Çerezsiz Ziyaret İstatistikleri',
+        'cookie.s3.p': 'Site, ziyaret istatistikleri için <strong>GoatCounter</strong> adlı gizlilik dostu bir analitik aracı kullanır. Bu araç <strong>çerez yerleştirmez</strong>, kişisel veri toplamaz ve ziyaretçileri bireysel olarak izlemez; yalnızca hangi sayfaların ne sıklıkta görüntülendiğine dair anonim, toplulaştırılmış sayımlar üretir.',
+        'cookie.s4.title': '4. Üçüncü Taraf Kaynaklar',
+        'cookie.s4.li1': '<strong>Barındırma (Netlify):</strong> Site altyapısı gereği standart erişim günlükleri güvenlik amacıyla tutulabilir.',
+        'cookie.s4.li2': '<strong>GoatCounter:</strong> Çerezsiz analitik hizmeti (yukarıda açıklanmıştır).',
+        'cookie.s4.p': 'Ayrıntılar için <a href="gizlilik.html">Gizlilik Politikası</a> sayfasına bakınız.'
+      },
+      en: {
+        'meta.title': 'Cookie Policy | Dr. Süleyman Alpar',
+        'meta.desc': 'Information about the use of cookies and local storage.',
+        'cookie.header.title': 'Cookie Policy',
+        'cookie.header.desc': 'Information about cookies and local storage',
+        'cookie.meta': 'Last updated: July 8, 2026',
+        'cookie.s1.title': '1. Use of Cookies',
+        'cookie.s1.p': 'This site <strong>does not use cookies.</strong> No cookies are placed for visitor tracking, advertising, or analytics purposes.',
+        'cookie.s2.title': '2. Local Storage (localStorage)',
+        'cookie.s2.p': 'A single record named <strong>"lang"</strong> is kept in your browser\'s local storage, solely to remember your language preference (Turkish/English). This information stays on your device, is not sent to the server, and is not associated with your identity. You can delete it at any time using your browser\'s clear-site-data feature.',
+        'cookie.s3.title': '3. Cookie-Free Visit Statistics',
+        'cookie.s3.p': 'The site uses a privacy-friendly analytics tool called <strong>GoatCounter</strong> for visit statistics. This tool <strong>does not place cookies</strong>, does not collect personal data, and does not individually track visitors; it only produces anonymous, aggregated counts of which pages are viewed and how often.',
+        'cookie.s4.title': '4. Third-Party Sources',
+        'cookie.s4.li1': '<strong>Hosting (Netlify):</strong> Standard access logs may be kept for security purposes as required by the site\'s infrastructure.',
+        'cookie.s4.li2': '<strong>GoatCounter:</strong> Cookie-free analytics service (described above).',
+        'cookie.s4.p': 'Please see the <a href="gizlilik.html">Privacy Policy</a> page for details.'
+      }
+    };
+  </script>
   <script data-goatcounter="https://suleymanalpar.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 </body>

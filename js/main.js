@@ -403,27 +403,50 @@ const translations = {
 // --- Language Management ---
 let currentLang = localStorage.getItem('lang') || 'tr';
 
+// Çeviri arama: önce global sözlük (bu dosya), sonra sayfa-yerel window.pageI18n.
+// Böylece uzun sayfa içerikleri kendi HTML'inde taşınır, main.js şişmez.
+function ceviriBul(lang, key) {
+  if (!key) return null;
+  if (translations[lang] && translations[lang][key] != null) return translations[lang][key];
+  var p = (typeof window !== 'undefined') ? window.pageI18n : null;
+  if (p && p[lang] && p[lang][key] != null) return p[lang][key];
+  return null;
+}
+
 function setLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('lang', lang);
 
-  // Update all translatable elements
+  // Düz metin düğümleri
   document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (translations[lang][key]) {
-      el.textContent = translations[lang][key];
-    }
+    const val = ceviriBul(lang, el.getAttribute('data-i18n'));
+    if (val != null) el.textContent = val;
   });
 
-  // Update placeholders
+  // İçinde satır içi HTML olan bloklar (ör. <strong>, <a>, <br>)
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const val = ceviriBul(lang, el.getAttribute('data-i18n-html'));
+    if (val != null) el.innerHTML = val;
+  });
+
+  // Placeholder'lar
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (translations[lang][key]) {
-      el.placeholder = translations[lang][key];
-    }
+    const val = ceviriBul(lang, el.getAttribute('data-i18n-placeholder'));
+    if (val != null) el.placeholder = val;
   });
 
-  // Update lang buttons
+  // Öznitelik çevirileri: data-i18n-attr="aria-label:key1;title:key2"
+  document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+    el.getAttribute('data-i18n-attr').split(';').forEach(pair => {
+      const idx = pair.indexOf(':');
+      if (idx < 0) return;
+      const attr = pair.slice(0, idx).trim();
+      const val = ceviriBul(lang, pair.slice(idx + 1).trim());
+      if (attr && val != null) el.setAttribute(attr, val);
+    });
+  });
+
+  // Dil düğmeleri
   document.querySelectorAll('.lang-btn').forEach(btn => {
     const aktif = btn.dataset.lang === lang;
     btn.classList.toggle('active', aktif);
@@ -431,6 +454,13 @@ function setLanguage(lang) {
   });
 
   document.documentElement.lang = lang;
+
+  // Sayfa başlığı + meta açıklaması (sayfa pageI18n'inde meta.title/meta.desc tanımlıysa)
+  const tBaslik = ceviriBul(lang, 'meta.title');
+  if (tBaslik) document.title = tBaslik;
+  const descEl = document.querySelector('meta[name="description"]');
+  const tDesc = ceviriBul(lang, 'meta.desc');
+  if (descEl && tDesc) descEl.setAttribute('content', tDesc);
 }
 
 // --- Navigation ---
