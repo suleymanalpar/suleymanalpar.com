@@ -193,10 +193,10 @@
 
   <!-- Modal -->
   <div class="modal-overlay" id="modalOverlay">
-    <div class="modal-icerik">
+    <div class="modal-icerik" role="dialog" aria-modal="true" aria-labelledby="modalAd" aria-describedby="modalAciklama">
       <div class="modal-baslik">
         <div>
-          <h2 id="modalAd"></h2>
+          <h2 id="modalAd" tabindex="-1"></h2>
           <div class="modal-meta" id="modalKategori"></div>
         </div>
         <button class="modal-kapat" onclick="modalKapat()" aria-label="Kapat">×</button>
@@ -230,6 +230,7 @@
     let aramaMetni = "";
     let aktifSkor = null;
     let formData = {};
+    let modalTetikleyen = null;
 
     // Türkçe aksan-duyarsız normalize (arama için)
     function norm(s) {
@@ -310,18 +311,45 @@
       `;
       document.getElementById("modalOverlay").classList.add("acik");
       document.body.style.overflow = "hidden";
+      // Odak yönetimi: tetikleyen düğmeyi hatırla, başlığa odaklan (ekran okuyucu başlığı seslendirir)
+      modalTetikleyen = document.activeElement;
+      requestAnimationFrame(function () { document.getElementById("modalAd").focus(); });
     }
 
     function modalKapat() {
+      var acikMi = document.getElementById("modalOverlay").classList.contains("acik");
       document.getElementById("modalOverlay").classList.remove("acik");
       document.body.style.overflow = "";
       aktifSkor = null;
+      // Odağı, modalı açan öğeye geri ver
+      if (acikMi && modalTetikleyen && typeof modalTetikleyen.focus === "function") {
+        modalTetikleyen.focus();
+      }
+      modalTetikleyen = null;
     }
     document.getElementById("modalOverlay").addEventListener("click", (e) => {
       if (e.target.id === "modalOverlay") modalKapat();
     });
+    // Klavye: ESC kapatır; Tab odağı modal içinde tutar (focus trap)
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") modalKapat();
+      var overlay = document.getElementById("modalOverlay");
+      var acik = overlay.classList.contains("acik");
+      if (!acik) return;
+      if (e.key === "Escape") { modalKapat(); return; }
+      if (e.key !== "Tab") return;
+      var odaklanabilir = overlay.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      var gorunur = Array.prototype.filter.call(odaklanabilir, function (el) {
+        return el.offsetParent !== null || el === document.activeElement;
+      });
+      if (!gorunur.length) return;
+      var ilk = gorunur[0], son = gorunur[gorunur.length - 1];
+      if (e.shiftKey && document.activeElement === ilk) {
+        e.preventDefault(); son.focus();
+      } else if (!e.shiftKey && document.activeElement === son) {
+        e.preventDefault(); ilk.focus();
+      }
     });
 
     // ─── Form alanları render ───

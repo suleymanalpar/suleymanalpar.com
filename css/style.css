@@ -26,7 +26,7 @@
 
   --text: #1d1d1f;              /* ana metin */
   --text-light: #6e6e73;        /* ikincil metin */
-  --text-muted: #86868b;        /* üçüncül / etiket */
+  --text-muted: #6d6d75;        /* üçüncül / etiket — WCAG AA (küçük metin) */
   --text-on-dark: rgba(255,255,255,.72);
   --border: rgba(0,0,0,.09);
   --border-strong: #d2d2d7;
@@ -575,7 +575,7 @@ p { margin-bottom: 1rem; }
   color: var(--text);
   transition: border-color var(--transition);
 }
-.form-group input::placeholder, .form-group textarea::placeholder { color: #9b9ba0; }
+.form-group input::placeholder, .form-group textarea::placeholder { color: #83838a; }
 .form-group input:focus, .form-group textarea:focus { border-color: var(--vurgu); }
 .form-group textarea { min-height: 108px; resize: vertical; }
 
