@@ -318,6 +318,9 @@ p { margin-bottom: 1rem; }
 .section-head h2 { margin: 0; }
 .section-head .head-link { font-size: 16px; font-weight: 500; color: var(--vurgu); flex: none; }
 .section-head .head-link:hover { opacity: .8; }
+.pub-links { display: flex; align-items: center; gap: 20px; flex: none; flex-wrap: wrap; }
+.orcid-link { display: inline-flex; align-items: center; gap: 6px; }
+.orcid-link svg { flex-shrink: 0; }
 .eyebrow {
   font-size: 13px;
   font-weight: 600;
