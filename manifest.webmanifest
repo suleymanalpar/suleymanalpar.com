@@ -7,27 +7,27 @@
   "scope": "/",
   "display": "standalone",
   "background_color": "#faf8f4",
-  "theme_color": "#1d2733",
+  "theme_color": "#0E7490",
   "icons": [
-    { "src": "/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/img/icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "/img/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "/img/marka/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/img/marka/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/img/marka/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
     {
       "name": "Klinik Skorlar",
       "url": "/skorlar.html",
-      "icons": [{ "src": "/img/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/img/marka/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Ayırıcı Tanı",
       "url": "/tani.html",
-      "icons": [{ "src": "/img/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/img/marka/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Epikriz",
       "url": "/epikriz.html",
-      "icons": [{ "src": "/img/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/img/marka/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }

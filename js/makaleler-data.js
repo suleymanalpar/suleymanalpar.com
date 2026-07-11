@@ -2,14 +2,28 @@
    Güncel Acil Tıp Literatürü — Veri Dosyası
    Bu dosya her sabah otomatik güncellenir. Kaynak: PubMed (açık künye + DOI).
    Özetler Türkçe'ye uyarlanmıştır; tam metin gösterilmez, her kart orijinal kaynağa yönlendirir.
-   Son güncelleme: 2026-07-10
+   Son güncelleme: 2026-07-11
    ============================================ */
 window.MAKALELER = {
-  guncelleme_iso: "2026-07-10",
-  guncelleme_tr: "10 Temmuz 2026",
+  guncelleme_iso: "2026-07-11",
+  guncelleme_tr: "11 Temmuz 2026",
   makaleler: [
     {
-      baslik: "Acil Servis Tanılarında ve Mortalitesinde Ulusal Örüntüler: Nationwide Emergency Department Sample Verileri",
+      baslik: "Çocuklarda Akut Ruhsal ve Davranışsal Sağlık Acilleri için Araştırma Gündemi",
+      baslik_en: "A Research Agenda for Acute Pediatric Mental and Behavioral Health Emergencies",
+      dergi: "Ann Emerg Med",
+      tarih: "10 Tem 2026",
+      tarih_iso: "2026-07-10",
+      kategori: "pediatri",
+      kategori_etiket: "Pediatrik Acil",
+      tur: "Uzlaşı Çalışması",
+      ozet: "PECARN Ruh Sağlığı Çalışma Grubunun yürüttüğü modifiye Delphi çalışmasında, aralarında aile ve yaşanmışlık deneyimi olanların da bulunduğu 23 uzmanla çocukların akut ruhsal ve davranışsal acillerine yönelik 51 araştırma önceliği üzerinde uzlaşı sağlandı; hastane öncesi bakım, acil serviste bekleme (boarding), akut ajitasyon yönetimi, intihar önleme ve taburculuk sonrası izlem gibi 31 öncelikli alan belirlendi.",
+      yazarlar: "Hoffmann JA. ve ark.",
+      doi: "10.1016/j.annemergmed.2026.05.015",
+      link: "https://doi.org/10.1016/j.annemergmed.2026.05.015"
+    },
+    {
+      baslik: "Acil Servis Tanı ve Mortalitesinde Ulusal Örüntüler: Nationwide Emergency Department Sample Verileri",
       baslik_en: "National patterns in emergency department diagnoses and mortality: insights from the Nationwide Emergency Department Sample",
       dergi: "Emerg Med J",
       tarih: "9 Tem 2026",
@@ -17,7 +31,7 @@ window.MAKALELER = {
       kategori: "sistem",
       kategori_etiket: "Sistem & Meslek",
       tur: "Araştırma",
-      ozet: "ABD'de 2016-2021 arası 680 milyondan fazla acil servis başvurusunu kapsayan retrospektif analiz; göğüs ağrısı en sık tanıyken 2021'de COVID-19 öne geçmiş, kardiyak arrest acil servis ölümlerinin %58-77'sini oluşturmuş ve sepsis, solunum yetmezliği ile AKS yükünde belirgin yaş, cinsiyet ve etnisite eşitsizlikleri saptanmış.",
+      ozet: "ABD'de 2016-2021 arası 680 milyondan fazla acil başvuruyu kapsayan retrospektif analizde göğüs ağrısı en sık tanıyken 2021'de COVID-19 öne geçmiş; kardiyak arrest acil servis ölümlerinin %58-77'sini oluşturmuş ve sepsis, solunum yetmezliği ile akut koroner sendrom yükünde belirgin yaş, cinsiyet ve etnik köken eşitsizlikleri saptanmıştır.",
       yazarlar: "Goyal A. ve ark.",
       doi: "10.1136/emermed-2026-215921",
       link: "https://doi.org/10.1136/emermed-2026-215921"
@@ -31,13 +45,13 @@ window.MAKALELER = {
       kategori: "sistem",
       kategori_etiket: "Sistem & Meslek",
       tur: "Meta-analiz",
-      ozet: "35 çalışma ve 32.841 EMS çalışanını kapsayan meta-analizde havuzlanmış tükenmişlik yaygınlığı %40 (%95 GA 33-49) bulunmuş; en yüksek oran karma EMS personelinde (%52), ardından paramediklerde (%41) izlenmiş, bu da sistem düzeyinde ruh sağlığı desteği gerekliliğine işaret ediyor.",
+      ozet: "35 çalışma ve 32.841 acil sağlık hizmetleri (EMS) çalışanını kapsayan meta-analizde havuzlanmış tükenmişlik yaygınlığı %40 (%95 GA 33-49) bulunmuş; en yüksek oran karma EMS personelinde (%52), ardından paramediklerde (%41) izlenmiş ve sistem düzeyinde ruh sağlığı desteği ihtiyacı vurgulanmıştır.",
       yazarlar: "Huang G. ve ark.",
       doi: "10.1097/MEJ.0000000000001359",
       link: "https://doi.org/10.1097/MEJ.0000000000001359"
     },
     {
-      baslik: "İntranazal Ketamin Çocuklarda Yeterli İşlemsel Sedasyon Sağlayabilir mi?",
+      baslik: "İntranazal Ketamin Çocuklarda Yeterli İşlemsel Sedasyon Sağlar mı?",
       baslik_en: "Is there evidence that intranasal ketamine can provide adequate procedural sedation in paediatric patients?",
       dergi: "Emerg Med J",
       tarih: "9 Tem 2026",
@@ -45,7 +59,7 @@ window.MAKALELER = {
       kategori: "pediatri",
       kategori_etiket: "Pediatrik Acil",
       tur: "Derleme",
-      ozet: "Sekiz çalışmayı değerlendiren kanıt derlemesi; intranazal ketaminin işlemsel sedasyonda intravenöz ketamine göre başarı olasılığının biraz daha düşük olduğunu, ancak iğnesiz bir alternatif olarak özellikle iğne fobisi belirgin çocuklarda paylaşımlı kararla düşünülebileceğini bildiriyor.",
+      ozet: "Sekiz çalışmayı değerlendiren kanıt derlemesinde, işlemsel sedasyonda intranazal ketaminin intravenöz ketamine göre başarı olasılığının biraz daha düşük olduğu, ancak iğnesiz bir seçenek olarak özellikle iğne fobisi belirgin çocuklarda paylaşımlı kararla düşünülebileceği bildirilmiştir.",
       yazarlar: "Jeyabelen H. ve Manak I.",
       doi: "10.1136/emermed-2026-216136",
       link: "https://doi.org/10.1136/emermed-2026-216136"
@@ -59,27 +73,13 @@ window.MAKALELER = {
       kategori: "toksikoloji",
       kategori_etiket: "Toksikoloji",
       tur: "Derleme",
-      ozet: "Beş çalışmayı içeren derleme; nitazen aşırı dozunu tedavi etmek için 0,4-4,40 mg aralığında nalokson gerektiğini, dolayısıyla rutin yüksek doz kullanımını desteklemediğini bildiriyor; doz sıklığının etkisi için daha fazla araştırma öneriliyor.",
+      ozet: "Beş çalışmayı içeren derlemede nitazen aşırı dozunu geri döndürmek için 0,4-4,40 mg aralığında nalokson gerektiği bildirilmiş; bu bulgular rutin yüksek doz nalokson kullanımını desteklememekte, doz sıklığının etkisi için daha fazla araştırma önerilmektedir.",
       yazarlar: "Blanksby I. ve Harrison L.",
       doi: "10.1136/emermed-2026-216211",
       link: "https://doi.org/10.1136/emermed-2026-216211"
     },
     {
-      baslik: "Yeni Bir Acil Servis Psikiyatrik Bakım Modelinin Kalış Süresini Azaltmadaki Etkinliği",
-      baslik_en: "Effectiveness of a Novel Emergency Department Psychiatric Care Model in Reducing Length of Stay",
-      dergi: "Ann Emerg Med",
-      tarih: "8 Tem 2026",
-      tarih_iso: "2026-07-08",
-      kategori: "sistem",
-      kategori_etiket: "Sistem & Meslek",
-      tur: "Araştırma",
-      ozet: "5.222 başvuruyu kapsayan kesintili zaman serisi çalışmasında, acil servise 7/24 gömülü psikiyatri hemşire uygulayıcıları içeren bakım modeli medyan kalış süresini 8,35 saatten 5,61 saate indirmiş; en büyük azalma istem dışı yatış kararı verilen ve psikiyatri kurumuna sevk edilen hastalarda görülmüş.",
-      yazarlar: "Hewlett MM. ve ark.",
-      doi: "10.1016/j.annemergmed.2026.06.008",
-      link: "https://doi.org/10.1016/j.annemergmed.2026.06.008"
-    },
-    {
-      baslik: "Uyanık Travmatik Spinal Kord Yaralanmalı Hastaların Yönetiminde HEMS Klinisyenlerinin Karşılaştığı Zorluklar: Kesitsel Anket",
+      baslik: "Uyanık Travmatik Spinal Kord Yaralanmalı Hastaların Yönetiminde İngiltere HEMS Klinisyenlerinin Karşılaştığı Zorluklar: Kesitsel Anket",
       baslik_en: "Challenges faced by UK HEMS clinicians when managing awake patients with traumatic spinal cord injuries: a cross-sectional survey",
       dergi: "Emerg Med J",
       tarih: "7 Tem 2026",
@@ -87,7 +87,7 @@ window.MAKALELER = {
       kategori: "travma",
       kategori_etiket: "Travma",
       tur: "Araştırma",
-      ozet: "16 İngiltere HEMS biriminden 62 klinisyenin katıldığı ankette, uyanık travmatik spinal kord yaralanmalı hastaların yönetiminde en zorlayıcı alanın hemodinamik yönetimden çok iletişim ve psikolojik destek (özellikle prognoz sorularının yanıtlanması) olduğu bildirildi; bu bulgu geleneksel eğitim önceliklerini sorguluyor.",
+      ozet: "16 İngiltere HEMS biriminden 62 klinisyenin katıldığı ankette, uyanık travmatik spinal kord yaralanmalı hastaların yönetiminde en zorlayıcı alanın hemodinamik yönetimden çok iletişim ve psikolojik destek (özellikle prognoz sorularının yanıtlanması) olduğu bildirilmiş; bu bulgu geleneksel eğitim önceliklerini sorgulamaktadır.",
       yazarlar: "Symes M. ve ark.",
       doi: "10.1136/emermed-2025-215481",
       link: "https://doi.org/10.1136/emermed-2025-215481"
@@ -101,13 +101,13 @@ window.MAKALELER = {
       kategori: "resusitasyon",
       kategori_etiket: "Resüsitasyon",
       tur: "Araştırma",
-      ozet: "3.662 yenidoğanı kapsayan çalışmada umbilikal arter pH'ı ile ilk dakikadaki kalp hızı arasında anlamlı doğrusal ilişki bulunmadı; pH 7,00 altında olanların yalnızca yarısı bradikardikti, ancak düşük pH bradikardi ve pozitif basınçlı ventilasyon ile ilişkiliydi ve Apgar skorları asfiksi derecesini iyi yansıttı.",
+      ozet: "3.662 yenidoğanı kapsayan çalışmada umbilikal arter pH'ı ile ilk dakikadaki kalp hızı arasında anlamlı doğrusal ilişki bulunmamış; pH 7,00 altındaki bebeklerin yalnızca yarısı bradikardikken düşük pH bradikardi ve pozitif basınçlı ventilasyon ile ilişkili bulunmuş, Apgar skorları doğum asfiksisini iyi yansıtmıştır.",
       yazarlar: "Rettedal S. ve ark.",
       doi: "10.1016/j.resuscitation.2026.111197",
       link: "https://doi.org/10.1016/j.resuscitation.2026.111197"
     },
     {
-      baslik: "CASPER-Skoru: Hastane Dışı Kardiyak Arrest Sonrası Anlamlı Koroner Darlığı Belirleyen, Yapay Zeka Temelli EKG Analizini Klinik Ön Gördürücülerle Birleştiren Yatak Başı Araç",
+      baslik: "CASPER-Skoru: Hastane Dışı Kardiyak Arrest Sonrası Anlamlı Koroner Darlığı Belirlemek için Yapay Zekâ Temelli EKG Analizini Klinik Öngördürücülerle Birleştiren Yatak Başı Araç",
       baslik_en: "Development of the CASPER-Score: A bedside tool integrating AI-based ECG analysis with key clinical predictors to identify relevant coronary artery stenosis in patients after out-of-hospital cardiac arrest",
       dergi: "Resuscitation",
       tarih: "7 Tem 2026",
@@ -115,24 +115,10 @@ window.MAKALELER = {
       kategori: "kardiyoloji",
       kategori_etiket: "Kardiyoloji",
       tur: "Araştırma",
-      ozet: "Koroner anjiyografi yapılan 204 hastane dışı kardiyak arrest hastasında yaş, erkek cinsiyet, şoklanabilir ritim ve yapay zeka temelli EKG ile OMI saptanmasını birleştiren CASPER-Skoru (0-8 puan) anlamlı koroner darlığı iyi ayırt etti (AUC 0,86); erken risk sınıflaması ve anjiyografi kararına destek olabilir.",
+      ozet: "Koroner anjiyografi yapılan 204 hastane dışı kardiyak arrest hastasında yaş, erkek cinsiyet, şoklanabilir ritim ve yapay zekâ temelli EKG ile tıkayıcı miyokart enfarktüsü saptanmasını birleştiren CASPER-Skoru (0-8 puan) anlamlı koroner darlığı iyi ayırt etmiş (AUC 0,86); erken risk sınıflaması ve anjiyografi kararına destek olabilir.",
       yazarlar: "von Beck LM. ve ark.",
       doi: "10.1016/j.resuscitation.2026.111198",
       link: "https://doi.org/10.1016/j.resuscitation.2026.111198"
-    },
-    {
-      baslik: "Almanya'da Ekstrakorporeal Kardiyopulmoner Resüsitasyon (ECPR) Görünümü: Ulusal Retrospektif Çalışma",
-      baslik_en: "The landscape of extracorporeal cardiopulmonary resuscitation in Germany. A nationwide retrospective study",
-      dergi: "Prehosp Emerg Care",
-      tarih: "7 Tem 2026",
-      tarih_iso: "2026-07-07",
-      kategori: "resusitasyon",
-      kategori_etiket: "Resüsitasyon",
-      tur: "Araştırma",
-      ozet: "2018-2023 arası dirençli hastane dışı arrestli 27.056 hastanın %2,9'una ECPR uygulandı; kullanım %1,8'den %4,1'e çıkarken sağkalım yaklaşık %12'de değişmedi ve merkez başına medyan yıllık vaka üçtü; düşük hacimli merkezlerdeki yaygın uygulama ulusal kalite standartları ve kayıt sistemleri ihtiyacını vurguluyor.",
-      yazarlar: "Jasny T. ve ark.",
-      doi: "10.1080/10903127.2026.2697436",
-      link: "https://doi.org/10.1080/10903127.2026.2697436"
     },
     {
       baslik: "Acil Serviste Geçirilen Süre ile 30 Günlük Mortalite İlişkisi: İngiltere'de Nüfus Temelli Gözlemsel Çalışma",
@@ -143,13 +129,13 @@ window.MAKALELER = {
       kategori: "sistem",
       kategori_etiket: "Sistem & Meslek",
       tur: "Araştırma",
-      ozet: "İngiltere'de 6,7 milyon acil servis başvurusunu kapsayan çalışmada, 2 saat kalan hastalara kıyasla acil serviste daha uzun kalanlarda taburculuk sonrası 30 günlük ölüm riski kademeli olarak arttı (6 saatte 1,6 kat, 12 saatte 2,1 kat); yazarlar ilişkinin nedenselliğinin belirsiz olduğunu ve artık karıştırıcıları yansıtabileceğini vurguluyor.",
+      ozet: "İngiltere'de 6,7 milyon acil servis başvurusunu kapsayan çalışmada, 2 saat kalan hastalara kıyasla acil serviste daha uzun kalanlarda taburculuk veya yatış sonrası 30 günlük ölüm riski kademeli olarak artmış (6 saatte 1,6; 12 saatte 2,1 kat); yazarlar ilişkinin nedenselliğinin belirsiz olduğunu ve artık karıştırıcıları yansıtabileceğini vurgulamaktadır.",
       yazarlar: "Aston H. ve ark.",
       doi: "10.1016/j.annemergmed.2026.06.017",
       link: "https://doi.org/10.1016/j.annemergmed.2026.06.017"
     },
     {
-      baslik: "Hastane Öncesi İnme Yönlendirmesinde Hastane Performansının Dahil Edilmesi: Simülasyon Çalışması",
+      baslik: "Hastane Öncesi İnme Yönlendirmesine Hastane Performansının Dâhil Edilmesi: Simülasyon Çalışması",
       baslik_en: "Inclusion of Hospital Performance in Prehospital Stroke Routing: A Simulation Study",
       dergi: "Prehosp Emerg Care",
       tarih: "7 Tem 2026",
@@ -157,10 +143,24 @@ window.MAKALELER = {
       kategori: "noroloji",
       kategori_etiket: "Nöroloji",
       tur: "Araştırma",
-      ozet: "400.000 hasta-konum senaryosunu kapsayan simülasyonda, gerçek hastane kapı-iğne ve kapı-ponksiyon sürelerini karar modeline eklemek önerilen varış hastanesini vakaların %63'ünde AHA konsensüs önerilerinden farklılaştırdı; hastalar daha sık reperfüzyonu hızlı olan merkezlere yönlendirildi.",
+      ozet: "400.000 hasta-konum senaryosunu kapsayan simülasyonda, gerçek hastane kapı-iğne ve kapı-ponksiyon sürelerini karar modeline eklemek önerilen varış hastanesini vakaların %63'ünde AHA uzlaşı önerilerinden farklılaştırmış; hastalar daha sık reperfüzyonu hızlı olan merkezlere yönlendirilmiştir.",
       yazarlar: "Zachrison KS. ve ark.",
       doi: "10.1080/10903127.2026.2689666",
       link: "https://doi.org/10.1080/10903127.2026.2689666"
+    },
+    {
+      baslik: "KOAH Alevlenmelerinde Acil Servisten Taburculuk için Roth ve Dispne Şiddet Skorunun Değerlendirilmesi",
+      baslik_en: "Evaluating the Roth and Dyspnea severity score for emergency department discharge in exacerbations of chronic obstructive pulmonary disease",
+      dergi: "Am J Emerg Med",
+      tarih: "6 Tem 2026",
+      tarih_iso: "2026-07-06",
+      kategori: "klinik-karar",
+      kategori_etiket: "Klinik Karar",
+      tur: "Araştırma",
+      ozet: "Türkiye'de dört merkezde 352 KOAH alevlenmesi hastasını kapsayan prospektif tanısal doğruluk çalışmasında taburculuk kararı için Roth skoru (AUC 0,894) ve Dispne Şiddet Skoru (AUC 0,917) yüksek duyarlılık göstermiş; bu basit, invazif olmayan yatak başı araçların uygun hastalarda taburculuk kararını hızlandırabileceği belirtilmiştir.",
+      yazarlar: "Yazıcı MM. ve ark.",
+      doi: "10.1016/j.ajem.2026.07.007",
+      link: "https://doi.org/10.1016/j.ajem.2026.07.007"
     },
     {
       baslik: "Acil Serviste Evsiz Bireylerde Hepatit C Taraması: DETECT Hep C Tarama Çalışmasının İkincil Analizi",
@@ -171,7 +171,7 @@ window.MAKALELER = {
       kategori: "enfeksiyon",
       kategori_etiket: "Enfeksiyon",
       tur: "Araştırma",
-      ozet: "67.223 başvurunun analizinde evsiz bireyler HCV testini daha sık kabul etti ve seropozitiflik (aRR yaklaşık 2-2,9) ile viremi (aRR yaklaşık 3,3-3,7) açısından belirgin daha yüksek riskliydi; hedefli tarama yerine hedefsiz (herkese) tarama bu grupta HCV saptanmasını daha iyi destekleyebilir.",
+      ozet: "67.223 başvurunun analizinde evsiz bireyler HCV testini daha sık kabul etmiş ve seropozitiflik (aRR yaklaşık 2,1-2,9) ile viremi (aRR yaklaşık 3,3-3,7) açısından belirgin daha yüksek riskli bulunmuş; bu grupta hedefli tarama yerine hedefsiz (herkese) tarama HCV saptanmasını daha iyi destekleyebilir.",
       yazarlar: "Joseph KM. ve ark.",
       doi: "10.1016/j.annemergmed.2026.06.009",
       link: "https://doi.org/10.1016/j.annemergmed.2026.06.009"
@@ -185,38 +185,52 @@ window.MAKALELER = {
       kategori: "klinik-karar",
       kategori_etiket: "Klinik Karar",
       tur: "Araştırma",
-      ozet: "10 yılda taranan 1.213 entübasyonun 87'si (%7,2) acil hekimi tarafından uyanık entübasyondu; çoğu hastada anatomik veya fizyolojik zorluk öngörüsü olmasına rağmen majör advers olay olmadan başarı %92 ve ilk geçiş başarısı %71 idi, kritik hipoksemi/hipotansiyon/arrest oranları düşüktü.",
+      ozet: "Tek merkezde 10 yılda taranan 1.213 entübasyonun 87'si (%7,2) acil hekimi tarafından uyanık entübasyondu; hastaların çoğunda anatomik veya fizyolojik zorluk öngörülmesine rağmen majör advers olay olmadan başarı %92, ilk geçiş başarısı %71 idi ve kritik hipoksemi, hipotansiyon ile arrest oranları düşüktü.",
       yazarlar: "Parks A. ve ark.",
       doi: "10.1016/j.annemergmed.2026.06.007",
       link: "https://doi.org/10.1016/j.annemergmed.2026.06.007"
     },
     {
-      baslik: "Çocuk Acil Serviste POCUS Eşliğinde İleokolik İnvajinasyonun Hidrostatik Redüksiyonu",
-      baslik_en: "Point-of-Care Ultrasound-Guided Hydrostatic Reduction of Ileocolic Intussusception in the Pediatric Emergency Department",
-      dergi: "Ann Emerg Med",
-      tarih: "2 Tem 2026",
-      tarih_iso: "2026-07-02",
-      kategori: "pediatri",
-      kategori_etiket: "Pediatrik Acil",
+      baslik: "Hastane Dışı Kardiyak Arrestte Halk Tarafından Uygulanan KPR Almada Cinsiyet Eşitsizlikleri: Yaş Grubu ve Uygulayıcı Kategorisine Göre Analiz",
+      baslik_en: "Analyses of gender disparities in receipt of bystander cardiopulmonary resuscitation after out-of-hospital cardiac arrests by patient's age group and bystander category",
+      dergi: "Resuscitation",
+      tarih: "5 Tem 2026",
+      tarih_iso: "2026-07-05",
+      kategori: "resusitasyon",
+      kategori_etiket: "Resüsitasyon",
       tur: "Araştırma",
-      ozet: "Çocuk acilde bir çocuk acil hekimi tarafından yatak başı POCUS eşliğinde hidrostatik redüksiyon yapılan 9 ileokolik invajinasyon olgusunun 8'inde (%88,9) başarı sağlandı; komplikasyon veya 24 saat nüks görülmedi ve radyasyonsuz bu yaklaşım pediatrik radyoloji bulunmayan ortamlarda işlem süresini kısaltabilir.",
-      yazarlar: "Zymerman SA. ve ark.",
-      doi: "10.1016/j.annemergmed.2026.06.006",
-      link: "https://doi.org/10.1016/j.annemergmed.2026.06.006"
+      ozet: "Japonya'da 453.441 tanıklı hastane dışı kardiyak arrest kaydında kadınlar genelde daha sık halk KPR'si alsa da 15-64 yaş arasında ve uygulayıcının arkadaş, meslektaş ya da yoldan geçen olduğu durumlarda kadınlar daha az KPR almış; uygulayıcı kategorisi, cinsiyete kıyasla KPR alımıyla çok daha güçlü ilişkili bulunmuştur.",
+      yazarlar: "Fukui K. ve ark.",
+      doi: "10.1016/j.resuscitation.2026.111201",
+      link: "https://doi.org/10.1016/j.resuscitation.2026.111201"
     },
     {
-      baslik: "Yaşlı İstismarında Tarama ve Müdahaleler: Geriatrik Acil Servis Kılavuzları 2.0 Sistematik Derlemesi",
-      baslik_en: "Screening and Interventions for Elder Mistreatment: Geriatric Emergency Department Guidelines 2.0 Systematic Review",
-      dergi: "Acad Emerg Med",
-      tarih: "1 Tem 2026",
-      tarih_iso: "2026-07-01",
-      kategori: "sistem",
-      kategori_etiket: "Sistem & Meslek",
-      tur: "Sistematik Derleme",
-      ozet: "PRISMA'ya uygun iki sistematik derlemede, acil servis temelli yaşlı istismarı tarama araçları ve müdahaleleri için tam dahil edilme ölçütlerini karşılayan hiçbir çalışma bulunamadı (boş derleme); bu durum önemli kanıt boşluğunu ve titiz araştırma ihtiyacını vurguluyor.",
-      yazarlar: "Baek D. ve ark.",
-      doi: "10.1111/acem.70373",
-      link: "https://doi.org/10.1111/acem.70373"
+      baslik: "Kardiyopulmoner Resüsitasyon Sırasında Hacim Kontrollü Mekanik Ventilasyon: Sistematik Derleme ve Meta-analiz",
+      baslik_en: "Volume-controlled mechanical ventilation during cardiopulmonary resuscitation: A systematic review and meta-analysis",
+      dergi: "Resuscitation",
+      tarih: "3 Tem 2026",
+      tarih_iso: "2026-07-03",
+      kategori: "resusitasyon",
+      kategori_etiket: "Resüsitasyon",
+      tur: "Sistematik Derleme ve Meta-analiz",
+      ozet: "13 çalışmayı (6 randomize çalışmada 461 hasta) içeren derlemede, KPR sırasında hacim kontrollü mekanik ventilasyonun manuel ventilasyona kıyasla spontan dolaşımın geri dönüşünde fark yaratmadığı görülmüş (OR 1,31; %95 GA 0,64-2,71); kanıt kesinliği çok düşük ile düşük düzeyde olup diğer ventilasyon modlarıyla karşılaştırmalar belirsizdir.",
+      yazarlar: "Wittig J. ve ark.",
+      doi: "10.1016/j.resuscitation.2026.111199",
+      link: "https://doi.org/10.1016/j.resuscitation.2026.111199"
+    },
+    {
+      baslik: "Hastane Öncesi Pediatrik Kan Transfüzyonu Programları için En Uygun Hedef Travma Hastaları ve EMS Kuruluşlarının Belirlenmesi",
+      baslik_en: "Characterizing pediatric trauma patients and EMS agencies that are optimal targets for prehospital pediatric blood transfusion programs",
+      dergi: "Prehosp Emerg Care",
+      tarih: "2 Tem 2026",
+      tarih_iso: "2026-07-02",
+      kategori: "travma",
+      kategori_etiket: "Travma",
+      tur: "Araştırma",
+      ozet: "2021-2024 NEMSIS verisinde yaralı yaklaşık 2,49 milyon çocuğun %1,37'si fizyolojik olarak kan transfüzyonuna uygun görünürken bu hastaların yalnızca %1,01'ine kan ürünü verilmiş; uygun hastaların çoğuna ileri yaşam desteği düzeyindeki kuruluşlar bakmakta olup programların bu birimlerde yaygınlaştırılması gerektiği vurgulanmıştır.",
+      yazarlar: "Ramgopal S. ve Martin-Gill C.",
+      doi: "10.1080/10903127.2026.2696013",
+      link: "https://doi.org/10.1080/10903127.2026.2696013"
     }
   ]
 };
