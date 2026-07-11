@@ -135,14 +135,14 @@
   <!-- Page Header -->
   <section class="page-header">
     <div class="container">
-      <h1>Epikriz Yardımcısı</h1>
-      <p>Acil servis için 20 senaryolu yapılandırılmış klinik not şablonu</p>
+      <h1 data-i18n="ep.header.title">Epikriz Yardımcısı</h1>
+      <p data-i18n="ep.header.subtitle">Acil servis için 20 senaryolu yapılandırılmış klinik not şablonu</p>
     </div>
   </section>
 
   <div class="hcp-banner">
-    <strong>⚠ SAĞLIK ÇALIŞANLARI İÇİNDİR — KVKK</strong>
-    Bu araç yalnızca eğitim ve klinik dokümantasyon desteği amaçlıdır. Hekim kontrolü, muayene ve klinik yargı yerine geçmez. Form alanlarına <strong>tanıyıcı bilgi (ad, soyad, T.C., protokol no, telefon, adres)</strong> girmeyiniz. Tüm hesaplama ve metin oluşturma tarayıcınızda yapılır; hiçbir veri sunucuya gönderilmez.
+    <strong data-i18n="ep.banner.label">⚠ SAĞLIK ÇALIŞANLARI İÇİNDİR — KVKK</strong>
+    <span data-i18n-html="ep.banner.text">Bu araç yalnızca eğitim ve klinik dokümantasyon desteği amaçlıdır. Hekim kontrolü, muayene ve klinik yargı yerine geçmez. Form alanlarına <strong>tanıyıcı bilgi (ad, soyad, T.C., protokol no, telefon, adres)</strong> girmeyiniz. Tüm hesaplama ve metin oluşturma tarayıcınızda yapılır; hiçbir veri sunucuya gönderilmez.</span>
   </div>
 
   <!-- Sihirbaz -->
@@ -154,21 +154,21 @@
   <!-- KVKK ilk-açılış modal -->
   <div class="kvkk-modal" id="kvkkModal" style="display: none;">
     <div class="kvkk-icerik">
-      <h2>KVKK ve Kullanım Onayı</h2>
-      <p>Bu araç hekim ve sağlık çalışanlarına yönelik <strong>klinik not şablonu yardımcısıdır</strong>. Devam etmeden önce aşağıdaki ilkeleri okuyup kabul ediniz:</p>
+      <h2 data-i18n="ep.kvkk.title">KVKK ve Kullanım Onayı</h2>
+      <p data-i18n-html="ep.kvkk.intro">Bu araç hekim ve sağlık çalışanlarına yönelik <strong>klinik not şablonu yardımcısıdır</strong>. Devam etmeden önce aşağıdaki ilkeleri okuyup kabul ediniz:</p>
       <ul>
-        <li><strong>Tanıyıcı veri girmeyin.</strong> Hasta adı, T.C., protokol no, telefon, adres, sigorta no gibi verileri hiçbir alana girmeyiniz.</li>
-        <li><strong>Sadece klinik gerekli veriyi girin.</strong> Yaş, cinsiyet, vital, başvuru şikayeti, klinik bulgular yeterlidir.</li>
-        <li><strong>Bu araç yapay zeka kullanmaz.</strong> Tüm metin tarayıcınızda kural tabanlı şablona göre oluşturulur; hiçbir veri sunucuya gitmez.</li>
-        <li><strong>Klinik yargı yerine geçmez.</strong> Çıktı bir başlangıç metnidir; sorumluluk hekime aittir.</li>
-        <li><strong>Veri saklamaz.</strong> Sayfayı kapattığınızda girdiğiniz tüm bilgi kaybolur.</li>
+        <li data-i18n-html="ep.kvkk.li1"><strong>Tanıyıcı veri girmeyin.</strong> Hasta adı, T.C., protokol no, telefon, adres, sigorta no gibi verileri hiçbir alana girmeyiniz.</li>
+        <li data-i18n-html="ep.kvkk.li2"><strong>Sadece klinik gerekli veriyi girin.</strong> Yaş, cinsiyet, vital, başvuru şikayeti, klinik bulgular yeterlidir.</li>
+        <li data-i18n-html="ep.kvkk.li3"><strong>Bu araç yapay zeka kullanmaz.</strong> Tüm metin tarayıcınızda kural tabanlı şablona göre oluşturulur; hiçbir veri sunucuya gitmez.</li>
+        <li data-i18n-html="ep.kvkk.li4"><strong>Klinik yargı yerine geçmez.</strong> Çıktı bir başlangıç metnidir; sorumluluk hekime aittir.</li>
+        <li data-i18n-html="ep.kvkk.li5"><strong>Veri saklamaz.</strong> Sayfayı kapattığınızda girdiğiniz tüm bilgi kaybolur.</li>
       </ul>
       <div class="kvkk-onay-row">
         <label>
           <input type="checkbox" id="kvkkOnayCb">
-          Yukarıdaki ilkeleri okudum ve kabul ediyorum.
+          <span data-i18n="ep.kvkk.confirm">Yukarıdaki ilkeleri okudum ve kabul ediyorum.</span>
         </label>
-        <button class="btn btn-sonraki" id="kvkkOnayBtn" disabled onclick="kvkkOnayla()">Devam Et</button>
+        <button class="btn btn-sonraki" id="kvkkOnayBtn" disabled onclick="kvkkOnayla()" data-i18n="ep.kvkk.continue">Devam Et</button>
       </div>
     </div>
   </div>
@@ -188,6 +188,213 @@
   <script src="js/main.js"></script>
   <script src="js/epikriz.js"></script>
   <script>
+    window.pageI18n = {
+      tr: {
+        'meta.title': 'Epikriz Yardımcısı | Dr. Süleyman Alpar',
+        'meta.desc': 'Epikriz Yardımcısı — 20 senaryo şablonu, sistem bazlı muayene. Sağlık çalışanları için.',
+
+        'ep.header.title': 'Epikriz Yardımcısı',
+        'ep.header.subtitle': 'Acil servis için 20 senaryolu yapılandırılmış klinik not şablonu',
+
+        'ep.banner.label': '⚠ SAĞLIK ÇALIŞANLARI İÇİNDİR — KVKK',
+        'ep.banner.text': 'Bu araç yalnızca eğitim ve klinik dokümantasyon desteği amaçlıdır. Hekim kontrolü, muayene ve klinik yargı yerine geçmez. Form alanlarına <strong>tanıyıcı bilgi (ad, soyad, T.C., protokol no, telefon, adres)</strong> girmeyiniz. Tüm hesaplama ve metin oluşturma tarayıcınızda yapılır; hiçbir veri sunucuya gönderilmez.',
+
+        'ep.kvkk.title': 'KVKK ve Kullanım Onayı',
+        'ep.kvkk.intro': 'Bu araç hekim ve sağlık çalışanlarına yönelik <strong>klinik not şablonu yardımcısıdır</strong>. Devam etmeden önce aşağıdaki ilkeleri okuyup kabul ediniz:',
+        'ep.kvkk.li1': '<strong>Tanıyıcı veri girmeyin.</strong> Hasta adı, T.C., protokol no, telefon, adres, sigorta no gibi verileri hiçbir alana girmeyiniz.',
+        'ep.kvkk.li2': '<strong>Sadece klinik gerekli veriyi girin.</strong> Yaş, cinsiyet, vital, başvuru şikayeti, klinik bulgular yeterlidir.',
+        'ep.kvkk.li3': '<strong>Bu araç yapay zeka kullanmaz.</strong> Tüm metin tarayıcınızda kural tabanlı şablona göre oluşturulur; hiçbir veri sunucuya gitmez.',
+        'ep.kvkk.li4': '<strong>Klinik yargı yerine geçmez.</strong> Çıktı bir başlangıç metnidir; sorumluluk hekime aittir.',
+        'ep.kvkk.li5': '<strong>Veri saklamaz.</strong> Sayfayı kapattığınızda girdiğiniz tüm bilgi kaybolur.',
+        'ep.kvkk.confirm': 'Yukarıdaki ilkeleri okudum ve kabul ediyorum.',
+        'ep.kvkk.continue': 'Devam Et',
+
+        'ep.step.senaryo.ad': 'Senaryo',
+        'ep.step.senaryo.aciklama': 'Klinik tabloya en uygun senaryoyu seçin.',
+        'ep.step.demografi.ad': 'Demografi',
+        'ep.step.demografi.aciklama': 'Yaş, cinsiyet ve başvuru özeti.',
+        'ep.step.genel.ad': 'Genel Durum',
+        'ep.step.genel.aciklama': 'Genel durum, bilinç, GKS.',
+        'ep.step.sikayet.ad': 'Şikayet & Hikaye',
+        'ep.step.sikayet.aciklama': 'Hasta şikayetlerinin metni ve eşlik eden semptomlar.',
+        'ep.step.vital.ad': 'Vital',
+        'ep.step.vital.aciklama': 'Vital bulgular.',
+        'ep.step.muayene.ad': 'Muayene',
+        'ep.step.muayene.aciklama': "Sistem bazlı pozitif bulgular (sadece bulguyu işaretleyin; işaretlenmeyenler 'normal' olarak yazılır).",
+        'ep.step.senaryoOzel.ad': 'Senaryo Özel',
+        'ep.step.senaryoOzel.aciklama': 'Senaryoya özel ek bilgi şablonu — hekim ___ alanlarını doldurur.',
+        'ep.step.cikti.ad': 'Çıktı',
+        'ep.step.cikti.aciklama': 'Oluşturulan epikriz metni.',
+
+        'ep.nav.back': '← Geri',
+        'ep.nav.next': 'İleri →',
+
+        'ep.f.yas': 'Yaş',
+        'ep.f.yasBirim': '(yıl)',
+        'ep.f.cinsiyet': 'Cinsiyet',
+        'ep.f.cinsiyetErkek': 'Erkek',
+        'ep.f.cinsiyetKadin': 'Kadın',
+        'ep.f.basvuru': 'Başvuru özeti — başvuru şikayeti',
+        'ep.f.basvuruHelp': '(örn. "Göğüs ağrısı", "Karın ağrısı + bulantı")',
+        'ep.f.basvuruPh': 'Hasta neyle başvurdu?',
+
+        'ep.f.genelDurum': 'Genel Durum',
+        'ep.f.gdIyi': 'İyi',
+        'ep.f.gdOrta': 'Orta',
+        'ep.f.gdKotu': 'Kötü',
+        'ep.f.bilinc': 'Bilinç durumu',
+        'ep.f.bilinc1': 'Açık, koopere, oryante',
+        'ep.f.bilinc2': 'Letarjik',
+        'ep.f.bilinc3': 'Konfüze',
+        'ep.f.bilinc4': 'Stupor',
+        'ep.f.bilinc5': 'Koma',
+        'ep.f.gksNot': 'GKS bileşenleri (toplam otomatik):',
+        'ep.f.gozAcma': 'Göz açma (E)',
+        'ep.f.sozel': 'Sözel (V)',
+        'ep.f.motor': 'Motor (M)',
+        'ep.f.toplamGks': 'Toplam GKS:',
+
+        'ep.f.sikayetHikaye': 'Şikayet & hikaye detay',
+        'ep.f.sikayetHelp': '(serbest metin — hasta neyle başvurdu, ne kadar süredir, nasıl seyrediyor)',
+        'ep.f.sikayetPh': "Örn. 'Bugün öğleden sonra başlayan, basıcı tarzda göğüs ortası ağrısı. Sol kola yayılım var. Eforla artıyor, nitratla kısmen geriliyor. 2 saattir sürüyor.'",
+        'ep.f.semptomBaslik': 'Eşlik eden semptomlar',
+        'ep.f.riskFaktorleri': 'Risk faktörleri / komorbidite',
+        'ep.f.riskHelp': '(örn. "HT, DM, Sigara, Aile öyküsü KAH")',
+        'ep.f.riskPh': 'Virgülle ayırarak yazınız',
+
+        'ep.f.skb': 'SKB (mmHg)',
+        'ep.f.dkb': 'DKB (mmHg)',
+        'ep.f.nabiz': 'Nabız (/dk)',
+        'ep.f.solunum': 'Solunum (/dk)',
+        'ep.f.ates': 'Ateş (°C)',
+        'ep.f.normalVarsayilan': 'Normal (varsayılan):',
+
+        'ep.s6.noScenario': 'Önce 1. adımdan bir senaryo seçiniz.',
+        'ep.s6.intro': 'Aşağıdaki şablon "{senaryo}" senaryosuna özel klinik puan, kılavuz ve dokümantasyon noktalarını içerir. ___ ile gösterilen alanları kendi vakanıza göre doldurun.',
+        'ep.s6.vitalBaslik': 'VİTAL DEĞERLERİNİZ',
+        'ep.s6.autoNote': 'Eşleşen yer tutucular (SKB, DKB, Nabız, SS, SpO₂, Ateş, GKS, Yaş) otomatik olarak yerleştirildi. Eksik kalanları aşağıda elle doldurabilirsiniz.',
+        'ep.s6.noVital': '⚠ Vital değer girmediniz. Geri dönerseniz (4. adım) otomatik dolgu çalışır.',
+        'ep.s6.reapply': '↻ Vital değerlerini yeniden uygula',
+        'ep.s6.resetTemplate': '↺ Şablonu sıfırla',
+        'ep.s6.resetConfirm': 'Senaryo özel metni varsayılan şablona sıfırlanacak. Emin misiniz?',
+        'ep.s6.ozetTa': 'TA',
+        'ep.s6.ozetNabiz': 'Nabız',
+        'ep.s6.ozetSs': 'SS',
+        'ep.s6.ozetAtes': 'Ateş',
+        'ep.s6.ozetGks': 'GKS',
+        'ep.s6.ozetYas': 'Yaş',
+
+        'ep.s7.copy': 'Panoya Kopyala',
+        'ep.s7.copied': '✓ Kopyalandı',
+        'ep.s7.download': 'Metin Olarak İndir',
+        'ep.s7.newCase': 'Yeni Vaka',
+
+        'ep.reload.confirm': 'Tüm form temizlenecek ve baştan başlanacak. Emin misiniz?',
+      },
+      en: {
+        'meta.title': 'Discharge Summary Assistant | Dr. Süleyman Alpar',
+        'meta.desc': 'Discharge Summary Assistant — 20 scenario templates, system-based examination. For healthcare professionals.',
+
+        'ep.header.title': 'Discharge Summary Assistant',
+        'ep.header.subtitle': 'A structured clinical note template with 20 scenarios for the emergency department',
+
+        'ep.banner.label': '⚠ FOR HEALTHCARE PROFESSIONALS — KVKK',
+        'ep.banner.text': 'This tool is intended only for educational and clinical documentation support. It does not replace physician oversight, examination, or clinical judgment. Do not enter <strong>identifying information (name, surname, national ID, protocol number, phone, address)</strong> into the form fields. All calculation and text generation happen in your browser; no data is sent to a server.',
+
+        'ep.kvkk.title': 'KVKK and Usage Consent',
+        'ep.kvkk.intro': 'This tool is a <strong>clinical note template assistant</strong> intended for physicians and healthcare professionals. Before continuing, please read and accept the following principles:',
+        'ep.kvkk.li1': '<strong>Do not enter identifying data.</strong> Do not enter patient name, national ID, protocol number, phone, address, insurance number, or similar data into any field.',
+        'ep.kvkk.li2': '<strong>Enter only clinically necessary data.</strong> Age, sex, vitals, presenting complaint, and clinical findings are sufficient.',
+        'ep.kvkk.li3': '<strong>This tool does not use artificial intelligence.</strong> All text is generated in your browser using a rule-based template; no data is sent to a server.',
+        'ep.kvkk.li4': '<strong>It does not replace clinical judgment.</strong> The output is a starting text; responsibility belongs to the physician.',
+        'ep.kvkk.li5': '<strong>No data is stored.</strong> Everything you enter is lost when you close the page.',
+        'ep.kvkk.confirm': 'I have read and accept the principles above.',
+        'ep.kvkk.continue': 'Continue',
+
+        'ep.step.senaryo.ad': 'Scenario',
+        'ep.step.senaryo.aciklama': 'Select the scenario that best fits the clinical picture.',
+        'ep.step.demografi.ad': 'Demographics',
+        'ep.step.demografi.aciklama': 'Age, sex, and presentation summary.',
+        'ep.step.genel.ad': 'General Condition',
+        'ep.step.genel.aciklama': 'General condition, consciousness, GKS.',
+        'ep.step.sikayet.ad': 'Complaint & History',
+        'ep.step.sikayet.aciklama': "Text of the patient's complaints and associated symptoms.",
+        'ep.step.vital.ad': 'Vitals',
+        'ep.step.vital.aciklama': 'Vital signs.',
+        'ep.step.muayene.ad': 'Examination',
+        'ep.step.muayene.aciklama': "System-based positive findings (mark only the finding present; unmarked items are recorded as 'normal').",
+        'ep.step.senaryoOzel.ad': 'Scenario-Specific',
+        'ep.step.senaryoOzel.aciklama': 'Scenario-specific additional information template — the physician fills in the ___ fields.',
+        'ep.step.cikti.ad': 'Output',
+        'ep.step.cikti.aciklama': 'The generated discharge summary text.',
+
+        'ep.nav.back': '← Back',
+        'ep.nav.next': 'Next →',
+
+        'ep.f.yas': 'Age',
+        'ep.f.yasBirim': '(years)',
+        'ep.f.cinsiyet': 'Sex',
+        'ep.f.cinsiyetErkek': 'Male',
+        'ep.f.cinsiyetKadin': 'Female',
+        'ep.f.basvuru': 'Presentation summary — presenting complaint',
+        'ep.f.basvuruHelp': '(e.g., "Chest pain", "Abdominal pain + nausea")',
+        'ep.f.basvuruPh': 'What did the patient present with?',
+
+        'ep.f.genelDurum': 'General Condition',
+        'ep.f.gdIyi': 'Good',
+        'ep.f.gdOrta': 'Fair',
+        'ep.f.gdKotu': 'Poor',
+        'ep.f.bilinc': 'Level of consciousness',
+        'ep.f.bilinc1': 'Alert, cooperative, oriented',
+        'ep.f.bilinc2': 'Lethargic',
+        'ep.f.bilinc3': 'Confused',
+        'ep.f.bilinc4': 'Stupor',
+        'ep.f.bilinc5': 'Coma',
+        'ep.f.gksNot': 'GKS components (total automatic):',
+        'ep.f.gozAcma': 'Eye opening (E)',
+        'ep.f.sozel': 'Verbal (V)',
+        'ep.f.motor': 'Motor (M)',
+        'ep.f.toplamGks': 'Total GKS:',
+
+        'ep.f.sikayetHikaye': 'Complaint & history detail',
+        'ep.f.sikayetHelp': '(free text — what the patient presented with, for how long, how it has progressed)',
+        'ep.f.sikayetPh': "E.g., 'Pressure-like central chest pain that started this afternoon. Radiates to the left arm. Worsens with exertion, partially relieved by nitrates. Has lasted 2 hours.'",
+        'ep.f.semptomBaslik': 'Associated symptoms',
+        'ep.f.riskFaktorleri': 'Risk factors / comorbidities',
+        'ep.f.riskHelp': '(e.g., "HTN, DM, Smoking, Family history of CAD")',
+        'ep.f.riskPh': 'Separate with commas',
+
+        'ep.f.skb': 'SBP (mmHg)',
+        'ep.f.dkb': 'DBP (mmHg)',
+        'ep.f.nabiz': 'Pulse (/min)',
+        'ep.f.solunum': 'Respiration (/min)',
+        'ep.f.ates': 'Temperature (°C)',
+        'ep.f.normalVarsayilan': 'Normal (default):',
+
+        'ep.s6.noScenario': 'Please select a scenario in step 1 first.',
+        'ep.s6.intro': 'The template below contains clinical scores, guideline references, and documentation points specific to the "{senaryo}" scenario. Fill in the fields marked with ___ according to your case.',
+        'ep.s6.vitalBaslik': 'YOUR VITAL SIGNS',
+        'ep.s6.autoNote': 'Matching placeholders (SKB, DKB, Nabız, SS, SpO₂, Ateş, GKS, Yaş) were filled in automatically. You can manually complete any remaining fields below.',
+        'ep.s6.noVital': "⚠ You haven't entered any vital signs. If you go back (step 4), automatic filling will run.",
+        'ep.s6.reapply': '↻ Reapply vital signs',
+        'ep.s6.resetTemplate': '↺ Reset template',
+        'ep.s6.resetConfirm': 'The scenario-specific text will be reset to the default template. Are you sure?',
+        'ep.s6.ozetTa': 'BP',
+        'ep.s6.ozetNabiz': 'Pulse',
+        'ep.s6.ozetSs': 'RR',
+        'ep.s6.ozetAtes': 'Temp',
+        'ep.s6.ozetGks': 'GKS',
+        'ep.s6.ozetYas': 'Age',
+
+        'ep.s7.copy': 'Copy to Clipboard',
+        'ep.s7.copied': '✓ Copied',
+        'ep.s7.download': 'Download as Text',
+        'ep.s7.newCase': 'New Case',
+
+        'ep.reload.confirm': 'The entire form will be cleared and restarted. Are you sure?',
+      }
+    };
+
     // ─── KVKK ilk açılış ───
     const KVKK_KEY = "epikriz_kvkk_onay_v1";
     if (!sessionStorage.getItem(KVKK_KEY)) {
@@ -202,16 +409,20 @@
     }
 
     // ─── State ───
+    // NOT: adım adı/açıklaması dile göre değiştiği için burada sadece anahtar tutulur;
+    // metin adimAd()/adimAciklama() ile render anında ceviriBul üzerinden okunur.
     const ADIMLAR = [
-      { ad: "Senaryo", aciklama: "Klinik tabloya en uygun senaryoyu seçin." },
-      { ad: "Demografi", aciklama: "Yaş, cinsiyet ve başvuru özeti." },
-      { ad: "Genel Durum", aciklama: "Genel durum, bilinç, GKS." },
-      { ad: "Şikayet & Hikaye", aciklama: "Hasta şikayetlerinin metni ve eşlik eden semptomlar." },
-      { ad: "Vital", aciklama: "Vital bulgular." },
-      { ad: "Muayene", aciklama: "Sistem bazlı pozitif bulgular (sadece bulguyu işaretleyin; işaretlenmeyenler 'normal' olarak yazılır)." },
-      { ad: "Senaryo Özel", aciklama: "Senaryoya özel ek bilgi şablonu — hekim ___ alanlarını doldurur." },
-      { ad: "Çıktı", aciklama: "Oluşturulan epikriz metni." },
+      { key: "senaryo" },
+      { key: "demografi" },
+      { key: "genel" },
+      { key: "sikayet" },
+      { key: "vital" },
+      { key: "muayene" },
+      { key: "senaryoOzel" },
+      { key: "cikti" },
     ];
+    function adimAd(k) { return ceviriBul(currentLang, 'ep.step.' + k + '.ad'); }
+    function adimAciklama(k) { return ceviriBul(currentLang, 'ep.step.' + k + '.aciklama'); }
 
     let aktifAdim = 0;
     const data = {
@@ -230,7 +441,7 @@
       const bar = document.getElementById("wizardBar");
       bar.innerHTML = ADIMLAR.map((a, i) => `
         <div class="wizard-step-tab ${i === aktifAdim ? 'aktif' : ''} ${i < aktifAdim ? 'tamam' : ''}" data-idx="${i}">
-          <span class="step-num">${i < aktifAdim ? '✓' : (i+1)}</span>${a.ad}
+          <span class="step-num">${i < aktifAdim ? '✓' : (i+1)}</span>${adimAd(a.key)}
         </div>
       `).join("");
       bar.querySelectorAll(".wizard-step-tab").forEach(t => {
@@ -241,9 +452,9 @@
     function nav(prev, next, extra = "") {
       return `
         <div class="button-bar">
-          <button class="btn btn-onceki" ${prev ? '' : 'disabled style="visibility:hidden;"'} onclick="adimDeg(-1)">← Geri</button>
+          <button class="btn btn-onceki" ${prev ? '' : 'disabled style="visibility:hidden;"'} onclick="adimDeg(-1)">${ceviriBul(currentLang, 'ep.nav.back')}</button>
           <div class="grup">${extra}</div>
-          <button class="btn btn-sonraki" onclick="adimDeg(1)">${next ? next : 'İleri →'}</button>
+          <button class="btn btn-sonraki" onclick="adimDeg(1)">${ceviriBul(currentLang, 'ep.nav.next')}</button>
         </div>
       `;
     }
@@ -258,7 +469,7 @@
       barRender();
       const adim = ADIMLAR[aktifAdim];
       const panel = document.getElementById("wizardPanel");
-      let html = `<h2>${adim.ad}</h2><p class="panel-aciklama">${adim.aciklama}</p>`;
+      let html = `<h2>${adimAd(adim.key)}</h2><p class="panel-aciklama">${adimAciklama(adim.key)}</p>`;
 
       switch (aktifAdim) {
         case 0: html += step0(); break;
@@ -270,7 +481,7 @@
         case 6: html += step6(); break;
         case 7: html += step7(); break;
       }
-      html += nav(aktifAdim > 0, aktifAdim === ADIMLAR.length - 1 ? null : "İleri →");
+      html += nav(aktifAdim > 0, aktifAdim !== ADIMLAR.length - 1);
       panel.innerHTML = html;
 
       attachListeners();
@@ -287,99 +498,104 @@
     }
 
     function step1() {
+      const L = currentLang;
       return `
         <div class="form-row">
-          <div class="form-alan"><label>Yaş <span class="yardim">(yıl)</span></label>
+          <div class="form-alan"><label>${ceviriBul(L,'ep.f.yas')} <span class="yardim">${ceviriBul(L,'ep.f.yasBirim')}</span></label>
             <input type="number" id="yas" value="${data.yas}" min="0" max="120"></div>
-          <div class="form-alan"><label>Cinsiyet</label>
+          <div class="form-alan"><label>${ceviriBul(L,'ep.f.cinsiyet')}</label>
             <select id="cinsiyet">
-              <option ${data.cinsiyet === "Erkek" ? "selected" : ""}>Erkek</option>
-              <option ${data.cinsiyet === "Kadın" ? "selected" : ""}>Kadın</option>
+              <option value="Erkek" ${data.cinsiyet === "Erkek" ? "selected" : ""}>${ceviriBul(L,'ep.f.cinsiyetErkek')}</option>
+              <option value="Kadın" ${data.cinsiyet === "Kadın" ? "selected" : ""}>${ceviriBul(L,'ep.f.cinsiyetKadin')}</option>
             </select></div>
         </div>
-        <div class="form-alan"><label>Başvuru özeti — başvuru şikayeti
-          <span class="yardim">(örn. "Göğüs ağrısı", "Karın ağrısı + bulantı")</span></label>
-          <input type="text" id="bas_yakinma" value="${data.bas_yakinma}" placeholder="Hasta neyle başvurdu?">
+        <div class="form-alan"><label>${ceviriBul(L,'ep.f.basvuru')}
+          <span class="yardim">${ceviriBul(L,'ep.f.basvuruHelp')}</span></label>
+          <input type="text" id="bas_yakinma" value="${data.bas_yakinma}" placeholder="${ceviriBul(L,'ep.f.basvuruPh')}">
         </div>
       `;
     }
 
     function step2() {
+      const L = currentLang;
       return `
         <div class="form-row">
-          <div class="form-alan"><label>Genel Durum</label>
+          <div class="form-alan"><label>${ceviriBul(L,'ep.f.genelDurum')}</label>
             <select id="genel_durum">
-              <option ${data.genel_durum === "İyi" ? "selected" : ""}>İyi</option>
-              <option ${data.genel_durum === "Orta" ? "selected" : ""}>Orta</option>
-              <option ${data.genel_durum === "Kötü" ? "selected" : ""}>Kötü</option>
+              <option value="İyi" ${data.genel_durum === "İyi" ? "selected" : ""}>${ceviriBul(L,'ep.f.gdIyi')}</option>
+              <option value="Orta" ${data.genel_durum === "Orta" ? "selected" : ""}>${ceviriBul(L,'ep.f.gdOrta')}</option>
+              <option value="Kötü" ${data.genel_durum === "Kötü" ? "selected" : ""}>${ceviriBul(L,'ep.f.gdKotu')}</option>
             </select></div>
-          <div class="form-alan"><label>Bilinç durumu</label>
+          <div class="form-alan"><label>${ceviriBul(L,'ep.f.bilinc')}</label>
             <select id="bilinc">
-              <option ${data.bilinc === "Açık, koopere, oryante" ? "selected" : ""}>Açık, koopere, oryante</option>
-              <option ${data.bilinc === "Letarjik" ? "selected" : ""}>Letarjik</option>
-              <option ${data.bilinc === "Konfüze" ? "selected" : ""}>Konfüze</option>
-              <option ${data.bilinc === "Stupor" ? "selected" : ""}>Stupor</option>
-              <option ${data.bilinc === "Koma" ? "selected" : ""}>Koma</option>
+              <option value="Açık, koopere, oryante" ${data.bilinc === "Açık, koopere, oryante" ? "selected" : ""}>${ceviriBul(L,'ep.f.bilinc1')}</option>
+              <option value="Letarjik" ${data.bilinc === "Letarjik" ? "selected" : ""}>${ceviriBul(L,'ep.f.bilinc2')}</option>
+              <option value="Konfüze" ${data.bilinc === "Konfüze" ? "selected" : ""}>${ceviriBul(L,'ep.f.bilinc3')}</option>
+              <option value="Stupor" ${data.bilinc === "Stupor" ? "selected" : ""}>${ceviriBul(L,'ep.f.bilinc4')}</option>
+              <option value="Koma" ${data.bilinc === "Koma" ? "selected" : ""}>${ceviriBul(L,'ep.f.bilinc5')}</option>
             </select></div>
         </div>
         <p style="font-size: 0.86rem; color: var(--text-light); margin-bottom: 8px;">
-          GKS bileşenleri (toplam otomatik):
+          ${ceviriBul(L,'ep.f.gksNot')}
         </p>
         <div class="form-row">
-          <div class="form-alan"><label>Göz açma (E)</label>
+          <div class="form-alan"><label>${ceviriBul(L,'ep.f.gozAcma')}</label>
             <select id="gks_e">${[1,2,3,4].map(v => `<option value="${v}" ${data.gks_e == v ? 'selected' : ''}>${v}</option>`).join("")}</select></div>
-          <div class="form-alan"><label>Sözel (V)</label>
+          <div class="form-alan"><label>${ceviriBul(L,'ep.f.sozel')}</label>
             <select id="gks_v">${[1,2,3,4,5].map(v => `<option value="${v}" ${data.gks_v == v ? 'selected' : ''}>${v}</option>`).join("")}</select></div>
-          <div class="form-alan"><label>Motor (M)</label>
+          <div class="form-alan"><label>${ceviriBul(L,'ep.f.motor')}</label>
             <select id="gks_m">${[1,2,3,4,5,6].map(v => `<option value="${v}" ${data.gks_m == v ? 'selected' : ''}>${v}</option>`).join("")}</select></div>
         </div>
         <p style="font-size: 0.95rem; color: var(--primary); font-weight: 600; margin-top: 8px;">
-          Toplam GKS: <span id="gks_toplam">${(+data.gks_e) + (+data.gks_m) + (+data.gks_v)}</span> /15
+          ${ceviriBul(L,'ep.f.toplamGks')} <span id="gks_toplam">${(+data.gks_e) + (+data.gks_m) + (+data.gks_v)}</span> /15
         </p>
       `;
     }
 
     function step3() {
+      const L = currentLang;
       const semptomlar = window.ESLIK_EDEN_SEMPTOMLAR.map(s => `
         <label><input type="checkbox" data-semptom="${s}" ${data.eslik_eden.includes(s) ? 'checked' : ''}> ${s}</label>
       `).join("");
       return `
-        <div class="form-alan"><label>Şikayet & hikaye detay
-          <span class="yardim">(serbest metin — hasta neyle başvurdu, ne kadar süredir, nasıl seyrediyor)</span></label>
-          <textarea id="hikaye_detay" rows="5" placeholder="Örn. 'Bugün öğleden sonra başlayan, basıcı tarzda göğüs ortası ağrısı. Sol kola yayılım var. Eforla artıyor, nitratla kısmen geriliyor. 2 saattir sürüyor.'">${data.hikaye_detay}</textarea>
+        <div class="form-alan"><label>${ceviriBul(L,'ep.f.sikayetHikaye')}
+          <span class="yardim">${ceviriBul(L,'ep.f.sikayetHelp')}</span></label>
+          <textarea id="hikaye_detay" rows="5" placeholder="${ceviriBul(L,'ep.f.sikayetPh')}">${data.hikaye_detay}</textarea>
         </div>
-        <h3 style="font-size: 1rem; margin-top: 14px; margin-bottom: 10px; color: var(--primary);">Eşlik eden semptomlar</h3>
+        <h3 style="font-size: 1rem; margin-top: 14px; margin-bottom: 10px; color: var(--primary);">${ceviriBul(L,'ep.f.semptomBaslik')}</h3>
         <div class="semptom-grid" id="semptomGrid">${semptomlar}</div>
-        <div class="form-alan"><label>Risk faktörleri / komorbidite
-          <span class="yardim">(örn. "HT, DM, Sigara, Aile öyküsü KAH")</span></label>
-          <input type="text" id="risk_faktorleri" value="${data.risk_faktorleri}" placeholder="Virgülle ayırarak yazınız">
+        <div class="form-alan"><label>${ceviriBul(L,'ep.f.riskFaktorleri')}
+          <span class="yardim">${ceviriBul(L,'ep.f.riskHelp')}</span></label>
+          <input type="text" id="risk_faktorleri" value="${data.risk_faktorleri}" placeholder="${ceviriBul(L,'ep.f.riskPh')}">
         </div>
       `;
     }
 
     function step4() {
+      const L = currentLang;
       const v = data.vital;
       return `
         <div class="form-row">
-          <div class="form-alan"><label>SKB (mmHg)</label><input type="number" id="vskb" value="${v.skb}" placeholder="120"></div>
-          <div class="form-alan"><label>DKB (mmHg)</label><input type="number" id="vdkb" value="${v.dkb}" placeholder="80"></div>
-          <div class="form-alan"><label>Nabız (/dk)</label><input type="number" id="vnabiz" value="${v.nabiz}" placeholder="80"></div>
+          <div class="form-alan"><label>${ceviriBul(L,'ep.f.skb')}</label><input type="number" id="vskb" value="${v.skb}" placeholder="120"></div>
+          <div class="form-alan"><label>${ceviriBul(L,'ep.f.dkb')}</label><input type="number" id="vdkb" value="${v.dkb}" placeholder="80"></div>
+          <div class="form-alan"><label>${ceviriBul(L,'ep.f.nabiz')}</label><input type="number" id="vnabiz" value="${v.nabiz}" placeholder="80"></div>
         </div>
         <div class="form-row">
-          <div class="form-alan"><label>Solunum (/dk)</label><input type="number" id="vsolunum" value="${v.solunum}" placeholder="16"></div>
+          <div class="form-alan"><label>${ceviriBul(L,'ep.f.solunum')}</label><input type="number" id="vsolunum" value="${v.solunum}" placeholder="16"></div>
           <div class="form-alan"><label>SpO₂ (%)</label><input type="number" id="vspo2" value="${v.spo2}" placeholder="98"></div>
-          <div class="form-alan"><label>Ateş (°C)</label><input type="number" id="vates" step="0.1" value="${v.ates}" placeholder="36.8"></div>
+          <div class="form-alan"><label>${ceviriBul(L,'ep.f.ates')}</label><input type="number" id="vates" step="0.1" value="${v.ates}" placeholder="36.8"></div>
         </div>
       `;
     }
 
     function step5() {
+      const L = currentLang;
       let html = "";
       for (const [k, sec] of Object.entries(window.MUAYENE_BOLUMLERI)) {
         const cur = data.muayene[k] || [];
         html += `<div class="muayene-bolum">
           <h3>${sec.baslik}</h3>
-          <div class="bolum-norm">Normal (varsayılan): ${sec.norm}</div>
+          <div class="bolum-norm">${ceviriBul(L,'ep.f.normalVarsayilan')} ${sec.norm}</div>
           <div class="bulgular">
             ${sec.bulgular.map(b => `
               <label><input type="checkbox" data-mb="${k}" data-bulgu="${b}" ${cur.includes(b) ? 'checked' : ''}> ${b}</label>
@@ -391,46 +607,50 @@
     }
 
     function step6() {
+      const L = currentLang;
       if (!data.senaryo) {
-        return `<p style="color: var(--text-light); font-style: italic;">Önce 1. adımdan bir senaryo seçiniz.</p>`;
+        return `<p style="color: var(--text-light); font-style: italic;">${ceviriBul(L,'ep.s6.noScenario')}</p>`;
       }
       const s = window.SENARYOLAR[data.senaryo];
       // İlk yüklemede ya da boş ise şablonu doldurarak yerleştir; autofill her durumda re-uygulanır
+      // NOT: Bu iki yer tutucu metin (ek_bilgiler / fallback) her zaman Türkçe kalır —
+      // çünkü doğrudan Türkçe epikriz çıktısına (js/epikriz.js) veri olarak akar.
       const sablon = (s.ek_bilgiler && s.ek_bilgiler.length)
         ? s.ek_bilgiler.join("\n")
         : "(Bu senaryo için ek özel bilgi şablonu yok — geçebilirsiniz.)";
       // ÖNEMLİ: data.senaryo_ozel'i da güncelle ki çıktıda da görünsün
       data.senaryo_ozel = window.autofillSenaryoOzel(data.senaryo_ozel || sablon, data);
       const baseValue = data.senaryo_ozel;
-      // Vital özet (referans)
+      // Vital özet (referans) — yalnızca önizleme metni, ceviriBul ile dile göre değişir
       const v = data.vital || {};
       const gks = (+data.gks_e || 0) + (+data.gks_v || 0) + (+data.gks_m || 0);
+      const ozTa = ceviriBul(L,'ep.s6.ozetTa'), ozNb = ceviriBul(L,'ep.s6.ozetNabiz'), ozSs = ceviriBul(L,'ep.s6.ozetSs'),
+            ozAt = ceviriBul(L,'ep.s6.ozetAtes'), ozGks = ceviriBul(L,'ep.s6.ozetGks'), ozYas = ceviriBul(L,'ep.s6.ozetYas');
       const ozet = [
-        v.skb || v.dkb ? `TA: ${v.skb || "—"}/${v.dkb || "—"} mmHg` : null,
-        v.nabiz ? `Nabız: ${v.nabiz}/dk` : null,
-        v.solunum ? `SS: ${v.solunum}/dk` : null,
+        v.skb || v.dkb ? `${ozTa}: ${v.skb || "—"}/${v.dkb || "—"} mmHg` : null,
+        v.nabiz ? `${ozNb}: ${v.nabiz}/dk` : null,
+        v.solunum ? `${ozSs}: ${v.solunum}/dk` : null,
         v.spo2 ? `SpO₂: %${v.spo2}` : null,
-        v.ates ? `Ateş: ${v.ates}°C` : null,
-        gks > 0 ? `GKS: ${gks} (E${data.gks_e}V${data.gks_v}M${data.gks_m})` : null,
-        data.yas ? `Yaş: ${data.yas}` : null,
+        v.ates ? `${ozAt}: ${v.ates}°C` : null,
+        gks > 0 ? `${ozGks}: ${gks} (E${data.gks_e}V${data.gks_v}M${data.gks_m})` : null,
+        data.yas ? `${ozYas}: ${data.yas}` : null,
       ].filter(Boolean).join("  ·  ");
       return `
         <p style="font-size: 0.86rem; color: var(--text-light); margin-bottom: 10px;">
-          Aşağıdaki şablon "${data.senaryo}" senaryosuna özel klinik puan, kılavuz ve dokümantasyon noktalarını içerir.
-          ___ ile gösterilen alanları kendi vakanıza göre doldurun.
+          ${ceviriBul(L,'ep.s6.intro').replace('{senaryo}', data.senaryo)}
         </p>
         ${ozet ? `
           <div style="background: rgba(14,116,144,0.06); border-left: 3px solid var(--vurgu); padding: 12px 16px; border-radius: 6px; margin-bottom: 12px; font-size: 0.85rem; line-height: 1.6;">
-            <div style="font-size: 0.74rem; font-weight: 700; color: var(--vurgu); letter-spacing: 0.05em; margin-bottom: 4px;">VİTAL DEĞERLERİNİZ</div>
+            <div style="font-size: 0.74rem; font-weight: 700; color: var(--vurgu); letter-spacing: 0.05em; margin-bottom: 4px;">${ceviriBul(L,'ep.s6.vitalBaslik')}</div>
             ${ozet}
-            <div style="margin-top: 6px; font-size: 0.78rem; color: var(--text-light);">Eşleşen yer tutucular (SKB, DKB, Nabız, SS, SpO₂, Ateş, GKS, Yaş) otomatik olarak yerleştirildi. Eksik kalanları aşağıda elle doldurabilirsiniz.</div>
+            <div style="margin-top: 6px; font-size: 0.78rem; color: var(--text-light);">${ceviriBul(L,'ep.s6.autoNote')}</div>
           </div>` : `
           <div style="background: rgba(217,119,6,0.10); border-left: 3px solid #d97706; padding: 10px 14px; border-radius: 6px; margin-bottom: 12px; font-size: 0.85rem;">
-            ⚠ Vital değer girmediniz. Geri dönerseniz (4. adım) otomatik dolgu çalışır.
+            ${ceviriBul(L,'ep.s6.noVital')}
           </div>`}
         <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-          <button type="button" class="btn btn-baska" style="padding: 6px 12px; font-size: 0.82rem;" onclick="otoDoldur()">↻ Vital değerlerini yeniden uygula</button>
-          <button type="button" class="btn btn-baska" style="padding: 6px 12px; font-size: 0.82rem;" onclick="sablonSifirla()">↺ Şablonu sıfırla</button>
+          <button type="button" class="btn btn-baska" style="padding: 6px 12px; font-size: 0.82rem;" onclick="otoDoldur()">${ceviriBul(L,'ep.s6.reapply')}</button>
+          <button type="button" class="btn btn-baska" style="padding: 6px 12px; font-size: 0.82rem;" onclick="sablonSifirla()">${ceviriBul(L,'ep.s6.resetTemplate')}</button>
         </div>
         <div class="form-alan">
           <textarea id="senaryo_ozel" rows="22">${baseValue}</textarea>
@@ -448,7 +668,7 @@
 
     // Şablonu sıfırla
     function sablonSifirla() {
-      if (!confirm("Senaryo özel metni varsayılan şablona sıfırlanacak. Emin misiniz?")) return;
+      if (!confirm(ceviriBul(currentLang, 'ep.s6.resetConfirm'))) return;
       const s = window.SENARYOLAR[data.senaryo];
       const sablon = (s && s.ek_bilgiler && s.ek_bilgiler.length) ? s.ek_bilgiler.join("\n") : "";
       data.senaryo_ozel = window.autofillSenaryoOzel(sablon, data);
@@ -457,17 +677,18 @@
     }
 
     function step7() {
+      const L = currentLang;
       const metin = window.generateEpikriz(data);
       return `
         <div class="cikti-wrap">
           <pre class="cikti-pre" id="ciktiPre">${metin.replace(/</g, "&lt;")}</pre>
         </div>
         <div class="button-bar">
-          <button class="btn btn-onceki" onclick="adimDeg(-1)">← Geri</button>
+          <button class="btn btn-onceki" onclick="adimDeg(-1)">${ceviriBul(L,'ep.nav.back')}</button>
           <div class="grup">
-            <button class="btn btn-aksiyon" id="kopyalaBtn" onclick="kopyala()">Panoya Kopyala</button>
-            <button class="btn btn-aksiyon" onclick="indir()">Metin Olarak İndir</button>
-            <button class="btn btn-baska" onclick="yenile()">Yeni Vaka</button>
+            <button class="btn btn-aksiyon" id="kopyalaBtn" onclick="kopyala()">${ceviriBul(L,'ep.s7.copy')}</button>
+            <button class="btn btn-aksiyon" onclick="indir()">${ceviriBul(L,'ep.s7.download')}</button>
+            <button class="btn btn-baska" onclick="yenile()">${ceviriBul(L,'ep.s7.newCase')}</button>
           </div>
         </div>
       `;
@@ -545,9 +766,9 @@
       const metin = document.getElementById("ciktiPre").textContent;
       navigator.clipboard.writeText(metin).then(() => {
         const btn = document.getElementById("kopyalaBtn");
-        btn.textContent = "✓ Kopyalandı";
+        btn.textContent = ceviriBul(currentLang, 'ep.s7.copied');
         btn.classList.add("kopyalandi");
-        setTimeout(() => { btn.textContent = "Panoya Kopyala"; btn.classList.remove("kopyalandi"); }, 2500);
+        setTimeout(() => { btn.textContent = ceviriBul(currentLang, 'ep.s7.copy'); btn.classList.remove("kopyalandi"); }, 2500);
       });
     }
 
@@ -564,10 +785,15 @@
     }
 
     function yenile() {
-      if (confirm("Tüm form temizlenecek ve baştan başlanacak. Emin misiniz?")) {
+      if (confirm(ceviriBul(currentLang, 'ep.reload.confirm'))) {
         location.reload();
       }
     }
+
+    // Dil değiştirildiğinde sihirbazı yeniden çiz (metinler ceviriBul ile anlık okunur)
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => setTimeout(render, 0));
+    });
 
     // ─── Init ───
     render();

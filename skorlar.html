@@ -167,20 +167,20 @@
   <!-- Page Header -->
   <section class="page-header">
     <div class="container">
-      <h1>Klinik Skorlar</h1>
-      <p>Acil tıpta sık kullanılan skorlama sistemleri — interaktif hesaplayıcılar</p>
+      <h1 data-i18n="sk.header.title">Klinik Skorlar</h1>
+      <p data-i18n="sk.header.subtitle">Acil tıpta sık kullanılan skorlama sistemleri — interaktif hesaplayıcılar</p>
     </div>
   </section>
 
   <div class="hcp-banner">
-    <strong>⚠ SAĞLIK ÇALIŞANLARI İÇİNDİR</strong>
-    Bu sayfa yalnızca eğitim amaçlıdır ve sağlık profesyonelleri için tasarlanmıştır. Skorlar klinik kararı desteklemek içindir; tıbbi muayene, hekim değerlendirmesi ve güncel kılavuzların yerine geçmez. Hesaplama hatasından, yanlış kullanımdan veya yorumdan kaynaklanan klinik sonuçların sorumluluğu kullanıcıya aittir. Veri sunucuya gönderilmez — tüm hesaplama tarayıcınızda yapılır.
+    <strong data-i18n="sk.banner.title">⚠ SAĞLIK ÇALIŞANLARI İÇİNDİR</strong>
+    <span data-i18n="sk.banner.body">Bu sayfa yalnızca eğitim amaçlıdır ve sağlık profesyonelleri için tasarlanmıştır. Skorlar klinik kararı desteklemek içindir; tıbbi muayene, hekim değerlendirmesi ve güncel kılavuzların yerine geçmez. Hesaplama hatasından, yanlış kullanımdan veya yorumdan kaynaklanan klinik sonuçların sorumluluğu kullanıcıya aittir. Veri sunucuya gönderilmez — tüm hesaplama tarayıcınızda yapılır.</span>
   </div>
 
   <!-- Arama -->
   <div class="skor-arama-wrap">
     <svg class="skor-arama-ikon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-    <input type="search" id="skorArama" placeholder="Skor ara… (ör. HEART, sepsis, göğüs ağrısı)" aria-label="Skor ara" autocomplete="off">
+    <input type="search" id="skorArama" placeholder="Skor ara… (ör. HEART, sepsis, göğüs ağrısı)" aria-label="Skor ara" data-i18n-placeholder="sk.search.placeholder" data-i18n-attr="aria-label:sk.search.aria" autocomplete="off">
   </div>
 
   <!-- Kategori bar (JS doldurur) -->
@@ -199,7 +199,7 @@
           <h2 id="modalAd" tabindex="-1"></h2>
           <div class="modal-meta" id="modalKategori"></div>
         </div>
-        <button class="modal-kapat" onclick="modalKapat()" aria-label="Kapat">×</button>
+        <button class="modal-kapat" onclick="modalKapat()" aria-label="Kapat" data-i18n-attr="aria-label:sk.modal.close">×</button>
       </div>
       <div class="modal-govde">
         <p id="modalAciklama" style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 18px; line-height: 1.6;"></p>
@@ -225,6 +225,100 @@
   <script src="js/main.js"></script>
   <script src="js/skorlar.js"></script>
   <script>
+    window.pageI18n = {
+      tr: {
+        'meta.title': 'Klinik Skorlar | Dr. Süleyman Alpar',
+        'meta.desc': 'Klinik Skorlar — HEART, Wells, qSOFA, NEWS2, CHA2DS2-VASc ve daha fazlası. Sağlık çalışanları için interaktif hesaplayıcılar.',
+
+        // Sayfa başlığı
+        'sk.header.title': 'Klinik Skorlar',
+        'sk.header.subtitle': 'Acil tıpta sık kullanılan skorlama sistemleri — interaktif hesaplayıcılar',
+
+        // Sağlık çalışanı uyarı bandı
+        'sk.banner.title': '⚠ SAĞLIK ÇALIŞANLARI İÇİNDİR',
+        'sk.banner.body': 'Bu sayfa yalnızca eğitim amaçlıdır ve sağlık profesyonelleri için tasarlanmıştır. Skorlar klinik kararı desteklemek içindir; tıbbi muayene, hekim değerlendirmesi ve güncel kılavuzların yerine geçmez. Hesaplama hatasından, yanlış kullanımdan veya yorumdan kaynaklanan klinik sonuçların sorumluluğu kullanıcıya aittir. Veri sunucuya gönderilmez — tüm hesaplama tarayıcınızda yapılır.',
+
+        // Arama
+        'sk.search.placeholder': 'Skor ara… (ör. HEART, sepsis, göğüs ağrısı)',
+        'sk.search.aria': 'Skor ara',
+        'sk.search.empty': 'Aramanızla eşleşen skor bulunamadı. Farklı bir terim deneyin.',
+
+        // Kategori bar
+        'sk.cat.all': 'Hepsi',
+
+        // Skor kartı
+        'sk.card.calc': 'Hesapla →',
+
+        // Modal
+        'sk.modal.close': 'Kapat',
+        'sk.ref.label': 'KAYNAK',
+        'sk.ref.mdcalc': 'MDCalc detay sayfası ↗',
+
+        // Sonuç render — PERC
+        'sk.perc.violations': ' ihlal',
+        'sk.perc.yes': 'Evet (ihlal)',
+        'sk.perc.no': 'Hayır (uygun)',
+
+        // Sonuç render — CAM
+        'sk.cam.positive': 'POZİTİF',
+        'sk.cam.negative': 'NEGATİF',
+        'sk.cam.criteria': 'Kriter mantığı',
+
+        // Hesaplama hatası
+        'sk.calc.error': 'Hesaplama hatası:',
+
+        // Çıktı çubuğu (Kopyala / Yazdır)
+        'sk.out.copy': 'Kopyala',
+        'sk.out.print': 'Yazdır / PDF',
+        'sk.out.copied': 'Kopyalandı ✓',
+        'sk.out.result': 'Sonuç:',
+        'sk.out.date': 'Tarih:',
+        'sk.out.source': 'Kaynak:',
+        'sk.out.disclaimer': 'Eğitim/karar-destek amaçlıdır; hekim değerlendirmesi ve güncel kılavuzların yerine geçmez.',
+      },
+      en: {
+        'meta.title': 'Clinical Scores | Dr. Süleyman Alpar',
+        'meta.desc': 'Clinical Scores — HEART, Wells, qSOFA, NEWS2, CHA2DS2-VASc, and more. Interactive calculators for healthcare professionals.',
+
+        'sk.header.title': 'Clinical Scores',
+        'sk.header.subtitle': 'Commonly used scoring systems in emergency medicine — interactive calculators',
+
+        'sk.banner.title': '⚠ FOR HEALTHCARE PROFESSIONALS',
+        'sk.banner.body': 'This page is for educational purposes only and is intended for healthcare professionals. The scores are meant to support clinical decision-making; they do not replace medical examination, physician judgment, or current guidelines. Responsibility for any clinical outcomes resulting from calculation errors, misuse, or misinterpretation rests with the user. No data is sent to a server — all calculations run in your browser.',
+
+        'sk.search.placeholder': 'Search scores… (e.g. HEART, sepsis, chest pain)',
+        'sk.search.aria': 'Search scores',
+        'sk.search.empty': 'No score matches your search. Try a different term.',
+
+        'sk.cat.all': 'All',
+
+        'sk.card.calc': 'Calculate →',
+
+        'sk.modal.close': 'Close',
+        'sk.ref.label': 'SOURCE',
+        'sk.ref.mdcalc': 'MDCalc detail page ↗',
+
+        'sk.perc.violations': ' violations',
+        'sk.perc.yes': 'Yes (violation)',
+        'sk.perc.no': 'No (met)',
+
+        'sk.cam.positive': 'POSITIVE',
+        'sk.cam.negative': 'NEGATIVE',
+        'sk.cam.criteria': 'Criteria logic',
+
+        'sk.calc.error': 'Calculation error:',
+
+        'sk.out.copy': 'Copy',
+        'sk.out.print': 'Print / PDF',
+        'sk.out.copied': 'Copied ✓',
+        'sk.out.result': 'Result:',
+        'sk.out.date': 'Date:',
+        'sk.out.source': 'Source:',
+        'sk.out.disclaimer': 'For education / decision-support purposes only; it does not replace physician judgment or current guidelines.',
+      }
+    };
+  </script>
+  <script>
     // ─── State ───
     let aktifKategori = "Hepsi";
     let aramaMetni = "";
@@ -245,11 +339,14 @@
       const kats = window.skorKategoriler();
       const items = [{ ad: "Hepsi", sayi: window.SKOR_KATALOG.length }]
         .concat(kats.map(k => ({ ad: k, sayi: window.SKOR_KATALOG.filter(s => s.kategori === k).length })));
-      bar.innerHTML = items.map(it => `
+      bar.innerHTML = items.map(it => {
+        const etiket = it.ad === "Hepsi" ? ceviriBul(currentLang, "sk.cat.all") : it.ad;
+        return `
         <div class="kategori-chip ${it.ad === aktifKategori ? 'active' : ''}" data-kat="${it.ad}">
-          ${it.ad}<span class="sayac">${it.sayi}</span>
+          ${etiket}<span class="sayac">${it.sayi}</span>
         </div>
-      `).join("");
+      `;
+      }).join("");
       bar.querySelectorAll(".kategori-chip").forEach(c => {
         c.addEventListener("click", () => {
           aktifKategori = c.dataset.kat;
@@ -271,7 +368,7 @@
       const grid = document.getElementById("skorGrid");
       const gorunur = window.SKOR_KATALOG.filter(skorEslesir);
       if (!gorunur.length) {
-        grid.innerHTML = '<div class="skor-bos">Aramanızla eşleşen skor bulunamadı. Farklı bir terim deneyin.</div>';
+        grid.innerHTML = `<div class="skor-bos">${ceviriBul(currentLang, "sk.search.empty")}</div>`;
         return;
       }
       grid.innerHTML = gorunur.map(s => `
@@ -282,7 +379,7 @@
           </div>
           <p class="skor-aciklama">${s.aciklama}</p>
           <div class="skor-aksiyon">
-            <button class="skor-buton" data-id="${s.id}">Hesapla →</button>
+            <button class="skor-buton" data-id="${s.id}">${ceviriBul(currentLang, "sk.card.calc")}</button>
             <a class="ref-link" href="${s.url}" target="_blank" rel="noopener">MDCalc ↗</a>
           </div>
         </div>
@@ -293,6 +390,16 @@
     }
 
     // ─── Modal ───
+    function refBlokRender() {
+      if (!aktifSkor) return;
+      const ref = document.getElementById("refBlok");
+      ref.innerHTML = `
+        <strong>${ceviriBul(currentLang, "sk.ref.label")}</strong>
+        ${aktifSkor.referans}
+        ${aktifSkor.url ? ` · <a href="${aktifSkor.url}" target="_blank" rel="noopener">${ceviriBul(currentLang, "sk.ref.mdcalc")}</a>` : ""}
+      `;
+    }
+
     function modalAc(skorId) {
       aktifSkor = window.skorBul(skorId);
       if (!aktifSkor) return;
@@ -303,12 +410,7 @@
       formRender();
       sonucRender();
       ciktiCubuguEkle();
-      const ref = document.getElementById("refBlok");
-      ref.innerHTML = `
-        <strong>KAYNAK</strong>
-        ${aktifSkor.referans}
-        ${aktifSkor.url ? ` · <a href="${aktifSkor.url}" target="_blank" rel="noopener">MDCalc detay sayfası ↗</a>` : ""}
-      `;
+      refBlokRender();
       document.getElementById("modalOverlay").classList.add("acik");
       document.body.style.overflow = "hidden";
       // Odak yönetimi: tetikleyen düğmeyi hatırla, başlığa odaklan (ekran okuyucu başlığı seslendirir)
@@ -448,7 +550,7 @@
       try {
         sonuc = aktifSkor.compute(formData);
       } catch (err) {
-        kutu.innerHTML = `<div class="sonuc-kutu" style="border-color: #dc2626; color: #b91c1c;">Hesaplama hatası: ${err.message}</div>`;
+        kutu.innerHTML = `<div class="sonuc-kutu" style="border-color: #dc2626; color: #b91c1c;">${ceviriBul(currentLang, "sk.calc.error")} ${err.message}</div>`;
         return;
       }
       const sablon = aktifSkor.sonuc_sablon || {};
@@ -461,13 +563,13 @@
         kutu.innerHTML = `
           <div class="sonuc-kutu ${renk}">
             <div class="sonuc-baslik">
-              <div class="sonuc-puan">${ekarte ? "0" : ihlaller.length}<span class="puan-max"> ihlal</span></div>
+              <div class="sonuc-puan">${ekarte ? "0" : ihlaller.length}<span class="puan-max">${ceviriBul(currentLang, "sk.perc.violations")}</span></div>
               <div class="sonuc-risk">${sonuc.risk_sinifi}</div>
             </div>
             <ul class="perc-ihlaller">
               ${aktifSkor.alanlar.map(a => {
                 const v = formData[a.key];
-                return `<li class="${v ? '' : 'tamam'}">${a.label}: <strong>${v ? "Evet (ihlal)" : "Hayır (uygun)"}</strong></li>`;
+                return `<li class="${v ? '' : 'tamam'}">${a.label}: <strong>${v ? ceviriBul(currentLang, "sk.perc.yes") : ceviriBul(currentLang, "sk.perc.no")}</strong></li>`;
               }).join("")}
             </ul>
           </div>`;
@@ -480,11 +582,11 @@
         kutu.innerHTML = `
           <div class="sonuc-kutu ${renk}">
             <div class="sonuc-baslik">
-              <div class="sonuc-puan" style="font-size: 1.4rem;">${kr ? "POZİTİF" : "NEGATİF"}</div>
+              <div class="sonuc-puan" style="font-size: 1.4rem;">${kr ? ceviriBul(currentLang, "sk.cam.positive") : ceviriBul(currentLang, "sk.cam.negative")}</div>
               <div class="sonuc-risk">${sonuc.risk_sinifi}</div>
             </div>
             <div class="sonuc-ek-satirlar">
-              <div class="sonuc-satir"><span>Kriter mantığı</span><span>${sonuc.kriter_aciklama}</span></div>
+              <div class="sonuc-satir"><span>${ceviriBul(currentLang, "sk.cam.criteria")}</span><span>${sonuc.kriter_aciklama}</span></div>
             </div>
           </div>`;
         return;
@@ -521,13 +623,14 @@
         return sp.length >= 2 ? `  • ${sp[0].textContent.trim()}: ${sp[1].textContent.trim()}` : "";
       }).filter(Boolean).join("\n");
       const d = new Date();
-      const tarih = d.toLocaleDateString("tr-TR") + " " + d.toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" });
+      const yerelKod = currentLang === "en" ? "en-US" : "tr-TR";
+      const tarih = d.toLocaleDateString(yerelKod) + " " + d.toLocaleTimeString(yerelKod, { hour: "2-digit", minute: "2-digit" });
       let t = `${aktifSkor.ad} — ${aktifSkor.kategori}\n`;
-      t += `Sonuç: ${puan}${risk ? " · " + risk : ""}\n`;
+      t += `${ceviriBul(currentLang, "sk.out.result")} ${puan}${risk ? " · " + risk : ""}\n`;
       if (satirlar) t += `\n${satirlar}\n`;
-      t += `\nTarih: ${tarih}\n`;
-      t += `Kaynak: https://suleymanalpar.com/skorlar.html#${aktifSkor.id}\n`;
-      t += `\nEğitim/karar-destek amaçlıdır; hekim değerlendirmesi ve güncel kılavuzların yerine geçmez.`;
+      t += `\n${ceviriBul(currentLang, "sk.out.date")} ${tarih}\n`;
+      t += `${ceviriBul(currentLang, "sk.out.source")} https://suleymanalpar.com/skorlar.html#${aktifSkor.id}\n`;
+      t += `\n${ceviriBul(currentLang, "sk.out.disclaimer")}`;
       return t;
     }
 
@@ -547,12 +650,12 @@
       const bar = document.createElement("div");
       bar.className = "cikti-cubugu";
       bar.innerHTML =
-        '<button type="button" class="cikti-btn" data-act="kopyala"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Kopyala</span></button>' +
-        '<button type="button" class="cikti-btn" data-act="yazdir"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span>Yazdır / PDF</span></button>';
+        `<button type="button" class="cikti-btn" data-act="kopyala"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>${ceviriBul(currentLang, "sk.out.copy")}</span></button>` +
+        `<button type="button" class="cikti-btn" data-act="yazdir"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span>${ceviriBul(currentLang, "sk.out.print")}</span></button>`;
       kutu.appendChild(bar);
       bar.querySelector('[data-act="kopyala"]').addEventListener("click", function () {
         const t = ciktiMetni(); const btn = this; const orj = btn.innerHTML;
-        const ok = () => { btn.querySelector("span").textContent = "Kopyalandı ✓"; setTimeout(() => { btn.innerHTML = orj; }, 1800); };
+        const ok = () => { btn.querySelector("span").textContent = ceviriBul(currentLang, "sk.out.copied"); setTimeout(() => { btn.innerHTML = orj; }, 1800); };
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(t).then(ok).catch(() => fallbackKopya(t, ok));
         } else { fallbackKopya(t, ok); }
@@ -583,6 +686,27 @@
     }
     hashAc();
     window.addEventListener("hashchange", hashAc);
+
+    // ─── Dil değişimi ───
+    // main.js'teki setLanguage() yalnızca data-i18n işaretli öğeleri günceller;
+    // kategori bar / grid / kaynak bloğu / çıktı düğmeleri innerHTML ile JS tarafından
+    // üretildiği için ayrıca yeniden çizilmeleri gerekir. DOMContentLoaded içinde
+    // bağlanır ki main.js'in initLanguageSwitch() dinleyicisi (currentLang'i güncelleyen
+    // setLanguage'i çağıran) önce kaydolsun ve bu fonksiyon her zaman güncel dil ile çalışsın.
+    function skorlarDilYenile() {
+      kategoriBarRender();
+      gridRender();
+      if (aktifSkor) {
+        sonucRender();
+        ciktiCubuguEkle();
+        refBlokRender();
+      }
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".lang-btn").forEach(function (btn) {
+        btn.addEventListener("click", skorlarDilYenile);
+      });
+    });
   </script>
   <script data-goatcounter="https://suleymanalpar.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>

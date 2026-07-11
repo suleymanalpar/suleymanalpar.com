@@ -9,6 +9,23 @@
   <script>window.location.replace('healthcare.html');</script>
 </head>
 <body>
-  <p>Yönlendiriliyorsunuz: <a href="healthcare.html">Sağlık Çalışanları sayfası</a></p>
+  <p data-i18n-html="st.redirect.text">Yönlendiriliyorsunuz: <a href="healthcare.html">Sağlık Çalışanları sayfası</a></p>
+
+  <script src="js/main.js"></script>
+  <script>
+    window.pageI18n = {
+      tr: {
+        'meta.title': 'Sağlık Çalışanları | Dr. Süleyman Alpar',
+        'meta.desc': 'Sağlık Çalışanları sayfasına yönlendiriliyorsunuz.',
+        'st.redirect.text': 'Yönlendiriliyorsunuz: <a href="healthcare.html">Sağlık Çalışanları sayfası</a>',
+      },
+      en: {
+        'meta.title': 'Healthcare Professionals | Dr. Süleyman Alpar',
+        'meta.desc': 'You are being redirected to the Healthcare Professionals page.',
+        'st.redirect.text': 'Redirecting: <a href="healthcare.html">Healthcare Professionals page</a>',
+      }
+    };
+    setLanguage(currentLang);
+  </script>
 </body>
 </html>

@@ -103,12 +103,12 @@
 
   <section class="page-header">
     <div class="container">
-      <h1>Tanı Yardımcısı</h1>
-      <p>Şikayete göre ayırıcı tanı listesi — destekleyen bulgular, kırmızı bayraklar, tetkikler</p>
+      <h1 data-i18n="tn.header.title">Tanı Yardımcısı</h1>
+      <p data-i18n="tn.header.desc">Şikayete göre ayırıcı tanı listesi — destekleyen bulgular, kırmızı bayraklar, tetkikler</p>
     </div>
   </section>
 
-  <div class="hcp-banner">
+  <div class="hcp-banner" data-i18n-html="tn.banner.html">
     <strong>⚠ SAĞLIK ÇALIŞANLARI İÇİNDİR</strong>
     Bu sayfa eğitim ve klinik karar destek amaçlıdır; tıbbi muayene ve hekim klinik yargısı yerine geçmez. Tanı listesi öncelikli olası tanıları sıralar — vakaya özel klinik bağlam değerlendirmesi şarttır. Aciliyet renk kodu: <span style="color:#b91c1c;font-weight:600;">kırmızı (kritik)</span>, <span style="color:#c2410c;font-weight:600;">turuncu (acil)</span>, <span style="color:#b45309;font-weight:600;">sarı (orta)</span>, <span style="color:#047857;font-weight:600;">yeşil (rutin)</span>. Tanıyıcı veri girmeyiniz.
   </div>
@@ -118,19 +118,19 @@
     <div style="background: white; border-radius: 10px; padding: 24px 28px; box-shadow: var(--shadow);">
       <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
         <div style="font-size: 1.5rem;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
-        <h2 style="font-size: 1.15rem; margin: 0; color: var(--primary);">Akıllı Analiz</h2>
-        <span style="font-size: 0.74rem; color: var(--text-light); margin-left: 8px;">Hekim açıklamasından şikayet, yaş, cinsiyet, risk faktörlerini algılar — ön tanıları sıralar ve uygun klinik skorları önerir.</span>
+        <h2 style="font-size: 1.15rem; margin: 0; color: var(--primary);" data-i18n="tn.smart.title">Akıllı Analiz</h2>
+        <span style="font-size: 0.74rem; color: var(--text-light); margin-left: 8px;" data-i18n="tn.smart.desc">Hekim açıklamasından şikayet, yaş, cinsiyet, risk faktörlerini algılar — ön tanıları sıralar ve uygun klinik skorları önerir.</span>
       </div>
-      <textarea id="tanimAlani" rows="3" placeholder='Örn: "68 yaş erkek hasta, 2 saattir göğüs ağrısı, sigara içiyor, hipertansiyon var, daha önce stent öyküsü yok"'
+      <textarea id="tanimAlani" rows="3" placeholder='Örn: "68 yaş erkek hasta, 2 saattir göğüs ağrısı, sigara içiyor, hipertansiyon var, daha önce stent öyküsü yok"' data-i18n-placeholder="tn.smart.placeholder"
         style="width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 0.92rem; line-height: 1.55; resize: vertical;"></textarea>
       <div style="display: flex; gap: 10px; margin-top: 10px; align-items: center; flex-wrap: wrap;">
-        <button id="analizEt" style="padding: 10px 22px; background: var(--accent); color: white; border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer;">Analiz Et</button>
-        <button id="temizle" style="padding: 10px 18px; background: white; color: var(--text-light); border: 1px solid var(--border); border-radius: 8px; font-size: 0.88rem; cursor: pointer;">Temizle</button>
-        <span style="font-size: 0.78rem; color: var(--text-light);">Veya aşağıdaki şikayet sekmelerinden manuel seçim yapabilirsiniz.</span>
+        <button id="analizEt" style="padding: 10px 22px; background: var(--accent); color: white; border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer;" data-i18n="tn.smart.analyze">Analiz Et</button>
+        <button id="temizle" style="padding: 10px 18px; background: white; color: var(--text-light); border: 1px solid var(--border); border-radius: 8px; font-size: 0.88rem; cursor: pointer;" data-i18n="tn.smart.clear">Temizle</button>
+        <span style="font-size: 0.78rem; color: var(--text-light);" data-i18n="tn.smart.manual">Veya aşağıdaki şikayet sekmelerinden manuel seçim yapabilirsiniz.</span>
       </div>
       <!-- Algılanan bilgiler paneli -->
       <div id="algilanan" style="display: none; margin-top: 18px; padding: 14px 16px; background: #eef6f8; border: 1px solid #cfe6ec; border-radius: 12px; border-left: 4px solid var(--accent);">
-        <div style="font-size: 0.74rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 8px;">ALGILANAN BİLGİLER</div>
+        <div style="font-size: 0.74rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 8px;" data-i18n="tn.detected.label">ALGILANAN BİLGİLER</div>
         <div id="algilananIcerik" style="font-size: 0.9rem; line-height: 1.7;"></div>
       </div>
     </div>
@@ -141,7 +141,7 @@
     <div style="background: #eef6f8; border-radius: 12px; padding: 18px 22px; border: 1px solid var(--border);">
       <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
         <div style="font-size: 1.2rem;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg></div>
-        <h3 style="font-size: 1rem; margin: 0; color: var(--primary);">Bu vakada faydalı olabilecek klinik skorlar</h3>
+        <h3 style="font-size: 1rem; margin: 0; color: var(--primary);" data-i18n="tn.scores.title">Bu vakada faydalı olabilecek klinik skorlar</h3>
       </div>
       <div id="onerilenSkorlarListesi" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
     </div>
@@ -165,6 +165,73 @@
   <script src="js/main.js"></script>
   <script src="js/tani.js"></script>
   <script>
+    window.pageI18n = {
+  "tr": {
+    "meta.title": "Tanı Yardımcısı | Dr. Süleyman Alpar",
+    "meta.desc": "Tanı Yardımcısı — şikayete göre ayırıcı tanı listesi, destekleyen bulgular, kırmızı bayraklar, önerilen tetkikler. Sağlık çalışanları için.",
+    "tn.header.title": "Tanı Yardımcısı",
+    "tn.header.desc": "Şikayete göre ayırıcı tanı listesi — destekleyen bulgular, kırmızı bayraklar, tetkikler",
+    "tn.banner.html": "<strong>⚠ SAĞLIK ÇALIŞANLARI İÇİNDİR</strong> Bu sayfa eğitim ve klinik karar destek amaçlıdır; tıbbi muayene ve hekim klinik yargısı yerine geçmez. Tanı listesi öncelikli olası tanıları sıralar — vakaya özel klinik bağlam değerlendirmesi şarttır. Aciliyet renk kodu: <span style=\"color:#b91c1c;font-weight:600;\">kırmızı (kritik)</span>, <span style=\"color:#c2410c;font-weight:600;\">turuncu (acil)</span>, <span style=\"color:#b45309;font-weight:600;\">sarı (orta)</span>, <span style=\"color:#047857;font-weight:600;\">yeşil (rutin)</span>. Tanıyıcı veri girmeyiniz.",
+    "tn.smart.title": "Akıllı Analiz",
+    "tn.smart.desc": "Hekim açıklamasından şikayet, yaş, cinsiyet, risk faktörlerini algılar — ön tanıları sıralar ve uygun klinik skorları önerir.",
+    "tn.smart.placeholder": "Örn: \"68 yaş erkek hasta, 2 saattir göğüs ağrısı, sigara içiyor, hipertansiyon var, daha önce stent öyküsü yok\"",
+    "tn.smart.analyze": "Analiz Et",
+    "tn.smart.clear": "Temizle",
+    "tn.smart.manual": "Veya aşağıdaki şikayet sekmelerinden manuel seçim yapabilirsiniz.",
+    "tn.detected.label": "ALGILANAN BİLGİLER",
+    "tn.scores.title": "Bu vakada faydalı olabilecek klinik skorlar",
+    "tn.urgency.kirmizi": "Kritik",
+    "tn.urgency.turuncu": "Acil",
+    "tn.urgency.sari": "Orta",
+    "tn.urgency.yesil": "Rutin",
+    "tn.smart.ranked": "Akıllı sıralama uygulandı — RF eşleşmesi olan tanılar üstte",
+    "tn.badge.matched": "EŞLEŞEN",
+    "tn.section.supporting": "Destekleyen Bulgular",
+    "tn.section.flags": "Kırmızı Bayraklar / Uyarılar",
+    "tn.section.workup": "Tetkikler / Yaklaşım",
+    "tn.label.score": "Skor:",
+    "tn.label.age": "Yaş",
+    "tn.label.sex": "Cinsiyet",
+    "tn.label.complaint": "Şikayet",
+    "tn.label.notDetected": "Algılanamadı",
+    "tn.label.riskFactors": "RİSK FAKTÖRLERİ",
+    "tn.label.noRfDetected": "Belirgin RF algılanmadı",
+    "tn.alert.emptyInput": "Lütfen hasta tarifi yazınız."
+  },
+  "en": {
+    "meta.title": "Diagnosis Assistant | Dr. Süleyman Alpar",
+    "meta.desc": "Diagnosis Assistant — differential diagnosis list by complaint, supporting findings, red flags, recommended workup. For healthcare professionals.",
+    "tn.header.title": "Diagnosis Assistant",
+    "tn.header.desc": "Differential diagnosis list by complaint — supporting findings, red flags, workup",
+    "tn.banner.html": "<strong>⚠ FOR HEALTHCARE PROFESSIONALS</strong> This page is intended for educational and clinical decision-support purposes; it does not replace medical examination or physician clinical judgment. The diagnosis list ranks the most likely diagnoses in priority order — case-specific clinical context assessment is essential. Urgency color code: <span style=\"color:#b91c1c;font-weight:600;\">red (critical)</span>, <span style=\"color:#c2410c;font-weight:600;\">orange (urgent)</span>, <span style=\"color:#b45309;font-weight:600;\">yellow (moderate)</span>, <span style=\"color:#047857;font-weight:600;\">green (routine)</span>. Do not enter identifying patient data.",
+    "tn.smart.title": "Smart Analysis",
+    "tn.smart.desc": "Detects complaint, age, sex, and risk factors from the physician's description — ranks preliminary diagnoses and suggests appropriate clinical scores.",
+    "tn.smart.placeholder": "E.g.: \"68-year-old male patient, chest pain for 2 hours, smokes, has hypertension, no prior stent history\"",
+    "tn.smart.analyze": "Analyze",
+    "tn.smart.clear": "Clear",
+    "tn.smart.manual": "Or make a manual selection from the complaint tabs below.",
+    "tn.detected.label": "DETECTED INFORMATION",
+    "tn.scores.title": "Clinical scores that may be useful in this case",
+    "tn.urgency.kirmizi": "Critical",
+    "tn.urgency.turuncu": "Urgent",
+    "tn.urgency.sari": "Moderate",
+    "tn.urgency.yesil": "Routine",
+    "tn.smart.ranked": "Smart ranking applied — diagnoses with RF matches shown first",
+    "tn.badge.matched": "MATCHED",
+    "tn.section.supporting": "Supporting Findings",
+    "tn.section.flags": "Red Flags / Warnings",
+    "tn.section.workup": "Workup / Approach",
+    "tn.label.score": "Score:",
+    "tn.label.age": "Age",
+    "tn.label.sex": "Sex",
+    "tn.label.complaint": "Complaint",
+    "tn.label.notDetected": "Not detected",
+    "tn.label.riskFactors": "RISK FACTORS",
+    "tn.label.noRfDetected": "No significant RF detected",
+    "tn.alert.emptyInput": "Please enter a patient description."
+  }
+};
+
     let aktifSikayet = "Göğüs Ağrısı";
     let parsed = null; // Akıllı analiz sonucu
 
@@ -187,7 +254,12 @@
       const wrap = document.getElementById("taniWrap");
       const k = window.TANI_KATALOG[aktifSikayet];
       if (!k) return;
-      const aciliyetMap = { kirmizi: "Kritik", turuncu: "Acil", sari: "Orta", yesil: "Rutin" };
+      const aciliyetMap = {
+        kirmizi: ceviriBul(currentLang, "tn.urgency.kirmizi"),
+        turuncu: ceviriBul(currentLang, "tn.urgency.turuncu"),
+        sari: ceviriBul(currentLang, "tn.urgency.sari"),
+        yesil: ceviriBul(currentLang, "tn.urgency.yesil")
+      };
 
       // Akıllı modda: tanıları sırala ve "vurgu" rozeti ekle
       let tanilar = k.tanilar;
@@ -202,7 +274,7 @@
           <h2>${aktifSikayet}</h2>
           <p>${k.aciklama}</p>
           ${smart ? `<div style="margin-top: 10px; font-size: 0.85rem; color: var(--accent); font-weight: 600;">
-            ✨ Akıllı sıralama uygulandı — RF eşleşmesi olan tanılar üstte
+            ✨ ${ceviriBul(currentLang, "tn.smart.ranked")}
           </div>` : ""}
         </div>
         <div class="tani-grid">
@@ -213,7 +285,7 @@
               ${t._matched.map(m => `<span style="font-size: 0.7rem; padding: 2px 8px; background: rgba(5,150,105,0.14); color: #047857; border-radius: 10px; font-weight: 600;">+ ${m}</span>`).join("")}
             </div>` : "";
         const eslesmeRozeti = (smart && t._matched && t._matched.length >= 2)
-          ? `<span style="font-size: 0.65rem; padding: 3px 9px; background: var(--vurgu); color: white; border-radius: 10px; font-weight: 700; letter-spacing: 0.5px; margin-right: 6px;">⭐ EŞLEŞEN</span>`
+          ? `<span style="font-size: 0.65rem; padding: 3px 9px; background: var(--vurgu); color: white; border-radius: 10px; font-weight: 700; letter-spacing: 0.5px; margin-right: 6px;">⭐ ${ceviriBul(currentLang, "tn.badge.matched")}</span>`
           : "";
         html += `
           <div class="tani-kart ${t.aciliyet}">
@@ -225,18 +297,18 @@
               </div>
               <span class="aciliyet-rozet ${t.aciliyet}">${aciliyetMap[t.aciliyet] || t.aciliyet}</span>
             </div>
-            ${t.skor ? `<div class="skor-badge">Skor: ${t.skor}</div>` : ""}
+            ${t.skor ? `<div class="skor-badge">${ceviriBul(currentLang, "tn.label.score")} ${t.skor}</div>` : ""}
             <div class="detay-bolum">
               ${t.destekleyen?.length ? `
-                <h4>Destekleyen Bulgular</h4>
+                <h4>${ceviriBul(currentLang, "tn.section.supporting")}</h4>
                 <ul class="destekleyen">${t.destekleyen.map(x => `<li>${x}</li>`).join("")}</ul>
               ` : ""}
               ${t.bayraklar?.length ? `
-                <h4>Kırmızı Bayraklar / Uyarılar</h4>
+                <h4>${ceviriBul(currentLang, "tn.section.flags")}</h4>
                 <ul class="bayraklar">${t.bayraklar.map(x => `<li>${x}</li>`).join("")}</ul>
               ` : ""}
               ${t.tetkikler?.length ? `
-                <h4>Tetkikler / Yaklaşım</h4>
+                <h4>${ceviriBul(currentLang, "tn.section.workup")}</h4>
                 <ul class="tetkikler">${t.tetkikler.map(x => `<li>${x}</li>`).join("")}</ul>
               ` : ""}
             </div>
@@ -250,7 +322,7 @@
     // ─── Akıllı analiz ───
     function analizEt() {
       const text = document.getElementById("tanimAlani").value.trim();
-      if (!text) { alert("Lütfen hasta tarifi yazınız."); return; }
+      if (!text) { alert(ceviriBul(currentLang, "tn.alert.emptyInput")); return; }
       parsed = window.parseHastaTanim(text);
 
       // Algılanan paneli
@@ -263,15 +335,15 @@
       let rfHtml = (parsed.rf || []).map(r =>
         `<span style="display: inline-block; padding: 3px 10px; background: #e7f1f4; color: var(--vurgu); border-radius: 99px; font-size: 0.78rem; font-weight: 600; margin-right: 4px; margin-bottom: 4px;">${r}</span>`
       ).join("");
-      if (!rfHtml) rfHtml = "<span style='color: var(--text-light); font-size: 0.85rem;'>Belirgin RF algılanmadı</span>";
+      if (!rfHtml) rfHtml = `<span style='color: var(--text-light); font-size: 0.85rem;'>${ceviriBul(currentLang, "tn.label.noRfDetected")}</span>`;
       ic.innerHTML = `
         <div style="margin-bottom: 8px;">
-          ${renkli("Yaş", parsed.yas)}
-          ${renkli("Cinsiyet", parsed.cinsiyet)}
-          ${renkli("Şikayet", parsed.sikayet, "Algılanamadı")}
+          ${renkli(ceviriBul(currentLang, "tn.label.age"), parsed.yas)}
+          ${renkli(ceviriBul(currentLang, "tn.label.sex"), parsed.cinsiyet)}
+          ${renkli(ceviriBul(currentLang, "tn.label.complaint"), parsed.sikayet, ceviriBul(currentLang, "tn.label.notDetected"))}
         </div>
         <div style="margin-top: 6px;">
-          <span style="font-weight: 600; color: var(--text-light); font-size: 0.78rem; margin-right: 6px;">RİSK FAKTÖRLERİ:</span>
+          <span style="font-weight: 600; color: var(--text-light); font-size: 0.78rem; margin-right: 6px;">${ceviriBul(currentLang, "tn.label.riskFactors")}:</span>
           ${rfHtml}
         </div>
       `;
