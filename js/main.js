@@ -14,6 +14,7 @@ const translations = {
     'nav.healthcare': 'Sağlık Çalışanları',
     'nav.courses': 'Kurslar',
     'nav.blog': 'Blog',
+    'nav.cv': 'Özgeçmiş',
     'nav.contact': 'İletişim',
 
     // Hero
@@ -215,6 +216,7 @@ const translations = {
     'nav.healthcare': 'Healthcare Professionals',
     'nav.courses': 'Courses',
     'nav.blog': 'Blog',
+    'nav.cv': 'CV',
     'nav.contact': 'Contact',
 
     'a11y.skip': 'Skip to content',

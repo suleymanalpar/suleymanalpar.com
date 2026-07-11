@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Doç. Dr. Süleyman Alpar — akademik özgeçmiş: acil tıp uzmanlığı, akademik ve idari görevler, uluslararası ve ulusal yayınlar, kitap bölümleri, bildiriler, sertifikalar.">
+  <title>Özgeçmiş | Doç. Dr. Süleyman Alpar</title>
+  <link rel="icon" type="image/png" sizes="48x48" href="img/marka/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/marka/favicon-32.png">
+  <link rel="canonical" href="https://suleymanalpar.com/cv.html">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://suleymanalpar.com/cv.html">
+  <meta property="og:title" content="Özgeçmiş | Doç. Dr. Süleyman Alpar">
+  <meta property="og:description" content="Acil tıp uzmanı ve öğretim üyesi Doç. Dr. Süleyman Alpar'ın akademik özgeçmişi: yayınlar, görevler, sertifikalar.">
+  <meta property="og:image" content="https://suleymanalpar.com/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="tr_TR">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0E7490">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="img/marka/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* cv.html — akademik özgeçmiş. Site tasarım dili (Apple/petrol). */
+    .content-section { background: #fff; }
+    .content-section.soft { background: var(--bg-soft); }
+
+    /* Özet şeridi */
+    .cv-summary-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 900px; margin: 0 auto; }
+    .cv-summary-strip .cv-stat { text-align: center; padding: 18px 10px; background: var(--bg-soft); border-radius: var(--radius); }
+    .cv-summary-strip .cv-stat b { display: block; font-size: 1.9rem; font-weight: 700; color: var(--vurgu); letter-spacing: -0.02em; line-height: 1; }
+    .cv-summary-strip .cv-stat span { font-size: 0.8rem; color: var(--text-light); margin-top: 6px; display: block; line-height: 1.35; }
+
+    /* Bölüm başlığı */
+    .cv-section-head { max-width: 900px; margin: 0 auto 26px; }
+    .cv-section-head h2 { font-size: 1.6rem; letter-spacing: -0.02em; margin: 0; }
+    .cv-section-head .cv-section-kicker { font-size: 0.72rem; font-weight: 700; color: var(--vurgu); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+
+    /* Zaman çizelgesi (eğitim, görevler, deneyim) */
+    .cv-timeline { max-width: 900px; margin: 0 auto; border-left: 2px solid var(--border-strong); padding-left: 26px; }
+    .cv-entry { position: relative; padding-bottom: 26px; }
+    .cv-entry:last-child { padding-bottom: 0; }
+    .cv-entry::before { content: ""; position: absolute; left: -33px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--vurgu); border: 2px solid #fff; box-shadow: 0 0 0 2px var(--vurgu); }
+    .cv-entry .cv-when { font-size: 0.78rem; font-weight: 600; color: var(--vurgu); letter-spacing: 0.02em; margin-bottom: 3px; }
+    .cv-entry h3 { font-size: 1.08rem; margin: 0 0 2px; letter-spacing: -0.01em; }
+    .cv-entry .cv-org { font-size: 0.92rem; color: var(--text-light); }
+    .cv-entry .cv-detail { font-size: 0.86rem; color: var(--text-light); margin-top: 6px; line-height: 1.6; }
+    .cv-entry .cv-detail strong { color: var(--text); font-weight: 600; }
+
+    /* Yayın listesi */
+    .cv-pub-block { max-width: 900px; margin: 0 auto 30px; }
+    .cv-pub-block > h3 { font-size: 1rem; color: var(--text); margin: 0 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 8px; }
+    .cv-pub-block > h3 .cv-count { font-size: 0.78rem; font-weight: 700; color: var(--vurgu); background: #e7f1f4; padding: 2px 9px; border-radius: var(--radius-pill); }
+    ol.cv-pub-list { list-style: none; counter-reset: pub; margin: 0; padding: 0; }
+    ol.cv-pub-list li { position: relative; padding: 12px 0 12px 34px; border-bottom: 1px solid var(--border); counter-increment: pub; font-size: 0.9rem; line-height: 1.55; color: var(--govde); }
+    ol.cv-pub-list li:last-child { border-bottom: none; }
+    ol.cv-pub-list li::before { content: counter(pub); position: absolute; left: 0; top: 12px; width: 22px; height: 22px; background: var(--bg-soft); border-radius: 50%; font-size: 0.72rem; font-weight: 700; color: var(--text-light); display: flex; align-items: center; justify-content: center; }
+    .cv-pub-list .cv-authors { color: var(--text); }
+    .cv-pub-list .cv-authors .cv-self { color: var(--vurgu); font-weight: 600; }
+    .cv-pub-list .cv-venue { font-style: italic; color: var(--text-light); }
+    .cv-pub-list .cv-doi { display: inline-flex; align-items: center; gap: 3px; margin-left: 4px; font-size: 0.8rem; font-weight: 600; color: var(--vurgu); text-decoration: none; white-space: nowrap; }
+    .cv-pub-list .cv-doi:hover { text-decoration: underline; }
+
+    /* Kart ızgaraları (sertifika, üyelik, kitap) */
+    .cv-card-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+    .cv-card { background: var(--bg-soft); border-radius: var(--radius); padding: 18px 20px; border-left: 3px solid var(--vurgu); }
+    .cv-card .cv-card-title { font-size: 0.96rem; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+    .cv-card .cv-card-sub { font-size: 0.82rem; color: var(--text-light); margin-top: 4px; line-height: 1.5; }
+    .cv-card .cv-card-year { font-size: 0.72rem; font-weight: 700; color: var(--vurgu); letter-spacing: 0.04em; text-transform: uppercase; margin-top: 8px; }
+
+    /* İç bağlantı (ORCID/Scholar) */
+    .cv-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 22px; }
+    .cv-idlink { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; background: #fff; border: 1px solid var(--border-strong); border-radius: var(--radius-pill); font-size: 0.88rem; font-weight: 600; color: var(--text); text-decoration: none; transition: all var(--transition); }
+    .cv-idlink:hover { border-color: var(--vurgu); color: var(--vurgu); transform: translateY(-2px); }
+    .cv-idlink svg { flex-shrink: 0; }
+
+    @media (max-width: 640px) {
+      .cv-summary-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media print {
+      .navbar, .footer, .cv-links, .mobile-toggle { display: none !important; }
+      .content-section { padding: 12px 0 !important; }
+      ol.cv-pub-list li { break-inside: avoid; }
+    }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Süleyman Alpar",
+  "honorificPrefix": "Doç. Dr.",
+  "jobTitle": "Emergency Medicine Specialist; Associate Professor",
+  "email": "mailto:suleymanalpar@beykent.edu.tr",
+  "url": "https://suleymanalpar.com/cv.html",
+  "image": "https://suleymanalpar.com/img/portre.jpg",
+  "worksFor": {
+    "@type": "CollegeOrUniversity",
+    "name": "Istanbul Beykent University, Faculty of Medicine"
+  },
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Istanbul University, Istanbul Faculty of Medicine"
+    }
+  ],
+  "knowsAbout": [
+    "Emergency Medicine",
+    "Clinical Research",
+    "Toxicology",
+    "Point-of-care Ultrasound",
+    "Resuscitation"
+  ],
+  "sameAs": [
+    "https://orcid.org/0000-0002-8509-0660",
+    "https://scholar.google.com.tr/citations?user=50n6yekAAAAJ&hl=tr"
+  ],
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "ORCID",
+    "value": "https://orcid.org/0000-0002-8509-0660"
+  }
+}
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">SA</div>
+        <span>Doç. Dr. Süleyman ALPAR</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="patients.html" data-i18n="nav.patients">Hastalar</a></li>
+        <li><a href="healthcare.html" data-i18n="nav.healthcare">Sağlık Çalışanları</a></li>
+        <li><a href="kurslar.html" data-i18n="nav.courses">Kurslar</a></li>
+        <li><a href="cv.html" class="active" data-i18n="nav.cv">Özgeçmiş</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+        <li>
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="tr">TR</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+        </li>
+        <li><a href="index.html#iletisim" class="nav-cta" data-i18n="nav.contact">İletişim</a></li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 data-i18n="cv.h1">Özgeçmiş</h1>
+      <p data-i18n="cv.lead">Acil Tıp Uzmanı ve Öğretim Üyesi — akademik görevler, yayınlar ve klinik deneyim</p>
+      <div class="cv-links">
+        <a class="cv-idlink" href="https://orcid.org/0000-0002-8509-0660" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 256 256" aria-hidden="true"><path fill="#A6CE39" d="M256 128c0 70.7-57.3 128-128 128S0 198.7 0 128 57.3 0 128 0s128 57.3 128 128z"/><path fill="#fff" d="M86.3 186.2H70.9V79.1h15.4v107.1zM78.6 66.9c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10-4.5 10-10 10zM124.3 79.1h41.6c39.6 0 57 28.3 57 53.6 0 27.5-21.5 53.6-56.8 53.6h-41.8V79.1zm15.4 93.3h24.5c34.9 0 42.9-26.5 42.9-39.7 0-21.5-13.7-39.7-43.7-39.7h-23.7v79.4z"/></svg>
+          ORCID
+        </a>
+        <a class="cv-idlink" href="https://scholar.google.com.tr/citations?user=50n6yekAAAAJ&hl=tr" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14z"/><path fill="#356AC3" d="M12 10a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7z"/><path fill="#A0C3FF" d="M12 0L0 9.5l4.9 3.8A7 7 0 0 1 12 10V0z"/><path fill="#76A7FA" d="M12 0v10a7 7 0 0 1 7.1 3.3L24 9.5 12 0z"/></svg>
+          Google Scholar
+        </a>
+        <a class="cv-idlink" href="mailto:suleymanalpar@beykent.edu.tr">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span data-i18n="cv.email">Akademik e-posta</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Özet -->
+  <section class="content-section soft" style="padding: 44px 20px;">
+    <div class="cv-summary-strip">
+      <div class="cv-stat"><b>16+</b><span data-i18n="cv.sum.articles">hakemli makale</span></div>
+      <div class="cv-stat"><b>3</b><span data-i18n="cv.sum.chapters">kitap bölümü</span></div>
+      <div class="cv-stat"><b>10+</b><span data-i18n="cv.sum.years">yıl klinik deneyim</span></div>
+      <div class="cv-stat"><b>AHA·ATLS</b><span data-i18n="cv.sum.certs">uluslararası sertifikalar</span></div>
+    </div>
+  </section>
+
+  <!-- Eğitim -->
+  <section class="content-section" style="padding: 56px 20px;">
+    <div class="cv-section-head">
+      <div class="cv-section-kicker" data-i18n="cv.edu.kicker">Öğrenim</div>
+      <h2 data-i18n="cv.edu.title">Eğitim</h2>
+    </div>
+    <div class="cv-timeline">
+      <div class="cv-entry">
+        <div class="cv-when">2015 – 2019</div>
+        <h3 data-i18n="cv.edu.res.title">Tıpta Uzmanlık — Acil Tıp</h3>
+        <div class="cv-org" data-i18n="cv.edu.res.org">İstanbul Eğitim ve Araştırma Hastanesi</div>
+        <div class="cv-detail" data-i18n-html="cv.edu.res.detail"><strong>Uzmanlık tezi:</strong> Acil serviste hiperglisemi saptanan hastalarda ölçülen ultrasonografik optik sinir kılıf çapı ile kan şekeri regülasyonu sonrası ölçümler arasındaki farkın araştırılması (2019). Tez danışmanı: Prof. Dr. Özgür Karcıoğlu.</div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-when">2006 – 2013</div>
+        <h3 data-i18n="cv.edu.md.title">Tıp Doktoru (Lisans)</h3>
+        <div class="cv-org" data-i18n="cv.edu.md.org">İstanbul Üniversitesi, İstanbul Tıp Fakültesi</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Akademik & İdari Görevler -->
+  <section class="content-section soft" style="padding: 56px 20px;">
+    <div class="cv-section-head">
+      <div class="cv-section-kicker" data-i18n="cv.pos.kicker">Akademik & İdari</div>
+      <h2 data-i18n="cv.pos.title">Görevler</h2>
+    </div>
+    <div class="cv-timeline">
+      <div class="cv-entry">
+        <div class="cv-when">2023 – <span data-i18n="cv.present">halen</span></div>
+        <h3 data-i18n="cv.pos.beykent.title">Öğretim Üyesi & Acil Tıp Anabilim Dalı Başkanı</h3>
+        <div class="cv-org" data-i18n="cv.pos.beykent.org">İstanbul Beykent Üniversitesi, Tıp Fakültesi — Acil Tıp Anabilim Dalı</div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-when">2022 – 2023</div>
+        <h3 data-i18n="cv.pos.uskudar.title">Dr. Öğretim Üyesi — Acil Tıp</h3>
+        <div class="cv-org" data-i18n="cv.pos.uskudar.org">Üsküdar Üniversitesi, Tıp Fakültesi — Acil Tıp Anabilim Dalı</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Klinik Deneyim -->
+  <section class="content-section" style="padding: 56px 20px;">
+    <div class="cv-section-head">
+      <div class="cv-section-kicker" data-i18n="cv.exp.kicker">Klinik</div>
+      <h2 data-i18n="cv.exp.title">Deneyim</h2>
+    </div>
+    <div class="cv-timeline">
+      <div class="cv-entry">
+        <div class="cv-when">2022 – <span data-i18n="cv.present">halen</span></div>
+        <h3 data-i18n="cv.exp.memorial.title">Acil Tıp Uzmanı</h3>
+        <div class="cv-org" data-i18n="cv.exp.memorial.org">Özel Memorial Bahçelievler Hastanesi</div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-when">2019 – 2022</div>
+        <h3 data-i18n="cv.exp.ergani.title">Acil Tıp Uzmanı</h3>
+        <div class="cv-org" data-i18n="cv.exp.ergani.org">Ergani Devlet Hastanesi (T.C. Sağlık Bakanlığı)</div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-when">2015 – 2019</div>
+        <h3 data-i18n="cv.exp.res.title">Araştırma Görevlisi — Acil Tıp</h3>
+        <div class="cv-org" data-i18n="cv.exp.res.org">İstanbul Eğitim ve Araştırma Hastanesi</div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-when">2013 – 2015</div>
+        <h3 data-i18n="cv.exp.gp.title">Pratisyen Hekim</h3>
+        <div class="cv-org" data-i18n="cv.exp.gp.org">İstanbul Silivri Toplum Sağlığı Merkezi / Aile Hekimliği Birimleri</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Yayınlar -->
+  <section class="content-section soft" style="padding: 56px 20px;">
+    <div class="cv-section-head">
+      <div class="cv-section-kicker" data-i18n="cv.pub.kicker">Bilimsel Eserler</div>
+      <h2 data-i18n="cv.pub.title">Yayınlar</h2>
+    </div>
+
+    <!-- Uluslararası hakemli makaleler -->
+    <div class="cv-pub-block">
+      <h3><span data-i18n="cv.pub.intl">Uluslararası hakemli dergilerde makaleler</span> <span class="cv-count">8</span></h3>
+      <ol class="cv-pub-list" lang="en">
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span>, Tatlıparmak AC</span> (2025). U-shaped relationship between sodium levels and short-term mortality in sepsis. <span class="cv-venue">The American Journal of Emergency Medicine, 97</span>.<a class="cv-doi" href="https://doi.org/10.1016/j.ajem.2025.08.003" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span>, Tatlıparmak AC</span> (2025). Evaluating smartwatch-based detection of supraventricular tachycardia and atrial fibrillation in the emergency department. <span class="cv-venue">The American Journal of Emergency Medicine, 95</span>.<a class="cv-doi" href="https://doi.org/10.1016/j.ajem.2025.05.037" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span>, Yılmaz S</span> (2025). MASCC versus CISNE: evaluation of predictive performance and clinical utility in patients with febrile neutropenia. <span class="cv-venue">European Journal of Medical Research, 30(692)</span>.<a class="cv-doi" href="https://doi.org/10.1186/s40001-025-02858-z" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span>, Yılmaz S, Buyurgan ÇS, Yarkaç A, Ergün Süzer N, Tatlıparmak AC</span> (2025). External validation and comparison of SAFE-QUAKE and dialysis score in earthquake-related crush injuries. <span class="cv-venue">BMC Emergency Medicine, 25(164)</span>.<a class="cv-doi" href="https://doi.org/10.1186/s12873-025-01322-9" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span>, Ünal Çolak F, Kaya B, Yılmaz S</span> (2025). The impact of media on surge capacity in emergency departments: a study on rabies vaccination uptake. <span class="cv-venue">BMC Emergency Medicine, 25</span>.<a class="cv-doi" href="https://doi.org/10.1186/s12873-025-01270-4" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors">Ergün Süzer N, Aydoğdu Umaç G, <span class="cv-self">Alpar S</span>, Yılmaz S</span> (2025). Comparison of return of spontaneous circulation prediction scores in patients with cardiac arrest during ambulance transport. <span class="cv-venue">BMC Emergency Medicine, 25</span>.<a class="cv-doi" href="https://doi.org/10.1186/s12873-025-01265-1" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors">Tatlıparmak AC, <span class="cv-self">Alpar S</span>, Yılmaz S</span> (2023). Factors influencing recurrent emergency department visits for mild acute respiratory tract infections caused by the influenza virus. <span class="cv-venue">PeerJ, 11</span>.<a class="cv-doi" href="https://doi.org/10.7717/peerj.16198" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors">Karcıoğlu Ö, Yeniocak S, <span class="cv-self">Alpar S</span>, Özkaya B, Hosseinzadeh M, Karakuş Yılmaz B</span> (2020). Intracranial hemorrhage while on warfarin: management principles. <span class="cv-venue">World Journal of Pharmaceutical Research, 9(4), 1739–1752</span>.<a class="cv-doi" href="https://doi.org/10.20959/wjpr20204-17224" target="_blank" rel="noopener">doi ↗</a></li>
+      </ol>
+    </div>
+
+    <!-- Ulusal hakemli makaleler -->
+    <div class="cv-pub-block">
+      <h3><span data-i18n="cv.pub.natl">Ulusal hakemli dergilerde makaleler</span> <span class="cv-count">8</span></h3>
+      <ol class="cv-pub-list" lang="en">
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span>, Ergün Süzer N, Yılmaz S</span> (2025). Comparison of nutrition-based scoring systems for predicting mortality in patients with acute pancreatitis in the emergency department. <span class="cv-venue">Anatolian Journal of Emergency Medicine, 8</span>.<a class="cv-doi" href="https://doi.org/10.54996/anatolianjem.1742080" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors">Ergün Süzer N, <span class="cv-self">Alpar S</span>, Tatlıparmak AC, Yılmaz S</span> (2025). Comparison of five early warning scores in predicting mortality risk in patients presenting to the emergency department with acute dyspnea: qSOFA, NEWS2, MEWS, HASI, and SIL. <span class="cv-venue">The European Research Journal, 11</span>.<a class="cv-doi" href="https://doi.org/10.18621/eurj.1738116" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span>, Yılmaz S</span> (2025). Association between C-reactive protein to albumin ratio and mortality in geriatric hip fracture patients. <span class="cv-venue">The Anatolian Journal of General Medical Research</span>.<a class="cv-doi" href="https://doi.org/10.4274/anatoljmed.2025.36035" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span>, Özden MF, Tatlıparmak AC, Aydoğdu Umaç G, Yılmaz S</span> (2025). Platelet indices in distinguishing thrombotic vs embolic ischemic stroke. <span class="cv-venue">Celal Bayar Üniversitesi Sağlık Bilimleri Enstitüsü Dergisi, 12(2)</span>.<a class="cv-doi" href="https://doi.org/10.34087/cbusbed.1667940" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span>, Ergün Süzer N, Gülşen Yaşar B, Dikme Ö, Karcıoğlu Ö</span> (2025). Evaluation of intracranial pressure via optic nerve sheath diameter in hyperglycemic patients admitted to the emergency department: a prospective observational study. <span class="cv-venue">İzmir Eğitim ve Araştırma Hastanesi Tıp Dergisi</span>.</li>
+        <li><span class="cv-authors">Özel M, Çetinkaya R, <span class="cv-self">Alpar S</span>, Doğan Araç S</span> (2023). Analysis of recurrent ileus admissions to an emergency department. <span class="cv-venue">Kocaeli Medical Journal, 12(3), 390–394</span>.<a class="cv-doi" href="https://doi.org/10.5505/ktd.2023.97345" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors">Araç S, Özel M, Aslan A, <span class="cv-self">Alpar S</span>, Araç E</span> (2021). Presenting characteristics, comorbidities, and outcomes among 390 patients hospitalized with COVID-19 pneumonia in a tertiary hospital. <span class="cv-venue">The European Research Journal, 7(6)</span>.<a class="cv-doi" href="https://doi.org/10.18621/eurj.886378" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors">Karcıoğlu Ö, Hosseinzadeh M, Yeniocak S, Özkaya B, <span class="cv-self">Alpar S</span>, Metin H</span> (2020). Kardiyovasküler hastalık ve COVID-19: ne değişti? <span class="cv-venue">Hastane Öncesi Dergisi, 5(2), 99</span>.</li>
+      </ol>
+    </div>
+
+    <!-- Kitap bölümleri -->
+    <div class="cv-pub-block">
+      <h3><span data-i18n="cv.pub.books">Kitap bölümleri</span> <span class="cv-count">3</span></h3>
+      <ol class="cv-pub-list">
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span>, Yılmaz S</span> (2023). <span lang="tr">Zehirlenmeler</span>. <span class="cv-venue" data-i18n="cv.book1.venue">2023 Güncel Kılavuzlar Işığında Acil Tıp Order ve Reçeteler</span>. EMA Tıp Kitabevi. ISBN 978-625-7849-82-1.</li>
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span></span> (2021). <span lang="tr">Kuduz Şüpheli Isırıklarda İlk ve Acil Yardım</span>. <span class="cv-venue" data-i18n="cv.book2.venue">İlk Yardım — Olgularla Temel Yaşam Desteği</span>. EMA Tıp Kitabevi. ISBN 978-625-7849-39-5.</li>
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span></span> (2021). <span lang="tr">Ajite veya Saldırgan Hastaya Yaklaşım</span>. <span class="cv-venue" data-i18n="cv.book3.venue">Tüm Yönleriyle Ağrı</span>. Ema Tıp Kitabevi. ISBN 978-605-06114-3-4.</li>
+      </ol>
+    </div>
+
+    <!-- Uluslararası bildiriler -->
+    <div class="cv-pub-block">
+      <h3><span data-i18n="cv.pub.intlproc">Uluslararası bildiriler</span> <span class="cv-count">3</span></h3>
+      <ol class="cv-pub-list" lang="en">
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span></span> (2025). Wellen's syndrome: a critical ECG pattern not to miss in the emergency department. <span class="cv-venue">7th International Istanbul Current Scientific Research Congress</span> <span data-i18n="cv.proc.oral">(sözlü sunum)</span>.</li>
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span></span> (2025). Seizure as the initial manifestation of lithium-induced hyponatremia: a case report. <span class="cv-venue">VII. Başkent International Conference on Multidisciplinary Studies</span> <span data-i18n="cv.proc.oral">(sözlü sunum)</span>.</li>
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span></span> (2025). Cannonball metastases in a patient with advanced prostate cancer: a case report. <span class="cv-venue">17th International Hippocrates Congress on Medical and Health Sciences, 1(1), 129–130</span> <span data-i18n="cv.proc.oral">(sözlü sunum)</span>.</li>
+      </ol>
+    </div>
+
+    <!-- Ulusal bildiriler + Editöre mektup/olgu -->
+    <div class="cv-pub-block">
+      <h3><span data-i18n="cv.pub.other">Ulusal bildiriler & editöre mektup / olgu sunumları</span> <span class="cv-count">5</span></h3>
+      <ol class="cv-pub-list" lang="en">
+        <li><span class="cv-authors">Yıldırım M, Bektaş B, <span class="cv-self">Alpar S</span>, Girgin MC</span> (2019). <span lang="tr">Karın ağrısının unutulan nedeni</span>. <span class="cv-venue">15. Türkiye Acil Tıp Kongresi</span> <span data-i18n="cv.proc.poster">(poster)</span>.</li>
+        <li><span class="cv-authors">Dikme Ö, <span class="cv-self">Alpar S</span>, Topaçoğlu H</span> (2015). <span lang="tr">Acil serviste nadir bir olgu: gastrik volvulus</span>. <span class="cv-venue">11. Türkiye Acil Tıp Kongresi, 297</span> <span data-i18n="cv.proc.poster">(poster)</span>.</li>
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span></span> (2025). Earthquake survival strategies: potential advantages of the fetal position in the triangle of life. <span class="cv-venue">Disaster Medicine and Public Health Preparedness, 19</span> <span data-i18n="cv.proc.letter">(editöre mektup)</span>.<a class="cv-doi" href="https://doi.org/10.1017/dmp.2025.10116" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors"><span class="cv-self">Alpar S</span>, Yılmaz S, Ak R</span> (2023). A shortcut for preparing doses of positive inotropic drug infusions — the "fast inotrope bag (FiB) coefficient". <span class="cv-venue">Signa Vitae, 19(6), 224–226</span> <span data-i18n="cv.proc.letter">(editöre mektup)</span>.<a class="cv-doi" href="https://doi.org/10.22514/sv.2023.036" target="_blank" rel="noopener">doi ↗</a></li>
+        <li><span class="cv-authors">Yılmaz S, <span class="cv-self">Alpar S</span></span> (2023). Managing hemiballismus-hemichorea caused by hyperglycemia in an emergency department. <span class="cv-venue">Global Emergency and Critical Care, 2(1), 30–32</span> <span data-i18n="cv.proc.case">(olgu sunumu)</span>.<a class="cv-doi" href="https://doi.org/10.4274/globecc.galenos.2022.70299" target="_blank" rel="noopener">doi ↗</a></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Sertifikalar & Kurslar -->
+  <section class="content-section" style="padding: 56px 20px;">
+    <div class="cv-section-head">
+      <div class="cv-section-kicker" data-i18n="cv.cert.kicker">Yetkinlik</div>
+      <h2 data-i18n="cv.cert.title">Sertifikalar & Kurslar</h2>
+    </div>
+    <div class="cv-card-grid">
+      <div class="cv-card">
+        <div class="cv-card-title">AHA BLS &amp; ACLS Provider</div>
+        <div class="cv-card-sub" data-i18n="cv.cert.aha">American Heart Association — Temel & İleri Yaşam Desteği</div>
+        <div class="cv-card-year">2025</div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-card-title">Ultrasound Life Support — Basic L1</div>
+        <div class="cv-card-sub" data-i18n="cv.cert.usg">Temel acil ultrasonografi sağlayıcı sertifikası</div>
+        <div class="cv-card-year">2024</div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-card-title">ATLS — Advanced Trauma Life Support</div>
+        <div class="cv-card-sub" data-i18n="cv.cert.atls">İleri travma yaşam desteği sağlayıcı sertifikası</div>
+        <div class="cv-card-year">2023</div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-card-title" data-i18n="cv.cert.critical.title">Acil Serviste Kritik Hasta Yönetimi</div>
+        <div class="cv-card-sub" data-i18n="cv.cert.critical.sub">Kritik hasta yönetim kursu</div>
+        <div class="cv-card-year">2018</div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-card-title">ECMO Workshop</div>
+        <div class="cv-card-sub" data-i18n="cv.cert.ecmo">Ekstrakorporeal yaşam desteği çalıştayı</div>
+        <div class="cv-card-year">2017</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Üyelikler & Medya -->
+  <section class="content-section soft" style="padding: 56px 20px;">
+    <div class="cv-section-head">
+      <div class="cv-section-kicker" data-i18n="cv.misc.kicker">Mesleki</div>
+      <h2 data-i18n="cv.misc.title">Üyelikler & Bilimsel Etkinlikler</h2>
+    </div>
+    <div class="cv-card-grid">
+      <div class="cv-card">
+        <div class="cv-card-title" data-i18n="cv.mem.tatd">Türkiye Acil Tıp Derneği</div>
+        <div class="cv-card-sub" data-i18n="cv.mem.member">Üye</div>
+        <div class="cv-card-year">2019 – <span data-i18n="cv.present">halen</span></div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-card-title" data-i18n="cv.mem.ttb">Türk Tabipleri Birliği</div>
+        <div class="cv-card-sub" data-i18n="cv.mem.member">Üye</div>
+        <div class="cv-card-year">2013 – <span data-i18n="cv.present">halen</span></div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-card-title" data-i18n="cv.talk.seminar.title">Deprem sonrası transport stratejileri</div>
+        <div class="cv-card-sub" data-i18n="cv.talk.seminar.sub">Davetli seminer — Burgas, Bulgaristan</div>
+        <div class="cv-card-year">2024</div>
+      </div>
+      <div class="cv-card">
+        <div class="cv-card-title" data-i18n="cv.talk.media.title">İlk yardım & acil müdahale</div>
+        <div class="cv-card-sub" data-i18n="cv.talk.media.sub">Ulusal televizyon programı konuğu</div>
+        <div class="cv-card-year">2025</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div data-i18n="footer.copyright">© 2026 Doç. Dr. Süleyman ALPAR · suleymanalpar@gmail.com · @suleymanalpar</div>
+      <div class="footer-links">
+        <a href="gizlilik.html" data-i18n="footer.privacy">Gizlilik</a>
+        <a href="gizlilik.html" data-i18n="footer.kvkk">KVKK</a>
+        <a href="cerez.html" data-i18n="footer.cookie">Çerezler</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    window.pageI18n = {
+  "tr": {
+    "meta.title": "Özgeçmiş | Doç. Dr. Süleyman Alpar",
+    "meta.desc": "Doç. Dr. Süleyman Alpar — akademik özgeçmiş: acil tıp uzmanlığı, akademik ve idari görevler, uluslararası ve ulusal yayınlar, kitap bölümleri, bildiriler, sertifikalar.",
+    "cv.h1": "Özgeçmiş",
+    "cv.lead": "Acil Tıp Uzmanı ve Öğretim Üyesi — akademik görevler, yayınlar ve klinik deneyim",
+    "cv.email": "Akademik e-posta",
+    "cv.present": "halen",
+    "cv.sum.articles": "hakemli makale",
+    "cv.sum.chapters": "kitap bölümü",
+    "cv.sum.years": "yıl klinik deneyim",
+    "cv.sum.certs": "uluslararası sertifikalar",
+    "cv.edu.kicker": "Öğrenim",
+    "cv.edu.title": "Eğitim",
+    "cv.edu.res.title": "Tıpta Uzmanlık — Acil Tıp",
+    "cv.edu.res.org": "İstanbul Eğitim ve Araştırma Hastanesi",
+    "cv.edu.res.detail": "<strong>Uzmanlık tezi:</strong> Acil serviste hiperglisemi saptanan hastalarda ölçülen ultrasonografik optik sinir kılıf çapı ile kan şekeri regülasyonu sonrası ölçümler arasındaki farkın araştırılması (2019). Tez danışmanı: Prof. Dr. Özgür Karcıoğlu.",
+    "cv.edu.md.title": "Tıp Doktoru (Lisans)",
+    "cv.edu.md.org": "İstanbul Üniversitesi, İstanbul Tıp Fakültesi",
+    "cv.pos.kicker": "Akademik & İdari",
+    "cv.pos.title": "Görevler",
+    "cv.pos.beykent.title": "Öğretim Üyesi & Acil Tıp Anabilim Dalı Başkanı",
+    "cv.pos.beykent.org": "İstanbul Beykent Üniversitesi, Tıp Fakültesi — Acil Tıp Anabilim Dalı",
+    "cv.pos.uskudar.title": "Dr. Öğretim Üyesi — Acil Tıp",
+    "cv.pos.uskudar.org": "Üsküdar Üniversitesi, Tıp Fakültesi — Acil Tıp Anabilim Dalı",
+    "cv.exp.kicker": "Klinik",
+    "cv.exp.title": "Deneyim",
+    "cv.exp.memorial.title": "Acil Tıp Uzmanı",
+    "cv.exp.memorial.org": "Özel Memorial Bahçelievler Hastanesi",
+    "cv.exp.ergani.title": "Acil Tıp Uzmanı",
+    "cv.exp.ergani.org": "Ergani Devlet Hastanesi (T.C. Sağlık Bakanlığı)",
+    "cv.exp.res.title": "Araştırma Görevlisi — Acil Tıp",
+    "cv.exp.res.org": "İstanbul Eğitim ve Araştırma Hastanesi",
+    "cv.exp.gp.title": "Pratisyen Hekim",
+    "cv.exp.gp.org": "İstanbul Silivri Toplum Sağlığı Merkezi / Aile Hekimliği Birimleri",
+    "cv.pub.kicker": "Bilimsel Eserler",
+    "cv.pub.title": "Yayınlar",
+    "cv.pub.intl": "Uluslararası hakemli dergilerde makaleler",
+    "cv.pub.natl": "Ulusal hakemli dergilerde makaleler",
+    "cv.pub.books": "Kitap bölümleri",
+    "cv.pub.intlproc": "Uluslararası bildiriler",
+    "cv.pub.other": "Ulusal bildiriler & editöre mektup / olgu sunumları",
+    "cv.book1.venue": "2023 Güncel Kılavuzlar Işığında Acil Tıp Order ve Reçeteler",
+    "cv.book2.venue": "İlk Yardım — Olgularla Temel Yaşam Desteği",
+    "cv.book3.venue": "Tüm Yönleriyle Ağrı",
+    "cv.proc.oral": "(sözlü sunum)",
+    "cv.proc.poster": "(poster)",
+    "cv.proc.letter": "(editöre mektup)",
+    "cv.proc.case": "(olgu sunumu)",
+    "cv.cert.kicker": "Yetkinlik",
+    "cv.cert.title": "Sertifikalar & Kurslar",
+    "cv.cert.aha": "American Heart Association — Temel & İleri Yaşam Desteği",
+    "cv.cert.usg": "Temel acil ultrasonografi sağlayıcı sertifikası",
+    "cv.cert.atls": "İleri travma yaşam desteği sağlayıcı sertifikası",
+    "cv.cert.critical.title": "Acil Serviste Kritik Hasta Yönetimi",
+    "cv.cert.critical.sub": "Kritik hasta yönetim kursu",
+    "cv.cert.ecmo": "Ekstrakorporeal yaşam desteği çalıştayı",
+    "cv.misc.kicker": "Mesleki",
+    "cv.misc.title": "Üyelikler & Bilimsel Etkinlikler",
+    "cv.mem.tatd": "Türkiye Acil Tıp Derneği",
+    "cv.mem.ttb": "Türk Tabipleri Birliği",
+    "cv.mem.member": "Üye",
+    "cv.talk.seminar.title": "Deprem sonrası transport stratejileri",
+    "cv.talk.seminar.sub": "Davetli seminer — Burgas, Bulgaristan",
+    "cv.talk.media.title": "İlk yardım & acil müdahale",
+    "cv.talk.media.sub": "Ulusal televizyon programı konuğu"
+  },
+  "en": {
+    "meta.title": "CV | Assoc. Prof. Süleyman Alpar, MD",
+    "meta.desc": "Assoc. Prof. Süleyman Alpar, MD — academic CV: emergency medicine specialty, academic and administrative positions, international and national publications, book chapters, conference proceedings, certifications.",
+    "cv.h1": "Curriculum Vitae",
+    "cv.lead": "Emergency Medicine Specialist & Faculty Member — academic positions, publications and clinical experience",
+    "cv.email": "Academic email",
+    "cv.present": "present",
+    "cv.sum.articles": "peer-reviewed articles",
+    "cv.sum.chapters": "book chapters",
+    "cv.sum.years": "years of clinical experience",
+    "cv.sum.certs": "international certifications",
+    "cv.edu.kicker": "Education",
+    "cv.edu.title": "Education",
+    "cv.edu.res.title": "Residency — Emergency Medicine",
+    "cv.edu.res.org": "İstanbul Training and Research Hospital",
+    "cv.edu.res.detail": "<strong>Residency thesis:</strong> Investigation of the difference between ultrasonographic optic nerve sheath diameter measured in patients with hyperglycemia in the emergency department and measurements after blood glucose regulation (2019). Thesis advisor: Prof. Özgür Karcıoğlu, MD.",
+    "cv.edu.md.title": "Doctor of Medicine (MD)",
+    "cv.edu.md.org": "Istanbul University, Istanbul Faculty of Medicine",
+    "cv.pos.kicker": "Academic & Administrative",
+    "cv.pos.title": "Positions",
+    "cv.pos.beykent.title": "Faculty Member & Head of the Department of Emergency Medicine",
+    "cv.pos.beykent.org": "Istanbul Beykent University, Faculty of Medicine — Department of Emergency Medicine",
+    "cv.pos.uskudar.title": "Assistant Professor — Emergency Medicine",
+    "cv.pos.uskudar.org": "Üsküdar University, Faculty of Medicine — Department of Emergency Medicine",
+    "cv.exp.kicker": "Clinical",
+    "cv.exp.title": "Experience",
+    "cv.exp.memorial.title": "Emergency Medicine Specialist",
+    "cv.exp.memorial.org": "Private Memorial Bahçelievler Hospital",
+    "cv.exp.ergani.title": "Emergency Medicine Specialist",
+    "cv.exp.ergani.org": "Ergani State Hospital (Republic of Türkiye, Ministry of Health)",
+    "cv.exp.res.title": "Resident — Emergency Medicine",
+    "cv.exp.res.org": "İstanbul Training and Research Hospital",
+    "cv.exp.gp.title": "General Practitioner",
+    "cv.exp.gp.org": "İstanbul Silivri Community Health Center / Family Medicine Units",
+    "cv.pub.kicker": "Scholarly Works",
+    "cv.pub.title": "Publications",
+    "cv.pub.intl": "Articles in international peer-reviewed journals",
+    "cv.pub.natl": "Articles in national peer-reviewed journals",
+    "cv.pub.books": "Book chapters",
+    "cv.pub.intlproc": "International conference proceedings",
+    "cv.pub.other": "National proceedings & letters to the editor / case reports",
+    "cv.book1.venue": "Emergency Medicine Orders and Prescriptions in Light of Current Guidelines (2023)",
+    "cv.book2.venue": "First Aid — Basic Life Support with Cases",
+    "cv.book3.venue": "Pain in All Its Aspects",
+    "cv.proc.oral": "(oral presentation)",
+    "cv.proc.poster": "(poster)",
+    "cv.proc.letter": "(letter to the editor)",
+    "cv.proc.case": "(case report)",
+    "cv.cert.kicker": "Credentials",
+    "cv.cert.title": "Certifications & Courses",
+    "cv.cert.aha": "American Heart Association — Basic & Advanced Life Support",
+    "cv.cert.usg": "Basic emergency ultrasound provider certificate",
+    "cv.cert.atls": "Advanced trauma life support provider certificate",
+    "cv.cert.critical.title": "Critical Patient Management in the ED",
+    "cv.cert.critical.sub": "Critical patient management course",
+    "cv.cert.ecmo": "Extracorporeal life support workshop",
+    "cv.misc.kicker": "Professional",
+    "cv.misc.title": "Memberships & Scientific Activities",
+    "cv.mem.tatd": "Emergency Medicine Association of Türkiye",
+    "cv.mem.ttb": "Turkish Medical Association",
+    "cv.mem.member": "Member",
+    "cv.talk.seminar.title": "Post-earthquake transport strategies",
+    "cv.talk.seminar.sub": "Invited seminar — Burgas, Bulgaria",
+    "cv.talk.media.title": "First aid & emergency response",
+    "cv.talk.media.sub": "National television program guest"
+  }
+};
+  </script>
+  <script data-goatcounter="https://suleymanalpar.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
